@@ -97,7 +97,7 @@ def test_prerequisites(t: TestRunner):
             "File too small")
     t.check("skill-maker/ scripts exist",
             all((_SCRIPT_DIR / f).exists()
-                for f in ["split_fpf_spec.py", "fpf_tools.py", "fpf_update.py", "split_fpf_spec.py"
+                for f in ["split_fpf_spec.py", "fpf_tools.py", "fpf_update.py", "split_fpf_spec.py",
                            "audit_fpf_patterns.py", "_fpf_common.py"]),
             "Missing script files")
 
