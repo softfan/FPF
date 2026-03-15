@@ -97,7 +97,7 @@ def test_prerequisites(t: TestRunner):
             "File too small")
     t.check("skill-maker/ scripts exist",
             all((_SCRIPT_DIR / f).exists()
-                for f in ["split_fpf_spec.py", "fpf_tools.py",
+                for f in ["split_fpf_spec.py", "fpf_tools.py", "fpf_update.py", "split_fpf_spec.py"
                            "audit_fpf_patterns.py", "_fpf_common.py"]),
             "Missing script files")
 
@@ -142,8 +142,9 @@ def test_structure(t: TestRunner):
         t.check("scripts/__init__.py", (scripts_dir / "__init__.py").exists())
         t.check("scripts/fpf_tools.py", (scripts_dir / "fpf_tools.py").exists())
         t.check("scripts/_fpf_common.py", (scripts_dir / "_fpf_common.py").exists())
-        t.check("scripts/audit_fpf_patterns.py",
-                (scripts_dir / "audit_fpf_patterns.py").exists())
+        t.check("scripts/fpf_update.py", (scripts_dir / "fpf_update.py").exists())
+        t.check("scripts/split_fpf_spec.py", (scripts_dir / "split_fpf_spec.py").exists())
+        t.check("scripts/audit_fpf_patterns.py", (scripts_dir / "audit_fpf_patterns.py").exists())
 
 
 def test_skill_md_quality(t: TestRunner):

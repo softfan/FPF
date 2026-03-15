@@ -282,6 +282,8 @@ class FileWriter:
     SKILL_SCRIPTS = [
         "_fpf_common.py",
         "fpf_tools.py",
+        "fpf_update.py",
+        "split_fpf_spec.py",
         "audit_fpf_patterns.py",
     ]
 
