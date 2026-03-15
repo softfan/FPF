@@ -1,0 +1,47 @@
+# FPF AI-Agent Skill
+
+Auto-generated from FPF-Spec.md. **{{PATTERN_COUNT}}** patterns across **{{DOMAIN_COUNT}}** domains.
+
+## What is this?
+
+This directory contains the FPF specification split into individual pattern
+files for efficient AI-agent consumption. Instead of loading a ~4 MB monolithic
+file, agents load only the patterns they need via indexes.
+
+## Structure
+
+```
+skills/fpf/
+├── SKILL.md                    # Agent navigation hub (start here)
+├── README.md                   # This file
+├── reference/
+│   ├── agent_index_patterns.md # ID → Title → Builds on
+│   ├── agent_index_keywords.md # Keyword → Pattern IDs
+│   ├── agent_index_queries.md  # Question → Pattern ID
+│   ├── intro_*.md              # Preface/intro sections
+│   └── fpf-patterns/
+│       ├── index.md            # Full pattern table
+│       └── A.1.md … G.13.md   # Individual pattern files
+└── scripts/
+    ├── __init__.py
+    ├── _fpf_common.py
+    ├── fpf_tools.py
+    └── audit_fpf_patterns.py
+```
+
+## Usage
+
+See `SKILL.md` for complete agent instructions.
+
+## Rebuilding
+
+```bash
+# From repo root:
+python skill-maker/fpf_update.py           # full update from GitHub
+python skill-maker/build.sh                 # build from local FPF-Spec.md
+python skill-maker/test_fpf_pipeline.py     # run tests
+```
+
+## Source
+
+Generated from [FPF-Spec.md](https://github.com/ailev/FPF) by the skill-maker toolchain.
