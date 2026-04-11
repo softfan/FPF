@@ -173,7 +173,7 @@ Pattern and headers templates are explained in pattern E.8.
 | **Cluster C.II – Domain‑Specific Patterns** | | | | |
 | C.9 | **Agency‑CHR** | Draft | *Keywords:* agency, agent, autonomy, decision-making, active inference. *Queries:* "How to measure autonomy?", "What defines an agent in FPF?". | **Builds on:** CHR-CAL, A.13. |
 | C.10 | **Norm‑CAL** | Draft | *Keywords:* norm, constraint, ethics, obligation, permission, deontics. *Queries:* "How to model rules and constraints?", "Where are ethical principles defined in FPF?". | **Builds on:** A.10. **Is used by:** Part D. |
-| C.11 | **Decsn‑CAL** | Draft | *Keywords:* decision, choice, preference, utility, options. *Queries:* "How does FPF model decision-making?", "How to represent preferences and utility?". | **Builds on:** A.13. |
+| C.11 | **Decision Theory (Decsn‑CAL)** | Stable | *Keywords:* decision theory, choice, option set, decision subject, choice rule, probe-worthiness. *Queries:* "When should one choose now versus probe again?", "How does FPF govern choice among already-available options?" | **Builds on:** A.6.P, A.6.5, A.13, C.9, A.18, A.19. **Coordinates with:** C.18, C.19, C.24, G.5. |
 | **Cluster C.III – Meta‑Infrastructure CALs** | | | | |
 | C.12 | **ADR‑Kind-CAL** | Draft | *Keywords:* versioning, rationale, DRR, architecture decision record. *Queries:* "How are changes to kinds managed?". | **Builds on:** Kind-CAL, E.9. |
 | C.13 | **Compose‑CAL — Constructional Mereology** | Stable | *Keywords:* mereology, part-whole, composition, sum, set, slice, extensional identity. *Queries:* "How does FPF formally construct parts and wholes?", "What is Compose-CAL?". | **Builds on:** A.14. **Is used by:** B.3.5 (CT2R-LOG). |
@@ -184,14 +184,14 @@ Pattern and headers templates are explained in pattern E.8.
 | C.17 | **Creativity‑CHR — Characterising Generative Novelty & Value** | Stable | *Keywords:* creativity, novelty, value, surprise, innovation, ideation. *Queries:* "How does FPF measure creativity?", "What defines a novel idea?". | **Builds on:** CHR-CAL, MM-CHR. **Coordinates with:** NQD-CAL, E/E-LOG. |
 | C.18 | **NQD‑CAL — Open‑Ended Search Calculus** | Stable | *Keywords:* search, exploration, hypothesis generation, novelty, quality, diversity (NQD). *Queries:* "How does FPF support structured brainstorming?", "What is NQD search?". | **Builds on:** KD-CAL. **Coordinates with:** B.5.2.1, Creativity-CHR, E/E-LOG. |
 | C.18.1 | **SLL — Scaling‑Law Lens (binding)** | Stable | *Keywords:* scaling law, scale variables (S), compute‑elasticity, data‑elasticity, resolution‑elasticity, exponent class, knee, diminishing returns. *Queries:* "How to make search scale‑savvy?", "Where to declare scale variables and expected elasticities?" | **Builds on:** C.16, C.17, C.18. **Coordinates with:** C.19, G.5, G.9, G.10. |
-| C.19 | **E/E‑LOG — Explore–Exploit Governor** | Stable | *Keywords:* explore-exploit, policy, strategy, decision lens, portfolio management. *Queries:* "How to balance exploration and exploitation?", "What is an EmitterPolicy?". | **Builds on:** Decsn-CAL. **Coordinates with:** NQD-CAL. |
+| C.19 | **Explore–Exploit Governor (E/E‑LOG)** | Stable | *Keywords:* explore-exploit, pool policy, frontier, narrowing, sunset, EmitterPolicy. *Queries:* "How should one govern a still-live candidate pool?", "When should one keep frontier versus narrow to subset?" | **Builds on:** C.18, C.17, Decsn-CAL, B.3. **Coordinates with:** C.11, C.24, G.5. |
 | C.19.1 | **Bitter‑Lesson Preference (BLP)** | Stable | *Keywords:* Bitter Lesson, scale-audit, BLP-waiver, α/δ tolerances, task-family specialization. *Queries:* "When may a narrower method beat a scalable one in FPF?", "How does BLP stay compatible with bounded task-family specialization?" | **Builds on:** C.19, C.24, B.3. **Coordinates with:** G.5, G.8, G.9, G.11, A.0. |
 | C.20 | **Discipline‑CAL — Composition of `U.Discipline`** | Stable| *Keywords:* discipline, **U.AppliedDiscipline**, **U.Transdiscipline**, episteme corpus, standards, institutions, **Γ_disc**. *Queries:* "How to compose and assess a discipline in FPF?" | **Builds on:** C.2 KD‑CAL, G.0, Part F (Bridges/UTS). **Coordinates with:** C.21, C.23. |
 | C.21 | **Discipline‑CHR - Field Health & Structure** | Stable | *Keywords:* discipline, field health, reproducibility, standardisation, alignment, disruption. *Queries:* "How to measure the health of a scientific field?", "What is reproducibility rate?". | **Builds on:** C.16, C.2, A.2.6, B.3. **Coordinates with:** C.20, G.2. |
 | C.22 | **Problem Typing & TaskSignature Assignment (Problem‑CHR)** | Stable | *Keywords:* Problem‑CHR, TaskSignature, TaskKind, ScopeSlice(G), unknown handling, specialization anchor. *Queries:* "How does FPF bind a typed `TaskSignature` for lawful selection?", "How does TaskSignature stay separate from method choice and specialization claims?" | **Builds on:** C.16, G.0, G.5. **Coordinates with:** G.4, C.22.1, C.23. |
 | C.22.1 | **Task-family adaptation signature** | Stable | *Keywords:* adaptation signature, time-to-threshold, budget-to-threshold, prior exposure, corridor entry, stepping stone. *Queries:* "How do I publish a specialization claim on one task family honestly?", "What fields make task-family adaptation comparable in `G.5` and `G.9`?" | **Builds on:** C.22. **Coordinates with:** C.19.1, G.5, G.9. |
 | C.23 | **Method‑SoS‑LOG — MethodFamily Evidence & Maturity** | Stable | *Keywords:* MethodFamily, evidence, maturity, SoS-LOG, admit, degrade, abstain, selector. *Queries:* "How is method family maturity assessed?", "What is the SoS-LOG for selection?". | **Builds on:** G.5, G.4, C.22, B.3. |
-| C.24 | **C.Agent-Tools-CAL — Agentic Tool-Use & Call-Planning** | Stable | *Keywords:* agentic tool use, call planning, budgeted exploration, `explore_share`, BLP-aware sequencing, replanning. *Queries:* "How does FPF plan tool calls under budgets and policy?", "How do agentic calls stay lawful without hard-coded heuristics?" | **Builds on:** A.15, B.3, C.5, C.18, C.19. **Coordinates with:** E.16, G.5, G.9. |
+| C.24 | **Agentic Tool‑Use & Call‑Planning (C.Agent‑Tools‑CAL)** | Stable | *Keywords:* agential tool use, call planning, call route, checkpoint return, enactment budget, replanning. *Queries:* "How does FPF plan lawful tool calls under budget and assurance?", "When should one checkpoint instead of rolling out?" | **Builds on:** A.15, B.3, E.3, E.5, C.5, C.18, C.19. **Coordinates with:** C.11, G.5, G.9. |
 | C.25 | **Q-Bundle — Structured Treatment of "-ilities" (Quality Families)** | Stable | *Keywords:* quality bundle, -ility, quality family, characteristic plus scope, mechanism/status slots, endpoint routing. *Queries:* "What is a Q-Bundle in FPF?", "When is an -ility one characteristic and when is it a bundle?" | **Builds on:** A.2.6, A.6.1, C.16, B.3. **Coordinates with:** A.6.Q, A.15. |
 
 **Part D – Multi-scale Ethics & Conflict-Optimisation**
@@ -294,7 +294,7 @@ Pattern and headers templates are explained in pattern E.8.
 | G.2 | **SoTA Harvester & Synthesis** | Stable | *Keywords:* SoTA harvest, synthesis, `SoTA Synthesis Pack@CG-Frame`, `SoTA_Set@CG-Frame`, `SoTAPaletteDescription`, `Tradition`, ClaimSheets, CorpusLedger, PRISMA Flow Record, BridgeMatrix, describedEntity, micro-examples, hand-off manifests, RSCRTriggerKindId. *Queries:* "How does FPF harvest and synthesize SoTA for a CG-Frame?", "What is a SoTA Synthesis Pack@CG-Frame?", "How to keep competing Traditions plural but comparable via bridges?", "How to make SoTA harvest refreshable with pinned editions and typed RSCR causes?" | **Builds on:** G.Core, E.8, E.10, E.19, A.10, B.3, F.9, F.17, G.0, G.6. **Used by:** G.1, G.3–G.5, G.10, G.11. **Relates to:** G.13. |
 | G.3 | **CHR Authoring: Characteristics - Scales - Levels - Coordinates** | Stable | *Keywords:* CHR authoring, characteristics, scales, levels, coordinates, CSLC legality, typed measurement, CHR Pack@CG-Frame, ReferencePlane, Φ/CL policy pins, edition pins, RSCRTriggerKindId. *Queries:* "How do I author CHR packs (typed characteristics and scales) for a CG-Frame?", "How to keep measurement lawful (CSLC) and refreshable (RSCR)?" | **Builds on:** G.Core, G.2, G.0, A.17–A.19, A.18 (CSLC), C.16 (MM-CHR), A.19.CHR, A.15.3, G.6, F.17. **Prerequisite for:** G.4. **Used by:** G.4, G.5, G.10, G.11. |
 | G.4 | **CAL Authoring: Calculi - Acceptance - Evidence** | Stable | *Keywords:* CAL authoring, operators, acceptance clauses, evidence profiles, tri-state admissibility, Γ-fold hooks, Φ/Ψ/Φ_plane policy pins, legality gates, edition pins, RSCRTriggerKindId. *Queries:* "How to author CAL operators and acceptance clauses for CG-Frames?", "How to keep acceptance/evidence wiring auditable and refreshable?" | **Builds on:** G.Core, G.3, G.0, B.3 (Trust), A.18 (CSLC), G.6. **Prerequisite for:** G.5. **Used by:** G.5, G.8–G.10, G.11. |
-| G.5 | **Multi‑Method Dispatcher & MethodFamily Registry** | Stable | *Keywords:* method family registry, generator family registry, set-return selection, specialist portfolio, narrowed handoff plan, specialization profile. *Queries:* "How does FPF dispatch among rival method families without hidden scalarization?", "How are specialist portfolios and specialization profiles published for later parity?" | **Builds on:** G.Core, G.0, G.2-G.4, G.6. **Coordinates with:** C.19.1, C.22.1, G.9-G.11. |
+| G.5 | **Multi‑Method Dispatcher & MethodFamily Registry** | Stable | *Keywords:* method family registry, selected-set publication, shortlist, ranked shortlist, dispatcher, specialist portfolio. *Queries:* "How does FPF dispatch among rival method families without hidden scalarization?", "How are shortlist-family results published honestly?" | **Builds on:** G.Core, G.0, G.2-G.4, G.6. **Coordinates with:** C.11, C.19, C.24, G.9-G.11. |
 | G.6 | **Evidence Graph & Provenance Ledger** | Stable | *Keywords:* EvidenceGraph, provenance, PathId, PathSliceId, lane tags (TA/VA/LA), SCR/RSCR, GateCrossing, CrossingBundle, UTS PathCard, TriggerAliasMap, Γ-fold pinning. *Queries:* "How does FPF trace claims to evidence?", "What is an EvidenceGraph?", "How do PathId/PathSliceId support audit and refresh?" | **Builds on:** G.Core, A.10, B.3, G.4, F.9, F.15, F.17, E.18, A.21, E.10, E.5.2. **Used by:** G.5, G.8, G.9, G.10, G.11. |
 | G.7 | **Cross-Tradition Bridge Calibration Kit (BridgeMatrix → BridgeCards + BCT/Sentinels)** | Stable | *Keywords:* bridge calibration, BridgeCard, BridgeCalibrationTable (BCT), RegressionSet, SentinelSet, BridgeSentinel, Congruence Level (CL/CL^k/CL^plane), loss notes, waivers, ReferencePlane, Φ(CL)/Ψ(CL^k)/Φ_plane policy pins, PathSliceId, GateCrossing, UTS, RSCRTriggerKindId. *Queries:* "How to calibrate cross-Tradition bridges in Part G?", "What is BCT and how is it used?", "How do Bridge Sentinels trigger RSCR?" | **Builds on:** G.Core, G.2, F.9, F.3, F.7, B.3, G.6, E.18, A.21, E.10, C.21. **Prerequisite for:** G.5. **Used by:** G.9–G.11, G.10, G.12. |
 | G.8 | **SoS-LOG Bundles & Maturity Ladders** | Stable | *Keywords:* SoS-LOG, rule ids, admissibility ledger, tri-state `{pass|degrade|abstain}`, maturity ladder (poset/ordinal), selector-facing bundle, evidence path pins (`PathId/PathSliceId`), Bridge/CL/Φ policy pins, portfolio/archive telemetry, RSCRTriggerKindId. *Queries:* "How to package SoS-LOG rules for the selector?", "How to publish a maturity ladder as a citable card?", "How to keep thresholds out of LOG and pin evidence paths?" | **Builds on:** G.Core, C.23, G.4, G.6, G.5, C.22. **Coordinates with:** G.7, G.10, G.11, F.8, F.9, E.18, E.10, E.5.2. |
@@ -11151,7 +11151,7 @@ These echoes justify why A.6.P is structured as: **stable lens → explicit slot
 ## A.6.Q - `U.QualityTermPrecisionRestoration` — Quality Term Precision Restoration (Q-TERM)
 
 > **Type:** Architectural (A)
-> **Status:** Draft
+> **Status:** Stable
 > **Normativity:** Normative (Core / Draft)
 
 **Plain-name.** Quality-term precision restoration.
@@ -34593,6 +34593,638 @@ To admit a **capability** for a specific **Work** step at **JobSlice**, the guar
 
 ### C.3.A:End
 
+## C.11 - Decision Theory (Decsn-CAL)
+
+> **Type:** Calculus (C)
+> **Status:** Stable
+> **Normativity:** Normative unless marked informative
+
+**At a glance.** `C.11` is the choice-calculus pattern for the moment when options already exist and the working question is which option to choose, including whether another probe is worth its cost before commitment.
+
+### C.11:1 - Problem frame
+
+**Use this when.** Use this pattern when one `DecisionSubject` already has an `OptionSet` in hand and the real burden is to choose among those already-available options under uncertainty, preference, causal or subjunctive dependence, and bounded probing or computation.
+
+**Start here when.** Start here when a person, team, organization, or other decision-capable system must decide whether to choose now or spend more effort on probing, information gathering, or computation before choosing.
+
+**First output.** The first useful output is one explicit `DecisionSubject`, one explicit `OptionSet`, one explicit comparison basis, one explicit `ChoiceRule`, and one explicit `ChoiceResult` saying whether the best next move is choose now, reject the current set, probe more, or reroute to a neighboring burden.
+
+If that first output still cannot be written honestly, the current comparison state is not late-stage choice doctrine yet. The burden is still unfinished local choice work or one neighboring burden in disguise.
+
+**Immediate failure signs.**
+
+- The chooser is still moving between person, team, organization, or another collectivity-bearing level.
+- The current comparison is still inventing, expanding, or reframing options while also claiming to compare them.
+- The current comparison says more information would help but cannot name one exact next probe that could still change the result.
+- The current result is really surfacing one selected set or one enactment plan rather than one local choice.
+
+**First-minute questions.**
+
+- Who or what is actually choosing here, and at what chooser-bearing level?
+- What options are already on the table now?
+- What current basis is being used to compare them?
+- What exact next probe could still change the choice, if any?
+- Is this still local choice, or has the burden already moved to search, pool policy, publication, or enactment?
+
+**Typical reroutes.** `C.18` when the real burden is still inventing or reframing options; `C.19` when the working question is how broadly to explore or exploit the candidate pool; `C.24` when one option is already chosen and the work has become sequencing or enactment; `A.13 / C.9` when the hard question is agenthood rather than choice; `A.18 / A.19` when the mathematical support burden itself becomes primary.
+
+**Common wrong escalations / reroutes.** Do not use `C.11` to hide search work inside "decision", to hide candidate-pool policy inside one local choice, or to hide execution planning inside one rationality story. Do not treat selected-set publication or shortlist semantics as if they were the same burden as deciding.
+
+**What goes wrong if this pattern is missed.** Search, selection policy, planning, and choice doctrine collapse into one blurred notion of rationality. Teams either choose too early because pool policy was never stated, keep probing without one exact reason the next probe is still worth its cost, or leave only one vague claim that "a decision was made" without one explicit decision record naming the current result.
+
+**What this pattern buys.** This pattern gives one stable place to compare classical, causal, success-first or subjunctive, bounded-resource, active-inference-adjacent, and quantum-like decision lines without silently reassigning search, selection, or planning doctrine to the wrong burden. In practice it buys one explicit answer to four questions: choose now, reject the current set, probe again, or reroute.
+
+**Not this pattern when.** Do not start here when the burden is still generating candidate options, governing exploration or exploitation over a candidate pool, publishing shortlisted-set semantics, or sequencing execution under an operational plan.
+
+Decision work often fails not because no options exist, but because the choice among existing options is never typed as its own burden. `C.11` starts from one narrower and more useful center: one decision subject choosing among already-available options, including whether more probing is worth the cost before the choice is fixed.
+
+### C.11:2 - Problem
+
+Many systems have options on the table but still lack one explicit doctrine for what makes one option rational to choose. They mix together at least four different burdens.
+
+One burden is still generating candidate options, variants, or open-ended search directions. Another burden is governing how broadly a candidate pool should be explored or exploited before narrowing. A third burden is planning, sequencing, replanning, or enacting the move once a choice has already been made. The fourth burden, and the one governed here, is choosing among already-available options under uncertainty, dependence, and bounded deliberation.
+
+A second distortion appears when decision theory is reduced to one thin slogan about expected utility. Real choosers face evidential and causal distinctions, subjunctive or success-first cases, probe costs, information value, computation value, and situations where the chooser is not just one isolated individual.
+
+Without one explicit home for choice calculus, search, candidate-pool policy, and planning rush into the same burden, while the actual doctrine of choosing among live options disappears behind generic talk about rationality.
+
+### C.11:3 - Forces
+
+| Force | Tension |
+| --- | --- |
+| Choice doctrine versus option generation | `C.11` must govern choice among already-available options without swallowing `C.18` search and candidate-generation work. |
+| Evidential, causal, and subjunctive dependence | The pattern must stay usable with classical decision language while making room for causal and success-first repairs where correlation is not enough. |
+| Decide now versus probe more | The chooser may need to stop and choose now, or spend more effort on information and computation first. The theory must make that trade legible. |
+| Decision subject versus narrower agent language | The chooser may be one person, one team, one organization, or another collectivity-bearing system. The pattern must not silently force all cases into one narrow `Agent` reading. |
+| Minimal mathematical floor versus premature heavy formalism | The pattern needs a stable object stack for disciplined reasoning and inspection, but it should not pretend that one full quantum-like or geometry-heavy package is already settled. |
+
+### C.11:4 - Solution
+
+#### C.11:4.1 - Governed object and move
+
+`C.11` governs theory-side choice among already-available options. Its governed move is deciding what should be chosen from the current `OptionSet`, including whether further probing, information gathering, or computation is rational before the choice is fixed.
+
+The governed burden begins only after an option set already exists. It does not govern open-ended generation of options, and it does not govern the execution order of a plan after a choice has already been made.
+
+#### C.11:4.2 - Decision discipline over a live option set
+
+A conforming `C.11` pass does not stop at naming schools of decision theory. It carries one usable choice discipline over a live `OptionSet`, and it ends with one explicit `ChoiceResult` under one explicit `ChoiceRule`.
+
+1. **Fix the chooser and the choice-bearing level.**
+   State one `DecisionSubject` and one `DecisionSubjectGranularity`.
+   If the real dispute is still about who or what counts as the chooser, coordinate with `A.13 / C.9` instead of hiding that dispute inside one local choice.
+
+2. **Freeze the current option set.**
+   State the already-available options being compared now as one `OptionSet`.
+   If the hard work is still inventing, expanding, or reframing the options, stop here and reroute to `C.18`.
+
+3. **Make the comparison basis explicit.**
+   State one `PreferenceOrder` or one `EvaluativeMeasure`, plus one `BeliefState` and one `OutcomeModel`.
+   The comparison is not usable if some options are being judged under one belief state and other options under one later, unmarked update.
+   If two options are only comparable after one further probe or one stronger model revision, say that the current comparison is unfinished and route the burden through step 5 rather than pretending that one silent basis shift already solved it.
+
+4. **Choose the dependence layer that actually governs the case.**
+   Start from the evidential baseline when the choice is being compared through likely outcomes under the current `BeliefState`.
+   Add one `InterventionModel` when taking one option changes the world through intervention rather than mere observation.
+   Add one `CounterfactualModel` plus one `SubjunctiveDependenceRelation` when the case depends on one predictor, one structurally linked chooser, or one decision-procedure coupling that intervention talk alone does not capture.
+   Use the weakest dependence layer that is still strong enough for the live case, and do not switch layers across options without saying so explicitly.
+
+5. **Run the probe-worthiness test before commitment.**
+   State one `ProbeActionSet`, one `ProbeBudget`, and one `CostToProbe`.
+   Use `ValueOfInformation` for additional observation or measurement, and `ValueOfComputation` for additional reasoning, simulation, or search over the already-available options.
+   This rule is intentionally local or myopic: it judges the best next feasible probe over the current `OptionSet` and current comparison basis, not one full sequential or non-myopic experimental program. Richer `OED` lines remain later strengthening, not the closure law of the present first-wave `C.11` body.
+   If no feasible further probe fits the remaining `ProbeBudget`, or if the best available probe no longer justifies its `CostToProbe`, close under the current comparison basis.
+   If a feasible probe is still worth its cost, and that probe could still change which option survives or whether the current `OptionSet` should be rejected, run it, update the `BeliefState` and `OutcomeModel`, and return to step 3.
+   If one choice posture is already fixed and the remaining probe would change only route description, call ordering, enactment budget, or checkpointing of that chosen move, stop treating the probe as local choice doctrine and reroute to `C.24`.
+
+6. **Apply one `ChoiceRule` and emit one `ChoiceResult` plus the next burden.**
+   End with one explicit result: `choose now`, `reject current set`, `probe again`, or `reroute because this is no longer local choice`.
+   If the result is `choose now`, name the winning option or the retained tie-set plus the exact reason no remaining feasible probe is worth its cost.
+   If the result is `reject current set`, name the exact reason no current option survives under the present basis and, when more work follows, the neighboring burden that now takes over.
+   If the result is `probe again`, name the next probe and the exact comparison defect it is supposed to repair.
+   A `C.11` pass is done only when it names the lawful next move and the reason that move is lawful.
+
+#### C.11:4.2.1 - Well-formed comparison state
+
+Well-formedness constraint: a live `C.11` comparison state is usable only when the decision record states all of the following:
+
+- one `DecisionSubject` at one `DecisionSubjectGranularity`;
+- one current `OptionSet`;
+- one current comparison basis through `PreferenceOrder` or `EvaluativeMeasure`, plus one `BeliefState` and one `OutcomeModel`;
+- one active dependence layer for the current comparison, unless the record explicitly says that comparison is still being reopened;
+- one current account of whether another probe is still feasible and worth its cost.
+
+The comparison is still unfinished, not yet wrong but not yet closeable, when any of the following remains true:
+
+- the chooser is still shifting between person, team, organization, or another collectivity-bearing level;
+- the option set is still changing while the record also claims to rank the options;
+- one option is being judged under one belief state and another under one later update that is not itself declared as the next probe result;
+- one heavier dependence layer is invoked for rhetorical force, but the record never states what defect of the lighter comparison it repairs;
+- the record says more information would help, but never says which probe could still change the choice and why.
+
+#### C.11:4.2.1a - First-wave admissible decision semantics
+
+This first wave does not yet settle every later decision-theory dispute, but it does already permit and forbid some semantic moves by value.
+
+The following are lawful in the current `C.11` body when they are stated explicitly:
+
+- one incomplete or only partially ordered `PreferenceOrder`, so long as the unresolved comparison stays visible through one retained tie-set, one further probe, or one honest `reject current set` result rather than one fake winner;
+- one `EvaluativeMeasure` for magnitude, threshold, or trade-off-sensitive cases, so long as the measure being used now is explicit enough to explain why the current result follows under it;
+- one temporary unresolved criterion conflict, so long as the record says whether the present comparison is using one priority order, one threshold, one explicit trade-off measure, or one unfinished state that still blocks closure;
+- one explicit `BeliefState` revision, so long as it enters the comparison as one named probe result or one named model repair rather than as one silent basis shift;
+- one widened `DecisionSubject` at person, team, organization, or other collectivity-bearing level, so long as the current subject-bearing level is explicit and the record does not hide unresolved cross-level conflict behind one generic chooser label.
+
+The following are not lawful in the current `C.11` body:
+
+- silently totalizing one genuinely partial preference relation just to force `choose now`;
+- silently switching from one criterion mix or one belief state to another across options;
+- pretending that unresolved cross-level or collective conflict is already one settled local ranking when the aggregation burden has not actually been discharged;
+- using one polished record shape as a substitute for one stated comparison doctrine.
+
+This is why `C.11` is more than one note-taking protocol. The body already permits local incompleteness, partial order, explicit trade-off measures, and widened chooser surfaces, but it requires those semantic facts to change the lawful result rather than remain hidden beneath one elegant summary line.
+
+#### C.11:4.2.2 - Probe-worthiness rule
+
+Another probe is worth doing only when all three conditions hold together:
+
+- the probe fits inside the remaining `ProbeBudget`;
+- the expected gain from the probe, through `ValueOfInformation` or `ValueOfComputation`, is large enough to justify its `CostToProbe`;
+- the probe can actually change the local choice posture by changing the ranking, breaking or creating a tie, showing that no current option survives, repairing one missing comparison, or showing that the burden should reroute.
+
+This is the current local or myopic probe-worthiness law for `C.11`: judge the best next feasible probe over the current `OptionSet`, not one whole non-myopic experiment design over longer horizons. Later sequential or non-myopic `OED` may strengthen this doctrine, but they do not erase the present owner boundary.
+
+Do not keep probing merely because uncertainty remains. Uncertainty is ordinary. What matters is whether one feasible next probe can still change what should be chosen, or whether the current `OptionSet` should be rejected, from the current local choice burden.
+
+If the best available next probe cannot change which option survives, cannot change whether the current set should be rejected, or cannot justify its cost, the correct result is not one vague statement that the case is hard. The correct result is one explicit `ChoiceResult` under the current basis and current `ChoiceRule`.
+
+If the next probe would no longer change which option survives but would only change how one already-chosen move gets enacted, budgeted, or checkpointed, the burden has already crossed to `C.24`.
+
+#### C.11:4.2.3 - `ChoiceRule` versus `ChoiceResult`
+
+`ChoiceRule` and `ChoiceResult` are not the same kind of thing.
+
+- `ChoiceRule` is the doctrine or operator that says how the current comparison basis, dependence layer, and probe-worthiness posture license one next move.
+- `ChoiceResult` is the emitted record stating which next move is lawful now under that rule.
+
+The operational answer of this pattern is therefore one emitted `ChoiceResult` under one explicit `ChoiceRule`. The result is complete only when it states the next move and the condition that makes that move lawful.
+
+Only four result forms are lawful here:
+
+- `choose now`
+- `reject current set`
+- `probe again`
+- `reroute`
+
+A fifth soft result such as "keep thinking", "stay with the current view", or "the case is still complex" is not a conforming output. It is one unfinished state that still needs to be typed.
+
+For `choose now`, the emitted `ChoiceResult` should show:
+
+- the selected option or the retained tie-set;
+- the comparison basis under which that result currently holds;
+- the exact reason no still-feasible probe is worth its cost.
+
+For `reject current set`, the emitted `ChoiceResult` should show:
+
+- that no member of the current `OptionSet` survives under the present comparison basis;
+- the exact shared defect, threshold failure, or dominated-outcome reason that defeats the current set;
+- the next neighboring burden only when more work now follows, such as new option generation or one explicit escalation path.
+
+For `probe again`, the emitted `ChoiceResult` should show:
+
+- the exact next probe;
+- the comparison defect that probe is expected to repair;
+- the reason the probe is still worth its cost.
+
+For `reroute`, the emitted `ChoiceResult` should show:
+
+- the neighboring owner that now governs the burden;
+- the exact reason this is no longer local choice among already-available options.
+
+#### C.11:4.2.4 - Closure rule over the current `OptionSet`
+
+The comparison may close as `choose now` only when all of the following are true together:
+
+- the current `OptionSet` is stable enough that the decision record is no longer still inventing options;
+- the current comparison basis is explicit enough to state why one option survives or why one tie-set remains;
+- no still-feasible next probe is expected to change the survivor relation strongly enough to justify its cost;
+- the record is still governing local choice rather than pool policy, publication, or enactment.
+
+The comparison may close as `reject current set` only when all of the following are true together:
+
+- the current `OptionSet` is explicit and stable enough to reject as the present choice set;
+- the current comparison basis is explicit enough to show why no member survives under the present basis;
+- no still-feasible next probe is expected to rescue one member strongly enough to justify its cost;
+- the result is still one local choice conclusion rather than one disguised pool-policy, publication, or enactment result.
+
+The comparison should close as `probe again` only when all of the following are true together:
+
+- one exact next probe is named;
+- that probe fits the remaining `ProbeBudget`;
+- that probe is expected to repair one named comparison defect;
+- that repaired defect could still change which option survives, whether the current set should be rejected, or whether the burden should reroute.
+
+The comparison should close as `reroute` when the record has already learned that the governed move changed:
+
+- to `C.18` when the option set itself is still under invention or reframing;
+- to `C.19` when the burden is now how broadly to keep exploring or exploiting one candidate pool;
+- to `C.24` when one choice posture already exists and the next task is now sequencing, enactment, or route-level probe work;
+- to `G.5` when the next task is now selected-set surfacing or publication.
+
+If none of those closure conditions can yet be satisfied, the record is still unfinished. It is not rescued by richer terminology alone.
+
+#### C.11:4.2.5 - Minimal decision-record form
+
+A minimal `C.11` decision record has this shape:
+
+```text
+DecisionSubject(...)
+DecisionSubjectGranularity(...)
+OptionSet(...)
+ComparisonBasis(
+  preferenceOrder or evaluativeMeasure,
+  beliefState,
+  outcomeModel,
+  optional intervention/counterfactual/subjunctive layer
+)
+ChoiceRule(
+  closure law over the current basis and probe posture
+)
+ProbePosture(
+  probeActionSet,
+  probeBudget,
+  costToProbe,
+  valueOfInformation,
+  valueOfComputation
+)
+ChoiceResult(
+  nextMove = choose_now | reject_current_set | probe_again | reroute,
+  selectedOption or retainedTieSet or rejectedCurrentSet or rerouteOwner,
+  exact reason this is the lawful next move
+)
+```
+
+The record does not need that exact syntax. It does need that exact content.
+
+If the record does not state the current chooser, current options, current comparison basis, current `ChoiceRule`, current probe posture, and current `ChoiceResult`, then it still behaves more like one doctrinal essay than one usable decision record.
+
+Use branch language only when it changes the actual comparison being performed.
+
+##### C.11:4.3.1 - Classical evidential baseline
+
+Stay with the classical evidential baseline when the burden is to compare already-available options through preferences, utilities or desirabilities, beliefs, and likely outcomes under uncertainty.
+
+In this baseline, the options are being compared as evidence about what consequences are likely if they are chosen. This is the ordinary default when intervention structure, predictor-coupling, or context-sensitive non-commutativity are not yet doing real work in the case.
+
+Typical practical cash-outs are:
+
+- `choose now` because the current shared `BeliefState` and `OutcomeModel` already make one option or tie-set survive, and no still-feasible probe is worth its cost;
+- `probe again` because one further observation, measurement, or comparison pass could still change the ranking without requiring a heavier causal, subjunctive, or context-order repair;
+- `reroute` because the governed move is no longer really comparing one fixed `OptionSet`, but has become search, pool policy, publication, or enactment work.
+
+The baseline is still unfinished when the current comparison invokes it but cannot keep one shared `BeliefState` and `OutcomeModel` across the compared options, or when one heavier defect is already live and the current comparison still pretends one plain evidential comparison is enough.
+
+##### C.11:4.3.2 - Causal repair
+
+Switch on one `InterventionModel` when taking one option changes the world through intervention rather than merely signaling which outcome was already likely.
+
+What changes here is not the prestige label of the theory line, but the comparative question itself: the working question is no longer only what this option indicates about the outcome, but what this option causes in the outcome structure.
+
+Typical practical cash-outs are:
+
+- `choose now` because, under the declared intervention structure, one option now causally dominates or remains the survivor and no remaining feasible probe can reverse that causal ranking;
+- `probe again` because one intervention-relevant uncertainty still blocks a lawful causal comparison and one named next probe could still change which option causally survives;
+- `reroute` because the intervention story has already moved from local choice into enactment planning, protocol design, or one neighboring burden.
+
+This repair has not yet landed if the comparison still treats options only as evidence after invoking causal language, or if an `InterventionModel` is named without stating what defect of the lighter evidential comparison it repairs.
+
+##### C.11:4.3.3 - Success-first or subjunctive repair
+
+Switch on one `CounterfactualModel` plus one `SubjunctiveDependenceRelation` when Newcomb-like, blackmail-like, or other predictor-coupled cases remain under-described by the older evidential-versus-causal split.
+
+What changes here is that the comparison must stay answerable to linked decision procedures, predictors, or structurally similar choosers rather than only to direct intervention on one local event.
+
+Typical practical cash-outs are:
+
+- `choose now` because, under the declared counterfactual or subjunctive structure, one option survives once the predictor-coupled comparison is made explicit;
+- `probe again` because one further model clarification, predictor assumption check, or decision-procedure comparison could still reverse the current survivor relation;
+- `reroute` because the governed move is no longer settling local choice doctrine but has become one wider characterization, negotiation, or enactment burden that only borrowed predictor-coupling language.
+
+If that coupled structure is not live, do not activate this branch. If a predictor-coupled or success-first repair is named but the linked structure that changes the comparison is still unspecified, the branch is not yet load-bearing in the current decision.
+
+##### C.11:4.3.4 - Active-inference neighboring repair
+
+Bring the active-inference line into view when the chooser is embodied, online, and socially coupled, and when the decision cannot be understood as one disembodied choose-then-act moment.
+
+What changes here is practical next-move logic, not one neighboring-school label. The comparison is no longer over one frozen snapshot alone. The comparison must now ask whether one more observation, one more coupled update, or one more socially mediated or role-expectation clarification actually changes what should be done now.
+
+This first wave makes that social-expectation pressure explicit, but it does not yet operationalize one full `ROE` or `SocialExpectationRegime` object model inside `C.11`. If that heavier machinery is itself what the case hinges on, the current body should say so honestly rather than pretending the first-wave branch has already settled it.
+
+Typical practical cash-outs are:
+
+- `probe again` because one further embodied observation, coupled update, or explicit role-expectation clarification can still change the state estimate enough to reverse the current survivor relation;
+- `choose now` because delay itself now worsens the state being managed, closes the window in which the preferred option remains feasible, or leaves no lawful time for one more socially mediated check;
+- `reroute` because the burden has already become enactment sequencing or agent-characterization work rather than local choice.
+
+`C.11` keeps the choice burden visible there, but `A.13 / C.9` still own the narrower question of what kind of agent or agential system is in play, and `C.24` still owns later sequencing and enactment once a choice posture has already been fixed.
+
+Do not invoke this line only because one agent is acting in the world. Invoke it when embodied coupling, online updating, or explicit social-expectation pressure actually changes what the chooser should do now from the current `OptionSet`.
+
+##### C.11:4.3.5 - Quantum-like neighboring repair
+
+Bring the quantum-like line into view when context effects, order effects, response-replicability tension, or incompatible-question structure change the comparative state enough that one simple commutative probability reading no longer fits.
+
+What changes here is the practical structure of comparison. One order of questioning or one framing path may produce one different survivor relation from another. The comparison must therefore either stabilize the comparison under one declared order or show why one more clarifying pass is still needed.
+
+This first wave keeps the branch at that measurement-sensitive recognition surface. It does not yet claim one full quantum-like state-space package inside `C.11`; it claims only that the live comparison may need one explicit measurement-class or order-sensitive repair rather than one plain commutative reading.
+
+Typical practical cash-outs are:
+
+- `choose now` under one declared order or framing because rival orders no longer change which option survives;
+- `probe again` because one framing-sensitive comparison pass, one further question order, one response-replicability check, or one explicit measurement-class clarification could still reverse the survivor relation;
+- `reroute` when the governed move is no longer deciding among live options but has become one publication or enactment problem that only borrowed order-effect language rhetorically.
+
+Do not promote this line to the unmarked default unless those exact repaired limitations are live in the case.
+
+Do not invoke this line merely because a case feels psychologically subtle. Invoke it when one changed order, framing, response pattern, or incompatible-question structure actually changes the comparison state or the survivor relation in the live choice.
+
+If none of those repaired limitations is live, stay with the classical evidential baseline rather than switching branches without one live repaired limitation.
+
+The family map is therefore one disciplined set of refinements over the same choice burden, not one excuse to rename every neighboring burden as decision theory.
+#### C.11:4.4 - Reroute as soon as the burden stops being local choice
+
+Use `C.11` while the question remains: from this current `OptionSet`, what should the `DecisionSubject` choose, and is another probe worth its cost before commitment?
+
+Reroute immediately when the burden changes:
+
+- If the hard question is still what options should exist at all, or whether the current option set needs to be expanded or reframed, leave this pattern and work in `C.18` first.
+- If the options already exist but the question is how broadly to keep exploring or exploiting the candidate pool, leave this pattern and work in `C.19`, where the next useful output is one explicit pool-policy result rather than one local `ChoiceResult`.
+- If one option is already chosen and the question is how to sequence, budget, or enact that choice, leave this pattern and work in `C.24`, where the next useful output is one enactment-facing call plan or `CheckpointReturn`.
+- If the burden has shifted from deciding to surfacing, publishing, or naming the selected set, leave this pattern and work in `G.5`, where the next useful output is one published shortlist, ranked shortlist, narrowed handoff plan, or explicit abstain surface rather than one more local choice result.
+
+`ProbeBudget` stays here while it means the epistemic or deliberative budget for one more probe before choice and while that probe can still change which option survives or whether the current set should be rejected. When the same word now means execution budget, call budget, enactment budget, or route-level scouting after one choice posture already exists, the burden has moved to `C.24`.
+
+`ValueOfInformation` and `ValueOfComputation` also stay theory-side here as comparative criteria while the question is still local choice among the current options. If one more probe could still change which option survives or whether the current set should be rejected, stay in `C.11`. If the choice posture is already fixed and those criteria now govern only route sequencing, call ordering, or enactment of the chosen move, the burden has crossed to `C.24`. `C.19` and `C.24` may consume the criteria, but they do not become the doctrine owners of them.
+
+Outside this pattern remain candidate generation, pool-wide exploration policy, selected-set publication semantics, and execution planning.
+
+#### C.11:4.5 - First-wave inventory and minimal mathematical floor
+
+The minimum usable inventory for this pattern is:
+
+- subject and option objects: `DecisionSubject`, `DecisionSubjectGranularity`, `OptionSet`;
+- evaluative and epistemic objects: `PreferenceOrder`, `EvaluativeMeasure`, `BeliefState`, `OutcomeModel`;
+- dependence and comparison objects: `InterventionModel`, `CounterfactualModel`, `SubjunctiveDependenceRelation`, `ChoiceRule`, `ChoiceResult`;
+- probe and bounded-resource objects: `ProbeActionSet`, `ProbeBudget`, `CostToProbe`, `ValueOfInformation`, `ValueOfComputation`.
+
+These objects are required because the decision record must carry one explicit path from a live `OptionSet` through one live `ChoiceRule` to one emitted `ChoiceResult`.
+
+#### C.11:4.5.1 - Always explicit versus conditionally activated objects
+
+The following objects should be explicit in every usable `C.11` decision record:
+
+- `DecisionSubject` and `DecisionSubjectGranularity`;
+- `OptionSet`;
+- one evaluative surface through `PreferenceOrder` or `EvaluativeMeasure`;
+- `BeliefState`;
+- `OutcomeModel`;
+- `ChoiceRule`;
+- `ChoiceResult`.
+
+The following objects activate when the case needs them:
+
+- `InterventionModel` for causal repair;
+- `CounterfactualModel` plus `SubjunctiveDependenceRelation` for success-first or predictor-coupled repair;
+- `ProbeActionSet`, `ProbeBudget`, `CostToProbe`, `ValueOfInformation`, and `ValueOfComputation` when one more probe or one more computation pass is still live.
+
+What matters is not that every decision record mechanically mentions every token. What matters is that the current comparison does not smuggle one active burden without naming the object that carries it.
+
+Immediate lexical commitments:
+
+- the default chooser term is `DecisionSubject`, not `Agent`;
+- `DecisionSubjectGranularity` names the chooser-bearing level when the burden is about whether the chooser is one person, team, organization, or another collectivity-bearing system rather than one generic scalar or coordinate;
+- relation-heavy wording remains answerable to `A.6.P` together with `A.6.5`.
+
+Local plain glosses for the high-pressure inventory:
+
+- `DecisionSubject`: who or what is actually carrying this choice now, whether that is one person, one team, one committee, one organization, or another collectivity-bearing system;
+- `DecisionSubjectGranularity`: the level at which the choice is being attributed, such as person-level, team-level, or organization-level rather than one vague "agent" label;
+- `OptionSet`: the concrete options already on the table now;
+- `PreferenceOrder`: the current better-than / worse-than ordering over those options for this decision subject;
+- `EvaluativeMeasure`: the explicit utility-style or desirability-style scoring measure used when the case needs magnitudes, thresholds, or trade-offs rather than only one ordering;
+- `BeliefState`: the current uncertainty-bearing state about the world, the case, and the likely consequences of the options;
+- `OutcomeModel`: the model that maps options plus the current uncertainty picture to the consequences that matter for this choice;
+- `InterventionModel`: the part of the model that says how the world changes because one option is actually taken;
+- `CounterfactualModel`: the model used to compare relevant non-actual alternatives or alternate decision procedures;
+- `SubjunctiveDependenceRelation`: the dependence between this choice and one predictor, one linked chooser, or one structurally similar decision procedure when intervention talk alone is not enough;
+- `ChoiceRule`: the current choice doctrine or operator that says what conditions make `choose now`, `reject current set`, `probe again`, or `reroute` lawful in this case;
+- `ChoiceResult`: the emitted result record saying which of those lawful next moves actually follows now under the current `ChoiceRule`;
+- `ProbeActionSet`: the further checks, measurements, simulations, or questions that can still be run before commitment;
+- `ProbeBudget`: the remaining time, money, attention, or tolerated delay available for those pre-choice probes;
+- `CostToProbe`: the real cost of another measurement, question, simulation, trial, or delay before commitment;
+- `ValueOfInformation`: the expected gain from learning more before choosing;
+- `ValueOfComputation`: the expected gain from spending more reasoning or compute before choosing.
+
+What follows from `DecisionSubject` being wider than `Agent`:
+
+- the chooser in `C.11` need not be one person-like agent;
+- a team, committee, organization, or coupled human-tool system may be the `DecisionSubject` when that is the real level at which the choice is being made;
+- the pattern therefore does not force agency characterization to do the job of naming who or what is currently choosing.
+
+This floor is enough to keep choice doctrine inspectable and stable. It does not yet assume one full branch-specific quantum-like package or one cross-level geometry-heavy package.
+
+#### C.11:4.5.2 - First-wave boundary on multilevel and social-expectation doctrine
+
+`DecisionSubject` and `DecisionSubjectGranularity` are the current first-wave answer to human-only and individual-only narrowing. They keep the chooser explicit at person, team, organization, or other collectivity-bearing level so the doctrine does not silently collapse back into one generic individual agent.
+
+This first wave does not yet settle all of the heavier doctrine that can sit behind that wider chooser surface. In particular, this body does not yet fully settle:
+
+- collective aggregation law over conflicting preferences or criteria;
+- cross-level conflict between person-, team-, organization-, or broader system-level objectives;
+- one full `ROE` or social-expectation structure for socially scaffolded choice;
+- one full multilevel or geometry-heavy formal package for those cross-level burdens.
+
+Those absences are not hidden exceptions. They are explicit scope boundaries of the current `C.11` body. If one of those heavier burdens is already load-bearing in the live case, the decision record should say that the first-wave surface is being used only as the current typed floor and should keep the unresolved aggregation, `ROE`, or multilevel support burden visible by value.
+
+#### C.11:4.6 - Minimal decision tuple and finish condition
+
+A `C.11` decision record is complete only when it states:
+
+- who or what is choosing: `DecisionSubject` at one `DecisionSubjectGranularity`;
+- what is currently choosable: `OptionSet`;
+- how the options are compared: `PreferenceOrder`, `EvaluativeMeasure`, `BeliefState`, and `OutcomeModel`;
+- which heavier dependence layer is active when the case needs it: `InterventionModel`, `CounterfactualModel`, and `SubjunctiveDependenceRelation`;
+- what comparison doctrine currently governs the case: one explicit `ChoiceRule`;
+- what further probing is still available and worth paying for: `ProbeActionSet`, `ProbeBudget`, `CostToProbe`, `ValueOfInformation`, and `ValueOfComputation`;
+- what the current comparison concludes: one emitted `ChoiceResult` that says choose now, reject the current set, probe again, or reroute.
+  That result must name either the selected option, the retained tie-set, or the exact next probe or reroute.
+
+Without that explicit tuple, choice doctrine usually collapses into one of three easier but wrong substitutes: generic rationality talk, search folklore, or planning folklore.
+
+The finish condition is stronger than "the record now sounds informed." The record is finished enough for practical use only when the next move follows from the stated comparison basis, stated `ChoiceRule`, stated probe posture, and emitted `ChoiceResult` rather than from unstated background assumptions.
+
+A `C.11` pass is finished enough for practical use when all three conditions hold:
+
+- the current comparison basis is explicit enough to state why one option now outranks or survives the others;
+- the reason to stop probing, or the reason to probe again, is explicit rather than assumed;
+- the next burden is explicit: `choose now`, `reject current set`, `probe again`, or `reroute`.
+
+If the case remains tied or underdetermined under the current basis, say that directly and keep the tie-set explicit. A lawful `ChoiceResult` may still be `probe again` or `reroute`, but it must not pretend that one winner already exists when the current basis has not earned that conclusion.
+
+If those conditions are still missing, the pattern has not yet answered the choice burden even if the terminology already sounds sophisticated.
+
+#### C.11:5.1 - System grounding
+
+**Tell.** A research team already has three experiment plans on the table. The option set exists. The real burden is to decide which plan to run and whether one more measurement is worth the delay.
+
+**Show.** The `DecisionSubject` is the team, the `DecisionSubjectGranularity` is team-level, the `OptionSet` is the three current plans, the team's `PreferenceOrder` puts risk reduction ahead of schedule convenience, and the current `OutcomeModel` still carries calibration uncertainty. The extra calibration run belongs in the `ProbeActionSet`, its one-day delay is part of the `ProbeBudget`, and the practical question is whether its `ValueOfInformation` exceeds its `CostToProbe` strongly enough to change the emitted `ChoiceResult` under the current `ChoiceRule`.
+
+**Show.** If the extra calibration run could still change which plan survives and the one-day delay fits the remaining `ProbeBudget`, the right `ChoiceResult` is `probe again` with that exact calibration run named. If the measurement can no longer overturn the ranking, the right `ChoiceResult` is `choose now` with the winning plan and the reason further probing is no longer worth its cost.
+
+**Show.** A finished result here should therefore read like one decision record, not one research-theory aside: "Team-level chooser; three current plans; risk reduction preferred; calibration uncertainty still live; one extra calibration run remains feasible and could still overturn the current ranking; `ChoiceResult = probe again with calibration run`." Or, after that probe is no longer worth doing: "`ChoiceResult = choose plan B now because the remaining calibration gain no longer justifies one more day of delay`."
+
+**Show.** `C.18` is still the place for inventing new plans, `C.19` is still the place for broader exploration policy over the plan pool, and `C.24` is still the place for the run sheet and execution order after the choice is made.
+
+#### C.11:5.2 - Episteme grounding
+
+**Tell.** A model-selection comparison takes three already-articulated explanations and asks whether one more observation or one more comparison pass is rational before preferring one explanation over the others.
+
+**Show.** `C.11` governs the decision doctrine over the current explanation set: one `BeliefState`, one `OutcomeModel`, one explicit `PreferenceOrder` or `EvaluativeMeasure`, and, when the case needs it, one `InterventionModel`, `CounterfactualModel`, or `SubjunctiveDependenceRelation` rather than one thinner evidential story. When another model comparison pass is on the table, `ValueOfComputation` belongs here as part of the current choice doctrine rather than as one later planning afterthought.
+
+**Show.** If one more comparison pass cannot realistically change which explanation survives, the decision record should not end with "more analysis may help." It should end with one `ChoiceResult` that prefers the current explanation now. If one more pass could still reverse the ordering and is cheap enough to justify, the decision record should say exactly which pass is worth doing and what ambiguity it is expected to resolve.
+
+**Show.** A lawful closing line here is therefore something like: "`ChoiceResult = choose model 2 now because the surviving uncertainty no longer changes the ordering under the current evidence`" or "`ChoiceResult = run one additional comparison pass on models 1 and 2 because the current outcome model still cannot distinguish their failure costs`." Anything vaguer leaves the decision burden unfinished.
+
+**Show.** This pattern does not yet govern open-ended hypothesis generation and does not yet govern operational rollout. Those burdens stay outside this pattern even when the decision later feeds them.
+
+#### C.11:5.3 - Collective and contextual grounding
+
+**Tell.** A clinical board must decide whether to escalate a patient now or order one more test. The board is the chooser, not one isolated individual, and the result shifts when the case is discussed in prognosis-first versus risk-first order.
+
+**Show.** `C.11` keeps the case legible by typing the chooser as one `DecisionSubject` at explicit `DecisionSubjectGranularity`, keeping the available actions as one current `OptionSet`, keeping one explicit `BeliefState` and `OutcomeModel` around those actions, and asking whether another test belongs in the `ProbeActionSet` strongly enough to justify its `CostToProbe`.
+
+**Show.** Active-inference-adjacent pressure is visible because the chooser is embodied, online, and socially coupled; quantum-like pressure is visible because context and question order change the comparison state. `C.11` keeps both repaired limitations visible without pretending that the whole pattern has already become one full active-inference or quantum-like formal package.
+
+**Show.** If the order effect remains strong enough to change which option survives, the comparison should say that directly and keep the comparison unfinished. The lawful next move is then either one framing-stabilizing probe or one declared comparison order under which the current result will be judged. It should not hide that instability inside one vague statement that the board has mixed intuitions.
+
+**Show.** A lawful output here therefore looks like one of three concrete records:
+
+- `ChoiceResult = probe again with one rapid diagnostic test because the current prognosis-first versus risk-first framing still changes which option survives`;
+- `ChoiceResult = choose now and escalate because, under the fixed risk-first order and current evidence, no remaining feasible test can reverse the survivor relation before delay increases harm`;
+- `ChoiceResult = reroute to C.24 because the board has already chosen escalation and the next task is now treatment sequencing rather than local choice`.
+
+**Show.** The output still has to be one actionable record. If the current result cannot say which of those three forms is now lawful, then the contextual pressure has been noticed but not yet carried into one usable decision result.
+
+### C.11:6 - Bias-Annotation
+
+This pattern is intentionally biased toward `Prag` and `Onto/Epist` discipline.
+
+It prefers one clear governed object, one explicit neighboring-burden split, and one minimal mathematical floor over one looser but more rhetorically flexible notion of rationality.
+
+That bias can feel too strict in cases where the chooser, option set, or dependence structure is still genuinely moving. The mitigation is not to weaken the pattern back into one general rationality story. The mitigation is to keep the unfinished state explicit: hold one tie-set, hold one `probe again` result, or reroute to the neighboring owner that now truly governs the burden.
+
+The family map also remains plural: causal, success-first, active-inference, and quantum-like repairs stay visible without being overpromoted into one default doctrine.
+
+### C.11:7 - Conformance Checklist
+
+| ID | Requirement | Purpose |
+| --- | --- | --- |
+| `CC-C11.1` | The pattern **SHALL** state that `C.11` governs choice among already-available options rather than candidate generation. | Keeps `C.18` outside and prevents search takeover. |
+| `CC-C11.2` | The pattern **SHALL** keep `DecisionSubject` as the default chooser surface, and **SHALL NOT** use `Agent` as the generic chooser term unless one explicit agency claim is routed through `A.13 / C.9`. | Prevents unwanted narrowing of the chooser. |
+| `CC-C11.3` | The pattern **SHALL** state the `C.11 / C.18 / C.19 / C.24 / G.5` split explicitly in the body. | Prevents collapse of choice doctrine, candidate generation, candidate-pool policy, planning, and selected-set publication. |
+| `CC-C11.4` | `Solution` **SHALL** state one inspectable decision procedure from `DecisionSubject` and `OptionSet` through comparison basis, dependence layer, probe-worthiness test, one explicit `ChoiceRule`, and one emitted `ChoiceResult`. | Keeps `C.11` as one operational answer to the choice burden rather than one survey of schools. |
+| `CC-C11.5` | The pattern **SHALL** name one minimal first-wave inventory including `DecisionSubject`, `DecisionSubjectGranularity`, `OptionSet`, `PreferenceOrder`, `EvaluativeMeasure`, `BeliefState`, `OutcomeModel`, `ChoiceRule`, `ChoiceResult`, `ProbeActionSet`, `ProbeBudget`, `CostToProbe`, `ValueOfInformation`, and `ValueOfComputation`. | Keeps the calculus objectual rather than slogan-like. |
+| `CC-C11.6` | High-pressure inventory terms used in the pattern text **SHALL** receive local plain glosses or equivalent operational clarification inside the body. | Prevents the core terminology from remaining implicit or displaced into outside basis carriers. |
+| `CC-C11.7` | Relation-heavy terms such as `PreferenceOrder`, `CounterfactualModel`, and `SubjunctiveDependenceRelation` **SHALL** remain answerable to `A.6.P` together with `A.6.5`. | Keeps dependence language inspectable and deconflicted. |
+| `CC-C11.8` | Active-inference and quantum-like lines **SHALL** be introduced through the limitations they repair, not as prestige branch names. | Preserves practical meaning and avoids branch-name citation without operational load. |
+| `CC-C11.9` | The pattern **SHALL** expose one minimal mathematical floor without overclaiming one full quantum-like or geometry-heavy formal package. | Keeps the pattern usable now while leaving heavier support work typed and explicit. |
+| `CC-C11.10` | `ProbeBudget` **SHALL** stay in `C.11` while it means the budget for further probing before choice, and `ValueOfInformation` / `ValueOfComputation` **SHALL** stay theory-side comparative criteria even when `C.19` or `C.24` later consume their outputs. | Preserves the bounded-resource bridge without letting neighboring owners steal the doctrine. |
+| `CC-C11.11` | Shortlist or selected-set publication semantics **SHALL NOT** be treated as part of `C.11`; if the burden shifts to surfacing or publishing the selected set, the text **SHALL** reroute to `G.5`. | Preserves selector-facing publication placement and keeps publication semantics out of local choice doctrine. |
+| `CC-C11.12` | When one heavier dependence layer or neighboring family line is activated, the text **SHALL** state what limitation of the simpler comparison it repairs and what changes in the actual comparison once that line is in play. | Prevents branch-name citation from replacing use-time doctrine. |
+| `CC-C11.13` | The text **SHALL** make the closure rule explicit enough to justify why the lawful result is `choose now`, `reject current set`, `probe again`, or `reroute` rather than some softer holding-pattern output, and **SHALL** treat vaguer endings as unfinished rather than as lawful results. | Prevents the decision record from ending in one sophisticated but operationally empty posture. |
+| `CC-C11.14` | The decision record **SHALL** make one minimal decision-record shape explicit: chooser, option set, comparison basis, one explicit `ChoiceRule`, probe posture, and one emitted `ChoiceResult`; `choose now`, `reject current set`, `probe again`, and `reroute` outputs **SHALL** each state their mandatory fields explicitly enough to determine the next move without reopening surrounding rationale. | Keeps the pattern usable as one working decision artifact rather than one doctrinal memo. |
+
+### C.11:8 - Common Anti-Patterns and How to Avoid Them
+
+One quick usability test helps here: if the closing line does not state one lawful next move for the working chooser or team, the current result is still unfinished even if the doctrine survey looks polished.
+
+| Anti-pattern | Symptom | Why it fails | How to avoid / repair |
+| --- | --- | --- | --- |
+| Search takeover | The text starts treating option generation as if it were already part of decision doctrine. | `C.11` loses its governed object and silently absorbs `C.18`. | The option set is stated as already existing, and search burdens are rerouted to `C.18`. |
+| Policy collapse | Exploration or exploitation governance over a candidate pool is written as if it were the same thing as choosing among current options. | Choice doctrine and candidate-pool policy become indistinguishable. | `C.19` remains explicit as the neighboring pattern for selection policy and exploration governance. |
+| Planning collapse | Sequencing, replanning, and enactment budgeting are written as if they were already part of the choice calculus. | Planning-side burden moves out of `C.24` by accident. | Execution order and operational budgeting remain in `C.24`, even when `C.11` says more probing is rational. |
+| Inventory without decision rule | The current comparison names many objects and schools but never shows how to move from a live option set through one `ChoiceRule` to one `ChoiceResult`. | The pattern becomes one cleaned-up survey rather than one decision discipline. | State one explicit procedure: chooser, option set, comparison basis, dependence layer, probe-worthiness test, one explicit doctrine, and one emitted result. |
+| Hidden basis shift | Different options are compared under different belief states, outcome models, or dependence layers without one explicit statement that the basis changed. | The comparison only looks precise; in fact the choice rule cannot be audited. | Keep one shared comparison basis until one named probe or model change updates it, and state explicitly when the dependence layer changes. |
+| No closure rule | The text sounds careful but never says what makes `choose now`, `reject current set`, `probe again`, or `reroute` lawful. | The record never closes into one explicit decision result. | State the closure conditions explicitly and show why the current case satisfies exactly one of them. |
+| Undefined high-pressure terms | Terms such as `PreferenceOrder`, `BeliefState`, or `OutcomeModel` appear without local operational clarification. | Core comparison objects stay implicit and the decision burden depends on outside theory or undocumented assumptions. | Give one local plain gloss or equivalent operational clarification for each high-pressure term used in the pattern text. |
+| Bounded-resource bridge loss | `ProbeBudget`, `ValueOfInformation`, or `ValueOfComputation` are mentioned, but the text silently lets `C.19` or `C.24` own them. | The theory-side doctrine disappears into neighboring policy or planning prose. | Keep those objects theory-side in `C.11`; let neighboring patterns consume their outputs without minting the concepts. |
+| Publication collapse | The text starts treating shortlist or selected-set publication semantics as if they were the same thing as deciding. | Choice doctrine silently absorbs selector-facing publication burden and collides with the `G.5` placement. | Keep selected-set publication outside `C.11` and reroute to `G.5` when the burden becomes surfacing or publishing the selected set. |
+| Agent-default narrowing | Every chooser is described as one `Agent` even when the subject is really one team, organization, or other collectivity-bearing system. | The governed chooser is narrowed before the doctrine even starts. | `DecisionSubject` remains the default, and `DecisionSubjectGranularity` types the chooser-bearing level. |
+| Prestige-branch citation | Active inference or quantum-like work is cited only as one fashionable name. | The text sounds current without stating what limitation is being repaired. | The repaired limitation is stated directly: embodied online updating for active inference, and context or order effects for quantum-like lines. |
+| Cost-free deliberation | The text speaks as if probing and computation are free. | Bounded-resource doctrine disappears behind one idealized choice moment. | `ProbeBudget`, `CostToProbe`, `ValueOfInformation`, and `ValueOfComputation` stay visible in the calculus. |
+
+### C.11:9 - Consequences
+
+| Benefits | Trade-offs / Mitigations |
+| --- | --- |
+| Keeps decision doctrine distinct from search, candidate-pool policy, and planning. | The same working episode now needs an explicit burden split across choice, pool policy, and planning rather than one blurred rationality story. |
+| Makes evidential, causal, and subjunctive branches comparable in one place. | The pattern becomes more explicit about dependence language and therefore needs tighter lexical discipline. |
+| Keeps bounded-resource probing inside the doctrine rather than as one afterthought. | Fast-path use now carries a slightly richer inventory before the doctrine feels natural under pressure. |
+| Keeps active-inference and quantum-like repairs visible without letting them silently replace the whole core. | Those lines stay load-bearing only when they change the actual `ChoiceResult`, unfinished state, or reroute logic; heavier formal packages still remain outside this body. |
+| Makes the next move explicit through one `ChoiceResult` record instead of one general statement that the case is complex. | Each decision record has to show why `choose now`, `reject current set`, `probe again`, or `reroute` is lawful, which removes rhetorical room to sound informed without committing to one result. |
+| Makes downstream work cleaner because search, pool policy, publication, and enactment can receive one explicit output instead of one blurred upstream "decision happened" claim. | Reroutes now require one named next owner and one reusable part of the record instead of one vague upstream claim that deliberation happened somewhere. |
+| Lets one comparison stay open honestly through one explicit tie-set or `probe again` result instead of forcing a fake winner. | Some outcomes will look less rhetorically decisive because the pattern refuses to hide unfinished comparison under elegant prose. |
+
+### C.11:10 - Rationale
+
+A live option set and a live choice among that set are not the same burden as generating options, governing a candidate pool, or sequencing execution. Keeping that distinction explicit is what makes the doctrine usable rather than ceremonial.
+
+`DecisionSubject` is the better default surface because decision theory often applies to persons, teams, organizations, and other system-bearing collectivities. `Agent` remains useful, but only when an explicit agency claim is actually being made.
+
+A minimal mathematical floor is necessary because choice doctrine without one stable object stack quickly turns into verbal drift. But a pattern also fails if it keeps only the object names and never shows how those objects discipline an actual choice. That is why `Solution` here is procedural: it must carry the path from `OptionSet` through one `ChoiceRule` to one `ChoiceResult`, including the stop-or-probe decision, rather than only one survey of neighboring theories.
+
+The practical gain of that procedure is not elegance for its own sake. It is that later search, policy, publication, and planning work receive one explicit result instead of one hand-waving claim that deliberation happened somewhere upstream.
+
+At the same time, this pattern should not pretend that one full quantum-like or geometry-heavy package is already settled just because those neighboring lines are real.
+
+### C.11:11 - SoTA-Echoing
+
+| Claim | SoTA practice | Primary source | Alignment with `C.11` | Adoption status |
+| --- | --- | --- | --- | --- |
+| Decision theory still needs an explicit classical baseline over options, preferences, utility, and uncertainty. | Contemporary reference treatments still present decision theory through option sets, preferences, utilities, and uncertainty as the baseline language of rational choice. | [Decision Theory (Stanford Encyclopedia of Philosophy, Fall 2023)](https://plato.stanford.edu/archives/fall2023/entries/decision-theory/) | `C.11` adopts this as the baseline vocabulary for choice among already-available options. | **Adopt.** |
+| Evidential dependence is not enough in all cases. | Causal decision theory remains the standard repair when intervention structure matters. | [Causal Decision Theory (Stanford Encyclopedia of Philosophy, Winter 2024)](https://plato.stanford.edu/archives/win2024/entries/decision-causal/) | `C.11` keeps one explicit evidential-versus-causal split rather than one blended correlation story. | **Adopt.** |
+| The field no longer stops honestly at the older EDT/CDT split. | Functional or success-first work keeps subjunctive dependence live in Newcomb-like and related cases. | [Functional Decision Theory: A New Theory of Instrumental Rationality](https://arxiv.org/abs/1710.05060) | `C.11` keeps success-first or subjunctive repair visible without treating it as one settled default doctrine. | **Adapt.** |
+| The live EDT/CDT/FDT family map now has more technical comparison surfaces than one older philosophical split alone. | Recent mechanized or causal-graph taxonomies compare live decision-theory families through more explicit technical structures rather than only one slogan-level naming dispute. | [Mechanized-causal-graphs taxonomy of decision theories (2023)](https://arxiv.org/abs/2307.10987) | `C.11` therefore treats EDT, CDT, and success-first or FDT-like lines as technically live family options rather than one frozen classroom argument. | **Adapt.** |
+| Decision under bounds cannot leave probing and deliberation cost as one slogan. | Current metareasoning and optimal-experimental-design lines treat information acquisition, probing, and computation allocation as first-class theoretical burdens rather than free background steps. | [Metareasoning: Theoretical and Methodological Developments](https://pmc.ncbi.nlm.nih.gov/articles/PMC11765846/) | `C.11` therefore keeps `ProbeActionSet`, `ProbeBudget`, `CostToProbe`, `ValueOfInformation`, and `ValueOfComputation` inside the doctrine rather than hiding them in planning-only prose; the current closure law is intentionally local or myopic over the next feasible probe, with richer sequential or non-myopic `OED` left as later strengthening. | **Adapt.** |
+| Decision and update can be embodied, online, and socially coupled. | Active-inference work treats decision as tightly coupled to action, inference, and expectation regimes rather than one disembodied one-shot selection. | [Embodied decisions as active inference](https://pmc.ncbi.nlm.nih.gov/articles/PMC12201680/) | `C.11` carries this as one neighboring repair of the chooser picture, makes social-expectation pressure explicit enough for use-time reroute or probe logic, and states honestly that full `ROE` or social-expectation object modeling remains outside this first wave. | **Adapt.** |
+| Some decision cases exhibit context effects, order effects, response-replicability tension, and incompatible-question structure. | Current quantum-like decision and cognition work treats those cases as one measurement-sensitive research program rather than one discarded curiosity or one automatic physics transfer. | [Measurement-theory decision/cognition anchor (2025)](https://arxiv.org/abs/2503.05859) | `C.11` carries this as one named neighboring branch where those repaired limitations are real, while leaving heavier branch-specific formalism outside this body. | **Adapt.** |
+| Some quantum-like lines also claim one practical representational gain from linear state dynamics over harder nonlinear underlying processes. | Quantum-like modeling in biology presents linear Hilbert-space dynamics as one simplifying and potentially faster information-processing lens over nonlinear classical biophysical dynamics, while treating this as representational modeling rather than proof that the modeled system is physically quantum. | [Quantum-like modeling in biology with open quantum systems and instruments](https://www.sciencedirect.com/science/article/pii/S0303264720301994) | `C.11` takes this only as one possible practical reason to keep the quantum-like branch available when measurement-sensitive effects are real; it does not treat quantum-like choice as one claim of physical quantumness. | **Adapt cautiously.** |
+| Broader contextual and multilevel lines pressure decision texts to keep one typed substrate rather than pure verbal drift. | Current multilevel-learning and evolution-as-inference work argues for one shared formal lens across levels even when the heavier final geometry is still unsettled. | [Multilevel selection as Bayesian inference, major transitions in individuality as structure learning](https://royalsocietypublishing.org/doi/10.1098/rsos.190202) | `C.11` therefore keeps one minimal typed floor and one widened chooser surface while stating by value that full aggregation law, cross-level conflict doctrine, and heavier multilevel mathematics remain outside the current first wave. | **Adapt.** |
+
+Practical reading of this alignment:
+
+- In ordinary current-option cases, start with the classical evidential baseline and use it to emit one explicit `choose now`, `probe again`, or `reroute` result under one shared `BeliefState` and `OutcomeModel`.
+- If intervention structure changes the survivor relation, state that explicitly and switch to causal comparison rather than leaving the comparison at the level of correlation talk.
+- If predictor-coupling or structurally linked choice procedures remain load-bearing, keep the subjunctive layer visible and say what linked structure could still reverse the current result.
+- If another measurement, comparison pass, or search pass is being considered, treat its value and cost as part of the current decision doctrine rather than as one later planning afterthought.
+- If the chooser is embodied, online, and socially coupled, or if context and order effects change the comparison state, keep those repaired limitations visible by naming the exact observation, social-expectation clarification, order stabilization, response-replicability check, or measurement-class clarification that could still change the current `ChoiceResult`, and say directly when fuller `ROE`, quantum-like state-space, or multilevel doctrine still sits outside this first wave.
+- If the quantum-like line is activated, treat it as one measurement-sensitive mathematical lens or representational repair, not as one claim that the chooser or world is physically quantum.
+- If none of those heavier repaired limitations is live, stay with the lighter branch rather than activating one prestigious label that does not yet change the next move.
+
+Worked-slice discipline from these rows:
+
+- the system grounding slice is disciplined primarily by the bounded-resource and classical-baseline rows, so the output must end in one explicit probe-or-choose result;
+- the episteme grounding slice is disciplined primarily by the bounded-resource and subjunctive-repair rows, so the output must say what comparison pass or predictor-coupled clarification could still reverse the result;
+- the collective and contextual grounding slice is disciplined primarily by the active-inference and quantum-like rows, so the output must name the embodied observation, framing stabilization, or reroute that now becomes lawful.
+
+### C.11:12 - Relations
+
+- **Builds on:** `A.6.P`, `A.6.5`, `A.13`, `C.9`, `A.18`, `A.19`
+- **Read next when this burden moves:** `C.18` for candidate generation and open-ended search, `C.19` for one explicit pool-policy result over exploration or exploitation governance, `C.24` for one enactment-facing call plan or `CheckpointReturn`, `G.5` for shortlist-family public head and emitted selected-set semantics
+- **Keeps outside:** candidate generation, pool-wide exploration or exploitation policy, selected-set publication semantics, and execution sequencing
+- **Aligns with:** classical evidential decision theory, causal decision theory, success-first or subjunctive repair, bounded-resource metareasoning and probe-cost doctrine, active-inference-adjacent decision work, quantum-like contextual repair where context or order effects are real, and multilevel mathematical-lens pressure at the minimal-floor level only
+
+### C.11:End
+
 ## C.13 — Constructional Mereology (Compose‑CAL)
 
 ### C.13:1 - Intent
@@ -36068,10 +36700,64 @@ Hidden budget mismatches; averaging ordinals across families; **illumination in 
 
 ## C.19 - Explore–Exploit Governor (E/E‑LOG)
 
-**Status.** Logic specification (**LOG**). Defines exploration/exploitation policies and selection lenses. **No Γ operators** are exported; policies parameterize calls in **C.18 NQD‑CAL**.
+> **Type:** Calculus (C)
+> **Status:** Stable
+> **Normativity:** Normative
+
+**Plain-name.** Explore-exploit governor.
+
+**Intent.** Govern exploration/exploitation policy over still-live candidate pools so frontier treatment, graduation, narrowing, and sunset posture stay explicit, auditable, and stated as one pool-policy result without taking over local choice, enactment, or publication burdens.
+
+**Export posture.** No `Γ` operators are exported; policies parameterize calls in `C.18 NQD-CAL`.
+
+**Depends on.** `C.18 NQD-CAL` (generators), `C.17 Creativity-CHR` (measurements), `Decsn-CAL` (objectives/constraints and scalarization lenses), `B.3` (trust adjustments), and `Compose-CAL` (set aggregation; advisory).
+
+**Coordinates with.** `C.11` for local choice among already-available options, `C.24` for enactment planning after choice, `G.5` for selector-facing publication, `C.17`, and `G.9`.
+
+### C.19:0 - Use this when
+
+- several candidate lines, family regions, or frontier segments remain live under one declared exploration/exploitation posture and the burden is now policy over that pool rather than one more local choice result
+- the next result should say how the pool will be treated next: `widen`, `keep frontier`, `narrow to subset`, `sunset line`, or `reroute`
+- the governing lens or policy posture must be explicit rather than inferred from vague exploration language
+
+### C.19:0.1 - What goes wrong if missed
+
+- scalarized top-1 picks are mislabeled as "the frontier", so it becomes unclear whether the result names one lens-ranked winner or the lawful live set
+- exploration continues without one named pool, one named governing lens, or one explicit next treatment
+- local option choice, pool policy, enactment planning, and published shortlist semantics collapse into one blurred burden
+
+### C.19:0.2 - What this buys
+
+- one explicit pool-governance surface for exploration, graduation, narrowing, and sunset posture
+- one explicit link from lens or policy posture to the next pool-side treatment
+- one repeatable way to preserve heterogeneity and frontier discipline without forcing illegal totalization
+
+### C.19:0.3 - First-minute questions
+
+- Which still-live pool, frontier segment, or family region is actually under governance now?
+- Which lens or policy posture is governing it?
+- Is the next lawful treatment `widen`, `keep frontier`, `narrow to subset`, `sunset line`, or `reroute`?
+- What event or threshold would justify changing that treatment next?
+
+### C.19:0.4 - First output
+
+The first useful output is one explicit pool-policy result that names the live pool, the governing lens or policy posture, the current treatment (`widen`, `keep frontier`, `narrow to subset`, `sunset line`, or `reroute`), and the exact event that would justify changing that treatment next.
+
+That result records how the pool will be treated next under the current exploration/exploitation posture; it does not replace one local `C.11` choice record, one `C.24` enactment plan, or one `G.5` published selector result.
+
+If that first output still cannot be written honestly, the current pool-policy result is not finished `C.19` policy yet.
 
 ### C.19:1 - Problem frame
 The E/E governor provides named, versioned policies and lenses that steer NQD generation/selection under lawful dominance and provenance constraints.
+
+When `C.11` has already made local choice among one fixed `OptionSet` explicit, `C.19` begins where the burden becomes policy over several still-live candidate lines, family regions, or frontier segments rather than one more local `ChoiceResult` record.
+
+Immediate failure signs for this pattern:
+- the current pool-policy result cannot name the still-live candidate pool it is governing
+- the governing lens or policy posture is missing
+- the next pool-side treatment exists only as one vague promise to continue exploration later
+
+If the question is still which single option should survive now, reroute to `C.11`. If the next artifact must already be one enactment-facing plan, reroute to `C.24`. If the retained set must be published for downstream consumption, reroute to `G.5`.
 
 ### C.19:2 - Problem
 Ad‑hoc exploration mixes ordinal and interval folds, silently scalarises posets, and loses lens/policy provenance—undermining legality and reproducibility.
@@ -36084,12 +36770,14 @@ Ad‑hoc exploration mixes ordinal and interval folds, silently scalarises poset
 ### C.19:4 - Solution
 Define EmitterPolicy (class, params, ε, K, insertion/dedup) and selection lenses with a fixed pipeline (Eligibility → Dominance → Tie‑breakers); bind provenance (policy id, lens id) and guard promotions of Surprise/Illumination to dominance to explicit policy declarations.
 
-**Agency note.** Decisions are taken by a **system in role**. **Contexts publish** measurement spaces and admissible policies as **semantic frames**; LOG profiles lenses and policies but does **not** enact choices.
+**Agency clarification.** Decisions are taken by a **system in role**. **Contexts publish** measurement spaces and admissible policies as **semantic frames**; LOG profiles lenses and policies but does **not** enact choices.
 **Depends on.** **C.18 NQD‑CAL** (generators), **C.17 Creativity‑CHR** (measurements), **Decsn‑CAL** (objectives/constraints, scalarization lenses), **B.3** (trust adjustments), **Compose‑CAL** (set aggregation; advisory).
 
 **EmitterPolicy (named profile).** A context‑local, versioned policy with fields:
 `{ name, class ∈ {UCB, Thompson, BO‑EI, GP‑UCB, PES, …}, params, explore_share∈[0,1], temperature τ≥0, rebalance_period, wild_bet_quota≥0, backstop_confidence (assurance level), epsilon_dominance ε, cell_capacity K, **insertion_policy**, **dedup_threshold** }`.
 Policies are referenced as `U.EmitterPolicyRef` by NQD generator call (C.18) and are conceptual lenses, not staffing/budget instructions.
+
+**Decision-theory bridge.** `C.11` owns theory-side choice among already-available options and the meaning of `ProbeBudget`, `ValueOfInformation`, and `ValueOfComputation`. `C.19` may consume such outputs only as criteria for pool policy, graduation, keep-frontier, or sunset posture; it does not re-own local choice doctrine.
 
 **Defaults (if policy is unspecified):**  
 • **Dominance:** `{Q components}` with `ConstraintFit=pass` as **eligibility gate**.  
@@ -36123,56 +36811,164 @@ The following **lens profiles** are **illustrative heuristics**. Contexts MAY re
 • **Platform‑option** — maximize **Option‑Value** under probe cost bounds.  
 • **Pilot‑then‑scale** — optimize **Use‑Value** on pilot scope with `BackstopConfidence ≥ L1`; widen `G` once **R** holds.  
 • **Heterogeneity‑first (policy id).** Eligibility → Dominance → Tie‑breakers; Hard gate: FamilyCoverage ≥ k, MinInterFamilyDistance ≥ δ_family; Fairness quotas: ≤1 candidate per sub‑family at pre‑front sampling; DPP/Max‑min sampler allowed.
-**Conformance (lens recording).** A decision that uses any lens **MUST** record its **lens id** alongside `EmitterPolicyRef`. (This restates and localizes C19‑3.)
+**Conformance (lens recording).** A decision that uses any lens **MUST** record its **lens id** alongside `EmitterPolicyRef`. (This restates and localizes C19-3.)
 
-### C.19:5 - Conformance Checklist
-- **C19‑1** Each NQD generator call (C.18) **SHALL** cite `U.EmitterPolicyRef` (policy id + params) **and the active `InsertionPolicyRef`/`dedup_threshold` when not inherited**.
-- **C19‑2** The characteristic set & signs used for dominance **MUST** be declared; eligibility conditions applied first. *(References to C.18 generator operators are descriptive only; LOG exports no Γ.)*
-- **C19‑3** If a lens is used, its id MUST be recorded; do not label scalarized top‑1 as “frontier”.  
-- **C19‑4** Promotion of Surprise/Illumination into dominance MUST be explicit in policy.  
-- **C19‑5** USM/RSG gate applies: policy actions SHALL operate within the Context’s scope and enactable RSG states.
-- **C19‑6** Each selection lens **MUST** implement and document the pipeline` Eligibility (ConstraintFit=pass) → Dominance (declared set) → Tie‑breakers (declared)`. Any **promotion** of Surprise/Illumination into the dominance set **MUST** be named by lens/policy id and recorded in provenance.
-- **C19‑7 (LEX‑AUTH trigger).** Any change to `EmitterPolicy` defaults that affects domain‑family quotas/samplers (HET‑FIRST), or any change to `DescriptorMap` family coordinates, `DistanceDef`, or the `δ_family` threshold MUST be authored via **E.15 LEX‑AUTH** with a published **LAT**; the DRR SHALL carry the LAT pointer (see **CC‑DRR.6**). Record policy/card ids in SCR.
-- **C19‑8**  When the Heterogeneity‑first lens is used, provenance MUST include: (i) the family‑quota vector (including the default triad quota k), (ii) the subFamilyDef id (from F1‑Card) if sub‑family quotas apply, (iii) the sampler class, seed, and policy id.
+#### C.19:4.1 - Explicit pool-policy result
 
-**Illumination & Diversity_P.** Illumination is **report‑only telemetry over `Diversity_P`** (coverage/QD‑score; published as `IlluminationSummary`). It informs exploration health and tie‑breaks; it is **not** a dominance characteristic by default.
+A finished `C.19` pass should publish one explicit pool-policy result rather than one atmospheric statement that exploration will continue somehow.
 
-When **Name Cards** (F.18) use NQD-CAL for lexical search, the underlying `DescriptorMap` and `Diversity_P` **MUST** follow the **head-term family** discipline:  
-– group label candidates into families by lexical head (base noun/verb, ignoring minor prepositions and inflection);  
-– compute `Diversity_P` and any illumination/coverage telemetry over these families (cf. `FamilyCoverage`, `AliasRisk`), not over individual string variants.  
-This requirement prevents treating small morphological tweaks of one head as a “diverse” frontier and keeps lexical NQD-fronts honest.
+That result should state:
 
-**Baseline profile (informative, context‑local template).**
-`EmitterPolicy#NQD-Default-2025`:
-    class=`UCB`, explore_share=`0.3–0.5`, temperature `τ=moderate`,
-    rebalance_period=`Context default`, wild_bet_quota=`≥0`,
-    backstop_confidence=`policy L1`, epsilon_dominance=`ε=0`,
-    cell_capacity=`K=1`.
-Contexts MAY clone/adjust; if used, record its id in provenance.
+- the still-live pool, frontier, or family scope under governance now;
+- the governing lens id or policy posture;
+- the next treatment, chosen from `widen`, `keep frontier`, `narrow to subset`, `sunset line`, or `reroute`;
+- the event or threshold that would justify changing that treatment next.
 
-**Didactic quickstart (Context).**
-- Start with policy class = `UCB` or `Thompson`; set `explore_share≈0.3–0.5`, `τ` moderate.  
-- Name the dominance set: `{Q components, Novelty@context, ΔDiversity_P}` with `ConstraintFit=pass` as gate.  
-  *(Use‑Value / Cost‑to‑Probe may appear in **lenses** or **constraints**; they are **not** in the default dominance set.)*
-- Pick a lens for the final choice (or stick to frontier if undecided); record the lens id in the decision memo.
+A compact result may therefore state, for example:
 
-### C.19:6 - Archetypal Grounding
-**System.** Policy‑driven A/B of architectural variants: Eligibility = constraint‑fit; Dominance = {Q components, Novelty@context, ΔDiversity_P}; lens = 'Frontier‑sweeper' vs 'Barbell'.
-**Episteme.** Method‑family portfolio in SoTA pack: fairness quotas across traditions; lens id recorded; Illumination used as tie‑breaker only unless promoted.
+- `poolScope = frontier_F`
+- `governingLens = barbell_policy_v2`
+- `nextTreatment = keep_frontier`
+- `changeTrigger = backstop_confidence reaches L1 for one retained line`
 
-### C.19:7 - Bias‑Annotation
+or, for one narrower family region:
+
+- `poolScope = family_region_beta`
+- `governingLens = heterogeneity_first`
+- `nextTreatment = narrow_to_subset`
+- `changeTrigger = quota satisfaction plus one explicit novelty floor`
+
+Those fields define the result: governed pool, governing lens, next treatment, and change trigger.
+
+#### C.19:4.2 - Closure rule over the live pool
+
+A `C.19` pass may close only when one explicit pool and one explicit next treatment are both visible.
+
+- Close as `widen` when the current frontier is too narrow for the declared exploration posture or when the evidence basis is too thin to justify current narrowing.
+- Close as `keep frontier` when several lines must remain live under the current lens and no narrower lawful subset is yet justified.
+- Close as `narrow to subset` when one declared lens now justifies retaining one smaller internal live set without pretending that one scalar winner has already been chosen.
+- Close as `sunset line` when one line or family region no longer clears the current lens, quota, or backstop requirements.
+- Close as `reroute` when the burden has stopped being pool policy and has become local choice, enactment planning, or selector-facing publication.
+
+One internal retained subset here is still one pool-treatment result. It is not yet one public `Shortlist`, `RankedShortlist`, or `ShortlistId`-bearing selector artifact. If the retained subset must be published for downstream comparison, handoff, or registry-facing consumption, `C.19` closes only by rerouting to `G.5`.
+
+If the result still cannot say which pool remains live, which lens governs it, and which event would justify changing the treatment, it is still unfinished pool policy rather than one finished `C.19` result.
+
+#### C.19:4.3 - Minimal pool-policy record
+
+The smallest useful `C.19` record usually states:
+
+- `livePool = ...`
+- `governingLens = ...`
+- `currentTreatment = widen | keep frontier | narrow to subset | sunset line | reroute`
+- `changeTrigger = ...`
+- `whyNotLocalChoice = ...` when the result might otherwise be mistaken for `C.11`
+
+A lawful short record may therefore read:
+
+```text
+livePool = frontier_F
+lens = barbell_policy_v2
+currentTreatment = keep_frontier
+changeTrigger = backstop_confidence reaches L1 for one retained line
+whyNotLocalChoice = several family regions remain live
+```
+
+When `currentTreatment = narrow_to_subset`, `livePool` still names one internal retained subset or one live pool subset. It does not yet mint one public `Shortlist`, one public `RankedShortlist`, or one `ShortlistId`. If selector-facing publication is now required, the lawful `C.19` record closes as `reroute` to `G.5` rather than silently renaming the internal subset as though publication had already happened.
+
+If the record does not already state which pool remains live, what governs it, and what would change that posture next, it is still one unfinished `C.19` result.
+
+#### C.19:4.3a - Worked closure slice
+
+Three short contrasts keep the closure law practical.
+
+**Several family regions remain live.**
+When the point is to keep several lines active under one declared lens, `C.19` should not pretend it has already made one local choice:
+
+```text
+livePool = frontier_F
+lens = frontier_sweeper_v3
+currentTreatment = keep_frontier
+changeTrigger = one retained line reaches backstop_confidence L1
+whyNotLocalChoice = three family regions remain live
+```
+
+**One region should now be sunset.**
+When one region no longer clears the active novelty floor or backstop, `C.19` should say so directly rather than leaving that retirement implicit:
+
+```text
+livePool = family_region_beta
+lens = barbell_policy_v2
+currentTreatment = sunset_line
+changeTrigger = reopen only if new evidence or quota deficit reactivates the region
+whyNotLocalChoice = other regions still remain live under the same pool policy
+```
+
+**The pool has already been narrowed and the next burden is publication.**
+When one internal retained subset is already explicit and the next burden is to publish it for downstream use, `C.19` should close by rerouting instead of naming that subset as though it were already one public shortlist artifact:
+
+```text
+livePool = retained_subset_{option_B, option_C}
+lens = pool_policy_completed
+currentTreatment = reroute
+changeTrigger = G5 publishes one selector-facing Shortlist or RankedShortlist now
+whyNotLocalChoice = pool governance is already complete
+```
+
+### C.19:5.1 - System grounding
+
+A product-search or architecture-search team often keeps several family regions alive even after one tempting line starts to look best locally. A lawful `C.19` result might therefore keep the frontier live under `frontier_sweeper_v3` until one retained line actually clears the declared `backstop_confidence`, instead of collapsing the whole pool into one premature winner.
+
+#### C.19:5.2 - Episteme grounding
+
+A SoTA pack often compares traditions that stay non-dominated for different reasons: one clears current evidence quality, one keeps broader transfer value, one preserves family coverage. The lawful `C.19` result is then often `keep frontier` or `narrow to subset`, not one fake scalar champion.
+
+#### C.19:5.3 - Collective and contextual grounding
+
+A regional or stakeholder-diverse portfolio may have to sunset one line while keeping others alive to preserve coverage, fairness quotas, or contextual fit. The practical point is that `C.19` owns that pool-treatment decision only while the burden is still about the live set; once the result must become one local choice, one enactment plan, or one published selected set, reroute immediately.
+### C.19:6 - Bias-Annotation
+
 No global scalarisation of partial orders; ordinal scales excluded from arithmetic; all selections record lens id and policy id; notation/tool neutrality.
 
-### C.19:8 - Consequences
-• Transparent exploration budgets. • Repeatable lens‑based selections. • Heterogeneity preserved without illegal aggregates.
+### C.19:7 - Conformance Checklist
+- **C19-1** Each NQD generator call (C.18) **SHALL** cite `U.EmitterPolicyRef` (policy id + params) **and the active `InsertionPolicyRef`/`dedup_threshold` when not inherited**.
+- **C19-2** The characteristic set & signs used for dominance **MUST** be declared; eligibility conditions applied first. *(References to C.18 generator operators are descriptive only; LOG exports no Γ.)*
+- **C19-3** If a lens is used, its id MUST be recorded; do not label scalarized top-1 as "frontier".
+- **C19-4** Promotion of Surprise/Illumination into dominance MUST be explicit in policy.
+- **C19-5** USM/RSG gate applies: policy actions SHALL operate within the Context's scope and enactable RSG states.
+- **C19-6** Each selection lens **MUST** implement and document the pipeline` Eligibility (ConstraintFit=pass) → Dominance (declared set) → Tie-breakers (declared)`. Any **promotion** of Surprise/Illumination into the dominance set **MUST** be named by lens/policy id and recorded in provenance.
+- **C19-7 (LEX-AUTH trigger).** Any change to `EmitterPolicy` defaults that affects domain-family quotas/samplers (HET-FIRST), or any change to `DescriptorMap` family coordinates, `DistanceDef`, or the `δ_family` threshold MUST be authored via **E.15 LEX-AUTH** with a published **LAT**; the DRR SHALL carry the LAT pointer (see **CC-DRR.6**). Record policy/card ids in SCR.
+- **C19-8**  When the Heterogeneity-first lens is used, provenance MUST include: (i) the family-quota vector (including the default triad quota k), (ii) the subFamilyDef id (from F1-Card) if sub-family quotas apply, (iii) the sampler class, seed, and policy id.
+- **C19-9** When `C.19` returns one pool-policy result, that result **MUST** identify the still-live pool or family scope, the governing lens or policy id, and the next treatment (`widen`, `keep frontier`, `narrow to subset`, `sunset line`, or `reroute`).
+- **C19-10** If the burden is still local option choice, already one enactment-facing plan, or already one selector-facing publication result, `C.19` **MUST** reroute rather than restate `C.11`, `C.24`, or `G.5`.
 
-### C.19:9 - Rationale
-Post‑2015 exploration practice (bandits/BO/RL with QD) shows policies must be explicit, auditable, and editioned; LOG provides that governance.
+### C.19:8 - Common Anti-Patterns and How to Avoid Them
 
-### C.19:10 - Relations
-Builds on: Decsn‑CAL, B.3. Coordinates with: C.18, C.17, G.5, G.9.
+- **Treating one scalarized top-1 as the frontier.** Avoid by naming the governing lens and keeping the live frontier distinct from any lens-ranked pick.
+- **Running exploration without one explicit next treatment.** Avoid by ending each pass with one explicit pool-side action: `widen`, `keep frontier`, `narrow to subset`, `sunset line`, or `reroute`.
+- **Letting `Surprise` or `Illumination` quietly become dominance criteria.** Avoid by promoting them only through one declared lens or policy id and recording that promotion in provenance.
+- **Re-owning neighboring burdens.** Avoid by rerouting fixed-option choice to `C.11`, enactment-facing call planning to `C.24`, and selector-facing publication to `G.5`.
+
+### C.19:9 - Consequences
+
+- the result states whether the pool is being widened, kept live, narrowed, sunset, or rerouted
+- heterogeneity can remain lawful without pretending every frontier is one scalar winner
+- the cost is stricter provenance and the need to name lenses, policies, and change triggers explicitly
+
+### C.19:10 - Rationale
+
+`C.19` exists because pool governance is neither local choice nor execution. Once several candidate lines remain live, the key burden is no longer which single option should survive now; it is how the pool should be governed next under one explicit lens or policy. That burden needs its own explicit pool-policy result, otherwise frontier drift, silent scalarization, and policy amnesia return immediately.
+
+- Post-2015 bandit and Bayesian-optimization practice treats explore/exploit posture as an explicit policy object, not as one hidden side effect of whichever candidate looked best first. The practical implication here is to emit one explicit pool treatment plus one change trigger, not one atmospheric frontier story.
+- Contemporary frontier and quality-diversity practice also distinguishes the live frontier from any scalarized pick taken under one declared lens. The practical safeguard is to keep `keep frontier`, `narrow to subset`, and `sunset line` as visible alternatives rather than silently totalizing the pool.
+- Modern portfolio and fairness-preserving lines keep coverage or heterogeneity pressures explicit until one declared reason justifies retirement or reroute. The practical implication is simple: sunset or reroute only when the current pool-policy result can already say why the pool no longer belongs to `C.19`.
+
+### C.19:12 - Relations
+
+Builds on: `Decsn-CAL`, `B.3`. Coordinates with: `C.11` for local choice among already-available options, `C.18` for candidate generation and open-ended search, `C.24` for post-choice enactment planning, `G.5` for selector-facing publication, `C.17`, and `G.9`.
 
 ### C.19:End
+
 
 ## C.19.1 - Bitter‑Lesson Preference (BLP)
 
@@ -37122,148 +37918,302 @@ The ladder and LOG shells align with FPF’s **Assurance calculus**: **F** (form
 
 ## C.24 - Agentic Tool‑Use & Call‑Planning (C.Agent‑Tools‑CAL)
 
-**Status.** Calculus specification (**CAL**). Defines the conceptual calculus for **agentic selection and sequencing of tool calls** under budgets, trust gates, and policy. **ΔKernel = 0** (no kernel primitives added). *Minting note:* this CAL **does not mint** new U‑types; it **aliases** canonical U‑types where appropriate via **E.10/UTS**.
+> **Type:** Calculus (C)
+> **Status:** Stable
+> **Normativity:** Normative
 
-**Instantiates / Refines Pillars.** E.2 P‑3 Scalable Formality, P‑7 Pragmatic Utility, P‑10 Open‑Ended Evolution, P‑11 SoTA Alignment, and the **Bitter‑Lesson Preference** (prefer scalable, general methods that benefit from more data/compute over fragile hand‑tuned heuristics when assurance/cost are comparable).
+**Plain-name.** Agentic tool-use and call planning.
 
-**Depends on.** A‑kernel (A.1–A.15) for holonic basics and **Role–Method–Work** separation; **B.3** Trust & Assurance (F–G–R with CL penalties); **E.3/E.5** (precedence & Guard‑Rails); **C.5** Resrc‑CAL; **C.18** NQD‑CAL (candidate generation/portfolio); **C.19** E/E‑LOG (explore–exploit policies); **optional** Compose‑CAL and KD‑CAL (knowledge dynamics) where available.
+**Intent.** Govern admissible tool-call planning and replanning under explicit budget, assurance, and policy while keeping upstream choice, pool policy, planning, and execution distinct.
 
-**Coordinates with.**
-U.WorkPlan and U.PromiseContent bindings (acceptance gates), Working‑Model publication discipline (**per B.3**), Evidence/Provenance (G.6).
+**Instantiates / Refines Pillars.** `E.2` `P-3` Scalable Formality, `P-7` Pragmatic Utility, `P-10` Open-Ended Evolution, `P-11` SoTA Alignment, and the Bitter-Lesson Preference: prefer scalable, general methods that benefit from more data or compute over fragile hand-tuned heuristics when assurance and cost stay comparable.
+
+**Depends on.** A-kernel (`A.1–A.15`) for holonic basics and Role-Method-Work separation; `B.3` Trust & Assurance (`F–G–R` with CL penalties); `E.3/E.5` (precedence and Guard-Rails); `C.5` `Resrc-CAL`; `C.18` `NQD-CAL` (candidate generation and portfolio); `C.19` `E/E-LOG` (explore-exploit policies); optional `Compose-CAL` and `KD-CAL` where available.
+
+**Coordinates with.** `U.WorkPlan` and `U.PromiseContent` bindings (acceptance gates), Working-Model publication discipline per `B.3`, and Evidence/Provenance (`G.6`).
+
+### C.24:0 - Use this when
+
+- one concrete choice posture already exists and the next task is now how to plan, gate, sequence, and replan tool calls lawfully
+- the next lawful artifact should be one enactment-facing `CallPlan` or one `CheckpointReturn`, not one more local choice result or pool-policy result
+- budget, assurance, and stop conditions must be visible before calls are burned
+
+### C.24:0.1 - What goes wrong if missed
+
+- calls get scheduled by ad-hoc heuristics, so the plan cannot say which budget is being burned or what event should stop or replan execution
+- planning quietly collapses into execution, or execution quietly inherits unresolved upstream choice and pool-policy burdens
+- a successful probe is mistaken for committed rollout even though the commit trigger was never made explicit
+
+### C.24:0.2 - What this buys
+
+- one tool-agnostic planning surface for admissible calls, budgets, stop conditions, and replan triggers
+- one explicit enactment surface with objective, budget, stop conditions, and next move
+- one replayable call graph and assurance surface instead of one opaque chain of tool invocations
+
+### C.24:0.3 - First-minute questions
+
+- Has one choice posture already been fixed strongly enough that planning may begin now?
+- Which budget is being burned now: enactment budget, tool-call budget, or still one upstream probe budget?
+- What event stops or replans the route?
+- Is the next lawful artifact one `CallPlan`, one `CheckpointReturn`, or one reroute?
+
+### C.24:0.4 - First output
+
+The first useful output is either one enactment-facing `CallPlan` with the current objective, cited route descriptions, the planned budget envelope, the stop or replan condition, and the next move stated explicitly in one place, or one bounded `CheckpointReturn` with the current objective or task family, the burned and residual actual budget, the commit trigger, and the recommended next action stated explicitly in one place.
+
+If that first output still cannot be written honestly, the current planning result is not finished `C.24` planning yet.
 
 ### C.24:1 - Problem frame
 
-Modern systems increasingly rely on **agents** that can **choose tools** (services/methods) and **plan sequences** of calls to achieve objectives in uncertain contexts. Without a calculus:
+Modern systems in agential roles increasingly rely on tool-call planning: selecting admissible tool-service routes, arranging intended call work, and replanning under uncertainty. Without a calculus:
 
-* calls are scheduled by **ad‑hoc heuristics**,
-* **budgets** (compute, cost, wall‑time) are implicit,
+* calls are scheduled by **ad-hoc heuristics**,
+* **budgets** (compute, cost, wall-time) are implicit,
 * **assurance** and **policy provenance** are lost, and
-* agents either over‑constrain themselves with brittle scripts or wander without guard‑rails.
+* systems in agential roles either over-constrain themselves with brittle scripts or wander without guard-rails.
 
-This CAL provides the **conceptual API for thought** that lets any implementation (LLM‑based, search‑based, code‑based, robotic) plan calls **lawfully**, **audibly**, and **scalably**. (Role–Method–Work alignment; didactic primacy.)  
+This CAL provides the **conceptual API for thought** that lets any implementation (LLM-based, search-based, code-based, robotic) plan calls **lawfully**, **auditably**, and **scalably**. (Role-Method-Work alignment; didactic primacy.)
+
+Immediate failure signs for this pattern:
+
+* the current planning result cannot say whether one choice posture already exists,
+* the current text cannot distinguish route description, call plan, and executed call work,
+* the budget being burned is still only probing-before-choice budget rather than enactment or tool-call budget, or
+* the next lawful artifact is still undefined as one enactment-facing plan, one `CheckpointReturn`, or one reroute.
+
+If the real burden is still which fixed option should survive now, reroute to `C.11`. If it is still pool policy over several still-live candidate lines, reroute to `C.19`. If it is already public selected-set publication, reroute to `G.5`.
 
 ### C.24:2 - Problem
-We need a **tool‑agnostic** way to (i) identify **admissible tools**, (ii) **score** candidate call sequences, (iii) allocate an **explore/exploit** share, (iv) enforce **budget & harm** gates, and (v) **replan** on signals—**without** baking domain‑specific heuristics into the core and **without** violating B.3 assurance discipline. 
+We need a **tool-agnostic** way to (i) identify **admissible route descriptions**, (ii) compose one **call work plan** that cites them, (iii) allocate an **explore/exploit** share, (iv) enforce **budget & harm** gates, and (v) **replan** on signals—**without** baking domain-specific heuristics into the core and **without** collapsing `U.MethodDescription`, `U.WorkPlan`, and `U.Work` into one object.
 
 ### C.24:3 - Forces
 
-| Force                              | Tension                                                                                                        |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| **General methods vs. hand‑craft** | Scalable, model‑centric search ↔ short‑term wins of bespoke scripts (guarded by **Bitter‑Lesson Preference**). |
-| **Assurance vs. Autonomy**         | F‑G‑R gates & CL penalties ↔ agent freedom to sequence calls and learn online.                                 |
-| **Exploration vs. Delivery**       | Exploration share for illumination ↔ delivery SLAs and cost ceilings (E/E‑LOG policy).                         |
-| **Separation of concerns**         | Planning (MethodDescription) ↔ execution (Work) ↔ service promises (U.PromiseContent).                                |
+| Force                                    | Tension                                                                                                                 |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **General methods vs. hand-craft**       | Scalable, model-centric search ↔ short-term wins of bespoke scripts (guarded by **Bitter-Lesson Preference**).        |
+| **Assurance vs. Autonomy**               | F-G-R gates & CL penalties ↔ system latitude to sequence calls and learn online.                                       |
+| **Exploration vs. Delivery**             | Exploration share for illumination ↔ delivery SLAs and cost ceilings (E/E-LOG policy).                                |
+| **Route vs. plan vs. execution**         | `U.MethodDescription` ↔ `U.WorkPlan` ↔ `U.Work` ↔ service promises (`U.PromiseContent`).                              |
 
 ### C.24:4 - Solution — Signature & Realization
 
 **Types (aliases).**
-*`ATC.CallSpec`* ≡ `U.MethodDescription` with `accessSpec` for a tool service;
-*`ATC.CallPlan`* ≡ `U.WorkPlan` specialised for tool invocations;
+*`ATC.CallRouteDescription`* ≡ `U.MethodDescription` with `accessSpec` for one tool service or callable route;
+*`ATC.CallPlan`* ≡ `U.WorkPlan` specialised for intended tool-call work; it cites one or more `ATC.CallRouteDescription` editions plus planned order, budget ceilings, stop or replan triggers, and next move;
 *`ATC.CallGraph`* ≡ Evidence/Provenance graph over a `U.Work` ledger;
-*`ATC.Policy`* references `U.EmitterPolicyRef` (E/E‑LOG) and local call gates **including BLP tolerances (α, δ)**.
+*`ATC.Policy`* references `U.EmitterPolicyRef` (E/E-LOG) and local call gates **including BLP tolerances (alpha, delta)**.
 
 **Roles.**
-A **System in AgentialRole** composes a **Plan** (MethodDescription); upon enactment, a **Performer** executes **Work** (calls), and **Observers** record **Observations** with acceptance checks. (A.15 strict distinction.) 
+A **System in AgentialRole** prepares or revises one **CallPlan** that cites one or more **CallRouteDescription** editions. Upon enactment, a **Performer** executes **Work** (calls), and **Observers** record **Observations** with acceptance checks. Route descriptions stay design-time; the call plan stays schedule-of-intent; actual call work stays run-time. (A.15 strict distinction.)
 
-**Operators (Γ_agent; CAL, conceptual):**
+**Operators (Gamma_agential; CAL, conceptual):**
 
-1. `Γ_agent.eligible(tool, TaskSignature, K_ctx) → {true|false, notes}`
-   *Eligibility gate* based on capability fit, policy allow‑list/deny‑list, and context K (incl. safety constraints).
+1. `Gamma_agential.eligible(tool, TaskSignature, K_ctx) -> {true|false, notes}`
+   *Eligibility gate* based on capability fit, policy allow-list or deny-list, and context K (including safety constraints).
 
-2. `Γ_agent.enumerate(TaskSignature, K_ctx) → CandidateSet<ATC.CallSpec>`
-   Returns admissible calls. **MAY** delegate to **NQD‑CAL** for portfolio enumeration when families are heterogeneous and **MUST** apply the current **E/E‑LOG lens** (objectives & telemetry) to tag candidates.
+2. `Gamma_agential.enumerate(TaskSignature, K_ctx) -> CandidateSet<ATC.CallRouteDescription>`
+   Returns admissible callable route descriptions. It **MAY** delegate to **NQD-CAL** for heterogeneous route families and **MUST** apply the current **E/E-LOG lens** (objectives & telemetry) to tag candidates.
 
-3. `Γ_agent.plan(Objective, CandidateSet, Budget, ATC.Policy) → ATC.CallPlan`
-   Produces a **call plan** with steps `{pre, call, post}`, *explicit budgets* (compute, cost, time, risk), and **E/E policy** (explore_share, tie‑breakers, stop‑conditions). The plan is a MethodDescription, not Work.  
+3. `Gamma_agential.plan(Objective, CandidateSet, Budget, ATC.Policy) -> ATC.CallPlan`
+   Produces one **call plan** that cites the selected route descriptions, declares one planned budget envelope (compute, cost, time, risk), one intended call order, and one stop or replan policy. Internal route logic remains in the cited method descriptions; the plan is a `U.WorkPlan` that cites method descriptions, not a method description and not yet work.
 
-4. `Γ_agent.execute(ATC.CallPlan) → {ATC.CallGraph, Observations}`
-   Executes with **hard gates** (budget, risk, constraint‑fit) and logs provenance suitable for B.3 assurance reporting (design/run separated). 
+4. `Gamma_agential.execute(ATC.CallPlan) -> {ATC.CallGraph, Observations}`
+   Executes with **hard gates** (budget, risk, constraint-fit) and logs provenance suitable for B.3 assurance reporting (design/run separated).
 
-5. `Γ_agent.replan(Signals, ATC.CallPlan, Budget′) → ATC.CallPlan′`
-   Triggered by sentinel breaches, assurance drops, or policy events; preserves **editioned** policy and context. (Design/run separation; Working‑Model handshake.) 
+5. `Gamma_agential.replan(Signals, ATC.CallPlan, BudgetPrime) -> ATC.CallPlanPrime`
+   Triggered by sentinel breaches, assurance drops, or policy events; preserves editioned policy, cited route descriptions, and context.
 
-6. `Γ_agent.score(Plan or Step) → ⟨ValueProxies, Cost, Risk, FGR_floor⟩`
-   Computes selection signals **without** illegal scalarisation across mixed scales; **uses Pareto comparison under the C.19 E/E‑LOG lens** and defers final dominance to declared policies. 
+6. `Gamma_agential.score(Route or PlanAlternative) -> <ValueProxies, Cost, Risk, FGR_floor>`
+   Computes selection signals **without** illegal scalarisation across mixed scales; **uses Pareto comparison under the C.19 E/E-LOG lens** and defers final dominance to declared policies.
 
 #### C.24:4.1 - Bounded scout/probe cycle for unfamiliar task families
 
-When the objective is still being pursued across heterogeneous or unfamiliar candidate approaches, the agent should first declare the utility target, enumerate admissible candidate approaches, spend a bounded scout/probe budget before any committed route is chosen, and return one checkpoint package that compares the tested approaches.
+When the choice posture is already fixed enough that enactment planning is lawful, but the route across heterogeneous or unfamiliar callable approaches is still uncertain, the system may spend a bounded scout/probe budget before committed rollout and return one checkpoint package that compares the tested routes.
 
-That `CheckpointReturn` should carry the declared utility target and current `TaskFamily`, the candidate approaches tested, the evidence on each approach, the burned and residual budget, the recommended next action, and the exact commit trigger that would justify leaving probe state.
+If additional probing could still change which option survives the current `OptionSet`, the budget is still `C.11`-side epistemic budget and the burden reroutes upstream. If choice posture is already fixed and the uncertainty is only about route or rollout shape, the budget is now enactment budget and `C.24` owns the checkpoint.
 
-A successful probe does not by itself authorize a larger burn or a committed rollout. `C.24` owns the `CheckpointReturn` record and plan semantics for this probe loop; `A.15` owns the dyadic move and `E.16` owns the budget partition plus guard and ledger enforcement. Low-human-overlap approaches remain admissible only while they stay tied to the declared utility target, budget guard rails, and evidence basis by value.
-**Normative Laws (ATC‑Laws).**
+That `CheckpointReturn` should state the declared utility target and current `TaskFamily`, the route descriptions or candidate approaches tested, the evidence on each route, the burned and residual actual budget, the recommended next action, and the exact commit trigger that would justify leaving probe state.
 
-* **ATC‑1 (Model‑the‑Call, not the App).** A tool call is a **Work** instance that enacts a referenced **MethodDescription** promised by a **Service**; plans schedule calls but are **not the calls**. (A.15.)
-* **ATC‑2 (Bitter‑Lesson Preference).** When two admissible choices are within **δ (assurance)** and **α (budget)**, **prefer the more general, scale‑benefiting method** whose **slope vector Pareto‑dominates** under the declared E/E‑LOG objectives; any override **MUST** record a **BLP‑waiver** with expiry. (E.2; precedence governed by E.3.)
-* **ATC‑3 (Budget & Harm Gates).** Plans **SHALL** declare ceilings on compute, cost, wall‑time, and risk; execution **MUST** abort or replan on breach. (Assurance ties to B.3; design/run kept separate.)
-* **ATC‑4 (Explore‑Share Discipline).** Plans **MUST** declare `explore_share`; defaults **inherit from E/E‑LOG profiles**. **Informative defaults**: `0` for safety‑critical or deterministic tasks; `≈0.2–0.4` for ambiguous tasks with heterogeneous tool families. Promotion of illumination telemetry into dominance **requires explicit policy**.
-* **ATC‑5 (Provenance & Replay).** Every call **MUST** emit a **CallGraph** with: Service id, MethodDescription edition, inputs/outputs (redacted per privacy), **EmitterPolicyRef**, and budget deltas. (NQD/E/E provenance fields apply when used.)
-* **ATC‑6 (Assurance‑First Decisions).** Selection **MUST** respect B.3: WLNK minima on F/R (weakest‑link floors), CL penalties on integration, and **no** chimera scores across design/run. Publish **⟨F,G,R⟩** for the *typed claim* “this plan is admissible under K,S”.
-* **ATC‑7 (Notation/Vendor Independence).** Core pattern text **MUST NOT** encode vendor‑specific tokens; bindings occur in Context via Bridges/Profiles. (Lexical guard‑rails.)
+A successful probe does not by itself authorize a larger burn or a committed rollout. `C.24` owns the `CheckpointReturn` record and call-plan semantics for this probe loop; `A.15` owns the design/run split and `E.16` owns the budget partition plus guard and ledger enforcement. Low-human-overlap approaches remain admissible only while they stay tied to the declared utility target, budget guard rails, and evidence basis explicitly.
 
+**Bridge to neighboring owners.** `ProbeBudget` belongs to `C.11` while it means epistemic budget for further probing before choice. `C.24` owns budgets once they are enactment, tool-call, or rollout budgets. If the question is still which option survives now, reroute to `C.11`; if it is now pool policy over several still-live candidate lines, reroute to `C.19`; if it is selector-facing publication of the selected result, reroute to `G.5`.
 
-### C.24:5 - Policy Block (normative, profile‑able)
+**Explicit enactment result.** A conformant `C.24` pass should therefore leave either one enactment-facing `CallPlan` that states the current objective, the cited route descriptions or planned call order, the planned budget envelope, the stop or replan condition, and the next move, or one `CheckpointReturn` that states the current objective or task family, the burned and residual actual budget, the evidence basis, the commit trigger, and the recommended next action.
 
-**ATC‑Policy fields (conceptual):**
-`{ backstop_confidence, explore_share, risk_bound, cost_ceiling, time_ceiling, tie_breakers, novelty_quota?, wild_bet_quota?, stop_conditions, BLP_delta_α, BLP_delta_δ }` — realized by referencing an **E/E‑LOG EmitterPolicy** and adding **BLP** clauses. Defaults inherit from E/E‑LOG; any deviation is editioned.
+**Unfinished-state rule.** A `C.24` result remains unfinished when it cannot say whether execution should continue now, pause at one checkpoint, or reroute, when it confuses route description with plan or plan with executed work, or when it does not state which budget is planned versus already burned and what event would stop or replan the current route.
 
-**BLP Precedence.** In conflicts with tactics that hard‑code narrow scripts, **BLP** applies **subject to E.3/E.5 precedence**. Where scripts encode **safety‑critical gating or regulatory compliance**, scripts **prevail** unless a DRR records: (i) **override rationale**, (ii) **expiry**, (iii) **measured hazard** avoided, and (iv) planned **re‑evaluation** window (P‑10 evolution duty).
+**Normative Laws (ATC-Laws).**
 
-### C.24:6 - Archetypal Grounding (informative; non‑binding)
+* **ATC-1 (Model-the-Call, not the App).** A tool call is one **Work** instance that enacts a referenced **MethodDescription** promised by a **Service**; plans schedule intended calls and cite route descriptions but are neither the route descriptions themselves nor the calls. (A.15.)
+* **ATC-2 (Bitter-Lesson Preference).** When two admissible choices are within **delta (assurance)** and **alpha (budget)**, **prefer the more general, scale-benefiting method** whose **slope vector Pareto-dominates** under the declared E/E-LOG objectives; any override **MUST** record a **BLP-waiver** with expiry. (E.2; precedence governed by E.3.)
+* **ATC-3 (Budget & Harm Gates).** Plans **SHALL** declare ceilings on compute, cost, wall-time, and risk; execution **MUST** abort or replan on breach. Actual burned or residual budget belongs in `CheckpointReturn`, `CallGraph`, or other work-side reporting, not inside the plan surface.
+* **ATC-4 (Explore-Share Discipline).** Plans **MUST** declare `explore_share`; defaults **inherit from E/E-LOG profiles**. **Informative defaults**: `0` for safety-critical or deterministic tasks; `approx 0.2-0.4` for ambiguous tasks with heterogeneous tool families. Promotion of illumination telemetry into dominance **requires explicit policy**.
+* **ATC-5 (Provenance & Replay).** Every call **MUST** emit a **CallGraph** with: Service id, cited MethodDescription edition, inputs/outputs (redacted per privacy), `CallPlan` ref, **EmitterPolicyRef**, and budget deltas. (NQD/E/E provenance fields apply when used.)
+* **ATC-6 (Assurance-First Decisions).** Selection **MUST** respect B.3: WLNK minima on F/R (weakest-link floors), CL penalties on integration, and **no** chimera scores across design/run. Publish **<F,G,R>** for the typed claim `this plan is admissible under K,S`.
+* **ATC-7 (Notation/Vendor Independence).** Core pattern text **MUST NOT** encode vendor-specific tokens; bindings occur in Context via Bridges/Profiles. (Lexical guard-rails.)
 
-1. **LLM Research Agent (knowledge work).**
-   Task: answer a novel technical question. Candidate tools: retrieval, structured web search, code runner, table/plot generator.
-   **Plan:** `enumerate → plan(explore_share≈0.4) → call(search→retrieve→synthesise→code‑check) → replan on sentinel (low R)`; **BLP** favours **general retrieval + prompting policies** over hand‑coded, per‑site scrapers unless assurance demands otherwise. (Echoes SoTA: *ReAct* (2022), *Self‑Ask* (2022), *Reflexion* (2023), *Tree‑of‑Thoughts* (2023), *Toolformer* (2023).)
+#### C.24:4.2 - Policy profile and BLP precedence
 
-2. **Program Repair Agent (systems/software).**
+**ATC-Policy fields (conceptual).**
+`{ backstop_confidence, explore_share, risk_bound, cost_ceiling, time_ceiling, tie_breakers, novelty_quota?, wild_bet_quota?, stop_conditions, BLP_delta_alpha, BLP_delta_delta }` - realised by referencing an `E/E-LOG` `EmitterPolicy` and adding Bitter-Lesson-Preference clauses. Defaults inherit from `C.19`; any deviation is editioned.
+
+**BLP precedence.** In conflicts with tactics that hard-code narrow scripts, the Bitter-Lesson Preference applies subject to `E.3/E.5` precedence. Where scripts encode safety-critical gating or regulatory compliance, scripts prevail unless the governing context publishes the override rationale, expiry, measured hazard avoided, and planned re-evaluation window.
+
+#### C.24:4.3 - Didactic quick card
+
+**Agentic Call Plan (public surface).**
+`Objective - Context(K) - RouteRefsInOrder[edition-pinned] - BudgetEnvelope{time/compute/cost/risk} - PolicyRef - Explore-share - Stop/Replan conditions - BLP tolerances - BLP waiver (if any) - Assurance<F,G,R|K,S> - Provenance ids`
+
+#### C.24:4.4 - Explicit enactment outputs and closure rule
+
+A finished `C.24` pass should publish one enactment result rather than one vague statement that the system now has a plan.
+
+Two output shapes are lawful here:
+
+- one enactment-facing `CallPlan`; or
+- one bounded `CheckpointReturn` when probing is still the lawful next move inside enactment planning.
+
+A `CallPlan` should state at least these fields:
+
+- current objective;
+- cited route descriptions or planned call order;
+- active policy or planning posture;
+- planned budget envelope or reserved budget;
+- stop or replan condition;
+- next move if the current plan is accepted now.
+
+A `CheckpointReturn` should state at least these fields:
+
+- current task family or objective;
+- candidate routes tested so far;
+- evidence on those routes;
+- burned and residual actual budget;
+- recommended next action;
+- explicit commit trigger.
+
+A compact result may therefore look like:
+
+```text
+CallPlan(
+  objective = answer_question_Q,
+  policyRef = ee_policy_v1,
+  routeRefsInOrder = [search_route_v3, retrieve_route_v1, synthesize_route_v2, code_check_route_v1],
+  plannedBudgetEnvelope = {time<=60_minutes, compute<=x1, cost<=y1, risk<=r1},
+  stopOrReplan = low_R_or_cost_ceiling,
+  nextMove = enact_now
+)
+```
+
+or:
+
+```text
+CheckpointReturn(
+  taskFamily = unfamiliar_lab_protocol,
+  testedRoutes = [route_A, route_B],
+  burnedBudget = 2_runs,
+  residualBudget = 1_run,
+  recommendedNextAction = probe_route_B_once_more,
+  commitTrigger = route_B_clears_assurance_floor_L1
+)
+```
+
+Close as one enactment-facing `CallPlan` when the choice posture is already fixed enough that execution order, gating, and replanning are now the governed burden. Close as one `CheckpointReturn` when bounded scout/probe work is still lawful inside enactment planning. Reroute when the result has actually fallen back into local choice, pool policy, or selector-facing publication.
+
+If the result still does not state what should execute now, what budget is planned or already burned, and what event stops or replans the route, it is still unfinished `C.24` work.
+
+#### C.24:4.4a - Worked closure slice
+
+Two short contrasts keep the closure law practical.
+
+**Known route, execution should begin now.**
+When the objective and route are already fixed enough, `C.24` should close as one enactment-facing call plan:
+
+```text
+CallPlan(
+  objective = produce_patch_and_verify,
+  routeRefsInOrder = [inspect_repo_route, edit_candidate_route, run_targeted_tests_route],
+  plannedBudgetEnvelope = {time<=45_minutes, compute<=x2, cost<=y2, risk<=r2},
+  stopOrReplan = targeted_tests_fail_twice,
+  nextMove = enact_now
+)
+```
+
+**Unfamiliar route, one bounded scout pass still lawful.**
+When the route is still uncertain inside enactment planning, `C.24` should close as one `CheckpointReturn`:
+
+```text
+CheckpointReturn(
+  taskFamily = unfamiliar_ci_failure,
+  testedRoutes = [log_trace_route, minimal_repro_route],
+  burnedBudget = 1_probe_cycle,
+  residualBudget = 2_probe_cycles,
+  recommendedNextAction = run_minimal_repro_once_more,
+  commitTrigger = repro_is_stable_and_assurance_floor_L1_holds
+)
+```
+
+The practical distinction is simple: if route order and budgeted execution are already the governed burden, emit one `CallPlan`; if bounded scout work is still the governed burden inside planning, emit one `CheckpointReturn`.
+
+1. **Research-assistance system in agential role.**
+   Task: answer a novel technical question. Candidate tools: retrieval, structured web search, code runner, table or plot generator.
+   **Plan:** cite route descriptions for `search`, `retrieve`, `synthesize`, and `code_check`; declare `explore_share approx 0.4`; replan on sentinel `low_R`.
+   The lawful structure here is one declared budget envelope, one explicit route order, and one visible replan trigger.
+
+2. **Program-repair system in agential role.**
    Task: propose a patch against a failing test suite. Candidate tools: repo introspection, static analyzer, unit runner.
-   **Plan:** prefer **search‑and‑learn loops** with test‑guided feedback over fixed “if error X then patch Y” tables; exploration quota enforces trials across patch families before exploitation. (Aligns with post‑2019 automated program repair lines and *SWE‑bench*‑style agent loops.)
+   **Plan:** keep repo-introspection, patch-application, and targeted-test route descriptions distinct; use scout quota across patch families before committed rollout.
 
-3. **Lab Automation Agent (physical).**
-   Task: adjust a wet‑lab protocol under drift. Candidate tools: planner, pipetting controller, spectrometer, Bayesian optimizer.
-   **Plan:** **BLP** drives toward **model‑based optimization** under budgeted sample counts; heuristics remain as **policy‑documented** fallbacks with expiry. (Resonates with quality‑diversity and BO practice since 2015, mirrored by NQD/E/E policies.) 
+3. **Lab-automation system in agential role.**
+   Task: adjust a wet-lab protocol under drift. Candidate tools: planner, pipetting controller, spectrometer, Bayesian optimizer.
+   **Plan:** a bounded probe or pilot can inform the route, but committed rollout waits for the declared commit trigger and assurance floor.
 
-### C.24:7 - Conformance Checklist (CC‑AT)
+### C.24:6 - Bias-Annotation
 
-1. **CC‑ATC‑1 — Declared separation.** Plan is a `MethodDescription`; execution is `Work`; acceptance is via `U.PromiseContent`. No schedule inside specs; schedules live in `U.WorkPlan`.
-2. **CC‑ATC‑2 — Budgets on record.** `time/compute/cost/risk` ceilings exist **ex ante**; stop conditions listed.
-3. **CC‑ATC‑3 — E/E policy.** `EmitterPolicyRef` (or equivalent) and `explore_share` are editioned and logged.
-4. **CC‑ATC‑4 — Assurance tuple.** Publish the **typed claim** “Plan admissible under K,S” with **⟨F,G,R⟩** and CL penalties traceable in the **CallGraph** SCR. Design/run never merged.
-5. **CC‑ATC‑5 — BLP waiver discipline.** Any heuristic override against a general method includes **expiry** and **re‑evaluation** date.
-6. **CC‑ATC‑6 — Provenance minimum.** Record `{PromiseContentRef, MethodDesc.edition, EmitterPolicyRef, DescriptorMapRef? (if NQD), DistanceDefRef? (if NQD), TimeWindow, Seeds?, Dedup?}`.
-7. **CC‑ATC‑7 — Notation independence.** No vendor tokens in conceptual text; bindings via Bridges/Profiles only.
-8. **CC‑ATC‑8 — BLP tolerances declared.** **α/δ** tolerances are present in `ATC.Policy` or referenced via the active E/E‑LOG profile.
+Lexical firewall and notation independence apply; no vendor tokens; mixed-scale characteristics are never averaged; route descriptions remain distinct from `U.WorkPlan`, and both remain distinct from executed `U.Work`; a successful probe remains distinct from committed rollout until the commit trigger is satisfied.
 
-9. **CC‑ATC‑9 — `CheckpointReturn` for bounded specialization.** When a plan uses scout/probe discipline on a new task family, it **SHALL** publish one `CheckpointReturn` with candidate set, evidence, burned/residual budget, next action, and commit trigger; a successful probe alone never counts as committed rollout.
+### C.24:7 - Conformance Checklist
 
-### C.24:8 - Consequences
+1. **CC-ATC-1 - Declared separation.** `ATC.CallRouteDescription` is a `MethodDescription`; `ATC.CallPlan` is a `U.WorkPlan` that cites route descriptions; execution is `Work`; acceptance is via `U.PromiseContent`. No method-side route logic or actual burn is smuggled into the `U.WorkPlan` surface.
+2. **CC-ATC-2 - Budgets on record.** `time/compute/cost/risk` ceilings exist ex ante; stop conditions listed.
+3. **CC-ATC-3 - E/E policy.** `EmitterPolicyRef` (or equivalent) and `explore_share` are editioned and logged.
+4. **CC-ATC-4 - Assurance tuple.** Publish the typed claim `Plan admissible under K,S` with `<F,G,R>` and CL penalties traceable in the `CallGraph` SCR. Design/run never merged.
+5. **CC-ATC-5 - BLP waiver discipline.** Any heuristic override against a general method includes expiry and re-evaluation date.
+6. **CC-ATC-6 - Provenance minimum.** Record `{PromiseContentRef, CallPlanRef, MethodDesc.edition, EmitterPolicyRef, DescriptorMapRef? (if NQD), DistanceDefRef? (if NQD), TimeWindow, Seeds?, Dedup?}`.
+7. **CC-ATC-7 - Notation independence.** No vendor tokens in conceptual text; bindings via Bridges or Profiles only.
+8. **CC-ATC-8 - BLP tolerances declared.** `alpha/delta` tolerances are present in `ATC.Policy` or referenced via the active `E/E-LOG` profile.
+9. **CC-ATC-9 - `CheckpointReturn` for bounded specialization.** When one route still uses scout/probe discipline on a new task family, it SHALL publish one `CheckpointReturn` with candidate routes, evidence, burned/residual actual budget, next action, and commit trigger; a successful probe alone never counts as committed rollout.
+10. **CC-ATC-10 - Recoverable enactment closure.** When `C.24` returns one enactment-facing call plan or one `CheckpointReturn`, the `CallPlan` SHALL state current objective, route refs in order, planned budget envelope, stop or replan condition, and next move, while `CheckpointReturn` SHALL state burned/residual actual budget plus next action and commit trigger.
+11. **CC-ATC-11 - Neighboring-pattern reroutes.** If the burden is still fixed-option choice, pool policy over several live lines, or selector-facing publication, `C.24` SHALL reroute to `C.11`, `C.19`, or `G.5` rather than restating those patterns.
+12. **CC-ATC-12 - Role discipline.** User-facing prose and emitted artifacts SHALL speak about systems in agential roles or equivalent typed performers, not one generic `agent` head, when that generic head would blur the holder kind.
 
-*Positive.* Portable agent patterns; **auditable autonomy**; lawful exploration; faster hypothesis cycles via BLP; replayable call graphs; decision‑grade Working‑Model surfaces.
-*Trade‑offs.* Requires explicit budgets/policies; BLP may defer quick wins from bespoke scripts; stronger logging discipline.
+### C.24:8 - Common Anti-Patterns and How to Avoid Them
 
-### C.24:9 - Rationale (post‑2015 SoTA alignment, informative)
+- **Treating route description as plan.** Avoid by keeping callable logic in `ATC.CallRouteDescription` and keeping `ATC.CallPlan` as one `U.WorkPlan` that cites it.
+- **Treating planning as execution.** Avoid by publishing actual burn only through `CheckpointReturn`, `Work`, and `CallGraph`, not inside the plan surface.
+- **Burning enactment budget while the burden is still upstream choice or pool policy.** Avoid by rerouting unresolved fixed-option choice to `C.11` and unresolved live-pool governance to `C.19` before building one call plan.
+- **Counting a successful probe as committed rollout.** Avoid by publishing one `CheckpointReturn` with a visible commit trigger instead of smuggling rollout through a positive scout result.
+- **Hiding stop conditions or replan triggers.** Avoid by making them part of the public plan surface rather than one private implementer intuition.
 
-* **Scaling‑first methods** (language‑model and representation‑learning scaling laws; subsequent data/compute‑balanced scaling) empirically support **BLP**: general, learnable mechanisms tend to dominate as budgets rise—hence **ATC‑2**.
-* **Tool‑use agents** in the literature (*ReAct*, *Self‑Ask*, *Reflexion*, *Toolformer*, *Tree‑of‑Thoughts*, open‑ended *Voyager*‑style skill acquisition) all benefit from **explicit planning + feedback**, exactly what CC‑AT‑2/3/6 encode.
-* **Quality‑Diversity & BO** practice motivates the **explore_share** default and the distinction between **dominance vs. illumination telemetry** (kept separate unless policy promotes).  
+### C.24:9 - Consequences
 
-### C.24:10 - Relations
+- tool use under systems in agential roles becomes inspectable as one lawful plan, not one opaque sequence of calls
+- downstream work receives one explicit enactment surface with objective, route refs, budget envelope, stop conditions, and next move
+- the cost is stronger discipline around route-description versus plan versus work separation, explicit budgets, and visible policy posture before execution begins
 
-* **Builds on:** A.15 Role–Method–Work alignment (planning vs execution vs service), B.3 Trust & Assurance (F–G–R/CL), C.5 Resrc‑CAL, C.18 NQD‑CAL (candidate/portfolio), C.19 E/E‑LOG (policies).    
-* **Constrains:** Any `U.PromiseContent` used as a “tool” MUST expose acceptance conditions and observation hooks sufficient for B.3 reporting. 
-* **Enables:** Human‑centric Working‑Model surfaces with policy/assurance disclosures (design/run separated). 
+### C.24:10 - Rationale
 
-### C.24:11 - Bias‑Annotation
+`C.24` exists because tool-use systems fail in a distinctive way: they can look adaptive while actually hiding route choice, budget burn, stop conditions, and replan logic inside one opaque execution chain. A separate planning calculus is therefore necessary so that tool use remains auditable, replayable, and governable before the first irreversible call is made.
 
-*Lexical firewall* and *notation independence* apply; no vendor tokens; mixed‑scale characteristics are never averaged; illumination remains a **report only telemetry** unless a policy promotes it into dominance.  
+- Contemporary tool-use systems in agential roles work best when planning, feedback, and replanning stay explicit rather than collapsing into one brittle script. The practical implication is to publish one `U.WorkPlan` that cites route descriptions and carries stop or replan triggers before execution.
+- Post-2015 search, optimization, and agentic systems also show that bounded probing is useful but dangerous when it silently becomes commitment. The safeguard here is the explicit `CheckpointReturn` plus visible commit trigger and one explicit split between planned budget envelope and burned actual budget.
+- Scaling-first practice favors general, learnable methods over fragile hand-tuned tactics when assurance and cost remain comparable. The practical implication is not blind optimism but disciplined BLP: when a narrow heuristic wins, record the waiver, expiry, and re-evaluation window.
 
-### C.24:12 - Didactic Quick Card (1‑screen crib)
+### C.24:12 - Relations
 
-**Agentic Call Plan (public):**
-*Objective - Context(K) - Budget{time/compute/cost/risk} - PolicyRef (E/E‑LOG) - Explore‑share - Steps[ pre/ call /post ] - Stop‑conditions - **BLP tolerances (α,δ)** - BLP‑note (if any) - Assurance⟨F,G,R|K,S⟩ - Provenance ids.*
+Builds on: `A.15` Role-Method-Work alignment (planning vs execution vs service), `B.3` Trust & Assurance (`F-G-R/CL`), `C.5 Resrc-CAL`, `C.18 NQD-CAL` (candidate and portfolio generation), and `C.19 E/E-LOG` (policies). Constrains: any `U.PromiseContent` used as a tool MUST expose acceptance conditions and observation hooks sufficient for `B.3` reporting. Enables: human-facing Working-Model surfaces with policy and assurance disclosures while keeping design/run separated.
 
 ### C.24:End
+
 
 ## C.25 - Q-Bundle: Authoring "-ilities" as Structured Quality Bundles
 
@@ -55914,37 +56864,66 @@ All of these remain method‑specific semantics and therefore belong in `Extensi
 
 ## G.5 - Multi‑Method Dispatcher & MethodFamily Registry
 
+> **Type:** General (G)
+> **Status:** Stable
+> **Normativity:** Normative
+
+**Plain-name.** Multi-method dispatcher and method-family registry.
+
+**Intent.** Govern the dispatcher/registry surfaces for rival method families and publish selector-facing retained-set outcomes without collapsing plurality into one hidden scalar winner.
+
 ### G.5:0 - Use this when
 
 - several method families or generator families can lawfully act on the same declared task family or work target
-- you need one selector to return a portfolio, narrowed handoff plan, or abstain outcome without pretending that there is always one scalar winner
-- downstream parity, refresh, and shipping surfaces must be able to recover why the selector returned that outcome by value
+- you need one selector to return a `Shortlist`, `RankedShortlist`, portfolio, narrowed handoff plan, or abstain outcome without pretending that there is always one scalar winner
+- the published result must carry enough basis pins to support later comparison, handoff, or escalation without changing its public head
 
 ### G.5:0.1 - What goes wrong if missed
 
 - rival families are compared under silent comparator drift, hidden baseline changes, or unspoken crossing costs
 - the selector hides one dogmatic winner even when only a partial order is lawful
+- selected-set publication gets hidden inside `C.11`, `C.19`, or `C.24`, so the published artifact no longer makes clear whether it carries local choice, pool policy, enactment, or publication
 - exploration, open-ended, or specialization pressure leaks in as one architecture convenience rather than one explicit policy-bound choice
 
 ### G.5:0.2 - What this buys
 
 - one registry that keeps rival method families disjoint but dispatchable
-- one selector surface that can publish candidate sets, specialist portfolios, narrowed handoff plans, or abstain outcomes honestly
-- one DRR/SCR-addressable trace that later `G.9`, `G.11`, and shipping surfaces can consume without inventing shadow rules
+- one selector surface that can publish candidate sets, `Shortlist`, `RankedShortlist`, specialist portfolios, narrowed handoff plans, or abstain outcomes honestly
+- one `DRR/SCR`-addressable trace with explicit basis pins instead of one hidden selector rationale
+- one explicit publication closure so the public head, retained members, ordering status, and basis pins are stated directly in the emitted result
 
-G.5 keeps the dispatcher/registry surfaces here and leaves universal Part‑G invariants to `G.Core`; method- or generator-specific semantics stay in their named source patterns and arrive here only through explicit pins.
+Registry and dispatch remain the primary owner burden here; selected-set publication is the explicit closure surface of that selector burden, not a replacement for it.
+
+### G.5:0.3 - First-minute questions
+
+- What public head is this selector result actually emitting: `Shortlist`, `RankedShortlist`, portfolio, narrowed handoff, or abstain?
+- Which members are being retained or excluded now?
+- Does order materially belong to the published result?
+- Which basis pins or policy pins must the published result carry?
+
+### G.5:0.4 - First output
+
+The first useful output from this dispatcher/registry burden is one published selected-set artifact: `Shortlist`, `RankedShortlist`, one specialist portfolio, one narrowed handoff plan, or one abstain/escalation result, with the public head, retained members or handoff content, ordering status when relevant, and basis pins stated in one place.
+
+If that first output still cannot be written honestly, the current publication result is not finished `G.5` publication yet.
+
+G.5 keeps the dispatcher/registry surfaces here and leaves universal Part-G invariants to `G.Core`; method- or generator-specific semantics stay in their named source patterns and arrive here only through explicit pins.
+
+When `C.11` has already emitted one local choice result, `C.19` one pool-policy posture, or `C.24` one enactment-facing next move, `G.5` begins where the burden becomes selector-facing publication of the retained set or narrowed handoff result rather than one more explanation of why the result looked reasonable. A conformant `G.5` pass should therefore publish the retained set, narrowed handoff, or abstain result directly, with its public head and basis pins explicit in the result itself.
+
+A publication result remains unfinished if the public head, retained members, ordering status, abstain or escalation condition, or basis pins are still only implicit in upstream notes.
 
 ### G.5:1 - Problem frame
 
 A `CG‑FrameContext` (from **G.1**) and a `SoTA Synthesis Pack@CG‑Frame` (from **G.2**) expose multiple rival, internally coherent **method families** (and sometimes **generator families**) that can plausibly act on the same *describedEntity / ReferencePlane*.
 
-At the same time, CHR/CAL authoring (from **G.3/G.4**) yields typed slots/scales/coordinates and admissible calculi/acceptance clauses—enough to formulate *eligibility*, *assurance*, and *legality* constraints, but not enough to pick “the method” without collapsing plurality.
+At the same time, the typed slot/scale/coordinate surfaces from **G.3/G.4** yield admissible calculi and acceptance clauses—enough to formulate *eligibility*, *assurance*, and *legality* constraints, but not enough to pick “the method” without collapsing plurality.
 
 You need a **notation‑independent** way to:
 
 1. register method/generator families as *auditable, versioned* entries,
 2. select/compose/fallback among them at run time for a concrete task instance,
-3. publish stable identities to UTS, and
+3. publish stable selected-set results and stable identities to UTS, and
 4. emit RSCR‑relevant triggers and pins without inventing new “shadow specs”.
 
 ### G.5:2 - Problem
@@ -56048,9 +57027,9 @@ A notation‑independent selector that:
 **S3.A — `TaskFamilySpecializationProfile@Context` (run‑time; conditional).**
 When the real selector burden is acquisition of usable specialization on a declared task family, the selector may publish one `TaskFamilySpecializationProfile@Context` for each candidate, specialist portfolio, or narrowed handoff plan. Here `profile` means one selector-time comparison record for bounded specialization, not a new kernel type and not a generic narrative profile. `G.5` consumes this burden over `C.22.1`; it does not re-own the adaptation-signature field vocabulary.
 
-The profile should therefore cite one `AdaptationSignatureRef` or equivalent pinned field set carrying the declared `TaskFamilyRef` or `TaskSignature`, the work-measure threshold target, prior exposure declaration, time-to-threshold, budget-to-threshold, post-threshold efficiency when relevant, any declared transfer or retention claim, any downside burden, and any corridor-entry baseline, corridor-entry evidence, or stepping-stone note that materially affects comparison.
+The profile should therefore cite one `AdaptationSignatureRef` or equivalent pinned field set carrying the declared `TaskFamilyRef` or `TaskSignature`, the work-measure threshold target, prior exposure declaration, time-to-threshold, budget-to-threshold, post-threshold efficiency when relevant, any declared transfer or retention claim, any downside burden, and any corridor-entry baseline, corridor-entry evidence, or stepping-stone evidence item that materially affects comparison.
 
-When the declared task family is heterogeneous, the selector may return one composed specialist portfolio, one narrowed handoff plan, or one small admissible set that preserves rival specialists rather than collapsing them into a fake single winner. Low-human-overlap candidates remain admissible only when the profile, evidence basis, and policy constraints are explicit by value.
+When the declared task family is heterogeneous, the selector may return one composed specialist portfolio, one narrowed handoff plan, or one small admissible set that preserves rival specialists rather than collapsing them into a fake single winner. Low-human-overlap candidates remain admissible only when the profile, evidence basis, and policy constraints are explicit.
 
 **S4 — `Composition & fallbacks` templates (design‑time).**
 A library of composition shapes (preconditioner → solver → verifier; cascades; meta‑selectors) **as templates**, legality‑checked and pinned. Concrete strategy semantics stay in the referenced method families; G.5 only carries the composition surface.
@@ -56061,6 +57040,8 @@ A standard surface to publish:
 * `DRR` (decision rationale) + `SCR` (support/confidence routing) with explicit pins,
 * portfolio/return‑set artefacts,
 * telemetry pins to refresh orchestration (`G.11`), without owning orchestration.
+
+When the publication burden is one selected-set surface rather than one generic registry trace, `Shortlist` is the public head, `RankedShortlist` is the ordered specialization when order materially belongs to the published result, `ShortlistId` is the emitted public identity, and `ChoiceSet` stays one mathematical gloss rather than the public head.
 
 **S6 — `Governance & evolution` surface (design‑time).**
 Versioning, deprecation, and registry evolution discipline (UTS publication; continuity), without minting new Part‑G‑wide types.
@@ -56086,10 +57067,127 @@ Method- and generator-specific pressures such as `QD` archives, open-ended portf
 - A catalyst-search team is choosing among three method families for the same declared `TaskSignature` and `C.22.1` adaptation signature.
 - The shared profile pins one work-measure threshold target, one freshness window, one prior-exposure declaration, and one adaptation budget. One family reaches threshold quickly but carries high downside burden on adjacent tasks. One family is slower but transfers cleanly. One family never clears `MinimalEvidence` and must abstain.
 - A lawful `G.5` result therefore publishes a set-return shortlist or a narrowed handoff plan, with `DRR/SCR` citing why the third family was excluded and why the first two remain non-dominated. The selector does not invent one scalar winner and does not hide the specialization profile in wiring notes.
+- When one upstream `C.19` pass has already narrowed the live pool to one internal retained subset over registered families, `G.5` may publish that result as one `Shortlist` with one `ShortlistId` and explicit basis pins only when selector-facing publication is now the burden. Until that emission occurs, the internal retained subset is not yet one public shortlist artifact.
 
-#### G.5:4.5 - Extensions (pattern‑scoped; non‑core)
+#### G.5:4.4b - Published selected-set result and closure rule
 
-Most working readers can stop after `G.5:4.4a`. The blocks below are binding-only docking records used only when the corresponding mode is actually active.
+A finished `G.5` pass should publish one explicit selected-set result from the dispatcher/registry burden rather than one selector trace that leaves the public artifact implicit.
+
+Publication here is the closure surface of selector work over registered families. It does not replace registry maintenance, dispatcher comparison law, or the upstream pool-policy and local-choice owners that supplied the retained members.
+
+The lawful published heads here are:
+
+- `Shortlist` when one retained set is published without one material internal order;
+- `RankedShortlist` when ordering materially belongs to the published result;
+- one specialist portfolio or narrowed handoff plan when heterogeneity is the truthful result;
+- one explicit abstain or escalation result when no admissible candidate exists.
+
+`Shortlist` and `RankedShortlist` are public selector artifacts over registered rows. They are not merely one upstream internal retained subset copied forward under one prettier head. `G.5` is the owner that turns selector state into one public artifact with one explicit head, one explicit member set, and one explicit basis surface.
+
+A publication result should state at least these fields:
+
+- the public head being emitted;
+- retained members, or the narrowed handoff content, or the abstain condition;
+- ordering status when ordering matters;
+- basis pins and policy pins sufficient to justify the result;
+- one explicit next downstream use posture when the result is a handoff rather than one terminal publication.
+
+A compact result may therefore look like:
+
+```text
+Shortlist(
+  members = [family_A, family_C],
+  shortlistId = shortlist_17,
+  ordering = unordered,
+  basisPins = [pathSlice_41, scr_22],
+  nextUse = downstream_comparison
+)
+```
+
+or:
+
+```text
+RankedShortlist(
+  members = [family_B, family_A],
+  shortlistId = shortlist_23,
+  ordering = ranked,
+  basisPins = [pathSlice_77, scr_44],
+  nextUse = specialist_handoff
+)
+```
+
+Close as `Shortlist` when several retained members survive lawfully but no public internal order belongs to the result. Close as `RankedShortlist` when order materially belongs to the published artifact. Close as one specialist portfolio or narrowed handoff when heterogeneity itself is the truthful downstream surface. Close as abstain or escalation when no admissible candidate exists under the pinned constraints.
+
+If the publication still does not state what public artifact was emitted, who remained in it, whether order belongs to it, and which pins justify it, then the selector has not yet published one finished `G.5` result.
+
+#### G.5:4.4c - Publication quick card
+
+The smallest useful `G.5` publication card usually states:
+
+- `publicHead = Shortlist | RankedShortlist | portfolio | narrowed handoff | abstain`
+- `membersOrHandoff = ...`
+- `ordering = ranked | unordered | n/a`
+- `publicId = ...` when one public identity is emitted
+- `basisPins = ...`
+- `nextUse = downstream comparison | specialist handoff | escalation | none`
+
+A short lawful card may therefore read:
+
+```text
+publicHead = Shortlist
+members = [family_A, family_C]
+ordering = unordered
+shortlistId = shortlist_17
+basisPins = [pathSlice_41, scr_22]
+nextUse = downstream_comparison
+```
+
+If the card does not already state what was published, who survived, whether order belongs to the result, and which pins justify it, the publication is still unfinished `G.5` work.
+
+#### G.5:4.4d - Worked publication closure slice
+
+Three short contrasts keep the publication law practical.
+
+**Several survivors, no public order belongs to the result.**
+When the selector has retained more than one lawful family but no downstream public order belongs to the artifact, `G.5` should close as one `Shortlist` over the registered surviving rows:
+
+```text
+Shortlist(
+  members = [family_A, family_C],
+  shortlistId = shortlist_17,
+  ordering = unordered,
+  basisPins = [pathSlice_41, scr_22],
+  nextUse = downstream_comparison
+)
+```
+
+**Order now materially belongs to the published result.**
+When one ordered public handoff is required, `G.5` should say so directly instead of leaving order implicit:
+
+```text
+RankedShortlist(
+  members = [family_B, family_A],
+  shortlistId = shortlist_23,
+  ordering = ranked,
+  basisPins = [pathSlice_77, scr_44],
+  nextUse = specialist_handoff
+)
+```
+
+**No admissible candidate survives.**
+When no family clears the pinned legality or evidence gates, `G.5` should close as one abstain or escalation result rather than as one empty shortlist pretending to be progress:
+
+```text
+Abstain(
+  blockingPins = [cg_min_evidence, crossing_bundle_missing],
+  basisPins = [pathSlice_91, scr_61],
+  nextUse = escalation
+)
+```
+
+The practical distinction is simple: an internal retained subset can remain real upstream without yet being one public selector artifact. `G.5` begins only when that selector-facing publication burden starts, and it closes only after the public head, surviving members, and basis pins are emitted directly.
+
+Most selector-side use can stop after `G.5:4.4d`. The blocks below are binding-only docking records used only when the corresponding mode is actually active.
 
 All blocks below are **wiring‑only**: they declare `Uses` and required pins, but do not redefine semantics already defined in the referenced patterns.
 
@@ -56180,13 +57278,17 @@ All blocks below are **wiring‑only**: they declare `Uses` and required pins, b
 **Tell (archetype).**
 **System** must choose among rival families without lying about measurement legality, crossings, or evidence. **Episteme** insists that what is chosen must remain comparable, auditable, and stable under refresh.
 
-**Show 1 (multi‑Tradition dispatch; partial‑order outcome).**
-A CG‑Frame includes multiple decision‑theoretic families with different admissibility assumptions. Evidence for some CHR traits is incomplete.
-System registers families (S1), then runs `Select` (S3) on a pinned `TaskSignatureRef`. Eligibility is tri‑state; some families **abstain** due to missing minimal evidence pins. Among remaining candidates, only a partial order is lawful, so the selector returns a **set** (portfolio) and emits DRR/SCR pins that cite `PathSliceId` evidence. No shadow acceptance logic appears in the selector; it consumes pinned acceptance/legality surfaces.
+**Show 1 (multi-Tradition dispatch; unordered shortlist).**
+A `CG-Frame` includes multiple decision-theoretic families with different admissibility assumptions. Evidence for some CHR traits is incomplete.
+System registers families (S1), then runs `Select` (S3) on a pinned `TaskSignatureRef`. Eligibility is tri-state; some families **abstain** due to missing minimal-evidence pins. Among remaining candidates, only a partial order is lawful, so the selector publishes one `Shortlist` with explicit `basisPins` instead of inventing one scalar winner. No shadow acceptance logic appears in the selector; it consumes pinned acceptance and legality surfaces.
 
-**Show 2 (QD and Open‑Ended modes as Extensions).**
-A frame enables illumination (archive semantics) and an optional generator family that proposes task variations.
-System keeps the selector head unchanged, but activates `G.5:Ext.NQD` (pins `DescriptorMapRef.edition`, `DistanceDefRef.edition`, insertion policy) and `G.5:Ext.OpenEndedFamilyWiring` (pins `TransferRulesRef.edition`). Portfolio results become `{Environment, MethodFamily}` sets under explicit pins and telemetry. Refresh triggers are emitted as canonical `RSCRTriggerKindId.*` with payload pins, without redefining trigger meaning locally.
+**Show 2 (specialist handoff; ranked publication).**
+A bounded-specialization comparison keeps two method families live, but downstream handoff now requires one ordered public result rather than one merely unordered retained set.
+The lawful `G.5` result is therefore one `RankedShortlist` with explicit ordering, `ShortlistId`, and handoff-facing `nextUse`, so the publication itself states whether the order is public.
+
+**Show 3 (no admissible survivor; abstain or escalation).**
+A frame fails one legality gate and one minimal-evidence gate at the same time.
+The truthful `G.5` result is one abstain or escalation publication that names the blocking pins and the next downstream use posture, not one empty shortlist that leaves downstream users unsure whether selection silently failed or lawfully stopped.
 
 ### G.5:6 - Bias-Annotation
 
@@ -56238,6 +57340,9 @@ Potential biases and failure modes this pattern explicitly guards against:
 | `CC‑G5.31`      | **Strategy hint on non‑admissible sets.** If selection yields `CandidateSet = ∅`, the selector **SHALL** emit an explicit escalation hint (`ActionHint`) that is **DRR/SCR‑compatible** and auditable: include (at minimum) the top‑3 blocking constraints as cited ids/pins, and (where applicable) the relevant edition pins (e.g., `TransferRulesRef.edition` in Open‑Ended mode) to guide exploration under explicitly pinned lenses (e.g., E/E‑LOG). |
 | `CC‑G5.32`      | **Parity‑run publication + lawful roll‑ups.** If parity harness is in use, parity publication is required per `CC‑G5.23a` (ID‑continuity). Any scalar roll‑up or summary view **MUST** be lawful under **CG‑Spec** (no mixed‑scale sums), and published views must preserve set‑return semantics (no single‑score leaderboards as authoritative outputs without an explicit, lawful comparator surface). |
 | `CC‑G5.33`      | **Conditional (bounded specialization).** When the selection burden is acquisition of usable specialization on a declared `TaskFamilyRef` or `TaskSignature`, selector outputs **SHALL** either publish `TaskFamilySpecializationProfile@Context` or cite equivalent pins carrying the `C.22.1` adaptation-signature fields needed for comparison: work-measure threshold target, prior exposure declaration, time-to-threshold, budget-to-threshold, post-threshold efficiency when relevant, and any declared transfer, retention, downside, or corridor-entry notes. |
+| `CC‑G5.34`      | **Selected-set publication head.** When the selector is publishing one retained set or narrowed handoff result, the published head **MUST** be explicit. Use `Shortlist` as the public selected-set head, `RankedShortlist` only when ordering materially belongs to the result, publish `ShortlistId` when one public identifier is emitted, and do not silently let `ChoiceSet` replace that public head. |
+| `CC‑G5.35`      | **Publication closure.** Any published selected-set result **MUST** state the public head, retained members or narrowed handoff content, ordering status (when applicable), and basis pins directly in the emitted result rather than relying on upstream `C.11`, `C.19`, or `C.24` notes. |
+| `CC‑G5.36`      | **Neighboring-pattern reroutes.** If the burden is still local choice among already-available options, pool policy over still-live candidate lines, or enactment planning after choice, `G.5` **MUST** consume the published result from `C.11`, `C.19`, or `C.24` rather than restating those patterns as if publication itself decided the matter. |
 
 ### G.5:8 - Common Anti-Patterns and How to Avoid Them
 
@@ -56261,32 +57366,42 @@ Potential biases and failure modes this pattern explicitly guards against:
   *Symptom:* registry entries are “renamed” to reflect updated interpretation, breaking continuity.
   *Avoid:* version/deprecate; keep stable ids; use explicit edition pins and deprecation notices.
 
+* **Anti‑pattern: “Publication hidden in upstream reasoning.”**
+  *Symptom:* the retained set exists only as one implication inside `C.11`, `C.19`, or `C.24`, while `G.5` never names the published head.
+  *Avoid:* publish the selected-set artifact directly, with explicit head, members, and basis pins, instead of leaving the shortlist implicit in neighboring doctrine.
+
+* **Anti‑pattern: “Published result without closure surface.”**
+  *Symptom:* a `Shortlist`, narrowed handoff, or abstain result is named, but the emitted result still does not state its members, ordering status, or basis pins.
+  *Avoid:* publish the head, retained members, ordering status, abstain or escalation condition, and basis pins directly in `G.5`.
+
 ### G.5:9 - Consequences
 
-* **Auditable plurality.** Multiple Traditions can co‑exist without forced semantic flattening; dispatch remains explainable and evidence‑pinned.
+* **Auditable plurality.** Multiple Traditions can co-exist without forced semantic flattening; dispatch remains explainable and evidence-pinned.
 * **Core stability.** Universal invariants are routed via `G.Core`; method/generator innovation does not churn the selector head.
 * **Evolvability.** Registries support growth, retirement, and refresh with typed RSCR causes and explicit payload pins.
-* **Composability.** Strategy templates and fallbacks remain legality‑checked and portable across implementations.
+* **Composability.** Strategy templates and fallbacks remain legality-checked and portable across implementations.
+* **Recoverable publication.** Selected-set results can now travel downstream as explicit shortlist-family, ranked-shortlist, or abstain/escalation artifacts rather than one hidden implication inside upstream reasoning.
 
 ### G.5:10 - Rationale
 
-* **Why registries?** Dispatch requires stable, auditable “family objects” with explicit eligibility and assurance surfaces; otherwise selection collapses into ad‑hoc tooling.
-* **Why separation via Extensions?** QD/OEE/preference‑learning and similar families are fast‑moving and method‑specific; making them part of the selector head would force a universal semantics and violate strict distinction.
-* **Why set‑return?** Partial orders are common and often the only lawful representation under heterogeneous scales; set‑return preserves semantics and makes tie criteria explicit.
+* **Why registries?** Dispatch requires stable, auditable family objects with explicit eligibility and assurance surfaces; otherwise selection collapses into ad-hoc tooling.
+* **Why separation via Extensions?** QD/OEE/preference-learning and similar families are fast-moving and method-specific; making them part of the selector head would force a universal semantics and violate strict distinction.
+* **Why set-return?** Partial orders are common and often the only lawful representation under heterogeneous scales; set-return preserves semantics and makes tie criteria explicit.
 * **Why explicit defaults with one declared source?** Defaults are unavoidable; single-source indexing prevents competing defaults from silently diverging across patterns.
+* **Why selected-set publication here?** Once the burden is to surface one retained set for downstream use, the selector should publish that artifact directly instead of leaving it implicit in local choice, pool-policy, or enactment notes written for other purposes.
 
 ### G.5:11 - SoTA-Echoing
 
-This pattern is designed to **host** (not redefine) post‑2015 SoTA families via `Uses` + edition/policy pins:
+This pattern is designed to **host** (not redefine) post-2015 SoTA families via `Uses` plus edition and policy pins:
 
-* **Quality‑Diversity / illumination (post‑2015 refinements).** Archive‑centric QD families (e.g., MAP‑Elites‑line evolutions, CMA‑ME‑line hybrids) fit naturally as `G.5:Ext.NQD` wiring with explicit descriptor/distance/insertion pins.
-* **Open‑Endedness (post‑2015 wave).** POET‑class and later open‑ended/co‑evolutionary families dock via generator registries + `TransferRulesRef.edition` pins (`G.5:Ext.OpenEndedFamilyWiring`).
-* **Algorithm selection & meta‑selection.** Modern selection under uncertainty, robust evaluation, and policy‑driven probing regimes dock via explicit policy surfaces (`C.19`‑style lenses) and typed telemetry pins, rather than as hard‑coded scoring rules.
-* **Budgeted specialist acquisition.** Current agentic search lines compete on time or budget to threshold plus truthful portfolio return when heterogeneous specialists remain non-dominated, so G.5 keeps specialization profiles and set-return semantics explicit instead of forcing one static breadth winner.
-* **Preference‑learning comparators.** Interactive and learned‑preference regimes (post‑2015) are treated as comparator/policy artefacts with explicit editions when they are actually declared.
+* **Quality-Diversity / illumination (post-2015 refinements).** Archive-centric QD families fit naturally as `G.5:Ext.NQD` wiring with explicit descriptor, distance, and insertion pins. The practical implication is to keep publication honest about whether the selector is returning one lawful set, one ranked artifact, or no admissible survivor at all.
+* **Open-Endedness (post-2015 wave).** POET-class and later open-ended or co-evolutionary families dock via generator registries plus `TransferRulesRef.edition` pins. The practical implication is to publish pair- or portfolio-shaped results explicitly rather than silently squeezing them into one false single-family winner.
+* **Algorithm selection and meta-selection.** Modern selection under uncertainty, robust evaluation, and policy-driven probing dock via explicit policy surfaces and typed telemetry pins, rather than hard-coded scoring rules. The practical safeguard is that the publication head and basis pins must still remain explicit after those policies have acted.
+* **Budgeted specialist acquisition.** Current agentic search lines compete on time or budget to threshold plus truthful portfolio return when heterogeneous specialists remain non-dominated, so `G.5` keeps specialization profiles and set-return semantics explicit instead of forcing one static breadth winner.
+* **Preference-learning comparators.** Interactive and learned-preference regimes are treated as comparator or policy artefacts with explicit editions when they are actually declared.
 
-SoTA here is treated as **best‑known practice for a declared goal and constraint regime**, not “what is currently popular”.
-Evidence-tier note: peer-reviewed anchors carry the strongest support for typed comparison, budget-to-threshold, and truthful portfolio return. Faster-moving workshop, poster, or frontier-exploration lines remain explicit support for corridor-entry or open-ended pressure, not silently equal evidence for every selector claim.
+SoTA here is treated as **best-known practice for a declared goal and constraint regime**, not whatever is currently popular.
+Evidence-tier clarification: peer-reviewed anchors carry the strongest support for typed comparison, budget-to-threshold, and truthful portfolio return. Faster-moving workshop, poster, or frontier-exploration lines remain explicit support for corridor-entry or open-ended pressure, not silently equal evidence for every selector claim.
 
 ### G.5:12 - Relations
 
@@ -56300,9 +57415,12 @@ Evidence-tier note: peer-reviewed anchors carry the strongest support for typed 
 * Planning/enactment boundary: `A.15.3 (SlotFillingsPlanItem)` as the planned baseline anchor (cited, not redefined).
 * Optional method/generator extensions via `G.5:Ext.*`: `C.18`, `C.19`, `C.23`, plus any future extension-bearing patterns that add extra selector pins.
 
-**Publishes to:** `UTS` (family ids, selector policy surfaces), `G.6` (audit citations), RSCR emission surfaces (typed triggers + payload pins), and downstream packs via `G.10` shipping surfaces.
+**Publishes to:** `UTS` (family ids, selector policy surfaces, and selected-set identities such as `ShortlistId` when one public artifact is emitted), `G.6` (audit citations), RSCR emission surfaces (typed triggers + payload pins), and downstream packs via `G.10` shipping surfaces.
+
+**Coordinates with:** `C.11` for local choice results, `C.19` for pool-policy records, `C.24` for enactment-facing next-move records, and the accepted Q-front shortlist-family continuity line when the published head is one shortlist-family artifact.
 
 ### G.5:End
+
 
 
 ## G.6 - Evidence Graph & Provenance Ledger
