@@ -1,6 +1,6 @@
 # First Principles Framework (FPF) — Core Conceptual Specification
 by Anatoly Levenchuk and assortment of LLMs.
-March 2026
+April 2026
 
 Pattern and headers templates are explained in pattern E.8.
 
@@ -32,7 +32,7 @@ Pattern and headers templates are explained in pattern E.8.
 
 | § | ID & Title | Status | Keywords & Search Queries | Dependencies |
 | :--- | :--- | :--- | :--- | :--- |
-| A.0 | **Onboarding Glossary (NQD & E/E‑LOG)** | Stable | *Keywords:* novelty, quality-diversity (NQD), explore/exploit (E/E-LOG), declared set surface, typed portfolio publication, illumination map as report-only telemetry, parity run, comparability, ReferencePlane, CL^plane, ParetoOnly default. *Queries:* "What terms must I publish when generating, selecting, or shipping a set surface?", "What is NQD in FPF?", "How does FPF avoid single-winner bias in creative search?" | **Builds on:** E.2, A.5, C.17-C.19. **Coordinates with:** E.7, E.8, E.10, F.17, G.5, G.9-G.12. **Constrains:** any pattern/UTS row that describes a generator, selector, declared set surface, or typed portfolio-publication / set-return publication. |
+| A.0 | **Onboarding Glossary (NQD & E/E‑LOG)** | Stable | *Keywords:* novelty, quality-diversity (NQD), explore/exploit (E/E-LOG), declared set surface, typed portfolio publication, SearchSpaceRef, OutcomeSpaceRef, CrossSurfaceSupportView, TypedSetViews, ParetoOnly default, scale-probe, BLP. *Queries:* "What terms must I publish when generating, selecting, or shipping a set surface?", "How do I explain search-side vs outcome-side spaces and support views on first use?", "How does FPF avoid single-winner bias in creative search?" | **Builds on:** E.2, A.5, C.17-C.19. **Coordinates with:** E.7, E.8, E.10, F.17, A.19.SURF-SPACE, A.19.SUPPORT-VIEW, G.5, G.9-G.12. **Constrains:** any pattern/UTS row that describes a generator, selector, declared set surface, or typed portfolio-publication / set-return publication. |
 | ***Cluster A.I - Foundational Ontology*** | | | | |
 | A.1 | **Holonic Foundation: Entity → Holon** | Stable | *Keywords:* part-whole composition, system boundary, entity, holon, U.System, U.Episteme. *Queries:* "How does FPF model a system and its parts?", "What is a holon?", "Difference between entity and system." | **Builds on:** P-8 Cross-Scale Consistency. **Prerequisite for:** A.1.1, A.2, A.14, B.1. |
 | A.1.1 | **`U.BoundedContext`: The Semantic Frame** | Stable | *Keywords:* local meaning, context, semantic boundary, domain, invariants, glossary, DDD. *Queries:* "How does FPF handle ambiguity?", "What is a Bounded Context in FPF?", "How to define rules for a specific project?" | **Builds on:** A.1. **Prerequisite for:** A.2.1, F.0.1. |
@@ -66,7 +66,7 @@ Pattern and headers templates are explained in pattern E.8.
 | A.6.3.CR | **ConservativeRetextualization — same-described-entity textual re-expression** | Stable | *Keywords:* retextualization, summary, report rewrite, translation, filtering, same-described-entity textual re-expression, direct vs correspondence-mediated rewrite. *Queries:* "When is a summary still a conservative same-entity view?", "How does FPF treat same-entity translation or report rewriting?", "What is ConservativeRetextualization?" | **Builds on:** A.6.3, A.6.2, A.7, E.10.D2, E.17.0, E.17, F.9, F.18, E.10. **Coordinates with:** ExplanationFaithfulnessProfile, RepresentationTransduction, E.17.ID.CR ComparativeReading, A.6.4, B.5.2, A.15. |
 | A.6.3.RT | **RepresentationTransduction — same-described-entity representation-scheme transition** | Stable | *Keywords:* representation transduction, table, diagram, notation shift, reasoning medium, recoverability, non-latent, same-described-entity representation change. *Queries:* "When is a table or diagram still a same-entity view?", "What is RepresentationTransduction in FPF?", "How does FPF handle same-entity representation-scheme shifts?" | **Builds on:** A.6.3, A.6.2, A.7, E.10.D2, C.2.7, E.17.0, E.17, F.9, F.18. **Coordinates with:** ConservativeRetextualization, ExplanationFaithfulnessProfile, E.17.ID.CR ComparativeReading, A.6.4, A.15, A.20, A.21, DecodingAccessProfile. |
 | A.6.4 | **U.EpistemicRetargeting — describedEntity-Retargeting Morphism** | Stable | *Keywords:* retargeting, subject retargeting, describedEntity shift, KindBridge, SquareLaw-retargeting, StructuralReinterpretation. *Queries:* "How to change the object-of-talk without losing truth?", "What is StructuralReinterpretation in FPF terms?", "When is a Fourier-like transform a retargeting rather than a new Γ-construction?" | **Builds on:** A.6.2 (effect-free episteme morphisms), A.1 (Holon: System/Episteme split), F.9 (Bridges & CL, including CL^plane and KindBridge), C.2.1 (U.EpistemeSlotGraph; DescribedEntity/GroundingHolon), C.2 (KD-CAL: ReferencePlane & CL propagation), E.18:5.9/E.18:5.12 (E.TGA crossings & StructuralReinterpretation rules). **Used by:** E.18 (StructuralReinterpretation node in E.TGA as species of U.EpistemicRetargeting), KD-CAL/LOG-CAL retargeting rules, Fourier-style transforms and data↔model re-targetings in discipline packs. |
-| A.6.P | **U.RelationalPrecisionRestorationSuite — Relational Precision Restoration (RPR) — Kind-Explicit Qualified Relation Discipline** | Stable | *Keywords:* relation precision restoration, under-specified relational language, RelationKind, QualifiedRelationRecord, SlotSpec, change-class lexicon, A.6.B L/A/D/E routing, endpoint referential compression, lexical guardrails, language-state seam. *Queries:* "How do I repair an overloaded relation word without doing lexicon-only cleanup?", "What makes a relation repair slot-explicit and boundary-routed?", "When should a quality/action/sameness/wholeness trigger reroute to an RPR specialization?" | **Builds on:** A.6, A.6.B, A.6.S, A.6.0, A.6.5, E.8, E.10, F.18. **Coordinates with:** A.2.4, A.2.6, A.7, A.10, C.2.1, C.2.2a, C.3.3, E.17, F.9, F.17. **Specialised by:** A.6.Q, A.6.A, A.6.5, A.6.6, A.6.8, A.6.9, A.6.H. |
+| A.6.P | **U.RelationalPrecisionRestorationSuite — Relational Precision Restoration (RPR) — Kind-Explicit Qualified Relation Discipline** | Stable | *Keywords:* relation precision restoration, under-specified relational language, RelationKind, QualifiedRelationRecord, SearchSpaceRef, OutcomeSpaceRef, SpaceRefRelationKind, endpoint referential compression, lexical guardrails, language-state seam. *Queries:* "How do I repair an overloaded relation word without doing lexicon-only cleanup?", "How do I keep source surface, space refs, support view, and publication roles separate?", "When should a quality/action/sameness/wholeness trigger reroute to an RPR specialization?" | **Builds on:** A.6, A.6.B, A.6.S, A.6.0, A.6.5, E.8, E.10, F.18. **Coordinates with:** A.2.4, A.2.6, A.7, A.10, C.2.1, C.2.2a, C.3.3, E.17, F.9, F.17. **Specialised by:** A.6.Q, A.6.A, A.6.5, A.6.6, A.6.8, A.6.9, A.6.H. |
 | A.6.Q | **U.QualityTermPrecisionRestoration — Quality Term Precision Restoration (Q-TERM)** | Stable | *Keywords:* quality-term precision restoration, evaluative ascription, quality senses, endpoint routing, bridge reading, language-state seam. *Queries:* "How do I repair overloaded quality language in FPF?", "When does quality talk become an evaluative ascription?", "How does A.6.Q hand off to C.25 or later owners?" | **Builds on:** A.6.P, C.25, C.2.2a, A.16, B.4.1, F.9. **Coordinates with:** A.6.A, B.5.2.0. |
 | A.6.A | **U.ActionInvitationPrecisionRestoration — Affordance / Action-Invitation Precision Restoration (ACT-INV)** | Stable | *Keywords:* affordance, action invitation, action-first language, post-threshold routing, A.15 docking, language-state seam. *Queries:* "How do I repair overloaded affordance language in FPF?", "When does action-guiding language become an action invitation?", "How does A.6.A differ from early cue routing?" | **Builds on:** A.6.P, A.15, C.2.2a, A.16, B.4.1, F.9. **Coordinates with:** A.6.Q, B.5.2.0. |
 | A.6.5 | **U.RelationSlotDiscipline - SlotKind / ValueKind / RefKind discipline for n‑ary relations (with slot‑operation lexicon)** | Stable | *Keywords:* slot, argument position, value, reference, signature, substitution, pass-by-value, pass-by-reference. *Queries:* “How do I declare positions and references in relations?”, “How do we stop mixing roles, values and ids in signatures?”, “How does SlotKind/ValueKind/RefKind interact with I/D/S and Epistemes?” | **Builds on:** A.6.0 (U.Signature), A.1 (Holon), A.7 (Strict Distinction), E.8 (pattern authoring discipline), E.10 (LEX-BUNDLE; Tech/Plain registers). **Used by:** C.2.1 (U.EpistemeSlotGraph), A.6.2–A.6.4 (episteme morphisms), B.5.* (RoleEnactment), C.3.* (Kinds & KindSignature), E.17.0 (U.MultiViewDescribing), discipline-packs for methods/services. |
@@ -95,7 +95,9 @@ Pattern and headers templates are explained in pattern E.8.
 | A.16.2 | **Reopen / SketchBackoff / Respecify** | Stable | *Keywords:* reopen, backoff, respecify, retire, retreat, branch withdrawal, authority withdrawal. *Queries:* "How do I lawfully reopen or back off a language-state publication?", "How do I retire a branch without silent deletion?" | **Builds on:** A.16, A.16.0, C.2.2a. **Coordinates with:** A.6.P, B.4.1. |
 | A.17 | **A.CHR-NORM — Canonical “Characteristic” & rename (Dimension/Axis → Characteristic)** | Stable | *Keywords:* characteristic, measurement, property, attribute, dimension, axis. *Queries:* "What is the correct term for a measurable property?", "How to define a metric?" | **Prerequisite for:** A.18, A.19, C.16. |
 | A.18 | **A.CSLC-KERNEL — Minimal CSLC in Kernel (Characteristic/Scale/Level/Coordinate)** | Stable | *Keywords:* CSLC, Characteristic, Scale, Level, Coordinate, polarity, ordinal vs cardinal scale, one-characteristic-one-scale rule, lawful comparability, no illegal averaging, measurement interpretability. *Queries:* "What must be declared before a value is interpretable?", "When can two measurements be compared?", "Why can ordinal labels not be averaged?" | **Builds on:** A.17. **Coordinates with:** C.16, A.19, A.19.CN, G.0, B.3. **Prerequisite for:** measurement, scoring, comparison, aggregation, and CHR mechanism patterns. |
-| A.19 | **A.CHR-SPACE — CharacteristicSpace & Dynamics Hook** | Stable | *Keywords:* CharacteristicSpace, U.Dynamics.stateSpace, state trajectories, declared Characteristics and Scales, CSLC bundle, CN-Spec reading path, structural overlays, no lifecycle-stage drift, dynamics hook. *Queries:* "How do I declare the state space a dynamics model moves through?", "How do Characteristics become a multi-coordinate state space?", "How do I review CHR-enabled plans without reading every CHR mechanism first?" | **Builds on:** A.17, A.18, A.2.5. **Coordinates with:** C.16, A.19.CN, A.19.CHR, G.0, E.18, A.3.3. **Prerequisite for:** CHR mechanisms and dynamics models that quantify over trajectories. |
+| A.19 | **CharacteristicSpace & Dynamics Hook (A.CHR-SPACE)** | Stable | *Keywords:* CharacteristicSpace, U.Dynamics.stateSpace, state trajectories, declared Characteristics and Scales, subspace, embedding, product, structural overlays, coordinatewise comparability, role-specific space refs stay outside A.19. *Queries:* "How do I declare the state space a dynamics model moves through?", "How do Characteristics become a multi-coordinate state space?", "What stays inside A.19 and what routes to cross-surface substrate or support patterns?" | **Builds on:** A.17, A.18, A.2.5. **Coordinates with:** C.16, A.19.CN, A.19.SURF-SPACE, A.19.SUPPORT-VIEW, A.19.CHR, G.0, E.18, A.3.3. **Prerequisite for:** CHR mechanisms and dynamics models that quantify over trajectories. |
+| A.19.SURF-SPACE | **Cross-Surface / Cross-Space Substrate** | Draft | *Keywords:* source surface, search-side space ref, outcome-side space ref, cross-surface substrate, SpaceRefRelationKind, SourceToOutcomeRelation, DistortionPosture, SourceSurfaceId, sameDeclaredSpaceAs, distinctDeclaredSpaceFrom. *Queries:* "How do I declare one source surface plus search-side and outcome-side refs?", "How do I keep source-to-outcome relation and distortion posture explicit?", "When do search and outcome refs resolve to the same declared CharacteristicSpace?" | **Builds on:** A.19, A.17, A.18. **Coordinates with:** C.18, C.19, G.5, G.10, A.19.SUPPORT-VIEW, A.6.P, A.0. **Specialized by:** A.19.SUPPORT-VIEW and later support-view or atlas specializations. |
+| A.19.SUPPORT-VIEW | **Cross-Surface Support View** | Draft | *Keywords:* support view, thin support, atlas support, CrossSurfaceSupportView, CrossSurfaceAtlasView, TraditionAtlasView, TypedSetViews, support qualifiers, support-only reading. *Queries:* "When do I use a support view over an already-declared substrate?", "When is thin support enough and when do I need atlas form?", "How does TraditionAtlasView stay a local specialization instead of the generic head?" | **Builds on:** A.19.SURF-SPACE, A.19, A.6.3, E.17.0, E.17. **Coordinates with:** G.2, G.5, G.10, C.19, C.24, A.6.P, A.0. **Specialized locally by:** CrossSurfaceAtlasView and `TraditionAtlasView` under G.2. |
 | A.19.CN| **CN-frame (comparability & normalization)** | Stable | *Keywords:* CN-frame, CN-Spec, chart, comparability modes, normalization refs, indicator policy refs, Γ-fold governance, registry, bridges, CL/loss notes, WLNK discipline, conformance checklist, SCR/RSCR harness, RSG admission hooks. *Queries:* "What is a CN-frame in FPF?", "How does CN-Spec govern comparability and normalization by reference?", "How do CN-frames use bridges and CL for cross-context reuse?", "What are the conformance and regression checks for CN-frames?" | **Builds on:** A.19. **Coordinates with:** A.6.1 (mechanism intension cards), C.16 (evidence/backing), F.9 (Bridges & CL), G.0 (CG-Spec legality gate). |
 | A.19.CHR | **`CHRMechanismSuite` — CHR mechanism-suite anchor (suite obligations + P2W planned baseline)** | Stable | *Keywords:* CHR suite, characterization core, CN-Spec, CG-Spec, legality gate, suite obligations, set-return selection, tri-state guard decision, crossing visibility, Bridge-only transport, penalties→R_eff, planned baseline, `SlotFillingsPlanItem`, P2W seam, no hidden scalarization, no hidden thresholds. *Queries:* "What is CHRMechanismSuite in FPF?", "How do CHR mechanisms cite CN-Spec/CG-Spec?", "How to enforce planned slot filling in WorkPlanning only?", "How to keep UNM/UINDM/ULSAM explicit (no hidden tails)?" | **Builds on:** A.6.7, A.15.3, A.6.1, A.6.5, A.19, G.0, E.18, E.10, E.19. **Coordinates with:** A.21, G.5, G.10, C.23. **Used by:** Part G universalization; CHR mechanism stacks. |
 | A.19.UNM | **Unified Normalization Mechanism (UNM)** | Stable | *Keywords:* normalization, `CV→NCV`, `≡_UNM`, `NormalizationMethodId`, `NormalizationMethodInstanceId`, `NormalizationInvariant[*]`, `NormalizationFixSpec`, validity window (no implicit “latest”), fail-closed tri-state guard (`pass|degrade|abstain`), `CN-Spec.normalization`, `CN-Spec.comparability.mode`, Bridge-only transport + ReferencePlane/CL pins, penalties→`R`/`R_eff` only. *Queries:* "What is UNM in FPF?", "How does FPF normalize coordinate values (CV→NCV)?", "What is ≡_UNM and why quotients/fix matter?", "How does CN-Spec.comparability.mode route normalization-based comparability?" | **Builds on:** A.19.CN, A.6.1, A.6.5, A.19.CHR, A.17–A.18, C.16, G.0, E.18, E.20, F.18. **Used by:** A.19.CHR, A.19.USCM, A.19.CPM, A.19.SelectorMechanism. **Coordinates with:** G.2, B.3. |
@@ -282,7 +284,7 @@ Pattern and headers templates are explained in pattern E.8.
 | F.15 | **SCR/RSCR Harness for Unification** | Stable | *Keywords:* static checks, regression tests, acceptance tests, validation, SenseCell testing. *Queries:* "How is the unification process validated?", "What are SCR/RSCR tests in FPF?". | **Builds on:** All of F.1-F.14. |
 | F.16 | **Worked‑Example Template (Cross‑Domain)** | Stable | *Keywords:* didactic template, example, pedagogy, cross-domain illustration. *Queries:* "What is the standard format for a worked example in FPF?", "How to show a concept applied across different fields?". | **Builds on:** All of F.1-F.12. |
 | F.17 | **Unified Term Sheet (UTS)** | Stable | *Keywords:* Unified Term Sheet, UTS, summary table, glossary, publication, human-readable output. *Queries:* "What is the final output of the FPF unification process?", "Where can I find a summary of all unified terms?". | **Builds on:** F.1-F.12. |
-| F.18 | **Local-First Unification Naming Protocol** | Stable | *Keywords:* local-first naming, Name Card, Context, Kind, Purpose/use-domain, Sense anchor, CandidateSet, NQD-front label candidates, head-term families, sense-seeds, UTS publication, lifecycle actions, Bridge talk. *Queries:* "How do I name a concept without pretending the label is globally identical?", "What fields belong on a Name Card?", "How do NQD-front label candidates and sense-seeds discipline naming?" | **Builds on:** F.1-F.17. **Coordinates with:** F.17, F.9, E.10, A.6.P, G.6, G.10. |
+| F.18 | **Local-First Unification Naming Protocol** | Stable | *Keywords:* local-first naming, Name Card, Context, Kind, Purpose/use-domain, Sense anchor, guarded-head note, NQD-front label candidates, support-view wording, atlas alias docking, lifecycle actions, Bridge talk. *Queries:* "How do I name a concept without pretending the label is globally identical?", "When does naming stay thin and when must it dock to support-view or atlas discipline?", "What fields belong on a Name Card?" | **Builds on:** F.0.1, F.1-F.17. **Coordinates with:** A.17, A.18, A.19.SUPPORT-VIEW, A.6.P, G.2, G.6, G.10. |
 
 **Part G – Discipline SoTA Patterns Kit**
 
@@ -291,7 +293,7 @@ Pattern and headers templates are explained in pattern E.8.
 | G.Core | Part G Core Invariants | Draft | *Keywords:* Part‑G invariants, delegation-first core, RSCR trigger kinds, default ownership index, ID continuity, core linkage. *Queries:* "How to universalize Part G without drift?", "How to make RSCR triggers id-based?" | **Builds on:** E.8/E.10/E.19, A.6.7, A.15.3, A.19, G.0, A.19.CHR. Used by: all `G.0…G.13`. |
 | G.0 | **CG-Spec — Frame Standard & Comparability Governance** | Stable | *Keywords:* CG-Spec, CG-Frame, legality gate, ComparatorSet, ScaleComplianceProfile (SCP), MinimalEvidence, Γ-fold, Φ(CL), Φ_plane, CL-routing, ReferencePlane, edition pins, RSCRTriggerKindId. *Queries:* "What is CG-Spec in FPF?", "How does CG-Spec constrain lawful comparison and aggregation?", "What must be pinned for CG-Spec reproducibility?" | **Builds on:** G.Core, A.19 (CN-Spec), A.10, A.17–A.19 / C.16 (MM-CHR legality), A.18 (CSLC), B.3, Part F (Bridges/UTS), E.10, E.5.2. **Prerequisite for:** G.1–G.6. |
 | G.1 | **CG-Frame-Ready Generator**| Stable | *Keywords:* generator chassis, generator / selector / set-surface scaffold, six-card kit (M1-M6), `CGKitId` manifest, `SoTA_SetId`, `VariantPoolId`, `ShortlistId`, `CGFrameLibraryId`, `RefreshReadinessCardId`, set-return selection, set-surface outcome, UTS/Name Cards, RSCR linkage surfaces, edition pins, shipping/refresh boundaries. *Queries:* "How do I author a reusable CG-Frame generator kit?", "What belongs in the six-card chassis M1-M6?", "How do G.2 harvesting, G.5 set-return selection, G.10 shipping, and G.11 refresh connect without becoming one method spec?" | **Builds on:** G.Core, E.8, E.10, E.19. **Uses:** A.10, A.15.3, A.19 (CN-Spec), G.0 (CG-Spec), G.2, G.3, G.4, G.5, G.10, G.11; (via Extensions) C.17, C.18, C.19. **Produces:** `CGKitId` plus reusable CG-Frame kit/chassis, set-surface scaffold, and linkage surfaces (UTS/RSCR-ready). |
-| G.2 | **SoTA Harvester & Synthesis** | Stable | *Keywords:* SoTA harvest, synthesis, `SoTA Synthesis Pack@CG-Frame`, `SoTA_Set@CG-Frame`, `SoTAPaletteDescription`, `Tradition`, CorpusLedger, ClaimSheets, OperatorAndObjectInventory, BridgeMatrix, `GammaEpistSynthId`, UTSProposals, FlowRecord, FamilyCoverageFloorK, RSCR harvest triggers, micro-examples, hand-off manifests. *Queries:* "How does FPF harvest and synthesize SoTA for a CG-Frame?", "What is the consumable SoTA Synthesis Pack@CG-Frame?", "How do competing Traditions stay plural while bridgeable and refreshable?" | **Builds on:** G.Core, E.8, E.10, E.19, A.10, B.3, F.9, F.17, G.0, G.6. **Used by:** G.1, G.3-G.5, G.10, G.11. **Relates to:** G.13. |
+| G.2 | **SoTA Harvester & Synthesis** | Stable | *Keywords:* SoTA harvest, synthesis, SoTA Synthesis Pack@CG-Frame, SoTAPaletteDescription, Tradition, TraditionAtlasView, CrossSurfaceAtlasView, TypedSetViews, BridgeMatrix, GammaEpistSynthId, FlowRecord, palette-first. *Queries:* "How does FPF harvest and synthesize SoTA for a CG-Frame?", "When is TraditionAtlasView lawful and when is palette-first or thinner support enough?", "How do competing Traditions stay plural while bridgeable and refreshable?" | **Builds on:** G.Core, E.8, E.10, E.19, A.10, B.3, F.9, F.17, G.0. **Used by:** G.1, G.3-G.5, G.10, G.11. **Coordinates with:** A.19.SUPPORT-VIEW, A.6.P, G.13. |
 | G.3 | **CHR Authoring: Characteristics - Scales - Levels - Coordinates** | Stable | *Keywords:* CHR authoring, characteristics, scales, levels, coordinates, CSLC legality, typed measurement, CHR Pack@CG-Frame, ReferencePlane, Φ/CL policy pins, edition pins, RSCRTriggerKindId. *Queries:* "How do I author CHR packs (typed characteristics and scales) for a CG-Frame?", "How to keep measurement lawful (CSLC) and refreshable (RSCR)?" | **Builds on:** G.Core, G.2, G.0, A.17–A.19, A.18 (CSLC), C.16 (MM-CHR), A.19.CHR, A.15.3, G.6, F.17. **Prerequisite for:** G.4. **Used by:** G.4, G.5, G.10, G.11. |
 | G.4 | **CAL Authoring: Calculi - Acceptance - Evidence** | Stable | *Keywords:* CAL authoring, operators, acceptance clauses, evidence profiles, tri-state admissibility, Γ-fold hooks, Φ/Ψ/Φ_plane policy pins, legality gates, edition pins, RSCRTriggerKindId. *Queries:* "How to author CAL operators and acceptance clauses for CG-Frames?", "How to keep acceptance/evidence wiring auditable and refreshable?" | **Builds on:** G.Core, G.3, G.0, B.3 (Trust), A.18 (CSLC), G.6. **Prerequisite for:** G.5. **Used by:** G.5, G.8–G.10, G.11. |
 | G.5 | **Multi‑Method Dispatcher & MethodFamily Registry** | Stable | *Keywords:* method-family registry, generator-family registry, dispatcher, SelectorOutcomeKind, selected-set publication, set-surface outcome, `Shortlist`, `RankedShortlist`, `ShortlistId`, `SpecialistHandoff`, abstain/escalation result, basis pins, no hidden scalar winner. *Queries:* "How does FPF dispatch among rival method families without hidden scalarization?", "How do I publish a Shortlist or RankedShortlist honestly?", "When does G.5 begin after C.11 choice, C.19 pool policy, or C.24 planning?" | **Builds on:** G.Core, G.0, G.2-G.4, G.6. **Coordinates with:** C.11, C.19, C.24, G.9-G.11. |
@@ -952,6 +954,61 @@ This pattern is an **on‑ramp**: it **does not replace** C.17–C.19. It binds 
 - When the shortlist is ordered, say `RankedShortlist` and keep the underlying shortlisted surface recoverable rather than jumping straight from `Front` to ranking.
 - Use `choice set underlying that shortlist` only when the mathematical set object itself is the point of the sentence.
 - A reader should be able to recover on first pass what source surface was acted on, what shortlist came out, and whether the text is naming the surface, the token, or the mathematical set object.
+
+### A.0:QF.2a - Support-stack reading glosses
+
+The current support-stack terms should read plainly as follows:
+
+- `SearchSpaceRef`
+  - one declared reference to the `CharacteristicSpace` currently used to search, compare, or navigate candidate possibilities
+  - it is one role-named ref field over the existing `CharacteristicSpaceRef` / `SpaceRef` idiom, not one brand-new space kind
+- `OutcomeSpaceRef`
+  - one declared reference to the `CharacteristicSpace` currently used to judge outcomes, effects, or realized value
+  - it is one role-named ref field over that same idiom, not one synonym for `SearchSpaceRef`
+- `CrossSurfaceSupportView`
+  - the ordinary/common head of one optional support-view family laid over one already-declared substrate-bearing line or one source/set surface whose substrate remains recoverable
+  - it helps the reader see the current support question; it does not replace the base source surface or silently invent one new substrate
+- `CrossSurfaceAtlasView`
+  - one stronger optional support view that keeps several declared views, spaces, mappings, or qualifiers visible together
+  - use it only when the current reading truly needs that composite support, and say why thinner support is not enough; it is not the default meaning of palette, front, archive, shortlist, or candidate surface
+- `TypedSetViews`
+  - one explicit list of which declared set-view heads the current atlas/support reading is holding together
+  - use it when several declared views must stay visible together; it does not create one new surface and should not hide the active source/set surface
+- `OutcomeMapRef`
+  - one explicit support ref that shows how one declared source or set surface maps into one outcome or effect surface when that map materially matters
+  - it supports the reading; it does not rename the source surface into the outcome surface
+- `SpaceMetricRef`
+  - one explicit support ref to the metric, neighborhood, distance, density, or reachability discipline being used inside one declared space
+  - it qualifies how the reader is comparing positions in that space; it is not the space itself and not one substitute for `SearchSpaceRef` or `OutcomeSpaceRef`
+- `TransitionSupportRef`
+  - one explicit support ref to the transition, level-shift, dynamic-coupling, or phase-change basis that the reading depends on
+  - it explains why motion or cross-level change is being read a certain way; it does not by itself decide policy, planning, or publication
+- `BridgeDistortionNote`
+  - one explicit note that a bridge, projection, aggregation, or derived reading is useful but not perfectly faithful
+  - it tells the reader where comparability bends or information is lost, so the stronger reading does not over-claim
+
+### A.0:QF.2b - Practitioner-facing reading cue
+
+- If the question is “Which space are we searching or navigating?”, look for `SearchSpaceRef`.
+- If the question is “Which space are we judging outcomes in?”, look for `OutcomeSpaceRef`.
+- If the question is “What optional overlay helps me read several declared surfaces together?”, look for `CrossSurfaceSupportView`.
+- If that overlay also keeps several declared views, spaces, mappings, or qualifiers together, it is the stronger `CrossSurfaceAtlasView`.
+- If the atlas/support reading must keep several declared set views visible at once, look for `TypedSetViews`.
+- If the overlay depends on one explicit source-to-outcome mapping, look for `OutcomeMapRef`.
+- If the overlay depends on one metric, neighborhood, or reachability discipline inside one declared space, look for `SpaceMetricRef`.
+- If the overlay depends on one transition, level-shift, or dynamic-coupling basis, look for `TransitionSupportRef`.
+- If the overlay depends on one bridge or projection that may lose fidelity, look for `BridgeDistortionNote`.
+
+### A.0:QF.2c - First-use routing check
+
+- Start with `CrossSurfaceSupportView` when the NQD/OEE burden is simply to keep one declared palette, front, shortlist, or archive readable while comparing candidate material.
+- Start with it only when any cited `SearchSpaceRef`, `OutcomeSpaceRef`, mappings, or qualifiers are already declared elsewhere and remain recoverable through the base substrate or source/set surface.
+- Escalate to `CrossSurfaceAtlasView` only when the reading must hold several declared views, spaces, mappings, or qualifiers together to explain why one specialization, evaluation, or boundary call stays lawful, and state why thinner support is insufficient.
+- If the reading keeps several declared set views together, name `TypedSetViews` explicitly instead of letting atlas wording hide that view-set choice.
+- If the reading depends on one source-to-outcome map, name `OutcomeMapRef` explicitly instead of letting the overlay silently stand in for that map.
+- If the reading depends on one metric or neighborhood discipline, name `SpaceMetricRef` explicitly instead of letting the space name stand in for that metric.
+- If the reading depends on one transition, level-shift, or dynamic-coupling basis, name `TransitionSupportRef` explicitly instead of letting the overlay silently absorb that transition burden.
+- Not this glossary-side support stack when the real move is to invent one new search doctrine, one new outcome metric family, or one new publication surface. Those burdens stay with the owner patterns that govern the object itself.
 
 ### A.0:End
 
@@ -10678,7 +10735,7 @@ A relation mention or relation-bearing phrase is in-scope for A.6.P when **any**
 
 **Generic trigger-word governance rule (normative).** Overloaded words are diagnostic entry points, not default future owners. Generic `A.6.P` therefore requires this order: restore head kind first, restore the remaining relation/comparison burden second, and only then judge whether one reusable burden family is strong enough to justify a new specialization. A new `A.6.P` specialization or broader trigger-word owner is owed only when one stable recurring burden, one reusable lens or rewrite kit, and one `F.18 -> A.6.P`-surviving head already exist by value across more than one worked case. Otherwise token-specific retained knowledge stays with an existing lawful specialization or in one cluster-local / owner-local note rather than expanding generic `A.6.P` into a token bucket store.
 
-#### A.6.P:4.0-entry - Language-state entry note
+#### A.6.P:4.0 - Language-state entry note
 
 
 RPR entry normally presupposes enough `C.2.4` articulation explicitness that at least one relation-like skeleton can be named explicitly, and often enough `C.2.5` closure that one candidate reading is worth publishing as a relation record rather than remaining mere cue pressure.
@@ -11117,6 +11174,8 @@ A pattern P conforms to A.6.P (i.e., is an RPR‑pattern) iff:
     The guide SHOULD follow the RPR‑Disambiguation format: **trigger → candidates → discriminating questions/tests → canonical rewrite → L/A/D/E routing hooks**.
     
     Where endpoint referential compression is a primary risk, the guide SHOULD also include (or point to) the **Candidate‑Set Note** template (A.6.P:4.0b) so instance‑level reviews have an auditable trail: candidates → selected facet/kind → why.
+    
+    When passages mix declared spaces, guarded role-refs, support views, atlas views, publication-facing set surfaces, selector outcomes, or mapping qualifiers, the guide SHALL force authors to say which layer each term belongs to before any search-side, outcome-side, or publication claim is made. In NQD/OEE-family passages this means distinguishing the declared `CharacteristicSpace`, `SearchSpaceRef` / `OutcomeSpaceRef`, the active palette/front/archive/shortlist surface, `CrossSurfaceSupportView` / `CrossSurfaceAtlasView`, and any cited `OutcomeMapRef` or `BridgeDistortionNote`.
 
 14. **CC‑A.6.P‑14 — Grounding spans System and Episteme.**
     P SHALL include at least one Tell–Show–Show vignette in a **System** lane and at least one in an **Episteme** lane (per E.8), demonstrating a real ambiguity repair and a relation‑change narration using the change‑class lexicon.
@@ -11163,6 +11222,7 @@ A pattern P conforms to A.6.P (i.e., is an RPR‑pattern) iff:
 
 ### A.6.P:8 — Common Anti‑Patterns and How to Avoid Them
 
+
 | Anti-pattern | Why it fails | Repair |
 | ---------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | “Just define the umbrella word” | Definitions do not separate arity, operation classes, or viewpoint asymmetry. | Replace umbrella use with explicit RelationKind + qualified record + change lexicon. |
@@ -11176,7 +11236,24 @@ A pattern P conforms to A.6.P (i.e., is an RPR‑pattern) iff:
 | Using “bind” to mean “edit relation” | Collapses name-binding vs slot-writing layers. | Reserve `bind/rebind` for names; use change lexicon / slot verbs properly. |
 | Implicit “current/latest” | Violates explicit time discipline. | Add explicit `Γ_time` where time matters. |
 | Treat `Γ_time` as witness freshness | Time selection does not equal evidence freshness/decay; this conflates time discipline with evidence lanes. | Keep `Γ_time` for temporal scope; express freshness/decay via witness metadata and carrier-anchored E-claims. |
+| Collapse space/view/publication layers into one “space” or “view” | Search, outcome, support, and publication surfaces become indistinguishable, so later claims lose their governing object. | Restore the declared `CharacteristicSpace`, any `SearchSpaceRef` / `OutcomeSpaceRef`, the active source or set surface, the support/atlas view (if any), and any `OutcomeMapRef` / `BridgeDistortionNote` before making the claim. |
 | Compare across a mixed ontological axis | Artifact, process, authority use, or owner-lane semantics get ranked on one axis before their kinds and burdens are restored. | First restore head kind, then qualifier burden, then rewrite the sentence through burden/threshold/handoff/owner-lane language so the comparison axis is homogeneous. |
+
+**Worked repair slice — NQD/OEE space/view/publication stack.**
+
+Draft: “The archive projects into the outcome space through the atlas view.”
+
+Repair route:
+* `TraditionArchive` = derived retention view over one declared palette.
+* `OutcomeSpaceRef` = guarded role-ref to the declared `CharacteristicSpace` used for outcome-side judgment.
+* `TraditionAtlasView` = optional neighboring support view, not the default meaning of the archive.
+* `OutcomeMapRef` = explicit support ref if the passage must show how the archive maps into one outcome or effect surface.
+
+Canonical rewrite:
+* Keep `TraditionArchive` as the source surface.
+* Cite `OutcomeSpaceRef` only when the claim is about outcome-side evaluation against the declared `CharacteristicSpace`.
+* Cite `OutcomeMapRef` only when the source-to-outcome mapping itself matters.
+* Use `TraditionAtlasView` only if several declared views or qualifiers must stay visible together; otherwise leave the passage at archive/palette-first precision.
 
 ### A.6.P:9 — Consequences
 
@@ -11231,6 +11308,9 @@ These echoes justify why A.6.P is structured as: **stable lens → explicit slot
 **Coordinates with**
 
 * **A.6.S `U.SignatureEngineeringPair`** — RPR rewrite operations can be packaged as a ConstructorSignature for engineered relation families; must preserve canonical verb mapping and effect‑free constructor semantics. 
+* **A.19 `U.CharacteristicSpace` + A.19.SUPPORT-VIEW** — for declared spaces, guarded role-refs, and support/atlas view discipline when one relation repair needs those layers explicit.
+* **G.2** — for palette/front/archive/tradition-atlas specialization when the repaired passage is SoTA-harvest or synthesis prose.
+* **F.18** — when the remaining issue is naming-side choice among candidate labels rather than relation typing or publication-layer repair.
 * **C.2.2a / A.16 / A.16.1 / A.16.2 / B.4.1 / B.5.2.0 + C.2.LS / C.2.4 / C.2.5 / C.2.6 / C.2.7** - relation publication enters only after lawful language-state chart positioning, articulation, and closure support exist; earlier cue pressure stays on the language-state seam, prompt-shaped continuations stay with `B.5.2.0`, retreat/reopen moves remain owned by `A.16.2`, and `A.16.0` is used only when lineage, branch, loss, or handoff history must itself be published.
 
 **Intended future A.6.x specialisations (illustrative)**
@@ -20369,6 +20449,8 @@ This pattern is intentionally **not** a second semantic owner for CHR mechanisms
 
 A.19 **does not** introduce any new measurement aspects, composite metrics, or **normalization semantics** (owned by **A.19.UNM**, with evidence/calibration under **C.16 (MM‑CHR)**), and it does not define how dynamics evolve over time or any predictive laws (see **A.3.3** for dynamics semantics). The focus here is purely on the _structure of state spaces_ and their comparability.
 
+**Space-vs-consumer boundary.** Use A.19 to declare the **space object itself**: the declared `CharacteristicSpace`, its slots, its optional overlays, and the `U.Dynamics.stateSpace` typing hook. Do **not** use A.19 to declare consumer-side ref positions that merely point to a declared space, and do **not** use it to declare relation kinds between several such refs. Accordingly, one field such as `...SpaceRef` is a reference to a declared `CharacteristicSpace`, not a second space kind, not a slot alias inside that space, and not a role claim. If a line needs search-side versus outcome-side positions over declared spaces, one explicit relation between those refs, one source-surface bridge, or one support-view reading over already-declared substrate objects, declare that in the pattern or surface that uses the space rather than in A.19 itself.
+
 **Lexical guard (“map”).** Follow the normalization lexical discipline owned by **A.19.UNM**. In this pattern, lowercase **map** is used only in the mathematical sense, while capitalized **Map** retains its Part‑G suffix meaning (e.g., `DescriptorMap`). Do not mint new normalization terminology here.
 
 **Lexical guard (“carrier”).** In kernel prose, **Carrier** (capitalized) names `U.Carrier` (a **symbol bearer**). Do **not** use “carrier” for set‑theoretic supports; prefer **ValueSet**/**underlying set**. A.19 therefore uses **ValueSet(slot)** for the set that supplies values to a slot.
@@ -20423,7 +20505,7 @@ where:
     
 Then a **CharacteristicSpace** (CS) is formally the Cartesian product of all slot **value sets**:
 
-$$\mathbf{CS} = \prod_{i \in I} \mathrm{ValueSet}(\mathrm{slot}_i)\,.$$
+$\mathbf{CS} = \prod_{i \in I} \mathrm{ValueSet}(\mathrm{slot}_i)\,.$
 
 In other words, a point (state) in the space consists of one coordinate value for each slot. A **state** _x_ in CS can be seen as a total function _x(i)_ that picks a value from each slot’s **ValueSet** (for every _i ∈ I_, _x(i) ∈ ValueSet(slot\_i)_). By kernel mandate, any `U.Dynamics.stateSpace` **SHALL** be bound to some instance of `CharacteristicSpace`, and all states or trajectories described by that dynamics model **MUST** lie within that space’s **value set**. (The actual dynamic **laws** and time progression are handled in A.3.3; A.19 only defines the state‑space container and its properties.)
 
@@ -20444,6 +20526,8 @@ To ensure consistency and comparability, a CharacteristicSpace must obey the fol
    In particular, any handling of **polarity** (which way “better” is), weighting, or cross-slot aggregation happens in those external mechanisms/policies, not inside the space definition. The space provides the raw coordinates; the logic to interpret or aggregate them is added by domain‑specific layers with explicit disclosure of how it’s done.
 
  - **A19-CS-6 (Slot meta completeness).** Where applicable, each slot **SHALL** declare `admissible_domain` and **missingness semantics** (e.g., codes for *missing*, *censored*, *not-applicable*), consistent with the Characteristic’s Scale and with MM‑CHR. This prevents silent domain drift and clarifies how absent values participate in predicates and comparisons.
+
+ - **A19-CS-7 (Space-vs-consumer boundary).** A `CharacteristicSpace` publishes only its own slot basis, optional overlays, and typing hooks. Ref-typed consumer fields that point to a declared space, explicit relation kinds between such refs, source-surface wiring, support-view organization, and publication metadata are **outside** the space object and **MUST** be declared in the pattern or surface that uses the space. This prevents `CharacteristicSpace` from being silently widened into ref-position semantics, selector semantics, source-surface semantics, publication-form semantics, or support-view semantics.
 
 ##### A.19:5.1.3 - Minimal structure hooks (optional overlays)
 
@@ -20615,9 +20699,10 @@ Canonical evaluation chain (notation‑neutral):
 - A typed set view is one optional neighboring support for interpretation or shipping; it does not become a new public head for the set and it does not redefine the current minimal core burden by itself.
 - `SelectionSlot` still returns one selected set surface, and `Shortlist` remains the public head when a selected surface is emitted.
 - If one atlas-like reading uses several typed set views over the same source surface, each view should keep its active source surface and typed burden recoverable instead of speaking as though one default view already settles the whole family.
+- In cross-surface support prose, `SearchSpaceRef` and `OutcomeSpaceRef` are role-specific refinements of the older `SpaceRef` idiom. Do not let umbrella `SpaceRef` wording hide which support role the current typed-set-view reading depends on.
 - Use one `SpaceMetricRef` only when a comparison, neighborhood, spread, or crowding claim truly depends on one declared space metric or comparison rule.
 - Use one `TransitionSupportRef` only when the text must say how transition or trajectory relations behave across one declared level shift, normalization choice, or aggregation step. One covariance-style model is one admissible subtype of `TransitionSupportRef`, not the only one.
-- If one typed set view also cites `SpaceRef` or `OutcomeMapRef`, keep those refs as declared support for that view rather than as one new public set head.
+- If one typed set view also cites one such role-specific space ref or `OutcomeMapRef`, keep those refs as declared support for that view rather than as one new public set head.
 - If one selector or comparison reads one derived tradition view through one typed set view, keep the underlying declared source surface recoverable at the same time.
 - Different typed set views may coexist for the same source surface; keep that plurality visible rather than pretending one metric or transition formalism already settles every neighboring comparison.
 
@@ -20694,6 +20779,1048 @@ _The following are common modeling mistakes (“anti-patterns”) related to mea
     ✓ **Never alter historical assertions:** **Leave history as‑is.** If criteria change, issue new assertions under the new criteria going forward, and if needed, explicitly **version** the **NormalizationMethod/UNM** or checklist. Past assertions remain valid for the old version and their time; new ones apply henceforth. This ensures auditability and avoids erasing or rewriting what was true under earlier standards.
 
 ### A.19:End
+
+---
+
+---
+
+## A.19.SURF-SPACE - Cross-Surface / Cross-Space Substrate
+
+> **Type:** Architectural (A)
+> **Status:** Draft
+> **Normativity:** Normative
+
+**Plain-name.** Cross-surface / cross-space substrate.
+
+**Governed object.** The declared relation-and-ref-position stack that links one recoverable source surface to search-side and outcome-side references over `A.19` `CharacteristicSpace`, states how those two refs relate, and makes the source-to-outcome relation plus its distortion, uncertainty, or error posture explicit enough to guide use.
+
+### A.19.SURF-SPACE:0 - Use this when
+
+Use this pattern when one working line depends on all of the following at once:
+
+- one declared source surface still matters and must stay recoverable by name;
+- one search-side space reference and one outcome-side space reference must both be explicit;
+- the line must say whether those refs resolve to one declared `CharacteristicSpace` or to two distinct declared `CharacteristicSpace` declarations;
+- the source-to-outcome relation is load-bearing enough that the reader must know what is being related, in which direction, and through which declared carrier or support;
+- and distortion, uncertainty, or error cannot be left as vague atmosphere.
+
+This is the right pattern for QD, OEE, archive/front, or adjacent synthesis lines when the problem is no longer only "what space exists?" and not yet "what shortlist or shipped surface do we publish?".
+
+Not this pattern when:
+
+- you only need to declare or compare `CharacteristicSpace` itself, with no source-surface or source-to-outcome burden; use `A.19`;
+- you are publishing selector or shipping metadata such as `SelectorOutcomeKind`, `SetSurfaceKind`, `HandoffKind`, or public shortlist identity; use `G.5` or `G.10`;
+- you are building one interpretive or support view over an already-declared substrate; use `A.19.SUPPORT-VIEW` or a local specialization such as `G.2`;
+- you are deciding live pool policy, frontier retention, or next-move planning; use `C.19` or `C.24`.
+
+### A.19.SURF-SPACE:0.1 - What goes wrong if missed
+
+If this pattern is missed, authors usually collapse several different things into one vague "space" or one vague "projection":
+
+- the declared source surface disappears behind bare words such as `front`, `archive`, `palette`, or `portfolio`;
+- `SearchSpaceRef` and `OutcomeSpaceRef` never become explicit, or `SpaceRefRelationKind` never becomes explicit, so one line silently hides whether search and outcome use one declared space twice or two different declared spaces;
+- `DescriptorMapRef` or `DistanceDefRef` gets mistaken for the space itself rather than one representation or metric support;
+- publication metadata in `G.5` or `G.10` starts standing in for substrate semantics;
+- and distortion, uncertainty, or error is either hidden or treated as if every non-trivial case were only one bridge-loss story.
+
+The result looks tidy, but the reader cannot tell what is being searched, what is being evaluated, what is only being published, and where uncertainty actually enters.
+
+### A.19.SURF-SPACE:0.2 - What this buys
+
+This pattern buys one conservative but expressive contract:
+
+- the active source surface stays visible;
+- the search-side and outcome-side references over `A.19` spaces stay distinct;
+- the relation between those refs becomes inspectable instead of being hidden in one overloaded noun or verb;
+- heavier support pins remain available without being forced into every case;
+- and support-view or publication neighbors can reuse the substrate without changing what it means.
+
+The practical payoff is simple: readers can tell what the line is acting on, what relation between the two space refs it assumes, what kind of qualification they must keep in view, and which neighboring pattern owns the next move if that burden grows.
+
+### A.19.SURF-SPACE:0.a - TERM/LEX token-status guard (local-first)
+
+Keep this token-status split explicit:
+
+- `CharacteristicSpace` is the reused `A.19` kind. This pattern does not mint a second space kind.
+- `SearchSpaceRef` and `OutcomeSpaceRef` are role-named local fields whose slot content is typed by the existing `CharacteristicSpaceRef` / `SpaceRef` idiom. They are not new heads, not slot aliases inside the space, and not `U.Role` claims. In cross-surface support or typed-set-view passages, read them as role-specific refinements of that older `SpaceRef` idiom rather than collapsing the roles back into one umbrella `SpaceRef`.
+- `SpaceRefRelationKind` is a local relation-kind field over those two refs. In this slice, `sameDeclaredSpaceAs` and `distinctDeclaredSpaceFrom` are controlled token values for that field, not free prose.
+- `SourceToOutcomeRelation` and `DistortionPosture` are local declaration fields. Their field names do not by themselves create one new generic ontology; the burden is satisfied only when their payload is explicit enough to audit.
+- `SourceSurfaceKind`, `SourceSurfaceComposition`, and `DerivedViewKind` are local fields in this substrate record. Whether any value later becomes a broader stable head is outside this pattern.
+- `BasePaletteRef`, `OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, `BridgeDistortionNote`, `DescriptorMapRef`, and `DistanceDefRef` are guarded neighboring refs or support qualifiers reused here. This pattern may cite them, but it does not redefine them.
+- `carrier` inside `SourceToOutcomeRelation` names the declared support, declared line, or declared object through which the relation is being realized in this local record. It is not a claim that the thing is `U.Carrier`.
+
+### A.19.SURF-SPACE:0.b - First-minute operator cue and confusion map
+
+If you are about to write one line that says what is being searched, what is being judged, and whether those two burdens sit in one declared space or in two declared spaces, stop and fill this pattern before you write any more umbrella prose such as `space`, `projection`, `portfolio`, or `front`.
+
+Do this in the first minute:
+
+1. Name the active source surface.
+2. Point `SearchSpaceRef` and `OutcomeSpaceRef` to declared `CharacteristicSpace`.
+3. Choose `sameDeclaredSpaceAs` or `distinctDeclaredSpaceFrom`.
+4. State the source-to-outcome relation in direction, mode, and carrier.
+5. State the governing posture token.
+
+If one of those five cells cannot yet be filled honestly, do not improvise around it. Either you are still in `A.19`, or you have really moved into support-view work, publication, or policy, or the current line is still missing one declared basis.
+
+| If the live question sounds like... | Use now | Why |
+| --- | --- | --- |
+| "Which space are we searching in and which space are we judging in?" | `A.19.SURF-SPACE` | This pattern governs the dual-ref substrate stack. |
+| "How should I help the reader inspect that already-declared line?" | `A.19.SUPPORT-VIEW` | That is one support reading over the substrate, not the substrate declaration itself. |
+| "What do we publish, ship, keep live, or plan next?" | `G.5`, `G.10`, `C.19`, or `C.24` | Those are downstream output or policy burdens. |
+| "I only need one space declaration." | `A.19` | No source-to-outcome substrate stack is in play yet. |
+
+Common confusion to kill early: descriptor maps, distance definitions, and outcome maps may discipline the line, but they do not answer the first-minute substrate question unless the five cells above are already filled.
+
+### A.19.SURF-SPACE:1 - Problem frame
+
+
+In many search, synthesis, and cross-surface lines, the working object is not just one `CharacteristicSpace` and not just one published shortlist or archive either. The line actually depends on a stack such as:
+
+- one declared source surface, for example one front, archive, palette, or another declared source-surface family;
+- one search-side reference to an `A.19` `CharacteristicSpace`;
+- one outcome-side reference to an `A.19` `CharacteristicSpace`;
+- one explicit `SpaceRefRelationKind` over those two references, stating whether they resolve to the same declared space or to two different declared spaces;
+- one relation from the source-side line into the outcome-side line;
+- and one declared posture about whether that relation is transparent, approximate, learned, lossy, uncertain, or otherwise qualified.
+
+Without an explicit substrate declaration for that stack, nearby declarations start carrying burdens they are not meant to carry. `A.19` gets stretched from space typing into source-surface governance. `C.18` descriptor maps start masquerading as the whole search space. `G.5` and `G.10` publication fields start reading like ontology. Support views or atlas views drift into default meaning instead of staying optional derived help.
+
+### A.19.SURF-SPACE:2 - Problem
+
+How should one declare a cross-surface / cross-space line so that:
+
+1. the declared source surface remains explicit and recoverable;
+2. `SearchSpaceRef` and `OutcomeSpaceRef` stay guarded refs to declared `A.19` `CharacteristicSpace`, not new free-floating space kinds;
+3. the text states whether those refs point to one declared space or to two distinct declared spaces;
+4. the source-to-outcome relation is explicit enough for the reader to know what is being mapped, projected, translated, scored, or otherwise connected;
+5. distortion, uncertainty, and error are stated honestly rather than hidden in prose;
+6. `SourceSurfaceComposition` and `DerivedViewKind` remain conditional fields rather than fabricated mandatory baggage;
+7. support pins such as `OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, and `BridgeDistortionNote` remain available but support-only;
+8. and neighboring declarations such as `A.19`, `C.18`, `G.5`, `G.10`, and `A.19.SUPPORT-VIEW` can dock to the substrate without redefining it?
+
+### A.19.SURF-SPACE:3 - Forces
+
+| Force | Tension |
+| --- | --- |
+| `A.19` typing vs adjacent burden | `A.19` already declares `CharacteristicSpace`, but source-surface and publication-surface semantics still need a separate substrate declaration. |
+| Precision vs over-typing | The line needs explicit ref positions, an explicit ref-to-ref relation kind, and explicit relation posture, but it should not fabricate composition, derivation, metrics, or transition support when the case does not need them. |
+| Reuse vs semantic collapse | `DescriptorMapRef`, `DistanceDefRef`, `OutcomeMapRef`, or `BridgeDistortionNote` are useful supports, but they must not silently become the whole substrate. |
+| User readability vs architectural honesty | Cold readers need a first-minute explanation, while stronger readers still need exact boundaries and docking rules. |
+| Support views vs substrate core | Atlas or support-view lines can be valuable, but they should remain optional derived help rather than the default meaning of the substrate. |
+| Uncertainty honesty vs fake closure | Many current lines use learned, adaptive, unstructured, or distribution-valued spaces or relations; the pattern must expose that posture without pretending the heaviest contract is already settled. |
+
+### A.19.SURF-SPACE:4 - Solution
+
+Declare the cross-surface / cross-space line through one explicit substrate stack, keep only the load-bearing core mandatory, and route every heavier burden to conditional fields, support qualifiers, or companion declarations.
+
+#### A.19.SURF-SPACE:4.1 - Governed object and outside work
+
+Use this pattern to declare only the substrate stack below:
+
+- the declared source surface that the line is acting on;
+- the recoverable concrete source-surface identity when the family name alone would be ambiguous;
+- the search-side reference to one declared `A.19` `CharacteristicSpace`;
+- the outcome-side reference to one declared `A.19` `CharacteristicSpace`;
+- the explicit `SpaceRefRelationKind` over those two ref positions;
+- the explicit source-to-outcome relation;
+- and the explicit distortion, uncertainty, or error posture for that relation.
+
+Do not use this pattern to declare:
+
+- `A.19` space typing itself;
+- selector outcome publication, shortlist identity, or shipping closure;
+- live pool policy or enactment planning;
+- or optional support-view families that interpret or reorganize an already-declared substrate.
+
+#### A.19.SURF-SPACE:4.2 - Minimal declaration stack
+
+Use the following notation-independent stack:
+
+```text
+CrossSurfaceCrossSpaceSubstrate := <
+  SourceSurfaceKind,
+  SourceSurfaceId?,
+  SearchSpaceRef,
+  OutcomeSpaceRef,
+  SpaceRefRelationKind,
+  SourceToOutcomeRelation,
+  DistortionPosture,
+  SourceSurfaceComposition?,
+  DerivedViewKind?,
+  BasePaletteRef?,
+  OutcomeMapRef?,
+  SpaceMetricRef?,
+  TransitionSupportRef?,
+  BridgeDistortionNote?
+>
+```
+
+Interpret the fields as follows:
+
+- `SourceSurfaceKind` names the primary declared source-surface family that the line is anchored on.
+- `SourceSurfaceId?` names the concrete declared source/set surface when several same-family surfaces are live or when one neighboring owner must be cited to keep that identity unique. It may be omitted only when the concrete source surface is unambiguous from the declared line.
+- `SearchSpaceRef` points to one declared `A.19` `CharacteristicSpace` in the search-side position.
+- `OutcomeSpaceRef` points to one declared `A.19` `CharacteristicSpace` in the outcome-side position.
+- `SpaceRefRelationKind` states how those two refs relate. In ordinary use, the token is either `sameDeclaredSpaceAs` or `distinctDeclaredSpaceFrom`.
+- `SourceToOutcomeRelation` is one controlled declaration slot. State at least direction, mode, and carrier.
+- `DistortionPosture` is one controlled declaration slot with one primary posture token plus optional clarifying note. In this slice, lawful posture tokens include `transparent-for-current-use`, `lossy-bridge`, `metric/model-dependent`, `transition-dependent`, `uncertainty-bearing`, `learned/adaptive`, and `unstable-under-refresh`.
+- `SourceSurfaceComposition`, `DerivedViewKind`, and related `...Kind` values remain declaration fields or controlled field values unless some later owner explicitly promotes them; they are not automatically independent heads merely because their names end with `Kind`.
+
+This is an `A.6.5` / `A.6.P` move: `SearchSpaceRef` and `OutcomeSpaceRef` are ref-typed slot contents, while `SpaceRefRelationKind` is the explicit `RelationKind` token that governs how those two ref positions are read together.
+
+#### A.19.SURF-SPACE:4.3 - Contract laws (SS-0..SS-7)
+
+**SS-0 - One substrate line, one explicit stack.**
+Treat a line as declared substrate only if one recoverable source-surface basis, two recoverable space refs, one explicit ref-to-ref relation kind, one explicit source-to-outcome relation, and one explicit posture are present together.
+
+**SS-1 - Ref typing is preserved.**
+`SearchSpaceRef` and `OutcomeSpaceRef` must resolve to declared `A.19` `CharacteristicSpace`. They do not become parallel space kinds, slot aliases, or role claims.
+
+**SS-2 - Source-surface recoverability is mandatory.**
+The reader must be able to recover not only the source-surface family but, when several same-family surfaces are simultaneously live, the concrete declared surface through `SourceSurfaceId?` or one cited neighboring owner that uniquely identifies it.
+
+**SS-3 - Relation burden must be explicit.**
+`SourceToOutcomeRelation` is conforming only when direction, mode, and carrier are explicit enough to tell what is related to what, by which route, and through which declared support.
+
+**SS-4 - Posture honesty is mandatory.**
+`DistortionPosture` must say whether the line is transparent for current use or qualified by loss, metric/model dependence, transition dependence, uncertainty, learning/adaptation, or instability under refresh. The line may not hide qualification in atmospheric prose.
+
+**SS-5 - Conditional and support fields stay subordinate.**
+`SourceSurfaceComposition`, `DerivedViewKind`, `BasePaletteRef`, `OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, and `BridgeDistortionNote` may clarify the substrate, but they do not replace the core stack and do not become mandatory everywhere.
+
+**SS-6 - Publication and policy stay outside.**
+Publication metadata, shortlist identity, live-pool policy, and enactment policy remain neighboring burdens. A substrate line may feed them, but it does not decide them.
+
+**SS-7 - Admission is fail-closed.**
+If the source surface cannot be recovered, either space ref is unresolved, `SpaceRefRelationKind` cannot be chosen honestly, relation direction/mode/carrier remains vague, or posture remains unclassified, then the line is not yet a declared substrate. Keep it as a working gloss or reroute it to the owner that can close the missing burden.
+
+#### A.19.SURF-SPACE:4.4 - Profiles
+
+Use one of these ordinary profiles:
+
+- **Shared-space profile.**
+  `SearchSpaceRef` and `OutcomeSpaceRef` both resolve to the same declared `CharacteristicSpace`, and `SpaceRefRelationKind = sameDeclaredSpaceAs`.
+- **Cross-space profile.**
+  `SearchSpaceRef` and `OutcomeSpaceRef` resolve to two distinct declared `CharacteristicSpace` declarations, and `SpaceRefRelationKind = distinctDeclaredSpaceFrom`.
+- **Derived-source supplement.**
+  If the visible source surface is one derived tradition, front, or palette view, keep `DerivedViewKind` and `BasePaletteRef` explicit so the derived surface does not silently become the default meaning of the base palette or source surface.
+
+#### A.19.SURF-SPACE:4.5 - Operational declaration sequence (fail-closed)
+
+When declaring one substrate-bearing line, proceed in this order:
+
+0. **Entry test.** Confirm that the line really needs source-surface plus search/outcome-space plus relation/posture discipline. If it only needs `CharacteristicSpace` typing, use `A.19`. If it only needs publication or policy, route to the downstream owner.
+1. **Recover the active source surface.** State `SourceSurfaceKind`. If several same-family surfaces are simultaneously live, fill `SourceSurfaceId?` or cite the neighboring owner that makes that identity unique.
+2. **Recover the space refs.** Point `SearchSpaceRef` and `OutcomeSpaceRef` to already-declared `CharacteristicSpace`.
+3. **Choose the ref-to-ref relation kind.** Declare `sameDeclaredSpaceAs` only when both refs truly resolve to one declared space. Declare `distinctDeclaredSpaceFrom` only when they truly resolve to two distinct declared spaces. Do not leave this to reader inference.
+4. **State the source-to-outcome relation.** Give direction, mode, and carrier explicitly. If one named `OutcomeMapRef` or neighboring support object carries the relation, cite it. If not, state the carrier directly in prose.
+5. **State the posture.** Declare whether the line is transparent for current use or qualified by loss, metric/model dependence, transition dependence, uncertainty, learning/adaptation, or instability under refresh.
+6. **Add only the fields that are really doing work.** Add composition, derived-view, base-palette, metric, transition, or bridge qualifiers only when the current case actually depends on them.
+7. **Run the boundary check.** If the line starts deciding publication metadata, shortlist identity, live candidate policy, enactment policy, or support-view organization, stop and reroute.
+
+**Fail-closed rule.** Do not treat the line as declared substrate if any of steps 1-5 remains unresolved. Incomplete recovery is a real defect here, not one stylistic omission.
+
+#### A.19.SURF-SPACE:4.6 - Canonical rewrite forms
+
+When the line is ready, it should be possible to rewrite it into one of these minimal forms.
+
+**Shared-space form**
+
+```text
+SourceSurfaceKind      = ...
+SourceSurfaceId?       = ...
+SearchSpaceRef         = DeclaredCharacteristicSpace@...
+OutcomeSpaceRef        = DeclaredCharacteristicSpace@...
+SpaceRefRelationKind   = sameDeclaredSpaceAs
+SourceToOutcomeRelation= <direction, mode, carrier>
+DistortionPosture      = <posture token; optional note>
+```
+
+**Cross-space form**
+
+```text
+SourceSurfaceKind      = ...
+SourceSurfaceId?       = ...
+SearchSpaceRef         = SearchCharacteristicSpace@...
+OutcomeSpaceRef        = OutcomeCharacteristicSpace@...
+SpaceRefRelationKind   = distinctDeclaredSpaceFrom
+SourceToOutcomeRelation= <direction, mode, carrier>
+DistortionPosture      = <posture token; optional note>
+```
+
+If neither rewrite form can be completed honestly, the line is not yet publishable as substrate-bearing text.
+
+#### A.19.SURF-SPACE:4.7 - Conditional fields stay conditional
+
+Use `SourceSurfaceComposition` only when the line genuinely consumes several declared source surfaces.
+
+When composition is active:
+
+- `SourceSurfaceKind` still names the primary family the line is anchored on;
+- `SourceSurfaceComposition` names the additional declared source-surface families or the explicit composed-source posture that widens that primary family;
+- the composition field does not replace the primary family, and it does not silently retitle the whole line as one different source kind.
+
+Use `DerivedViewKind` only when one derived view is materially active and the reader must be able to recover that derivation.
+
+Use `BasePaletteRef` only when a derived tradition or palette view would otherwise hide the recoverable base palette.
+
+#### A.19.SURF-SPACE:4.8 - Support qualifiers stay support-only
+
+`OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, and `BridgeDistortionNote` are admitted as support-only qualifiers.
+
+Use them when:
+
+- one declared mapping really disciplines the source-to-outcome relation;
+- one metric really disciplines spread, neighborhood, or comparison claims;
+- one transition-support object really disciplines dynamic coupling or transfer;
+- or one bridge-loss note is the relevant reason the relation is qualified.
+
+Do not make those support qualifiers the semantic center of the substrate. They help explain the relation; they do not replace the line made explicit by `SourceSurfaceKind`, `SourceSurfaceId?`, `SearchSpaceRef`, `OutcomeSpaceRef`, and the declared relation/posture pair.
+
+Qualifier semantics are first declared on the substrate side. Later support views may reuse those qualifiers, but they do not become the place where the qualifier is first invented or materially changed.
+
+#### A.19.SURF-SPACE:4.9 - Descriptor maps and distance definitions dock here, but do not replace the space refs
+
+When a neighboring line already uses `DescriptorMapRef` or `DistanceDefRef`, dock it explicitly:
+
+- `DescriptorMapRef` may realize or support the search-side or outcome-side representation burden, as the current line requires;
+- `DistanceDefRef` may realize or support the metric burden over that representation on either side, as the current line requires;
+- but neither one replaces `SearchSpaceRef` or `OutcomeSpaceRef`;
+- and `CharacteristicSpace` remains a different kind from `DescriptorMap`.
+
+Use this docking rule whenever a reader could otherwise mistake one local representation layer for the whole search-side or outcome-side space reference.
+
+#### A.19.SURF-SPACE:4.10 - Publication and shipping remain downstream consumers
+
+`G.5` and `G.10` may carry metadata such as `SelectorOutcomeKind`, `SetSurfaceKind`, `SourceSurfaceKind`, `SourceSurfaceComposition`, `DerivedViewKind`, and `BasePaletteRef` when one selected or shipped surface is being published.
+
+That does not mean `G.5` or `G.10` defines the substrate.
+
+Read the boundary this way:
+
+- this pattern defines the substrate that later publication must preserve;
+- `G.5` publishes selector-facing outcome metadata;
+- `G.10` ships publication metadata and pins;
+- neither one redefines the search-side reference, the outcome-side reference, or the source-to-outcome relation.
+
+#### A.19.SURF-SPACE:4.11 - Ordinary and heavier use
+
+For ordinary use, one short declaration block is enough:
+
+- one `SourceSurfaceKind`;
+- `SourceSurfaceId?` when family-level naming alone would be ambiguous;
+- one `SearchSpaceRef`;
+- one `OutcomeSpaceRef`;
+- one explicit `SpaceRefRelationKind`;
+- one explicit relation line;
+- one explicit posture line.
+
+Use the heavier stack only when one of these is true:
+
+- several declared source surfaces are genuinely composed;
+- one derived view must stay recoverable;
+- one support qualifier is materially active;
+- one descriptor-map or distance-definition docking clause is needed to prevent collapse;
+- or the reader would otherwise mistake publication metadata for substrate semantics.
+
+#### A.19.SURF-SPACE:4.12 - Operator kit: choose, declare, self-check, reroute
+
+Use this compact kit whenever the burden is practical declaration rather than one more explanatory paragraph.
+
+| Decision point | What to do now | Lawful result | Stop or reroute when... |
+| --- | --- | --- | --- |
+| `1. What is the line acting on?` | Name `SourceSurfaceKind`, and when several same-family surfaces are live also make the concrete source surface recoverable. | The reader can tell which surface the line is about. | The source surface still floats behind one vague family word. |
+| `2. Are search and outcome in one declared space or in two?` | Point `SearchSpaceRef` and `OutcomeSpaceRef` to declared `CharacteristicSpace`, then choose `sameDeclaredSpaceAs` or `distinctDeclaredSpaceFrom`. | The space-role split is explicit. | The same-space versus cross-space question is still being guessed from context. |
+| `3. What relation is actually being claimed?` | Write one explicit `SourceToOutcomeRelation` with direction, mode, and carrier. | The reader can inspect what is related to what, by which route. | You are still leaning on one umbrella word such as `projection`, `portfolio`, or `maps into`. |
+| `4. What qualification is honest?` | Choose the governing `DistortionPosture` token and add one note only when it really sharpens the case. | The line is honest about loss, uncertainty, learning/adaptation, or other qualification. | Qualification remains atmospheric prose or one fake default of transparency. |
+| `5. Which heavier supports are truly active?` | Add only the qualifier fields that the current case actually uses. | Supports stay subordinate to the substrate. | The next burden is really support-view work, publication, or policy. |
+
+Use this minimal worksheet when drafting or repairing one substrate line:
+
+```text
+SourceSurfaceKind       = ...
+SourceSurfaceId?        = ...
+SearchSpaceRef          = ...
+OutcomeSpaceRef         = ...
+SpaceRefRelationKind    = sameDeclaredSpaceAs | distinctDeclaredSpaceFrom
+SourceToOutcomeRelation = <direction, mode, carrier>
+DistortionPosture       = <token; optional note>
+Optional supports       = <only those actually active>
+```
+
+Run this self-check before you leave the line:
+
+- if the worksheet cannot be filled without one hidden assumption, the declaration is not ready yet;
+- if the next needed prose is mainly "how should the reader inspect this substrate?", continue in `A.19.SUPPORT-VIEW`;
+- if the next needed prose is "what gets published, shipped, retained, or enacted?", reroute to `G.5`, `G.10`, `C.19`, or `C.24`;
+- if the current line changes because one neighbor wants different naming, glossing, or repair vocabulary, keep the substrate contract here and let `F.18`, `A.0`, or `A.6.P` handle that neighboring burden explicitly.
+
+#### A.19.SURF-SPACE:4.13 - Using the substrate with neighboring patterns
+
+Once one substrate line is declared, use neighboring patterns in this order:
+
+- Use `A.19.SUPPORT-VIEW` when the next burden is interpretive help over the same substrate. The support view may foreground the line, but it does not become the ontology.
+- Use `G.2` when that support becomes palette-first, tradition-facing atlas work. Keep the base palette and the cited substrate recoverable while doing it.
+- Use `A.6.P` when one passage collapses source surface, space ref, support view, atlas view, or mapping into one umbrella word. Repair the wording back to the substrate contract before adding more theory.
+- Use `F.18` when the problem is label choice or naming-side comparison around this stack. Naming notes may explain why one head is better named; they do not settle the substrate relation.
+- Use `A.0` when the burden is cold-reader glossing of these tokens. Glosses help recognition; they do not replace the declaration block.
+
+If a neighboring passage would change the source-to-outcome relation or the distortion posture, reopen this pattern first. Neighboring text may reuse the substrate, but it may not silently rewrite it.
+
+### A.19.SURF-SPACE:5 - Archetypal Grounding
+
+
+#### A.19.SURF-SPACE:5.1 - System
+
+**Tell.** One QD line keeps saying that one archive is both the search surface and the evaluation basis. Downstream readers need to see that the same declared `CharacteristicSpace` can still occupy two different role positions without turning the archive or the descriptor layer into the space itself.
+
+**Show.**
+
+```text
+SourceSurfaceKind       = Archive
+SearchSpaceRef          = BehaviorCharacteristicSpace@ed=12
+OutcomeSpaceRef         = BehaviorCharacteristicSpace@ed=12
+SpaceRefRelationKind    = sameDeclaredSpaceAs
+SourceToOutcomeRelation = archive-retained candidates are navigated and judged
+                          for local coverage gain in the same declared behavior
+                          space
+DistortionPosture       = metric/model-dependent; descriptor realization and
+                          neighborhood metric support are active
+DescriptorMapRef        = QDDescriptorMap@ed=9
+DistanceDefRef          = ArchiveNeighborhoodDistance@ed=4
+SpaceMetricRef          = ArchiveNeighborhoodMetric@ed=4
+```
+
+**Cash-out.** This line now says three distinct things cleanly: the active source surface is one archive, both role-refs resolve to the same declared `CharacteristicSpace`, and the descriptor map plus distance definition are only support layers over that shared space reference. A downstream selection or archive-maintenance discussion can reuse this line without pretending the archive itself is the space.
+
+#### A.19.SURF-SPACE:5.2 - Episteme
+
+**Tell.** One synthesis line presents one derived tradition front and then starts speaking as if the visible front were the default meaning of the whole palette.
+
+**Show.**
+
+```text
+SourceSurfaceKind       = Front
+DerivedViewKind         = TraditionFront
+BasePaletteRef          = SoTAPaletteDescriptionId
+SearchSpaceRef          = TraditionComparisonSpace@ed=3
+OutcomeSpaceRef         = AdoptionOutcomeSpace@ed=2
+SpaceRefRelationKind    = distinctDeclaredSpaceFrom
+SourceToOutcomeRelation = the visible tradition front is one derived reading
+                          over the base palette and is compared against the
+                          declared adoption outcome space through one explicit
+                          cross-tradition outcome-bearing line
+DistortionPosture       = lossy-bridge; derived-view selection and bridge-loss
+                          notes must stay visible
+BridgeDistortionNote    = CrossTraditionComparisonLossNote@ed=1
+```
+
+**Cash-out.** The visible front stays a derived view over the palette, the base palette stays recoverable, and the outcome-side evaluation line stays explicit. A later support view or atlas view may reorganize this story, but it may not silently change the declared source-to-outcome relation or erase the bridge-loss warning.
+
+#### A.19.SURF-SPACE:5.3 - Boundary anti-case
+
+**Tell.** One note says only that "the shortlist front is the published surface for the current selector result" and names no source-to-outcome relation, no search-side space, no outcome-side space, and no posture.
+
+**Show.** This is not a substrate declaration. It is publication metadata over one already-selected surface.
+
+**Cash-out.** Route that note to `G.5` or `G.10`. Do not pad it with pseudo-substrate words just to make it look deeper than it is.
+
+#### A.19.SURF-SPACE:5.4 - Use-situation spread
+
+Use the pattern this way across different working situations:
+
+| Working situation | What to do with this pattern | What must stay explicit | Common miss avoided |
+| --- | --- | --- | --- |
+| Archive-side QD line where navigation and evaluation stay in one declared behavior space | Use the shared-space profile. Fill the six core fields, then add descriptor/metric support only if active. | `Archive` as source surface, both role-refs, `sameDeclaredSpaceAs`, and the active posture. | Treating the archive or descriptor layer as if it were the space itself. |
+| Derived tradition/front line that is judged against one different outcome space | Use the cross-space profile and keep `DerivedViewKind` plus `BasePaletteRef` visible. | The derived view stays derived, the base palette stays recoverable, and the cross-space relation stays explicit. | Letting the visible front replace the base palette or hiding the bridge-loss posture. |
+| Learned, adaptive, or uncertainty-bearing line where the space contract is real but heavier support is still case-bound | Keep the substrate core explicit and choose the honest posture token such as `uncertainty-bearing`, `learned/adaptive`, or `unstable-under-refresh`. | The reader can see that the substrate is real without being promised fake geometric closure. | Pretending every serious case is either fully transparent or fully described by one metric stack. |
+| Shortlist or publication note that only says what surface is shown or shipped | Do not use this pattern. Route directly to `G.5` or `G.10`. | The note stays publication-facing instead of imitating substrate depth. | Padding publication metadata with pseudo-substrate language. |
+
+### A.19.SURF-SPACE:6 - Bias-Annotation
+
+
+- **Gov bias.** The pattern prefers explicit declaration over convenient shorthand.
+- **Arch bias.** The pattern keeps substrate, support view, and publication consumers separated even when one merged story would read more smoothly.
+- **Prag bias.** The pattern prefers a short explicit contract that can be reused across search, synthesis, and publication-adjacent lines.
+- **SoTA bias.** The pattern assumes current QD and OEE work often uses learned, adaptive, unstructured, or uncertainty-bearing spaces and therefore resists premature geometric closure.
+
+### A.19.SURF-SPACE:7 - Conformance Checklist
+
+Treat a line as conforming only if every gate below passes.
+
+| ID | Gate question | Fail when | Repair or reroute |
+| --- | --- | --- | --- |
+| `CC-A19SS-1` | Is the line really declaring one substrate-bearing burden rather than only `CharacteristicSpace`, publication metadata, or policy? | The line only names a space object, or only publishes/ships/retains something, with no explicit source/ref/relation/posture stack. | Route to `A.19`, `G.5`, `G.10`, `C.19`, or `C.24` as appropriate. |
+| `CC-A19SS-2` | Is the active source surface recoverable enough for the current case? | Only a vague family word such as `front` or `archive` remains, and several same-family surfaces are live with no way to tell which one is meant. | Add the concrete declared surface id or cite the neighboring owner that makes the surface unique. |
+| `CC-A19SS-3` | Do `SearchSpaceRef` and `OutcomeSpaceRef` both resolve to declared `A.19` `CharacteristicSpace`, and is `SpaceRefRelationKind` explicit? | One or both refs are vague, or the line leaves the same-space versus cross-space question to inference. | Restore the two refs and declare `sameDeclaredSpaceAs` or `distinctDeclaredSpaceFrom` explicitly. |
+| `CC-A19SS-4` | Is the source-to-outcome relation explicit in direction, mode, and carrier? | The line hides the relation in one umbrella phrase such as `projection`, `portfolio`, or `maps into`, with no explicit carrier. | Rewrite into the canonical substrate form and state direction, mode, and carrier. |
+| `CC-A19SS-5` | Is the active qualification posture explicit and honest? | The line is qualified in effect, but the posture is unstated or all non-transparent cases are blurred into one generic loss story. | Declare the governing posture token and any needed note; if that cannot be done honestly, keep the line informative only. |
+| `CC-A19SS-6` | Are conditional and support fields used only when they really do work? | Composition, derivation, base-palette, map, metric, transition, or bridge qualifiers are fabricated everywhere or silently become core. | Remove unused qualifiers; keep only the fields the current case actually depends on. |
+| `CC-A19SS-7` | If `DescriptorMapRef` or `DistanceDefRef` is active, does the text say they realize or support the burden rather than replace the space ref? | The representation or metric layer is treated as if it were the declared search-side or outcome-side space. | Re-state the docking rule and keep the two space refs visible. |
+| `CC-A19SS-8` | Does the line stay out of publication and policy work? | The prose starts deciding shortlist identity, selector outcome, shipping closure, or live-pool/enactment policy. | Split the line and route those downstream burdens to their owning patterns. |
+| `CC-A19SS-9` | Can the line be rewritten into one canonical substrate form without invention? | The line still depends on hidden assumptions or unresolved candidates. | Keep it as a working gloss or repair the missing recovery before reuse. |
+| `CC-A19SS-10` | Could a cold reader take the next lawful declaration step from this line without surrounding memo help? | The line still speaks only in umbrella words such as `space`, `projection`, or `portfolio`, and the reader cannot tell what to fill next. | Use the substrate worksheet from `4.12` or rewrite into one canonical substrate form before reuse. |
+| `CC-A19SS-11` | When the next burden is support-view, publication, or policy, is the reroute explicit? | The text keeps talking as if substrate, support, publication, and policy were one layer, so the reader cannot tell where to continue. | Split the line and cite `A.19.SUPPORT-VIEW`, `G.5`, `G.10`, `C.19`, or `C.24` as the next owner. |
+| `CC-A19SS-12` | Does the current use claim only the breadth it actually supports? | The prose implies universal geometric closure or one universal heavy-support story, but the declared posture or supports stay narrower, uncertain, learned/adaptive, or case-bound. | Narrow the claim explicitly or add the missing posture/support qualifiers that make the broader claim honest. |
+
+### A.19.SURF-SPACE:8 - Common Anti-Patterns and How to Avoid Them
+
+
+| Anti-pattern | Why it fails | Repair |
+| --- | --- | --- |
+| Treating one archive or front as the search space itself | A source surface is not the same kind as one declared `CharacteristicSpace`. | Keep `SourceSurfaceKind` and `SearchSpaceRef` separate. |
+| Leaving `SpaceRefRelationKind` implicit | The reader then has to guess whether search and outcome share one declared space or use two distinct declared spaces. | Declare `sameDeclaredSpaceAs` or `distinctDeclaredSpaceFrom` next to the two refs. |
+| Letting `DescriptorMapRef` stand in for the whole substrate | A representation layer is not the same thing as the position-typed space contract. | State the docking rule explicitly and keep the space refs visible. |
+| Making `SourceSurfaceComposition` or `DerivedViewKind` mandatory in every line | The line fabricates composition or derivation where none exists. | Keep them conditional. |
+| Publishing with bare `portfolio` language | `portfolio` blurs retained-set, selected-set, and posture talk. | Use declared source-surface and outcome metadata instead. |
+| Treating all distortion as one bridge story | Not every qualified relation is bridge-mediated. | State the active posture directly. |
+| Letting `G.5` or `G.10` sound like the substrate itself | Publication metadata then silently replaces substrate semantics. | Keep publication as downstream use of the substrate. |
+
+### A.19.SURF-SPACE:9 - Consequences
+
+**Benefits**
+
+- Readers can see what the line is acting on, what spaces it distinguishes, what relation is declared between the two space refs, and what outcome burden it claims.
+- `A.19`, `C.18`, `G.5`, and `G.10` stay coordinated without collapsing into one layer.
+- Heavier supports such as maps, metrics, transitions, and bridge-loss notes remain usable without being forced into every first slice.
+
+**Trade-offs**
+
+- The line must expose one explicit relation and one explicit posture instead of hiding them in umbrella prose.
+- Some cases that used to look "simple" will expose real uncertainty or loss that now needs to be declared.
+- Neighboring support-view or publication patterns may need to be read as companions rather than assumed from local shorthand.
+
+### A.19.SURF-SPACE:10 - Rationale
+
+The pattern chooses a narrow but sturdy center of gravity.
+
+`A.19` already declares `CharacteristicSpace`. The missing burden is not another free-floating space kind. It is the ref-position and relation stack that tells the reader:
+
+- which declared source surface is active;
+- which declared space is named in the search-side position;
+- which declared space is named in the outcome-side position;
+- what `SpaceRefRelationKind` says about those two refs;
+- and how much transparency, distortion, uncertainty, or error the line is honestly claiming.
+
+That is why this pattern stops before support views and before publication metadata. If it tried to say less, the burden would collapse back into vague `space` or `projection` talk. If it tried to say more, it would start absorbing views, fronts, archives, shortlists, or shipping semantics that belong elsewhere.
+
+### A.19.SURF-SPACE:11 - SoTA-Echoing
+
+| SoTA practice | Primary source(s) | Pressure disciplined here | Practical safeguard bought | Adoption stance |
+| --- | --- | --- | --- | --- |
+| Modern multilevel evolutionary theory looks for one common substrate across several levels rather than forcing one tradition-local carrier to tell the whole story. | Vanchurin (2026) on generally covariant evolutionary dynamics; Warrell et al. (2024) on unified multilevel evolutionary frameworks. | `SS-0`, `SS-2`, `CC-A19SS-1`, `CC-A19SS-2`. | Keeps one neutral substrate beside `A.19`, so one archive, front, or publication surface cannot silently stand in for the whole burden. | **Adapt.** Keep one neutral substrate, but bind it to FPF declaration discipline. |
+| Contemporary QD practice distinguishes feature/behavior space, quality/objective side, archive/repertoire surfaces, and local competition rather than treating one vague "space" as enough. | 2026 QD review; IJCAI 2024 stepping-stone results; MOUR-QD (2025). | `SS-1`, `SS-3`, `CC-A19SS-3`, `CC-A19SS-4`, worked slices `5.1` and `5.2`. | Forces search-side ref, outcome-side ref, and source-to-outcome relation to stay explicit, so downstream search/evaluation claims remain auditable. | **Adopt/Adapt.** Adopt the split; adapt it to FPF declared-source-surface discipline. |
+| Frontier QD and adjacent work increasingly use learned, adaptive, unstructured, and uncertainty-bearing spaces and supports, so one heavy metric or transition stack should not be assumed everywhere. | Uncertain Quality-Diversity (2023); Extract-QD (2025); later adaptive-space and meta-competition lines. | `SS-4`, `SS-5`, `CC-A19SS-5`, `CC-A19SS-6`. | Makes uncertainty posture explicit while keeping map, metric, transition, and bridge-loss pins optional unless the case truly depends on them. | **Adopt/Adapt.** Adopt uncertainty honesty and optional heavier supports; reject mandatory geometric monoculture. |
+| Atlas and manifold-support lines are useful in some cases, but they are not the default meaning of every cross-surface line. | UMAP 2024 review; 2024-2025 atlas and manifold-optimization lines. | `SS-5`, `SS-6`, boundary anti-case `5.3`, `CC-A19SS-8`. | Preserves substrate semantics so later support or atlas views can help interpretation without quietly becoming the ontology. | **Adapt.** Keep atlas-strength support as a later specialization, not the substrate's ordinary center. |
+
+### A.19.SURF-SPACE:12 - Relations
+
+- **Builds on:** `A.19`, `A.17`, `A.18`.
+- **Coordinates with:** `C.18`, `C.19`, `G.5`, `G.10`, `A.19.SUPPORT-VIEW`, `A.6.P`, `A.0`.
+- **Specialized by:** `A.19.SUPPORT-VIEW` and later support-view or atlas specializations when one line needs derived interpretation over an already-declared substrate.
+- **Does not replace:** selector outcome publication, shipping metadata, live pool policy, or enactment planning.
+
+### A.19.SURF-SPACE:End
+
+---
+
+## A.19.SUPPORT-VIEW - Cross-Surface Support View
+
+> **Type:** Architectural (A)
+> **Status:** Draft
+> **Normativity:** Normative
+
+**Plain-name.** Cross-surface support view.
+
+**Governed object.** One declared support-only view over one already-declared cross-surface / cross-space substrate-bearing basis, written as a domain-specific use-site under existing `U.EpistemicViewing` / `U.MultiViewDescribing` law, so the reader can inspect one substrate through thinner or stronger support lenses without changing the substrate, the publication surface, or the object of talk. In this slice, the lawful basis is either the explicit substrate line itself or one declared source/set-surface entry point through which that substrate remains recoverable.
+
+### A.19.SUPPORT-VIEW:0 - Use this when
+
+Use this pattern when one already-declared substrate from `A.19.SURF-SPACE` is already in force, and the current passage either cites that substrate directly or works through one declared source/set-surface entry point that keeps the substrate recoverable, but the reader still needs one support view to see how the line should be read in practice.
+
+Typical signs are:
+
+- the substrate is already declared, but one thinner interpretive view is still needed so the active source surface, search-side space, outcome-side space, or distortion posture stays understandable;
+- one stronger atlas-form reading may help collect several typed set views, active set surfaces, cited spaces, mappings, or support qualifiers without changing the underlying substrate;
+- one derived tradition or palette view must stay recoverable as a view over a base palette rather than silently becoming the palette's default meaning;
+- or one line needs optional support pins such as `OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, or `BridgeDistortionNote`, but those pins must stay supporting qualifiers rather than the semantic center.
+
+This is the right pattern when the working need is no longer "what substrate is declared?" and not yet "what shortlist, publication surface, or shipped result do we emit?".
+
+Not this pattern when:
+
+- you still need to declare the substrate itself, including source-surface and search/outcome-space roles; use `A.19.SURF-SPACE`;
+- you only need `CharacteristicSpace`, its slots, or its typing hooks; use `A.19`;
+- you are publishing selector outcomes, shortlist identity, or shipping metadata; use `G.5` or `G.10`;
+- you are setting live pool policy, retained-set policy, or enactment/planning posture; use `C.19` or `C.24`;
+- you are defining a new generic view law, viewpoint bundle, or publication-view family rather than one domain-specific support reading; use `A.6.3`, `E.17.0`, `E.17`, or `E.17.1`;
+- the line would change the described object of talk rather than preserve it; use `A.6.4` or the appropriate retargeting route.
+
+### A.19.SUPPORT-VIEW:0.1 - What goes wrong if missed
+
+If this pattern is missed, support work usually fails in one of four ways:
+
+- the substrate is forced to carry every interpretive burden itself, so `A.19.SURF-SPACE` starts reading as if it also owned support views, atlas readings, or palette interpretation;
+- the word `view` appears as one fresh local theory, detached from existing `U.EpistemicViewing` and `U.MultiViewDescribing`, so viewpoint, view, and surface start collapsing again;
+- one atlas-form reading quietly becomes the default meaning of the whole family, so a stronger support form starts redefining the base palette or base source surface;
+- or support pins such as `OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, and `BridgeDistortionNote` either disappear into vague prose or are promoted into mandatory core everywhere.
+
+The reader then cannot tell whether a visible interpretation is one optional support view, one stronger atlas reading, one publication surface, or one new semantic head.
+
+### A.19.SUPPORT-VIEW:0.2 - What this buys
+
+This pattern buys one disciplined middle layer:
+
+- the substrate remains the semantic center;
+- thinner support views remain lawful when a full atlas form is unnecessary;
+- `CrossSurfaceAtlasView` remains available as one stronger reusable specialization, but not as the default head;
+- derived palette or tradition views keep their base palette and base source surfaces recoverable;
+- active set surfaces, cited spaces, mappings, and qualifying support stay recoverable when the current reading uses them;
+- and publication, shipping, and pool-policy burdens stay outside the view.
+
+The practical payoff is simple: the reader can use one support view to understand the declared line better without mistaking that support view for the line's ontology, output, or policy.
+
+### A.19.SUPPORT-VIEW:0.a - TERM/LEX token-status guard (local-first)
+
+Keep this token-status split explicit:
+
+- `CrossSurfaceSupportView` is the ordinary/common support-view head introduced here for domain-specific reuse over one already-declared substrate-bearing basis: either the substrate line itself or one declared source/set surface that keeps the substrate recoverable.
+- `CrossSurfaceAtlasView` is the stronger specialization of that same family. It is not the common head and it is not automatically required.
+- `TypedSetViews` is one local plural field over already-declared set-view heads or ids. It is not a new generic set-surface ontology.
+- `TraditionAtlasView` is one local `G.2` specialization of `CrossSurfaceAtlasView`, not the family head for all support-view use.
+- `OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, and `BridgeDistortionNote` are guarded neighboring refs or support qualifiers reused here. This pattern may foreground them, but it does not mint them.
+- `support question` is one local declaration field naming the interpretive burden the current reading helps with. It is not a replacement for `U.Viewpoint`.
+- `DerivedViewKind` and `BasePaletteRef` stay local recoverability aids here; they do not silently turn the derived reading into the base ontology.
+
+### A.19.SUPPORT-VIEW:0.b - First-minute operator cue and confusion map
+
+Use this pattern only after one substrate is already declared, either cited directly or kept recoverable through one declared source/set surface. The first-minute move here is not "write more about the same space". It is "decide what support question the reader needs answered without changing the object of talk".
+
+Do this in the first minute:
+
+1. Cite the base substrate or the source/set-surface entry point that stays recoverable with it.
+2. State the support question in one sentence.
+3. Choose thin support or atlas support.
+4. Keep the active source surface and any active set surface recoverable.
+5. Add only the supports that truly discipline the reading.
+
+If you cannot name the base substrate or the recoverable source/set-surface entry point that carries it, or if the current prose would change the source-to-outcome relation or its posture, stop. You are either repairing the substrate, retargeting the object, or drifting into publication/policy.
+
+| If the live question sounds like... | Use now | Why |
+| --- | --- | --- |
+| "How do I help the reader inspect the declared substrate?" | `A.19.SUPPORT-VIEW` | This pattern governs support-only reading. |
+| "What is the substrate itself?" | `A.19.SURF-SPACE` | The base line has to exist first. |
+| "Which palette-first or tradition-facing atlas reading should I use?" | `G.2` over this family | That is one local specialization of atlas support. |
+| "What do we publish, ship, keep live, or plan next?" | `G.5`, `G.10`, `C.19`, or `C.24` | Those burdens stay outside support views. |
+
+Common confusion to kill early: one visible atlas or metric note does not make atlas form automatically necessary. Thin support is already a complete lawful answer.
+
+### A.19.SUPPORT-VIEW:1 - Problem frame
+
+
+Once one cross-surface / cross-space substrate has been declared, many lines still need one second-order reading surface for ordinary work.
+
+Examples include:
+
+- one archive-centered reading that needs optional metric or transition support to explain why certain regions stay promising;
+- one derived tradition or palette reading that must remain visibly derived from a base palette;
+- one atlas-form reading that collects several typed set views, active set surfaces, spaces, maps, metrics, or distortion notes so that cross-level structure stays readable;
+- one support rendering that helps the reader inspect the declared substrate without turning that rendering into the substrate's default meaning.
+
+Current FPF already points in that direction. `A.6.3` and `E.17.0` already give the general law that views are describedEntity-preserving and do not mint autonomous new semantics. `G.2` already keeps `TraditionAtlasView` as optional neighboring support over one palette and declared set surfaces rather than making atlas semantics the meaning of `Tradition` itself. What is still missing is one common support-view pattern that:
+
+- stays explicitly under existing view law;
+- keeps thinner support views lawful;
+- keeps atlas form reusable but non-default;
+- and keeps support qualifiers optional and recoverable.
+
+### A.19.SUPPORT-VIEW:2 - Problem
+
+How should one declare a support view so that:
+
+1. it is explicitly one domain-specific use-site of existing `U.EpistemicViewing` / `U.MultiViewDescribing` law, not one fresh autonomous theory of views;
+2. it keeps the already-declared substrate recoverable instead of replacing it;
+3. it allows both ordinary thinner support views and one stronger atlas-form support view;
+4. it keeps `OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, and `BridgeDistortionNote` optional and support-only;
+5. it keeps derived palette or tradition views recoverable through `DerivedViewKind` and `BasePaletteRef` when those are active;
+6. it does not mint new set-surface heads, selector policy, publication policy, or shipping semantics;
+7. it lets `G.2` keep `TraditionAtlasView` as one local specialization rather than as the generic head of the whole family;
+8. and it fails closed when the line would really be retargeting, new view-law work, substrate repair, publication, or policy?
+
+### A.19.SUPPORT-VIEW:3 - Forces
+
+| Force | Tension |
+| --- | --- |
+| Existing view law vs local usefulness | The support view must be useful in local substrate work, but it cannot invent a second `view` ontology beside `A.6.3` and `E.17.0`. |
+| Substrate stability vs interpretive help | Readers need one support layer, but that support layer must not redefine the substrate. |
+| Thin support vs atlas strength | Some cases need only one light interpretive view; others genuinely need one stronger atlas-form reading. The pattern must support both without making the stronger form default. |
+| Recoverability vs convenience | Derived tradition or palette views help reading, but they must not hide the base palette, base source surface, or active declared spaces. |
+| Support richness vs semantic inflation | Maps, metrics, transition supports, and distortion notes are often useful, but they must stay optional support qualifiers rather than new mandatory core. |
+| Readability vs downstream boundary discipline | The pattern should help cold readers immediately, while still keeping `G.5`, `G.10`, `C.19`, and `C.24` outside the support view. |
+
+### A.19.SUPPORT-VIEW:4 - Solution
+
+Declare support views as support-only readings over one already-declared substrate-bearing basis, keep them explicitly under existing view law, and reserve atlas form for the cases that truly need it.
+
+#### A.19.SUPPORT-VIEW:4.1 - Governed object and outside work
+
+Use this pattern to declare:
+
+- one `CrossSurfaceSupportView`, the ordinary/common head of this support-view family;
+- one support-only reading over one already-declared substrate-bearing basis: either one explicit `A.19.SURF-SPACE` line or one already-declared source/set surface whose supporting spaces, mappings, and qualifiers remain recoverable through such a line;
+- the support question that makes this view worth showing;
+- the recoverable source surface or source surfaces that the support view is reading;
+- any active set surface, derived view, or base palette that the current reading keeps in play;
+- any cited spaces or mappings that the current reading depends on, provided those remain recoverable through declared refs or the cited substrate-bearing line;
+- and any optional supporting qualifiers that the current view genuinely needs.
+
+`CrossSurfaceAtlasView` is one stronger specialization inside that same family. It is not the common head.
+
+Do not use this pattern to declare:
+
+- `CharacteristicSpace` itself;
+- the substrate role/relation stack from `A.19.SURF-SPACE`;
+- selector outcomes, shortlist heads, or shipping outputs;
+- live pool policy or enactment policy;
+- or a new generic law for views, viewpoints, or publication surfaces.
+
+#### A.19.SUPPORT-VIEW:4.2 - Minimal support-view contract
+
+A conforming support view makes the following explicit:
+
+- which support-family head is active: ordinary `CrossSurfaceSupportView` or stronger `CrossSurfaceAtlasView`;
+- which already-declared substrate-bearing basis it is reading: either the explicit substrate line or the declared source/set-surface entry point that keeps that substrate recoverable;
+- which support question the view is answering;
+- which source surface or source surfaces must stay recoverable while the view is active;
+- which active set surface, if any, the current reading is using over that source surface;
+- which cited spaces and mappings, if any, the current reading depends on, and how they remain recoverable;
+- which optional supporting qualifiers are genuinely doing work in the current case;
+- and which neighboring burdens stay outside this view.
+
+The minimum ordinary contract is therefore:
+
+1. one declared substrate-bearing basis from `A.19.SURF-SPACE`: either the explicit base substrate line or one declared source/set surface whose substrate remains recoverable with it;
+2. one explicit support question;
+3. one recoverable active source-surface basis, plus any active set surface drawn from it when the reading uses one;
+4. any cited spaces, mappings, and qualifying uncertainty/distortion supports remain recoverable whenever the reading cites them;
+5. one explicit statement that this is support-only and does not redefine substrate or publication semantics.
+
+#### A.19.SUPPORT-VIEW:4.3 - Contract laws (SV-0..SV-8)
+
+**SV-0 - View-law docking is explicit.**
+Every conforming support view is one domain-specific use-site under existing `A.6.3` / `E.17.0` law. It does not introduce one autonomous new theory of views.
+
+**SV-1 - The described object of talk is preserved.**
+The support view preserves the described object already carried by the base line. If the current prose would change that object, the line is no longer one support view over the same substrate.
+
+**SV-2 - The base substrate remains the semantic center.**
+The support view may foreground aspects of the base line, but it does not replace or repair the base substrate contract. Substrate repair belongs back in `A.19.SURF-SPACE`.
+
+**SV-3 - Source, set-surface, and palette recoverability are mandatory.**
+The current source surface, any active set surface drawn from it, and any active derived view or base palette must remain recoverable while the support view is active.
+
+**SV-4 - Support qualifiers remain foregrounding devices only.**
+`OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, and `BridgeDistortionNote` may be foregrounded, but they do not become the support view's ontology and they do not silently change the base relation or posture.
+
+**SV-5 - Thin support and atlas support are different profiles.**
+Ordinary `CrossSurfaceSupportView` is a complete lawful profile, not a placeholder. `CrossSurfaceAtlasView` is used only when the stronger composite support burden is real.
+
+**SV-6 - Atlas form requires a complete composite record.**
+If atlas form is active, the view must keep the base substrate, the active source or set surface, the relevant `TypedSetViews`, any cited spaces, any cited mappings, and any qualifying support explicit enough that the reader can recover why thin support was not enough.
+
+**SV-7 - Local specialization stays local.**
+If `TraditionAtlasView` is used, it remains one `G.2` specialization of `CrossSurfaceAtlasView`; it does not become the common head of the family.
+
+**SV-8 - Admission is fail-closed.**
+If the current line would change the described object, add new generic view law, repair the substrate, decide publication, or decide policy, it is not a conforming support view here. Reroute it instead of stretching the family.
+
+#### A.19.SUPPORT-VIEW:4.4 - Profiles
+
+Use one of these profiles explicitly:
+
+- **Thin-support profile.**
+  Use ordinary `CrossSurfaceSupportView` when one source basis plus one support question is enough, and the current reading does not need several typed set views or several support qualifiers held together at once.
+- **Atlas-support profile.**
+  Use `CrossSurfaceAtlasView` when the reader must hold several declared views, spaces, mappings, or qualifiers together to understand the same base substrate-bearing line.
+
+If neither profile can be chosen honestly, the line is not ready as support-view text.
+
+#### A.19.SUPPORT-VIEW:4.5 - Operational declaration sequence (fail-closed)
+
+When declaring one support view, proceed in this order:
+
+0. **Entry test.** Confirm that one already-declared substrate exists and that the current burden can cite it either directly or through one declared source/set-surface entry point that keeps it recoverable, rather than drifting into substrate repair, publication, or policy.
+1. **Name the active support head.** Use ordinary `CrossSurfaceSupportView` unless the current reading genuinely needs the stronger atlas form.
+2. **Cite the base line.** Name the already-declared substrate the view is reading, or cite the source/set-surface entry point together with the recoverable substrate it depends on.
+3. **State the support question directly.** Say what the view helps the reader see that the substrate alone leaves hard to inspect.
+4. **Keep the base surfaces recoverable.** Name the active source surface, and if the view is over one declared front, archive, shortlist, palette, or other set surface drawn from that source, keep that active set surface recoverable too.
+5. **Recover derived-view and palette structure when it matters.** If the view depends on one derived tradition or palette reading, state `DerivedViewKind` and `BasePaletteRef`.
+6. **Add the actual supports.** Add `TypedSetViews`, cited spaces, mappings, metrics, transition supports, or distortion notes only when the current reading truly depends on them.
+7. **Run the preservation check.** If the support prose would materially change the base source-to-outcome relation or the base distortion/uncertainty/error posture, stop and reopen the substrate declaration.
+8. **Run the boundary check.** If the prose starts changing the object of talk, minting new generic view law, publishing selected sets, shipping outputs, or deciding policy, reroute.
+
+**Fail-closed rule.** Do not treat the line as a support view if steps 2-7 cannot be completed honestly. Missing base-line recovery or hidden posture change is a real defect here.
+
+#### A.19.SUPPORT-VIEW:4.6 - Thin support remains a complete lawful form
+
+Many cases need one support view but not one atlas-form support package.
+
+Stay with one thinner support view when:
+
+- the current reading needs only one declared source surface or one derived view over it;
+- the current question does not need several typed set views assembled at once;
+- one explicit support sentence is enough to keep the current line readable;
+- or the case does not genuinely depend on metrics, transitions, or bridge-loss notes.
+
+This matters because the support layer should stay proportionate to the burden. If a thin interpretive view already solves the reader's problem, forcing atlas form would over-type the line and create fake necessity.
+
+#### A.19.SUPPORT-VIEW:4.7 - Atlas form is stronger support and needs a complete record
+
+Use `CrossSurfaceAtlasView` for the stronger support cases:
+
+- when several typed set views over one declared source surface or one active derived set surface must be read together;
+- when one atlas-form reading helps the reader inspect cross-level structure, cross-space structure, support plurality, or mapping plurality;
+- when the current interpretation genuinely depends on one declared map, metric, transition support, or distortion note and those supports must stay visible together with the active source/set surfaces they qualify.
+
+The minimal admissible atlas-support record therefore contains:
+
+- the cited base substrate or source/set-surface entry point;
+- the active source surface and any active set surface drawn from it;
+- `TypedSetViews` when several declared set views are being held together;
+- any cited `SearchSpaceRef`, `OutcomeSpaceRef`, or other declared space refs that the atlas reading depends on;
+- any cited `OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, or `BridgeDistortionNote` that materially disciplines the reading;
+- `DerivedViewKind` and `BasePaletteRef` whenever the atlas reading is over one derived palette or tradition view;
+- one explicit reason thin support is insufficient.
+
+If atlas form cannot state that composite record without invention, stay with thin support or reroute to the pattern that owns the missing burden.
+
+#### A.19.SUPPORT-VIEW:4.8 - No autonomous local view law is introduced here
+
+Read the docking to `A.6.3` / `E.17.0` strictly:
+
+- the support view preserves the described object already carried by the base line;
+- it does not silently mint new intensional commitments about that same object;
+- it does not replace one viewpoint bundle or one publication-view family with one new local invention;
+- and it does not collapse viewpoint, view, and surface into one word.
+
+If a case would need a different object of talk, a different generic view law, or one new viewpoint family, this pattern is no longer the right route.
+
+#### A.19.SUPPORT-VIEW:4.9 - Support qualifiers stay support-only
+
+`OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, and `BridgeDistortionNote` are admitted here only as support qualifiers.
+
+They are declared first on the substrate side. This pattern may foreground or organize them for the reader, but it may not silently strengthen, weaken, or otherwise change the base substrate posture.
+
+Use them when the current support view genuinely needs them:
+
+- `OutcomeMapRef` when the current reading must show how one declared source or set surface bears on one outcome surface;
+- `SpaceMetricRef` when neighborhood, spread, reachability, or crowding claims are load-bearing in the current reading;
+- `TransitionSupportRef` when the current reading depends on explicit transition or level-shift support;
+- `BridgeDistortionNote` when the reader must keep one declared loss or distortion visible near the current reading.
+
+If the support view would newly introduce `lossy-bridge`, `uncertainty-bearing`, `transition-dependent`, `learned/adaptive`, or another materially different posture that the substrate did not already declare, reopen the substrate declaration instead of treating that posture change as view-only convenience.
+
+#### A.19.SUPPORT-VIEW:4.10 - Publication, set-surface, and pool-policy boundaries
+
+This pattern does not publish selected sets, declare shortlist heads, or decide which candidate lines stay live.
+
+Keep the split explicit:
+
+- `A.19.SUPPORT-VIEW` helps the reader inspect one already-declared substrate;
+- `G.5` publishes selector outcomes and their source/publication metadata;
+- `G.10` ships publication surfaces and pins;
+- `C.19` governs live candidate-pool and frontier policy;
+- `C.24` governs enactment/planning posture.
+
+If the prose starts deciding who survives, what is published, or what is shipped, it has already left this pattern.
+
+#### A.19.SUPPORT-VIEW:4.11 - `G.2` keeps the tradition-facing atlas specialization
+
+When the current support view is tradition-facing and palette-first recoverability matters, route the local specialization through `G.2`.
+
+Read the relation this way:
+
+- `A.19.SUPPORT-VIEW` states the generic support-view family and the generic stronger atlas form `CrossSurfaceAtlasView`;
+- `G.2` keeps the palette-first, tradition-facing specialization `TraditionAtlasView`;
+- `TraditionAtlasView` is therefore one local specialization of the stronger atlas form, not the common head of the whole support family.
+
+This keeps the family honest in both directions:
+
+- the common support-view family does not force `Tradition` or `Atlas` into every case;
+- and the `G.2` specialization does not lose its palette-first recoverability.
+
+#### A.19.SUPPORT-VIEW:4.12 - Operator kit: choose, record, preserve, reroute
+
+Use this compact kit whenever you need one support view that can actually be used, checked, and rerouted in practice.
+
+| Decision point | What to do now | Lawful result | Stop or reroute when... |
+| --- | --- | --- | --- |
+| `1. Which base line am I reading?` | Cite the base substrate or recoverable source/set-surface entry point. | The support view is anchored on one visible base line. | The view still floats free of the line it is supposed to help read. |
+| `2. What support question is this view answering?` | State the question directly in one sentence. | The reader can tell what this view helps inspect. | The view mostly repeats theory without naming the practical inspection burden. |
+| `3. Do I need thin support or atlas support?` | Choose ordinary `CrossSurfaceSupportView` unless several views, spaces, mappings, or qualifiers must be held together at once. | The support head is chosen honestly. | Atlas language appears by reflex, or thin support would already solve the reading problem. |
+| `4. Which surfaces and qualifiers must stay recoverable?` | Keep the active source surface, active set surface, derived view, base palette, and cited qualifiers visible only when they truly do work. | Recoverability stays proportional to the burden. | The base palette or base surface disappears behind the strongest visible overlay. |
+| `5. Is the line still support-only?` | Check whether the prose preserves the base substrate and its object of talk. | The view remains one reading, not one rewrite of the underlying line. | The prose is really changing the substrate, publishing outputs, or deciding policy. |
+
+Use this compact support-view record when drafting or repairing the line:
+
+```text
+SupportHead               = CrossSurfaceSupportView | CrossSurfaceAtlasView
+BaseSubstrateRef          = ...
+SupportQuestion           = ...
+ActiveSourceSurface       = ...
+ActiveSetSurface?         = ...
+DerivedViewKind?          = ...
+BasePaletteRef?           = ...
+TypedSetViews?            = ...
+CitedSpaceRefs?           = ...
+SupportQualifiers?        = ...
+WhyThinIsEnough? /
+WhyAtlasIsNeeded?         = ...
+```
+
+Run this self-check before you leave the passage:
+
+- if the record would change the base relation or posture, reopen `A.19.SURF-SPACE`;
+- if the atlas-necessity line is empty, stay with thin support;
+- if the next live burden is naming repair, terminology precision, publication, or policy, reroute to `F.18`, `A.6.P`, `G.5`, `G.10`, `C.19`, or `C.24` instead of stretching support-view prose across those boundaries.
+
+#### A.19.SUPPORT-VIEW:4.13 - Using the support view with neighboring patterns
+
+Read neighboring patterns in this order once the support-view record is in place:
+
+- Use `G.2` when the support view becomes palette-first, tradition-facing atlas work. That is one local specialization of atlas support, not the common family head.
+- Use `F.18` when the burden is label choice around support-view, atlas, palette, or map language. Naming notes may explain the labels, but they do not change the base substrate or the support question.
+- Use `A.6.P` when one passage collapses view, surface, space, map, or palette into one umbrella word. Repair the layer split first, then continue.
+- Use `A.0` when cold-reader glossing is what the current line lacks. Glosses help recognition; they do not replace the base support-view record.
+- Use `G.5`, `G.10`, `C.19`, or `C.24` when the passage starts deciding outputs, survivor sets, or planning posture.
+
+If a neighboring passage would change the described object or the base substrate posture, this pattern is no longer the right owner for that sentence. Reopen the base line or reroute.
+
+### A.19.SUPPORT-VIEW:5 - Archetypal Grounding
+
+
+#### A.19.SUPPORT-VIEW:5.1 - System
+
+**Tell.** One QD line already has one declared archive-side substrate. Readers still need one ordinary support reading that keeps local archive neighborhoods readable, but no shortlist, atlas bundle, or shipping result exists yet.
+
+**Show.** The active support head is ordinary `CrossSurfaceSupportView`. It reads one declared archive-side substrate line whose active source surface remains `Archive` and whose active space burden remains recoverable through `BehaviorCharacteristicSpace@ed=12`. The only extra support kept visible here is `ArchiveNeighborhoodMetric@ed=4`, because the current question is simply how local archive neighborhoods shape the reader's interpretation of the already-declared line.
+
+**Cash-out.** This is one thinner support view over one already-declared substrate. It keeps one source surface and one support question in view without introducing several `TypedSetViews`, one outcome map, one transition-support object, or one bridge-loss note. Downstream interpretation gets the extra legibility without accidentally turning the metric note into ontology.
+
+#### A.19.SUPPORT-VIEW:5.2 - Episteme
+
+**Tell.** One synthesis line already keeps a base SoTA palette and one derived tradition-facing reading. The reader now needs one stronger atlas-form support view that keeps the base palette recoverable while showing how several tradition-facing views and cross-level notes sit together.
+
+**Show.** The active support head is `CrossSurfaceAtlasView`. It reads one declared palette-facing substrate line whose source-surface family remains `TraditionPalette`, whose active derived view remains `TraditionFront`, and whose base palette remains recoverable through `SoTAPaletteDescriptionId`. The cited spaces stay explicit as `TraditionComparisonSpace@ed=3` and `AdoptionOutcomeSpace@ed=2`. The atlas reading keeps together the declared set views `TraditionFront` and `TraditionArchive`, the mapping `PaletteToAdoptionOutcomeMap@ed=1`, the distortion note `CrossTraditionComparisonLossNote@ed=1`, and the local `G.2` specialization `TraditionAtlasView`.
+
+**Cash-out.** Here the stronger atlas form is honest because several declared views, spaces, and qualifiers really must stay visible together. Even so, it still does not redefine the base palette. The reader can recover the palette, the active derived set surface, the cited spaces, the outcome map, the support note, and the local specialization together.
+
+#### A.19.SUPPORT-VIEW:5.3 - Boundary anti-case
+
+**Tell.** One note starts from "atlas view" language, then quietly changes the base outcome posture and argues that only one shortlisted tradition should remain live.
+
+**Show.** This is not a support view anymore. It is mixing substrate repair with candidate-pool or publication policy.
+
+**Cash-out.** Reopen the substrate if the base relation or posture changed. Route retention or shipping decisions to `C.19`, `C.24`, `G.5`, or `G.10` instead of using support-view prose to smuggle them in.
+
+#### A.19.SUPPORT-VIEW:5.4 - Use-situation spread
+
+Use the support-view family this way across different working situations:
+
+| Working situation | Choose | What must stay explicit | Common miss avoided |
+| --- | --- | --- | --- |
+| Archive-side QD line that only needs one metric cue so the reader can see local neighborhoods | Thin support | One base substrate, one support question, one active source surface, and the specific metric qualifier doing work. | Forcing atlas form into a case that only needs one simple reading aid. |
+| Palette-first synthesis line that really needs several declared views, spaces, mappings, and loss notes held together | Atlas support, with `G.2` when the case is tradition-facing | The base palette, derived view, cited spaces, qualifying map/distortion supports, and the reason thin support is insufficient. | Letting the strongest visible atlas overlay replace the palette-first base line. |
+| Derived tradition/front note that only needs to remind the reader how to read one already-declared substrate | Thin support | The support question, derived-view recoverability, and the base palette when it would otherwise disappear. | Treating every derived tradition reading as if it were already full atlas work. |
+| Passage that starts changing the outcome posture, survivor set, or publication result | Do not use this pattern | The boundary out to substrate repair, publication, or policy stays explicit. | Smuggling retargeting or policy decisions into support-view prose. |
+
+### A.19.SUPPORT-VIEW:6 - Bias-Annotation
+
+
+- **Gov bias.** The pattern prefers explicit reuse of existing view law over local convenience talk about one `view`.
+- **Arch bias.** The pattern keeps substrate, support reading, publication, and policy separated even when one merged story would sound simpler.
+- **Prag bias.** The pattern prefers thinner support views by default and treats atlas form as one stronger option rather than a universal baseline.
+- **Did bias.** The pattern insists on recoverability of the base palette or base source surface because readers otherwise over-trust the strongest visible support form.
+
+### A.19.SUPPORT-VIEW:7 - Conformance Checklist
+
+Treat a line as conforming only if every gate below passes.
+
+| ID | Gate question | Fail when | Repair or reroute |
+| --- | --- | --- | --- |
+| `CC-A19SV-1` | Is one already-declared base substrate or source/set-surface entry point named explicitly? | The support view floats free of the line it is supposed to help read. | Cite the base substrate or the recoverable source/set-surface entry point. |
+| `CC-A19SV-2` | Is the support view explicitly docked to existing `A.6.3` / `E.17.0` law? | The text presents itself as one autonomous local theory of views. | State the docking explicitly or reroute to the owner that really defines the missing view law. |
+| `CC-A19SV-3` | Does the line preserve the same described object and keep the base substrate as semantic center? | The support prose retargets the object of talk or repairs the substrate in place. | Reopen under `A.19.SURF-SPACE`, `A.6.4`, or the appropriate neighboring owner. |
+| `CC-A19SV-4` | Are the current source surface, any active set surface, and any active derived view or base palette recoverable? | The support reading hides the base palette, base surface, or active derived set surface behind one stronger visible overlay. | Restore the missing recoverability fields. |
+| `CC-A19SV-5` | Is the active profile chosen honestly: thin support or atlas support? | Atlas language is used by reflex, or the line needs atlas support but never says so. | State the profile explicitly and justify why thin support is or is not sufficient. |
+| `CC-A19SV-6` | If atlas form is active, is the composite atlas-support record complete? | Several views, spaces, mappings, or qualifiers are being used, but `TypedSetViews`, cited spaces, mappings, qualifiers, or the reason thin support is insufficient remain hidden. | Publish the missing atlas-support record or step back to thin support. |
+| `CC-A19SV-7` | Are support qualifiers really support-only and reused from the substrate side? | Metrics, transitions, maps, or distortion notes silently change the base relation or posture, or become mandatory core everywhere. | Keep them as foregrounded qualifiers only, or reopen the substrate declaration. |
+| `CC-A19SV-8` | If `TraditionAtlasView` is used, is it kept as one `G.2` specialization rather than the common family head? | The local specialization is treated as if every support case were already palette-first atlas work. | Restore the split between `CrossSurfaceAtlasView` and `TraditionAtlasView`. |
+| `CC-A19SV-9` | Does the line stay out of publication and policy work? | The prose starts deciding who survives, what is published, or what is shipped. | Split the line and route those burdens to `G.5`, `G.10`, `C.19`, or `C.24`. |
+| `CC-A19SV-10` | Could a cold reader choose thin support versus atlas support and fill one support-view record without hidden invention? | The reader still needs surrounding memo knowledge to know which head to use, what fields matter, or why atlas is or is not needed. | Fill the compact record from `4.12` and state why thin support is enough or why atlas support is necessary. |
+| `CC-A19SV-11` | Is the support question explicit enough to tell the reader what this view helps inspect now? | The view mostly restates the base theory, but the practical inspection burden stays unnamed. | State the support question directly and keep the base line recoverable beside it. |
+| `CC-A19SV-12` | When specialization, naming repair, publication, or policy becomes the next burden, is the reroute explicit? | The support prose silently drifts into `G.2`, `F.18`, `A.6.P`, `G.5`, `G.10`, `C.19`, or `C.24` without naming the boundary. | Split the line and cite the owning neighbor instead of stretching support-view prose across that boundary. |
+
+### A.19.SUPPORT-VIEW:8 - Common Anti-Patterns and How to Avoid Them
+
+
+| Anti-pattern | Why it fails | Repair |
+| --- | --- | --- |
+| Writing as if `A.19.SUPPORT-VIEW` were a fresh autonomous theory of views | It duplicates existing `A.6.3` / `E.17.0` law and collapses viewpoint/view/surface discipline. | State the docking to existing view law explicitly. |
+| Letting atlas language become the default meaning of every support case | The strongest visible support form silently becomes the family head. | Keep ordinary thinner support views lawful and say when atlas form is actually needed. |
+| Treating support pins as the view's semantic center | Metrics, transitions, or distortion notes then replace the base substrate. | Keep the base substrate and support question explicit, and keep support pins optional. |
+| Letting a derived tradition view replace its base palette | The reader loses palette-first recoverability and mistakes one local interpretation for the default ontology. | Keep `DerivedViewKind` and `BasePaletteRef` visible together. |
+| Turning the support view into publication or pool policy | The reader can no longer tell whether the text is helping interpret the line or deciding what survives and gets published. | Keep `G.5`, `G.10`, `C.19`, and `C.24` outside this pattern. |
+| Forcing atlas form into every first reading | Simple cases become over-typed and harder to use. | Start with the thinner support-view form and widen only when the current need genuinely requires it. |
+
+### A.19.SUPPORT-VIEW:9 - Consequences
+
+**Benefits**
+
+- Readers get one explicit support layer without losing the declared substrate.
+- FPF keeps one common support-view family without forcing `G.2` or another local specialization to carry the whole burden.
+- Atlas-form support remains available where it helps, but thinner support views stay lawful.
+
+**Trade-offs**
+
+- The declaration must keep more boundaries explicit: view law, substrate, publication, and policy no longer collapse into one comfortable narrative.
+- Some cases that once looked like "just a view" must now say whether they are thin support, atlas support, publication, or policy.
+- The pattern requires the base palette or source surface to stay recoverable, which can make local prose slightly less terse.
+
+### A.19.SUPPORT-VIEW:10 - Rationale
+
+The family needs one common support-view pattern because neither of the earlier extremes is good enough.
+
+If everything stays in the substrate, the substrate starts carrying interpretive and atlas-form burdens that are not part of its semantic center.
+
+If everything stays inside one local specialization such as `G.2`, the common support burden gets trapped inside one tradition-facing case and starts looking like a local accident rather than a reusable family.
+
+`A.19.SUPPORT-VIEW` is the middle answer:
+
+- it keeps the support layer generic and reusable;
+- it keeps the layer explicitly under existing view law;
+- it lets ordinary thinner support views remain first-class;
+- and it reserves stronger atlas form for the cases that truly need it.
+
+That is why `CrossSurfaceAtlasView` appears here as one stronger support specialization, while `TraditionAtlasView` remains one `G.2` specialization of it rather than the common head.
+
+### A.19.SUPPORT-VIEW:11 - SoTA-Echoing
+
+| Practice line | Primary accepted basis | Pressure disciplined here | Practical safeguard bought | Adoption stance |
+| --- | --- | --- | --- | --- |
+| Support readings should remain describedEntity-preserving views rather than becoming fresh semantic centers. | `A.6.3` and `E.17.0` already require views to preserve the described entity and not silently add new intensional commitments. | `SV-0`, `SV-1`, `SV-8`, `CC-A19SV-2`, `CC-A19SV-3`. | Keeps support prose from quietly turning into retargeting or new view-law invention. | **Adopt.** Reuse the existing view law directly rather than minting one local alternative. |
+| Palette-first SoTA synthesis already treats atlas support as optional neighboring support rather than the default meaning of `Tradition` or `SoTAPaletteDescription`. | `G.2:4.7` already keeps `TraditionAtlasView` as optional neighboring support and preserves palette-first recoverability. | `SV-5`, `SV-6`, `SV-7`, `CC-A19SV-5`, `CC-A19SV-8`, worked slice `5.2`. | Keeps atlas form available without letting the strongest visible support layer replace the base palette or family head. | **Adopt/Adapt.** Adopt palette-first recoverability and adapt it into one reusable common support family. |
+| Contemporary QD / manifold / atlas practice uses both lighter projection-style support and stronger atlas/geometry support, while heavier metrics and transition models remain case-dependent rather than universally mandatory. | Current atlas/manifold/QD practice treats heavier map, metric, and transition apparatus as optional discipline tied to the case rather than as mandatory baseline machinery. | `SV-4`, `SV-5`, `SV-6`, `CC-A19SV-5`, `CC-A19SV-6`, `CC-A19SV-7`. | Keeps thinner support lawful, keeps atlas support reusable but non-default, and prevents heavy formal support from being smuggled in by default. | **Adapt.** Keep the stronger formal support available without pretending it is the baseline for every support reading. |
+
+### A.19.SUPPORT-VIEW:12 - Relations
+
+- **Builds on:** `A.19.SURF-SPACE`, `A.19`, `A.6.3`, `E.17.0`, `E.17`.
+- **Coordinates with:** `G.2`, `G.5`, `G.10`, `C.19`, `C.24`, `A.6.P`, `A.0`.
+- **Specialized locally by:** `CrossSurfaceAtlasView`, and in palette-first tradition work `TraditionAtlasView` under `G.2`.
+- **Does not replace:** substrate declaration, selector outcome publication, shipping metadata, or live candidate-pool / enactment policy.
+
+### A.19.SUPPORT-VIEW:End
 
 ---
 
@@ -54153,6 +55280,14 @@ Disputes often orbit the string (“we hate that word”). By separating **sense
 * Where overlap exists with another context, propose an **alignment bridge**.
 * Keep your home; record the mapping and any known divergence in reading.
 
+**11.5a Keep support-view labels subordinate to the base surface.**
+
+* When a naming pass talks about one palette, front, archive, shortlist, or candidate surface, keep that base surface recoverable on the Name Card.
+* Use thinner support-view wording when the burden is local comparison across candidate labels, sense-seeds, rejected candidates, or guarded-head notes.
+* Escalate to atlas wording only when the naming explanation truly depends on several declared views, spaces, mappings, or distortion qualifiers being visible together (for example one cited `OutcomeMapRef` plus a `BridgeDistortionNote`).
+* Those cited spaces or qualifiers stay naming-side reuse of already-declared substrate support; they do not let naming passages invent one new source-to-outcome relation or one new posture locally.
+* A guarded-head note remains naming governance: it can explain why one head word misleads across lawful readings, but it does not decide substrate ownership or publication policy.
+
 **11.6 Publish and steward.**
 
 * Publish the name with MDS, subtitle, rung, home contact, examples.
@@ -54164,7 +55299,7 @@ Disputes often orbit the string (“we hate that word”). By separating **sense
 
 **11.8 The “Friday test.”**
 
-* On a busy Friday, could a competent colleague apply the name correctly using only the MDS, subtitle, and two examples? If not, refine before ratification: it too overloaded with meanings to be helpful.
+* On a busy Friday, could a competent colleague apply the name correctly using only the MDS, subtitle, and two examples? If not, refine before ratification: it is too overloaded with meanings to be helpful.
 
 ### F.18:12 - Examples (worked mini‑cases for engineer‑managers)
 
@@ -54194,6 +55329,12 @@ Disputes often orbit the string (“we hate that word”). By separating **sense
 * *Home H (Quality)* mints **Lot**: “An integrated whole packaged and tracked as one item.” **Structural whole**.
 * **Unification:** Bridge notes: “A **Lot** may originate from a single **Batch** or a slice of a Batch; not every Batch yields a single Lot.” Relation mapping: **MemberOf** (Batch membership) vs **ComponentOf**/**Whole** (Lot integration). *Loss note:* membership evidence does **not** imply part‑whole structure; part‑whole structure does **not** imply shared production conditions.
 
+**12.5 “Palette label” vs “Atlas label” (NQD/OEE naming support).**
+
+* A naming pass compares candidate labels over one active palette and shortlist. The card keeps the active palette recoverable and uses thinner support-view wording, because the question is only which label best fits the current candidate spread.
+* Later, the same naming discussion must explain why one label misleads unless the reader can see the palette together with a derived archive, an `OutcomeMapRef`, and one `BridgeDistortionNote`. In that case atlas wording is allowed, but the card still names the base palette and records that the atlas is only optional support for the explanation.
+* In both cases, guarded-head notes stay on the naming side: they explain alias risk or mismatch patterns, not who owns the substrate or publication surface.
+
 ### F.18:13 - Anti‑Patterns & Failure Modes (what to avoid)
 
 **13.1 “Global name first.”**
@@ -54214,6 +55355,9 @@ Defining a name by appealing to another Draft at the same rung or higher. **Fix:
 **13.6 “Alias/Plain drift.”**
 Letting a Plain label or alias accumulate extra meanings absent in the underlying row. **Fix:** periodic label review; prune metaphors that start bending sense; respect the alias budget.
 
+**13.7 “Atlas label does substrate work.”**
+Letting atlas or support-view language quietly replace the base candidate surface or decide architectural ownership. **Fix:** keep the base palette/front/archive/shortlist recoverable, use atlas wording only when several declared views or qualifiers are jointly load-bearing, and route substrate/publication ownership questions to the owning patterns.
+
 ### F.18:14 - Assurance & Conformance (human‑only checks)
 
 #### F.18:14.1 - Author checklist (before requesting review).
@@ -54225,6 +55369,7 @@ Letting a Plain label or alias accumulate extra meanings absent in the underlyin
 * [ ] I surveyed near‑neighbors and recorded my decision to align, merge, or keep separate.
 * [ ] I produced both **Unified Tech** and **Plain** labels (per E.10), with the same sense and pointing to the same **Row ID**.
 * [ ] Dependencies point **only downward**; no sideways or upward pulls.
+* [ ] If I used support-view or atlas wording, the card still names the base source surface and states why thinner support wording did or did not suffice.
 * [ ] I scheduled a **refresh date** and listed 2–3 usage examples.
 
 #### F.18:14.2 - Reviewer checklist (at the gate).**
@@ -54236,6 +55381,7 @@ Letting a Plain label or alias accumulate extra meanings absent in the underlyin
 * [ ] Alignment bridges are proposed where overlap exists, with explicit reading of convergence/divergence.
 * [ ] The ladder discipline holds: acyclic, downward‑only dependencies.
 * [ ] The **Plain** label does not smuggle extra commitments; **Unified Tech** and **Plain** remain co‑referential and point to the same **Row ID**.
+* [ ] Support-view or atlas wording, if present, leaves the base source surface recoverable and does not smuggle substrate or publication decisions into a naming note.
 * [ ] Lifecycle state is accurate (Idea/Draft/Pilot/Ratified/Deprecated) and dated.
 
 #### F.18:14.3 - Lightweight outcomes.**
@@ -54289,6 +55435,9 @@ Every Name Card **SHALL** declare its `CardMode ∈ {MintNew, DocumentLegacy}`. 
 
 **CC-F18-17 (Procedure is not optional in MintNew mode).**  
 A **MintNew** Name Card is **non-conformant** if it records only the chosen label, Kind, and a short rationale while omitting the seed candidate set, the NQD-front, the sense-seed read-through, or the mismatch patterns that justify the final choice. A card filled in after an intuition-first label pick does **not** satisfy F.18.
+
+**CC-F18-18 (Support-view labels keep their base surface).**
+When a Name Card or worked naming note uses support-view or atlas wording, it **SHALL** keep the base palette/front/archive/shortlist or candidate surface recoverable, **SHALL** use atlas wording only when several declared views or qualifiers are jointly load-bearing for the naming explanation, and **SHALL NOT** let guarded-head notes stand in for substrate ownership or publication policy decisions.
 
 ### F.18:16 - Anti‑patterns & safe rewrites (normative)
 
@@ -54507,6 +55656,7 @@ Example 2 (§F.18:18.2) shows one naming instantiation of this unpacking.
 
 ### F.18:25 - SoTA‑Echoing (post‑2015 practice alignment)
 
+
 * **Neural WSD & sense evaluation (2015→).** P2’s sense‑seed read‑through is a human‑scale analogue of modern **word‑sense disambiguation** evaluation, where models are scored by the fraction of examples assigned the correct sense and by error profiles across sense inventories. Post‑2015 neural WSD benchmarks (e.g., multi‑domain evaluations reported in ACL venues) motivate the explicit `{too‑narrow, on‑target, too‑wide, wrong‑prototype}` labelling and the `θ_P` threshold for **SemanticFidelity**.
 * **Quality‑Diversity & multi‑objective search (MAP‑Elites, NSGA‑II families, 2015→).** P1’s NQD‑front and **CC‑F18‑13** follow the same discipline as QD/NSGA‑style archives in optimisation: maintain a **set of non‑dominated candidates** over a vector of objectives rather than a single scalar score. The lexical Q‑tuple `{SemanticFidelity, CognitiveErgonomics, OperationalAffordance, AliasRisk}` is deliberately small so that human authors can inspect a Pareto frontier in the same way QD methods expose illumination archives.
 * **Design‑space exploration & idea ranking (mechanical/industrial design, 2018→).** The PSOA‑style Name‑Card tables echo contemporary **design‑space ranking** practice, where candidate concepts are compared on diversity and quality rather than on a single “score”. Explicitly surfacing *why* one candidate dominates another improves auditability and supports teaching, mirroring recent work on ranking ideas for both diversity and quality in engineering design.
@@ -54522,10 +55672,9 @@ All patterns that propose or consume unified names and rows in Part F; any Part 
 
 **Coordinates with.**
 **A.17/A.18** for measurement lexicon when rows concern measurable notions (Characteristic/Scale/Level/Coordinate vocabulary), ensuring neutral naming aligns with canonical terms and eases external alignment via Bridges.  
+**A.19.SUPPORT-VIEW / A.6.P / G.2** when naming work needs support-view, space/view/publication, or tradition-atlas discipline; keep those as neighboring precision checks while leaving `F.18` responsible for the naming decision itself.
 
 ### F.18:End
-
----
 
 # Part G – Discipline SoTA Patterns Kit
 
@@ -56089,17 +57238,23 @@ A conforming `G.2` work product is built by iterating the following conceptual l
 
 #### G.2:4.7 - Atlas views stay optional neighboring support over one declared palette and declared set surfaces
 
-- `TraditionAtlasView` is one declared optional neighboring support view over one palette and any declared front, archive, or shortlist surfaces drawn from it.
+- `TraditionAtlasView` is one declared optional neighboring support view over one palette and any declared front, archive, or shortlist surfaces drawn from it, while the cited substrate-bearing line, the active source/set surface, and any cited `SearchSpaceRef`, `OutcomeSpaceRef`, or other declared space refs remain recoverable.
+- `TraditionAtlasView` is the `G.2` use-site specialization of `CrossSurfaceAtlasView`; keep the generic support-view contract in `A.19.SUPPORT-VIEW`.
 - It is not the default meaning of `Tradition` or `SoTAPaletteDescription`.
-- An atlas view may collect several declared `TypedSetViews`, declared bridges, and declared `BridgeDistortionNote` entries so that cross-level structure remains readable.
+- Stay palette-first when the harvest or synthesis question can already be judged from the declared palette together with ordinary front, archive, or shortlist surfaces.
+- Use `TraditionAtlasView` only when the reader must hold several declared derived views or support qualifiers together to see why one tradition grouping, omission risk, or comparison boundary matters.
+- A conforming `TraditionAtlasView` must keep the same atlas-support record that `A.19.SUPPORT-VIEW` requires by value: recoverable base palette, active source/set surface, `TypedSetViews` when several declared set views are held together, cited `SearchSpaceRef`, `OutcomeSpaceRef`, or other declared space refs, cited mappings such as `OutcomeMapRef`, cited qualifiers such as `SpaceMetricRef`, `TransitionSupportRef`, and `BridgeDistortionNote`, and one explicit reason why thinner `CrossSurfaceSupportView` is insufficient here.
 - It may help explain where one tradition, method family, or retained line sits relative to another, but it should not silently redefine the base palette or one derived front/archive view.
-- If one atlas view uses several typed views over the same source surface, keep the active set surface, any cited `SpaceRef`, and any `BridgeDistortionNote` recoverable instead of letting `TraditionAtlasView` hide those choices.
+- If one atlas view uses several typed views over the same source surface, keep the active set surface, any cited `SearchSpaceRef`, `OutcomeSpaceRef`, or other declared space ref, and any `BridgeDistortionNote` recoverable instead of letting `TraditionAtlasView` hide those choices.
 - Treat the atlas layer as optional neighboring support, not as ordinary palette-first core. Use `SpaceMetricRef` or `TransitionSupportRef` only when one declared comparison, reachability, transition, or level-shift claim actually depends on that formal support; otherwise leave them unstated.
 - Use `OutcomeMapRef` only when the atlas must show how one declared set surface maps into one outcome or effect surface; it does not turn the palette, front, archive, or shortlist into that outcome surface.
-- `SearchSpace` / `OutcomeSpace` doctrine, transition-aware novelty, metric-transfer loss, and cross-level geometry belong to a heavier formal layer: keep them outside ordinary palette-first use unless the current comparison, reachability, transition, or multilevel claim explicitly needs them, and do not pull them in merely because a neighboring extension can use them.
+- If one atlas reading would materially change the base source-to-outcome relation or distortion posture, reopen the substrate declaration instead of treating that change as one local `G.2` convenience.
+- If one thinner `CrossSurfaceSupportView` already keeps the question legible, prefer that thinner support form and leave atlas specialization unused.
+- `SearchSpaceRef` / `OutcomeSpaceRef` doctrine, transition-aware novelty, metric-transfer loss, and cross-level geometry belong to a heavier formal layer: keep them outside ordinary palette-first use unless the current comparison, reachability, transition, or multilevel claim explicitly needs them, and do not pull them in merely because one stronger comparative reading is mathematically available.
 - If no declared atlas view is needed, stay with the simpler palette-first and declared-derived-view surfaces.
 - Different atlas views may rely on different declared spaces, metrics, bridges, or transition supports; keep that plurality visible rather than forcing one geometry monoculture across every neighboring view.
 - If several mathematical traditions remain plausible, keep that plurality visible rather than pretending the atlas already fixes one final formalism.
+- If the burden is naming-side only, route that wording choice through `F.18` rather than letting atlas support language carry the naming decision by itself.
 
 ### G.2:5 - Archetypal Grounding (System / Episteme)
 
@@ -56136,6 +57291,7 @@ Lenses tested: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**.
 | **CC‑G2‑ClaimSheets‑1**   | For each included `Tradition`, a conforming pack **MUST** include a `ClaimSheetId` that declares home context, `describedEntity`, evidence anchors, and freshness notes; it **MUST NOT** fuse cross‑`Tradition` claims by default.                                                                                                                 | Keeps plurality explicit and prevents hidden crossings.                             |
 | **CC‑G2‑Palette‑1**       | A conforming pack **MUST** export `SoTA_Set@CG‑Frame` and `SoTAPaletteDescription` as citable views (via `SoTA_SetId`, `SoTAPaletteDescriptionId`) and ensure both are reconstructible from pack components by id (no hidden extra structure).                                                                                                      | Prevents downstream scraping of prose; keeps “M2 output” explicit.                  |
 | **CC‑G2‑Palette‑2**       | If the pack exports one derived tradition view such as `TraditionFront` or `TraditionArchive`, it **MUST** keep `SoTAPaletteDescription` explicit as the default base palette, keep that derivation recoverable, and cite the declared `Q` or reachability/coverage rule that disciplined that view. Derived tradition views **MUST NOT** silently replace the palette's default meaning. | Keeps non-default tradition views recoverable without redefining palette-first semantics. |
+| **CC‑G2‑AtlasSupport‑1**  | If the pack exports `TraditionAtlasView`, it **MUST** satisfy the same atlas-support record required by `A.19.SUPPORT-VIEW`: keep the base palette and active source/set surface recoverable, name `TypedSetViews` when several declared set views are held together, cite any active `SearchSpaceRef`, `OutcomeSpaceRef`, or other declared space refs, cite any active `OutcomeMapRef`, `SpaceMetricRef`, `TransitionSupportRef`, or `BridgeDistortionNote` only when they do real explanatory work, state why thinner `CrossSurfaceSupportView` is insufficient here, and **MUST NOT** use atlas form when palette-first or thinner `CrossSurfaceSupportView` is sufficient. | Keeps the `G.2` specialization no weaker than the general atlas-support contract and preserves space-role recoverability. |
 | **CC‑G2‑describedEntityMap‑1** | A conforming pack **MUST** include `G.2g describedEntity Map`, mapping (at minimum) each load‑bearing claim family and each minted/evolved public id to `describedEntity := ⟨GroundingHolon, ReferencePlane⟩`, and citing the relevant `ClaimSheetId` and evidence anchors (A.10 and/or G.6 paths when used).                                         | Keeps plane/holon boundaries explicit and citable.                                  |
 | **CC‑G2‑Alignment‑1**     | Any cross‑`Tradition` consolidation **SHALL** be presented as either (i) disjoint parallel claims with explicit divergence, or (ii) an explicitly justified alignment proof; any reuse across `Tradition` boundaries **MUST** use explicit crossing bundles per `CC‑GCORE‑CROSS‑1` (delegation).                                                  | Prevents silent semantic leakage.                                                   |
 | **CC‑G2‑GammaSynth‑1**    | If the pack asserts cross‑source / cross‑`Tradition` **fusion/substitution** (not merely “parallel divergent claims”), it **MUST** emit `GammaEpistSynthId` records satisfying `G.2:Ext.GammaEpistSynthesis` (provenance union + explicit alignment refs + assurance tuple refs). If no fusion/substitution is asserted, the pack **SHALL** state so explicitly. | Restores the load‑bearing synthesis artefact (alias: `G.2‑F`) without shadow specs. |
@@ -56172,6 +57328,10 @@ Lenses tested: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**.
 * **AP‑G2‑4: Unanchored pedagogy.**
   **Avoid:** micro‑examples without carriers (they become folklore).
   **Do instead:** bind micro‑examples to A.10 anchors and declare `describedEntity`.
+
+* **AP‑G2‑5: Atlas by default.**
+  **Avoid:** writing as if every tradition comparison or NQD/OEE note needs `TraditionAtlasView`, or as if atlas wording renames the palette itself.
+  **Do instead:** keep the base palette and derived front/archive/shortlist explicit; use atlas form only when several declared views or support qualifiers must be held together, and prefer thinner `CrossSurfaceSupportView` when that is enough.
 
 ### G.2:9 - Consequences
 
@@ -56217,6 +57377,8 @@ This pattern aligns its *method options* (via Extensions and authoring practice)
   * `E.10` (lexical/ontological rules; strict distinction; kind‑suffix discipline)
   * `E.19` (conformance discipline)
   * `A.10` (provenance anchors / carriers)
+  * `A.19.SUPPORT-VIEW` (generic support-view / atlas discipline when `TraditionAtlasView` is used)
+  * `A.6.P` (space/view/publication precision restoration when palette/support claims collapse)
   * `B.3` (trust, freshness/decay as cited owners)
   * `F.9` (bridges and CL as cited owners)
   * `F.17` (UTS publication discipline; via delegation)
@@ -56235,6 +57397,7 @@ This pattern aligns its *method options* (via Extensions and authoring practice)
 * **Relates to:**
 
   * `G.13` (interop surfaces when external indices are used)
+  * `F.18` (naming-side support wording when the burden is label choice rather than synthesis geometry)
 
 ### G.2:End
 
