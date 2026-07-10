@@ -3,16 +3,16 @@
 > First Principles Framework (FPF) is a standards-style pattern language for turning difficult engineering, research, management, and mixed human/AI work into explicit, reviewable, improvable reasoning.
 
 - **Author:** Anatoly Levenchuk, with AI-agent assistance
-- **Version:** June 2026
+- **Version:** July 2026
 - **Status:** Normative kernel, eternal alpha: already used in working projects and development programs, while still evolving.
 
 FPF helps when a project has outgrown one clever conversation. It is useful when meanings, claims, options, evidence, architecture, work decisions, publication forms, and improvement criteria must stay coherent across people, teams, tools, time, or AI agents.
 
 Use FPF as a reference model and pattern language, not as a linear textbook. Start from the working question you bring from your project. Bring in internal FPF terms only after they help you keep the work precise.
 
-This readme is a thin first-entry rendering of FPF for engineers, researchers, managers, reviewers, and AI-assisted project workers deciding where FPF can help. It foregrounds the project questions most likely to pay off first and deliberately coarsens, omits, or defers the full pattern language, source history, and relation structure. When a claim becomes important, return to the Preface, Table of Content, and governing pattern body rather than treating this readme as the specification.
+This readme is a thin first-entry rendering of FPF for engineers, researchers, managers, reviewers, and AI-assisted project workers deciding where FPF can help. It foregrounds the project questions most likely to pay off first and deliberately coarsens, omits, or defers the full pattern language, source publications, source-use history, and relation structure. When a claim becomes important, return to the Preface, Table of Content, and governing pattern body rather than treating this readme as the specification.
 
-The plain starting move is: name the project thing at stake. FPF often calls it a holon when the thing is being treated as a whole with parts: a machine, product, organization, method, body of knowledge, publication system, AI-agent arrangement, or local framework. Once the thing is named, FPF asks what structure, claim, decision, evidence, description, work, or improvement question is actually live.
+The plain starting move is: name the project object at stake. FPF often calls it a holon when the object is being treated as a whole with parts: a machine, product, organization-as-system, body of knowledge, publication system, work occurrence, discipline, AI-agent arrangement, or local framework admitted by a pattern. A method or role may be the live project object, but then FPF uses method or role patterns rather than calling it a holon by label. Once the object is named, FPF asks what structure, claim, decision, evidence, description, work, or improvement question is actually live.
 
 ## Decide Whether FPF Fits
 
@@ -45,16 +45,16 @@ Stronger AI does not remove the need for FPF. AI can generate fluent options qui
 
 Core ideas in plain language:
 
-- first name the project thing under concern; when it is treated as a whole with parts, FPF calls it a holon;
+- first name the project object under concern; when it is treated as a whole with parts, FPF calls it a holon;
 - local teams may use local meanings, but translation must be explicit when work crosses a boundary;
-- the thing itself, its description, a dashboard about it, a decision about it, and the work done to change it are not the same;
-- architecture is structure of that thing in a context, not the diagram, document, approval, or plan about it;
+- the project object itself, its description, a dashboard about it, a decision about it, and the work done to change it are not the same;
+- architecture is structure of that holon or project object in a context, not the diagram, document, approval, or plan about it;
 - serious architecture work can move from problem pressure to candidate structures, selected structures, decisions, method and work, actual structures, and feedback;
 - keep several options alive until the comparison is clear enough to choose;
 - say what "better" means before optimizing or scoring;
 - make trust depend on evidence, freshness, scope, and intended use;
 - publish different views for different readers without changing the underlying claim;
-- when source structure must become an explanation, route, or narrative for a reader, state what structure is preserved, deliberately coarsened, abstracted, omitted, or lost, and where source return happens;
+- when selected source structure must become an explanation, reader-facing ordering, or narrative for a reader, state what structure is preserved, deliberately coarsened, abstracted, omitted, or lost, and which named source basis or governing pattern receives the return when loss matters;
 - use mathematics or formal models when they clarify what structure is preserved, what is lost, and what can be checked;
 - build domain or local FPF-grounded frameworks as dependents of FPF Core, not as silent rewrites of the Core.
 
@@ -66,23 +66,27 @@ The entries below are not a required sequence. They are common places where FPF 
 
 ### 1. Develop or review architecture
 
-Use this when you need to design, explain, review, or improve the architecture of a product, organization, technical system, document system, AI-agent setup, research program, local practice, or other thing with important internal structure.
+Use this when you need to design, explain, review, or improve the architecture of a product, organization, technical system, document system, AI-agent setup, research program, local practice, or other holon with important internal structure.
 
-FPF helps you start from the thing being changed or described, not from the drawing. It asks which structures are unknown, candidate, selected, expected, or actual; which architecture characteristics are under pressure; which alternatives must remain alive; which decision is now binding; which method or work will realize the selected structures; and what operation, measurement, or feedback can reopen the architecture.
+FPF helps you start from the holon being changed or described, not from the drawing. It asks which structures are unknown, candidate, selected, expected, or actual; which architecture characteristics are under pressure; which alternatives must remain alive; which decision is now binding; which method or work will realize the selected structures; and what operation, measurement, or feedback can reopen the architecture.
 
-Typical first result: a short P2S flow card or architecture question note that names the described holon, bounded context, problem pressure, unknown or selected structures, architecture characteristics, candidate or decision owner, work or feedback owner, and what real selected structure is still not settled by the current architecture statement.
+Typical first result: a short P2S flow card or architecture question note that names the described holon, bounded context, problem pressure, unknown or selected structures, architecture characteristics, candidate or decision locus, work or feedback locus, and what real selected structure is still not settled by the current architecture statement.
 
-First inspect: `C.32.P2S`, `C.30`, `A.22`, `C.32`, `C.32.PAD`, `C.32.ADR`, `C.33`, `C.34`, `C.35`, `C.30.ASV`, `C.30.AD`, `C.31`, `C.32.CONWAY`, and `B.2` or `B.2.P` when the work may reidentify the whole being discussed.
+Entry seed: architecture-relevant problem pressure -> `ProblemToStructureArchitecturingFlowCard@Project` -> return to `C.30`, `C.30.TFS-REL`, `C.32`, `C.32.PAD`, A.15-family work patterns, `E.23`, or `G.11` when the next claim is stronger than the P2S card.
 
-### 2. Write rules, methods, and work-process documents
+First inspect: `C.32.P2S`, `C.30`, `C.30.TFS-REL`, `A.22`, `A.22.CGUS`, `C.32`, `C.32.PAD`, `C.32.ADR`, `C.33`, `C.34`, `C.35`, `C.30.ASV`, `C.30.AD`, `C.31`, `C.32.CONWAY`, and `B.2` or `B.2.P` when the work may reidentify the whole being discussed.
 
-Use this when you need to write or review technical regulations, procedures, method descriptions, operating instructions, work-process descriptions, standards-like project documents, API documents, contracts, SLAs, protocols, permissions, or compliance wording.
+### 2. Write working rules, methods, and work-process documents
 
-FPF helps you keep the described method separate from the method itself, a plan separate from performed work, responsibility separate from permission, an interface contract separate from implementation, and a published document separate from actual execution. It can also describe chains of methods when the chain itself is the subject, while keeping actual work occurrences separate from the document that says how work should be done.
+Use this when you need a document that people, teams, tools, or AI agents can use to do the same kind of work: technical regulation, procedure, method description, operating instruction, work-process description, standard-like project document, API document, contract, SLA, protocol, or permission text.
 
-Typical first result: a cleaned method, regulation, or interface outline that names what is being governed, the method or interface being described, the roles and responsibilities involved, the expected work result, and any evidence, gate, permission, or compliance claim that the document does not yet justify.
+FPF helps decide what the document must actually produce: a method, method description, work plan, interface boundary, work-entry condition, publication use, or performed-work record. That matters because one text can guide work, describe a method, authorize a transition, or report completed work, but it should not silently do all of those jobs at once.
 
-First inspect: `A.6`, `A.6.B`, `A.6.C`, `A.15`, `A.15.1`, `A.15.2`, `A.15.3`, `A.15.4`, `E.18`, `E.18.1`, `E.8`, and `E.19`.
+Typical first result: a working-document outline that names the governed object, intended users, method or interface being described, relevant roles, expected work result, and any stronger work, evidence, gate, permission, or publication claim that needs its direct governing pattern.
+
+Entry seed: governed object and document pressure -> method or method-description record plus neighboring work, role, interface, evidence, gate, permission, tool-use, or publication claims -> return to the direct governing pattern when the document starts launching work, fixing completion, or authorizing a transition.
+
+First inspect: `A.6`, `A.6.B`, `A.6.C`, `A.15`, `A.15.1`, `A.15.2`, `A.15.3`, `A.15.4`, `C.24`, `E.18`, `E.18.1`, `E.18.3`, `A.22.CGUS`, `E.8`, and `E.19`.
 
 ### 3. Compare alternatives and make a local choice
 
@@ -91,6 +95,8 @@ Use this when a team needs to compare technologies, vendors, designs, policies, 
 FPF helps you state what is being compared, which characteristics matter, which candidates are still in play, what evidence is missing, when a local choice is justified, and how to publish a selected set without hiding the comparison logic.
 
 Typical first result: a comparison note with declared characteristics, candidate set, evidence gaps, the present scope of the choice, and what a selected-set publication may and may not be used to decide.
+
+Entry seed: candidate or option field -> comparison frame, archive/front/pool, selected set, or local choice -> return to decision, publication, or refresh governing pattern only after the choice relation is explicit.
 
 First inspect: `A.19`, `A.19.ECS`, `C.11`, `C.18`, `C.19`, `G.0`, and `G.5`.
 
@@ -102,7 +108,9 @@ FPF helps you preserve partly formed concerns without pretending they are alread
 
 Typical first result: a problem card, problem portfolio, or problem note that records what has been accepted, what remains only a cue, which context is involved, and which first pattern family can use the problem statement.
 
-First inspect: `C.22.2`, `C.2.2a`, `A.16`, `A.16.1`, `A.16.2`, `B.4.1`, and `B.5.2.0`.
+Entry seed: cue, anomaly, opportunity, or pressure -> preserved cue set and `ProblemCard@Context` or portfolio -> return to the first downstream governing pattern only after the problem-side record is admitted.
+
+First inspect: `C.22.2`, `C.2.2a`, `A.16`, `A.16.1`, `A.16.2`, `B.4.1`, `B.5.2`, and `B.5.2.0`.
 
 ### 5. Define what "better" means and run improvement
 
@@ -112,49 +120,59 @@ FPF helps you define characteristics for evaluation, evaluate what is being impr
 
 Typical first result: a quality-and-improvement note with evaluation characteristics, one evaluation of the object under improvement, a portfolio of proposed changes, and a condition for stopping or reopening the cycle.
 
-First inspect: `A.19.ECS`, `E.22`, `E.23`, `C.16`, `C.25`, `E.21`, `E.9.DA`, and `E.2.DA` when the object is an FPF artifact.
+Entry seed: object version under concern -> evaluation frame and first evaluation result -> `E.23` improvement unfolding with candidate repair loci, protected tradeoffs, re-evaluation, and stop/continue/switch decision.
 
-### 6. Prepare evidence, assurance, or gate decisions before commitment
+First inspect: `A.19.ECS`, `E.22`, `E.23`, `A.22.CGUS`, `C.16`, `C.25`, `E.21`, `E.9.DA`, and `E.2.DA` when the object is an FPF artifact.
 
-Use this when a project cannot responsibly act yet because evidence, assurance, constraints, gate validity, or decision permission is unclear.
+### 6. Prepare a costly or hard-to-reverse action
 
-FPF helps you separate what is being claimed from the evidence path, assurance argument, internal constraint validity, gate decision, local choice, and performed work. That separation matters when the cost of acting too early is high.
+Use this when the team is ready to act, but the next move spends real money, changes architecture, launches team work, crosses an external boundary, creates a promise, accepts risk, or is expensive to undo.
 
-Typical first result: a commitment-readiness note that lists the claim, the evidence or assurance still needed, the gate or decision condition, and the work that remains blocked until those checks exist.
+FPF helps choose the action mode. The project may act now on a named basis, run a smaller experiment, narrow the claim, collect a specific piece of evidence, name an assurance use, pass a gate, make a decision, or return to the work or architecture pattern that governs the stronger claim.
+
+Typical first result: a commitment-readiness note that names the action, the claim it relies on, the minimum basis for that action, any smaller experiment that can reduce cost, any gate or decision boundary, and what the project can do next.
+
+Entry seed: costly or hard-to-reverse action -> commitment-readiness note -> act on named basis, run a smaller experiment, narrow the claim, or return to evidence, assurance, gate, decision, work, or architecture pattern when that stronger claim is live.
 
 First inspect: `A.10`, `B.3`, `A.20`, `A.21`, `C.11`, `C.28`, and the relevant work or architecture pattern if the claim is about planned or performed work.
 
-### 7. Check timing, freshness, rhythm, and action windows
+### 7. Account for timing, freshness, rhythm, and action windows
 
-Use this when a project depends on timing: freshness, latency, rate, cadence, action window, synchronization, inertia, aging, or rhythm.
+Use this when a result depends on timing: freshness, latency, rate, cadence, action window, synchronization, inertia, aging, or rhythm.
 
-FPF helps you separate timing information from evidence, permission, work completion, or vague urgency. It can say what timestamp, interval, cadence, freshness limit, action window, or rhythm claim is being used, and when that claim is no longer current enough for action.
+FPF helps connect timing to the action that uses it. It can say what timestamp, interval, cadence, freshness limit, action window, or rhythm matters, which decision or work depends on it, and when refresh, delay, or re-check changes the next move.
 
-Typical first result: a timing note that names what the timing is about, the relevant time relation or rhythm, the freshness or action-window limit, and the action that remains blocked when the timing claim is stale or underspecified.
+Typical first result: a timing note that names what the timing is about, the relevant time relation or rhythm, the freshness or action-window limit, and the decision, work, publication, comparison, or refresh action that uses it.
 
-First inspect: `C.27`, `A.10`, `A.20`, `A.21`, `C.11`, and the pattern that governs the thing whose timing matters.
+Entry seed: object whose timing matters -> temporal aspect, currentness window, freshness limit, or action-window rule -> return to the affected decision, work, evidence, publication, comparison, or `G.11` refresh governing pattern.
 
-### 8. Use causal explanations, interventions, responsibility, and model outputs safely
+First inspect: `C.27`, `A.10`, `A.20`, `A.21`, `C.11`, and the pattern that governs the object whose timing matters.
 
-Use this when a project says that one thing causes another, a model output justifies an action, a change will produce an effect, or a role is responsible for an outcome.
+### 8. Use causal explanations, interventions, responsibility, and model outputs for action
 
-FPF helps you separate causal use, counterfactual use, intervention claims, responsibility claims, model-output reliance, evidence, and decisions. It keeps a plausible explanation, prediction, or dashboard output from becoming permission to act.
+Use this when a project wants to rely on a causal explanation, forecast, simulation, dashboard signal, model output, intervention claim, or responsibility assignment to choose what to do next.
 
-Typical first result: a causal-use or model-output-use note that names the claim, the intervention or counterfactual being considered, the evidence or validation still needed, the responsibility limit, and the decision or work that remains blocked.
+FPF helps turn an explanation or model output into a governed next move: study, smaller experiment, intervention, decision, responsibility assignment, work, or stop condition. It makes the intended use explicit before the output is carried into action.
 
-First inspect: `C.28`, `A.10`, `B.3`, `A.20`, `A.21`, `C.11`, and the domain pattern that governs the affected thing.
+Typical first result: a causal-use or model-output-use note that names the claim, the action or intervention being considered, the minimum basis needed for that use, the responsibility boundary, and what can be done next.
 
-### 9. Compare descriptions, dashboards, explanations, and views of the same thing
+Entry seed: causal explanation, intervention, responsibility, or model output -> causal-use or counterfactual-use frame with action and responsibility boundary -> return to study, decision, work, evidence, or stop condition under the direct governing pattern.
 
-Use this when a project has several descriptions, dashboards, explanations, renderings, model slices, or views and needs to know whether they are about the same thing, serve the same concern, or can be relied on in the same way.
+First inspect: `C.28`, `A.10`, `B.3`, `A.20`, `A.21`, `C.11`, and the domain pattern that governs the affected object.
 
-FPF helps you keep the thing being described separate from its description, publication form, rendering, viewpoint, and same-thing claim. It can keep a diagram, dashboard, generated explanation, or view from silently becoming the thing itself, evidence, assurance, or decision.
+### 9. Compare descriptions, dashboards, explanations, and views of the same described object
 
-Typical first result: a description-use note that names what is being described, which description or view is being used, how it is published or rendered, whether the same thing is really being addressed, and what the publication may and may not be used to claim.
+Use this when a project has several descriptions, dashboards, explanations, renderings, model slices, or views and needs a working picture for different roles without losing the described object.
 
-First inspect: `E.17`, `E.17.0`, `E.17.EFP`, `A.15.4`, `A.7`, `C.30.AD`, and the pattern that governs the described thing.
+FPF helps name the described object, the description or view being used, the publication or rendering form, the role concern, and the next claim that the description is supposed to support. It also shows what each view preserves, coarsens, omits, or loses.
 
-### 10. Give things better names
+Typical first result: a description-use note that names what is being described, which description or view is being used, how it is published or rendered, whether the same described object is really being addressed, and what the publication may be used to claim next.
+
+Entry seed: described EntityOfConcern -> description, view, rendering, publication form, correspondence, representation transition, or same-use relation -> return to the governing pattern when the view is used for evidence, architecture, decision, work, or assurance.
+
+First inspect: `E.17`, `E.17.0`, `E.17.EFP`, `A.6.2`, `A.6.3.NAR`, `A.6.3.RT`, `A.6.3.CSC`, `A.6.4`, `A.15.4`, `A.7`, `A.22.CGUS`, `C.30.AD`, `C.30.TFS-REL`, `C.33`, `C.34`, `C.35`, and the pattern that governs the described object.
+
+### 10. Give project objects, relations, and claims better names
 
 Use this when project terms are misleading, overloaded, politically convenient, too broad, too local, or hard to translate between teams.
 
@@ -162,27 +180,33 @@ FPF helps you name products, roles, work processes, architecture elements, stand
 
 Typical first result: a naming card or term sheet that says what is being named, which local contexts use the name, which candidate names were rejected, which plain and technical names are allowed, and which alternate names are risky.
 
-First inspect: `F.17`, `F.18`, `F.19`, `E.10`, `E.10.ARCH`, and the subject pattern that governs the thing being named.
+Entry seed: object, kind, relation, or use needing a better name -> bounded contexts, candidate names, and name card -> return to bridge, UTS, publication, or subject pattern before the name changes work.
 
-### 11. Repair wording in technical documents before it changes action
+First inspect: `F.17`, `F.18`, `F.19`, `E.10`, `E.10.ARCH`, and the subject pattern that governs the object, relation, or claim being named.
 
-Use this when standards, specifications, contracts, policies, dashboards, model cards, explanations, or working documents use words that may quietly change what can be claimed or done.
+### 11. Clarify wording that drives work
 
-FPF helps you repair wording by first recovering the ontology: what thing, relation, value, evidence path, publication use, gate, decision, work, or architecture claim is actually being made. The repair is not word-policing; it succeeds only when the repaired text still tells someone what can now be used, checked, or named, or which related pattern to apply.
+Use this when a standard, specification, contract, policy, dashboard, model card, explanation, or working document contains wording that people or AI agents will use to decide what can be claimed or done.
 
-Typical first result: a repaired paragraph, claim register, term sheet row, or non-use decision that says what the text may now be used for and what claim or action remains blocked.
+FPF helps repair the wording after recovering the working object, relation, value, use, and affected claim. The goal is not word-policing; the result should leave a usable claim, a clear use boundary, a revised paragraph, or an exit to the direct pattern that governs a stronger action.
 
-First inspect: `E.10`, `E.10.ARCH`, `F.18`, `F.19`, `A.6.P`, `C.2.P`, `C.16.P`, `C.16.Q`, `C.30.P`, `A.6.F`, and `A.6.M`.
+Typical first result: a repaired paragraph, claim register, term sheet row, or use-boundary note that says what the text may now be used for and what stronger claim or action needs another pattern.
 
-### 12. Decide whether mathematics or formal modeling would help
+Entry seed: wording that may change action -> recovered kind, relation, use, and rewritten claim or use-boundary result -> return to the direct governing pattern for any stronger action.
 
-Use this when intuition is not enough and a mathematical model, formal declaration, invariant, or explicit structure could make the work easier to review, compare, or improve.
+First inspect: `E.10`, `E.10.ARCH`, `F.18`, `F.19`, `A.6.P`, `C.2.P`, `B.3.5`, `C.13`, `C.3`, `C.16.P`, `C.16.Q`, `C.30.P`, `A.6.F`, and `A.6.M`.
 
-FPF helps with two opposite mistakes: missing useful mathematics, and using mathematics without saying what structure it preserves and what it loses. It keeps mathematical-lens use, formal declarations of the assumed substrate, mechanism import or realization, and first-principles-to-work carry-through as different claims that may need different patterns.
+### 12. Decide whether a mathematical model or formal declaration would help
+
+Use this when ordinary prose and intuition no longer hold the needed dependencies, constraints, dynamics, comparison, probability, optimization, or invariants.
+
+FPF helps decide whether a mathematical lens or formal substrate gives a practical gain. It asks what structure the model preserves, what it hides or loses, what claim the model supports, and which validation, measurement, architecture, domain, or work pattern must govern stronger use.
 
 Typical first result: a short modeling note that names what is being modeled, the candidate mathematical lens, any formal declaration that is needed, preserved and lost structure, payoff, validation limit, and next project action.
 
-First inspect: `C.29`, `A.6.0`, `A.6.1`, `E.18.1`, `C.16`, `C.27`, `C.30.LCA`, `C.30.ILC`, and the domain pattern that governs the modeled claim.
+Entry seed: project difficulty that may need formal structure -> candidate lens or formal substrate with preserved and lost structure -> return to validation, next FPF use, or P2W carry-through.
+
+First inspect: `C.29`, `A.6.0`, `A.6.1`, `E.18.1`, `B.3.5`, `C.13`, `C.3`, `C.16`, `C.27`, `C.30.LCA`, `C.30.ILC`, and the domain pattern that governs the modeled claim.
 
 ### 13. Build a state-of-the-art or option portfolio
 
@@ -192,19 +216,23 @@ FPF helps you harvest alternatives, keep novelty and diversity visible, define c
 
 Typical first result: a SoTA pack, option portfolio, candidate set, archive, or selector-ready publication with declared scope, comparison characteristics, and refresh condition.
 
-First inspect: `G.0`, `G.1`, `G.2`, `G.5`, `G.10`, `G.11`, `C.18`, `C.19`, `A.19`, and `A.19.ECS`.
+Entry seed: scope and current-front question -> reference harvest, candidate/archive/front, comparison, selection, and publication -> return to `G.11` when a source-currentness relation or reference-edition state changes.
+
+First inspect: `G.0`, `G.1`, `G.2`, `G.5`, `G.11`, `C.18`, `C.19`, `A.19`, and `A.19.ECS`.
 
 ### 14. Build a domain or local FPF-grounded framework
 
-Use this when a team needs its own FPF-grounded guide for a domain, organization, role context, or local practice, such as a hydroponic-cucumber framework, neural-network architecture framework, enterprise architecture-review framework, or Codex-process framework.
+Use this when a team needs its own pattern language for a domain, organization, role context, or local practice, such as a hydroponic-cucumber framework, neural-network architecture framework, enterprise architecture-review framework, or Codex-process framework.
 
-FPF helps you keep the FPF Core, domain principle framework, local practice framework, source pack, selected pattern set, relation records, edition dependencies, publication/access carriers, quality loop, and refresh route from collapsing into one all-in-one carrier, one callable route, or one useful checklist. This is the normal adoption path when a group wants FPF for its own field without turning local policy into a Core rule.
+FPF helps choose the architecture of that local framework: Core dependency, domain source set, selected pattern set, relation records, edition dependencies, publication or access carrier, quality loop, and refresh trigger. This is the normal adoption path when a group wants FPF for its own field without silently changing Core meaning.
 
-Typical first result: a family-and-structure map or principle-framework architecture decision that names the framework edition, bounded context, FPF Core dependency, selected first patterns, relation and publication carriers, source pack, quality route, and refresh route.
+Typical first result: a family-and-structure map or principle-framework architecture decision that names the framework edition, bounded context, FPF Core dependency, selected first patterns, relation and publication carriers, source pack, quality loop, and refresh trigger.
 
-In the first hour, write the context note, source-pack stub, first PFAD question, provisional name route, one to three pattern candidates, relation rows, first-entry carrier, quality route, and refresh trigger. Then open `E.4.DPF` for the full authoring spine.
+Entry seed: local context and domain reference set -> PFAD, PFR, pattern candidates, source pack, quality loop, publication or access carrier, and refresh trigger -> return to `E.4.DPF` for the full authoring spine.
 
-First inspect: `E.4`, `E.4.FPF` when the form of FPF itself is live, `E.4.PFAD`, `E.4.DPF`, `E.4.DPF.DA`, `E.4.PFR`, `G.2`, `E.8`, `E.11`, `E.17`, `F.18`, and `G.11`.
+In the first hour, write the context note, source-pack stub, first PFAD question, provisional naming card, one to three pattern candidates, relation rows, first-entry carrier, quality loop, and refresh trigger. Then open `E.4.DPF` for the full authoring spine.
+
+First inspect: `E.4`, `E.4.FPF` when the form of FPF itself is live, `E.4.PFAD`, `E.4.DPF`, `E.4.DPF.DA`, `E.4.PFR`, `G.2`, `C.24`, `E.8`, `E.11`, `E.17`, `F.18`, and `G.11`.
 
 ## One-Minute Example
 
@@ -216,7 +244,7 @@ Without FPF, the conversation often mixes architecture, vendor comparison, safet
 
 With FPF, the first pass can become a small set of explicit project objects:
 
-- holons in play: the product, the agent stack, and the team or toolchain that will change it are not the same thing;
+- holons in play: the product, the agent stack, and the team or toolchain that will change it are not the same holon;
 - architecture flow: what problem pressure should become which candidate, selected, expected, and actual structures;
 - comparison frame: which alternatives are in the candidate set;
 - evaluation characteristics: cost, latency, controllability, safety, maintainability, time to first use, and other project-specific characteristics;
@@ -234,7 +262,7 @@ FPF is a pattern language for disciplined thinking in projects where ordinary pr
 It helps teams:
 
 - keep meanings stable when work crosses teams, tools, documents, and time;
-- separate the thing being discussed from diagrams, dashboards, explanations, promises, decisions, and actual work;
+- separate the project object being discussed from diagrams, dashboards, explanations, promises, decisions, and actual work;
 - state what a claim can responsibly be used for before people rely on it;
 - compare options without collapsing too early to one favorite;
 - define quality criteria before improvement starts;
@@ -261,7 +289,7 @@ FPF is most useful when the cost of semantic drift, premature convergence, hidde
 
 Start with the first practical entry that matches your project question. Then inspect the named pattern family and apply its Problem frame, Solution, examples, and checklist.
 
-Use the `Preface` for the cross-cutting ideas behind the pattern language. Use the Table of Content when you already know the pattern family or need a search-oriented overview. Use extended cases only when the compact first entry is not enough.
+Use the `Preface` for the cross-cutting ideas behind the pattern language. Use the Table of Content when you already know the pattern family or need a search-oriented overview. Use `E.11.PUR` when you need a bounded recommendation or sequence of pattern uses for one concern. Use extended cases only when the compact first entry is not enough.
 
 If you use an AI assistant, attach or index `FPF-Spec.md` and ask for plain-language project help first. Let internal pattern names enter the conversation only when they make the reasoning more precise.
 
@@ -274,17 +302,17 @@ Help me structure this project:
 
 Use plain language for engineer-managers.
 Propose the first useful FPF entry:
-architecture, rules and methods, API or interface wording, permission or compliance wording, comparison and choice,
-problem shaping, quality improvement, evidence and assurance,
-temporal claims, causal or model-output use, publication or view use,
-naming, technical-text precision, mathematical modeling,
+architecture, working rules and methods, comparison and choice,
+problem shaping, quality improvement, commitment-ready action,
+timing and freshness, causal or model-output use, description or view use,
+naming, wording that drives work, mathematical modeling,
 current options and state of the art,
 or a domain/local FPF-grounded framework.
 For the selected entry, give:
-1. the main project thing or claim at stake,
+1. the main project object or claim at stake,
 2. the first useful written result,
 3. the first FPF patterns to inspect,
-4. what still cannot be decided, trusted, or used responsibly.
+4. where the short entry ends, and which stronger claim needs a governing pattern.
 ```
 
 ## Citation
