@@ -8,6 +8,9 @@ set SCRIPT_DIR=%~dp0
 set REPO_ROOT=%SCRIPT_DIR%..
 set PYTHON=python
 
+REM Ensure UTF-8 output for cp1251 consoles
+set PYTHONIOENCODING=utf-8
+
 cd /d "%REPO_ROOT%"
 
 echo ============================================
@@ -18,6 +21,12 @@ echo ============================================
 if errorlevel 1 (
     echo Error: python not found
     exit /b 1
+)
+
+REM Remove hash cache to force fresh writes (cross-platform safety)
+if exist "%REPO_ROOT%\skills\fpf\.fpf_hashes.json" (
+    del "%REPO_ROOT%\skills\fpf\.fpf_hashes.json"
+    echo (cleared hash cache for cross-platform safety)
 )
 
 echo.

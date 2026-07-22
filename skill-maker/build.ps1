@@ -8,6 +8,9 @@ $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $RepoRoot = Split-Path -Parent $ScriptDir
 $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 
+# Ensure UTF-8 output for cp1251 consoles (fix Unicode print crashes)
+$env:PYTHONIOENCODING = "utf-8"
+
 Set-Location $RepoRoot
 
 Write-Host "============================================"
@@ -20,6 +23,13 @@ try {
 } catch {
     Write-Host "Error: $Python not found. Set PYTHON env var."
     exit 1
+}
+
+# Remove hash cache to force fresh writes and avoid cross-platform cache poisoning
+$CacheFile = Join-Path -Path $RepoRoot -ChildPath "skills\fpf\.fpf_hashes.json"
+if (Test-Path $CacheFile) {
+    Remove-Item -Path $CacheFile -Force
+    Write-Host "(cleared hash cache for cross-platform safety)"
 }
 
 Write-Host ""

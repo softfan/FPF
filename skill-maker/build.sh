@@ -21,6 +21,13 @@ if ! command -v "$PYTHON" &>/dev/null; then
     exit 1
 fi
 
+# Remove hash cache to force fresh writes (cross-platform safety)
+CACHE_FILE="$REPO_ROOT/skills/fpf/.fpf_hashes.json"
+if [ -f "$CACHE_FILE" ]; then
+    rm -f "$CACHE_FILE"
+    echo "(cleared hash cache for cross-platform safety)"
+fi
+
 echo ""
 echo "[1/4] Splitting spec..."
 "$PYTHON" skill-maker/split_fpf_spec.py split \
