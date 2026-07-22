@@ -22,6 +22,12 @@ import tempfile
 from pathlib import Path
 from typing import List, Tuple
 
+# Ensure UTF-8 stdout for cp1251 consoles (Unicode characters like ✗)
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except AttributeError:
+    pass
+
 _SCRIPT_DIR = Path(__file__).resolve().parent
 _REPO_ROOT = _SCRIPT_DIR.parent
 
@@ -230,18 +236,25 @@ def test_rebuild(t: TestRunner):
         if r.returncode == 0:
             orig = SPEC_PATH.read_bytes()
             rebuilt = tmp_path.read_bytes()
-            t.check("rebuild size match",
-                    abs(len(orig) - len(rebuilt)) < 100,
-                    f"orig={len(orig)}, rebuilt={len(rebuilt)}, delta={len(orig) - len(rebuilt)}")
-            if orig != rebuilt:
-                for i, (a, b) in enumerate(zip(orig, rebuilt)):
+            # Normalize line endings (CRLF→LF) for cross-platform comparison.
+            # On WSL, git may check out FPF-Spec.md with CRLF endings, but
+            # Python's text-mode write produces LF-only output, so the rebuilt
+            # file has LF while the original has CRLF.  Stripping \r before
+            # comparing gives us a pure content comparison.
+            orig_nl = orig.replace(b"\r\n", b"\n")
+            rebuilt_nl = rebuilt.replace(b"\r\n", b"\n")
+            t.check("rebuild size match (normalized)",
+                    abs(len(orig_nl) - len(rebuilt_nl)) < 100,
+                    f"orig={len(orig_nl)}, rebuilt={len(rebuilt_nl)}, delta={len(orig_nl) - len(rebuilt_nl)}")
+            if orig_nl != rebuilt_nl:
+                for i, (a, b) in enumerate(zip(orig_nl, rebuilt_nl)):
                     if a != b:
                         t.check("rebuild byte-identical or trailing-newline only",
-                                i >= len(orig) - 2,
-                                f"First diff at byte {i}/{len(orig)}")
+                                i >= len(orig_nl) - 2,
+                                f"First diff at byte {i}/{len(orig_nl)}")
                         break
                 else:
-                    t.check("rebuild length diff <= 1", abs(len(orig) - len(rebuilt)) <= 1)
+                    t.check("rebuild length diff <= 1", abs(len(orig_nl) - len(rebuilt_nl)) <= 1)
     finally:
         tmp_path.unlink(missing_ok=True)
 
