@@ -3,7 +3,7 @@
 HCD is a pattern language for deriving human capability demand from later Work, designing and sustaining development arrangements, judging human contribution, transfer and retention, and evaluating instructional material under stated audience, task, support and time conditions.
 
 > **Author:** Anatoly Levenchuk with AI-assisted development and review.
-> **Version:** 11 September 2026 — nineteen-pattern edition
+> **Version:** 20 September 2026 — nineteen-pattern edition
 > **Status:** Eternal alpha: used in working development projects and open to continuing correction.
 > **License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) for original framework content; third-party material retains its own terms.
 > **Publication:** [FPF repository](https://github.com/ailev/FPF). [Citation](#citation).
@@ -18,7 +18,7 @@ Use the Readme when you have a working difficulty but do not yet know the direct
 
 | Unit | Reader use |
 | :--- | :--- |
-| [Human Capability Development Principles Framework Readme](#human-capability-development-principles-framework-readme) | Start from a question about demand, target, profile, programme, Method, support, practice, assessment, transfer, retention, revision, continuing development, bounded HCD Method-repertoire change, or HCD culture. |
+| [Human Capability Development Principles Framework Readme](#human-capability-development-principles-framework-readme) | Connect feasible development, evidence of a person's contribution, continuation and material repair; follow changed conditions to the affected result. |
 | [Preface](#preface) | Keep human holder, later Work, performance evidence, development and authority distinct. |
 | [Instructional-material evaluation profile](#instructional-material-evaluation-profile) | Select material properties and qualified evidence; construct a specification only when needed, then diagnose the actual material contribution. |
 | [Authoritative Pattern Bodies](#hcd-1) | Use HCD.1–HCD.19 under their own entry conditions; reader order is not a mandatory sequence. |
@@ -53,130 +53,80 @@ Use the Readme when you have a working difficulty but do not yet know the direct
 
 ## Practical entries
 
-This **Human Capability Development Principles Framework — Nineteen-pattern edition** helps a person, manager, human-capability practitioner, provider or another accountable decision owner derive human demand, diagnose a limiting target, compare a profile, compose and compare development programmes, select a development Method, design representative practice, arrange support, conduct and progress focused practice, judge performance evidence, test unfamiliar transfer and retention, revise an affected development arrangement, sustain continuing development, refresh the HCD Method repertoire, deliberately continue and change an HCD cultural relation, or construct and apply an instructional-material evaluation.
+Human Capability Development connects what a person needs to contribute in later work with a feasible way to develop that contribution and evidence of what the person can now do. Tools, AI and providers can support the work; their contribution must remain visible when interpreting the person's performance. Instructional material can also be evaluated and repaired without making a claim about a particular person's development.
 
-All patterns HCD.1–HCD.19 are available here. This nineteen-pattern edition gives their authoritative guidance, worked cases, source limits, checks and return conditions in the bodies. The instructional-material profile connects HCD.18 and HCD.19 while preserving the direct uses of HCD.1–HCD.17. The Readme provides discovery, connected applications, source qualification and publication boundaries; it does not reconstruct the body Methods.
-The entries below are selected examples, not a catalogue or coverage boundary. Bring the actual question. If no example fits, use the Table of Contents or direct patterns to find the relevant contribution. The entries are independent situation-first starts, not stages in a lifecycle.
+The examples below show how results from several methods work together. They are not stages to complete for every question. Use an adequate existing result where it fits; return only to the question left open by a missing input or changed condition. The Table of Contents gives direct access to all HCD.1–HCD.19 in this nineteen-pattern edition.
 
-### HCD-DEMAND - Derive one person's demand from representative later Work
+You can ask an assisting agent to explain or apply these methods in the language of your work, without framework jargon, while preserving the distinctions needed for the question.
 
-- **Situation:** A job title, competency list, course request, platform score, MethodDescription, or AI rollout is being treated as proof of what one person must be able to do.
-- **Question:** What must this exact human contribute in which representative later Work, under which conditions, and what evidence makes that demand current?
-- **First useful result or honest blocker:** A human capability-demand account, prospective demand hypothesis, outside-HCD return, or `demand-evidence-blocked` result naming each absent consumed value and retry predicate.
-- **Start with:** [HCD.1](#hcd-1).
-- **Stop or return:** Stop at the demand disposition. Do not select a programme. Return missing Method, specialist, assignment, authority, access, environment, tool, organization, clinical, or target-domain results to their direct owners.
+### HCD-FEASIBLE - Make a development proposal fit the work and available support
 
-### HCD-TARGET - Distinguish a human limitation from a non-training cause
+**Situation:** A development proposal contains useful topics and exercises, but its complete tasks, learner effort and provider contribution have not been shown to fit together.
 
-- **Situation:** Performance is inadequate or unstable and training, practice, coaching, motivation work, or treatment is being proposed before decision-changing rivals have been compared.
-- **Question:** Which smallest changeable human limitation is supported, or which non-training branch owns the next result?
-- **First useful result or honest blocker:** A qualified intervention target with evidence, any still-plausible rival, protected conditions, intended observation, specialist boundary, and reopen condition; or a non-training return naming the actual owner or missing result, blocked HCD decision, safe boundary, and retry condition.
-- **Start with:** [HCD.3](#hcd-3) only when the same-holder HCD.1 account or an equivalent qualified later-Work input is recoverable.
-- **Stop or return:** Stop at the target or non-training result. Select no intervention, programme, treatment, surveillance, assignment, or employment action.
+**Question:** What can be offered within the available time and support while preserving the intended contribution to later work?
 
-### HCD-PROFILE - Balance simultaneous capability claims without inventing mastery
+**First useful result or blocker:** A comparable, feasible arrangement or task fragment; otherwise the target, resource or support constraint that prevents the comparison.
 
-- **Situation:** A skills matrix, level, mastery score, course path, Method hierarchy, or role profile hides which contributions are supported, which gap matters, and what must not be traded away.
-- **Question:** What should be preserved, investigated, deferred, narrowed, or returned before one profile priority can be chosen?
-- **First useful result or honest blocker:** A claim-by-claim condition-qualified profile, trade-offs, priority characteristics, and recommendation or unresolved question; a bounded `C.11` choice obtained by applying its rule to the required current inputs and conditions; or `profile-decision-blocked` with the exact missing value and retry condition.
-- **Start with:** [HCD.4](#hcd-4) only when the same-holder HCD.1 scope/result frame or an equivalent qualified demand account is recoverable.
-- **Stop or return:** Stop at the comparison, recommendation, lawful bounded choice, or exact blocker. Do not turn the profile into a programme choice, authority, commitment, ongoing-Work steering, or transformation evidence.
+**Start with:** [HCD.2 - Compose and Compare Capability-Development Programmes for Later Work](#hcd-2) when the intended work, target and starting conditions are available. Its personal and learning-product branches need different inputs.
 
-### HCD-PROGRAMME - Compare feasible development arrangements for later Work
+**Stop or return:** Stop with the comparison needed for the present decision. Return a missing support contribution to its provider, a changed intended outcome to its owner, or a non-training cause to the practice that can address it. Programme comparison does not authorize launch.
 
-- **Situation:** A named person has later Work, a qualified target or profile, and finite time and support, yet a syllabus, course label or single proposal is being treated as the programme. Or a learning-product author is designing for a future audience before a particular learner is known.
-- **Question:** Which materially different feasible development arrangements can supply the needed contributions, and how do their complete benefits, burdens, support dependence and evidence needs compare?
-- **First useful result or honest blocker:** For a known person, a condition-qualified programme comparison or exact missing input; for an unknown future learner, a learning-product design return rather than a personal recommendation.
-- **Start with:** [HCD.2](#hcd-2), using same-holder HCD.1, HCD.3 and HCD.4 values or qualified equivalents when a personal comparison is current.
-- **Stop or return:** Stop at the comparison or design return. Programme choice, commitment, launch, performed learning and effect remain separate.
+1. **Establish whose contribution the proposal concerns.** For one person, [HCD.1 - Derive Human Capability Demand from Representative Later Work](#hcd-1) supplies the required contribution and its basis. [HCD.3 - Diagnose the Limiting Capability, Misconception, or Behaviour](#hcd-3) distinguishes a human development target from a tool, access, assignment or other limitation. Where simultaneous work competes for development effort, [HCD.4 - Architect a Balanced Human Capability Profile Across Simultaneous Work](#hcd-4) supplies the priorities and contributions to protect. HCD.2 consumes those results in comparing feasible alternatives. For a future audience whose individual learners are not yet known, it instead returns learning-product design values or candidate fragments.
+2. **Make the alternatives comparable through complete tasks.** In the constructed [programme-design application](#application-return-to-a-programme-and-instrument-designer), three compositions each use 340 learner hours over 34 weeks. A change from ten to six hours per week leaves 204 hours: each original proposal exceeds the allowance by 136 hours. HCD.2 asks what work, practice and evidence would be removed or replaced. Merely multiplying allocations by 0.6 does not show that the promised outcomes survive.
+3. **Construct the missing development contribution.** Retain the detailed task fragment already available for one option and construct the smallest comparable fragment for another, using the same intended output and audience assumptions. [HCD.5 - Select Capability-Development Methods](#hcd-5) selects how to develop the target action from the starting evidence, or proposes conditional choices from stated entry assumptions for a future audience; [HCD.6 - Design Representative Practice Tasks](#hcd-6) turns that choice into a whole task, criterion, permitted help and relevant variation. Their results let HCD.2 compare what the options actually provide.
+4. **Test the support needed at the time of use.** [HCD.7 - Arrange Providers, Access, Tools, and AI Support](#hcd-7) uses those tasks to establish actual feedback, assessment, access and capacity. The example's 240 teaching hours divided among twelve participants is a planning allocation, not twenty hours of individual contact each. Doubling participants with unchanged individual checking demand doubles that checking work. [HCD.8 - Build the Recursive Capability-Development Arrangement](#hcd-8) enters only for a missing contribution that must be obtained or built. Return its cost and operating limits to the comparison.
 
-### HCD-METHOD - Select a development Method for the actual target
+A useful substitution may emerge from this fragment comparison. It does not yet establish that a complete 204-hour programme exists. Changing the intended outcome is another possible decision, which must be explicit before comparing a narrower offer.
 
-- **Situation:** Coaching, deliberate practice, retrieval, interleaving, motivation work, AI tutoring, or another intervention family is being selected by familiarity or label.
-- **Question:** Which Method plausibly fits the target action, starting attempt, mechanism, task, learner, provider, risk and evidence need?
-- **First useful result or honest blocker:** A bounded Method selection or shortlist with expected action, support and observation; an exact non-training return; or the missing input needed to decide.
-- **Start with:** [HCD.5](#hcd-5), after the qualified target and relevant starting evidence are recoverable.
-- **Stop or return:** Stop at Method fit. A selection is not evidence that the Method or programme is effective.
+### HCD-EVIDENCE - Decide what a successful attempt permits you to rely on
 
-### HCD-SUPPORT - Establish the support that will actually be available
+**Situation:** A learner reaches a correct answer after help, or succeeds in familiar work, and someone needs to decide what this permits them to rely on in later work.
 
-- **Situation:** A teacher, mentor, specialist, platform, tool, AI system or block of hours is named, but the exact contribution, competence, access, capacity, checking or fallback is not established.
-- **Question:** Which provider, source, tool, AI, environment and human-check contributions are required, who or what can supply each one, and will they operate at the needed time and load?
-- **First useful result or honest blocker:** An enabled support arrangement with actual access and fallback, or the exact missing contribution. HCD.8 is entered only when obtaining or building that missing contribution is selected.
-- **Start with:** [HCD.7](#hcd-7), from a selected programme, Method, practice task or other bounded development use.
-- **Stop or return:** Availability is not service operation, learner performance or a development effect. Return unsupported provider, access, authority, privacy, safety or capacity values to their owners.
+**Question:** Which contribution is supported, under what conditions, and what part of development should change?
 
-### HCD-PRACTICE - Conduct a focused attempt, correction and retry
+**First useful result or blocker:** A bounded performance conclusion and, when needed, a targeted change to the task or assistance; an unresolved transfer, delay or support question remains separate.
 
-- **Situation:** “Hours practised”, a score, a model answer, or “feedback was given” hides the person's first attempt, actual help, correction and changed retry.
-- **Question:** What did the person first attempt, which information-bearing feedback arrived, what did the person change, what happened on the targeted retry, and what should be tried next?
-- **First useful result or honest blocker:** A focused-practice episode preserving first response, support, criterion-bearing feedback, learner correction, retry, unresolved error and next focus.
-- **Start with:** [HCD.9](#hcd-9), using a target action, representative task, selected Method and actually available support.
-- **Stop or return:** Stop at the episode result. Use HCD.10 when the next question is variation, spacing, retrieval, source, interleaving, support or challenge across episodes; use HCD.11–HCD.13 for stronger performance, transfer or retention claims.
+**Start with:** [HCD.11 - Assess Performance in Representative Work](#hcd-11), using the attempt and its actual conditions. If practice is being conducted, [HCD.9 - Perform Deliberate Practice with Feedback](#hcd-9) preserves the first attempt, supplied help, feedback, correction and retry that assessment needs.
 
-### HCD-PERFORMANCE - Judge the person's contribution, not only the submitted answer
+**Stop or return:** Stop when the available evidence is sufficient for the intended reliance or local revision. Obtain another observation only for a consequential unresolved claim whose evidence can be obtained at worthwhile cost.
 
-- **Situation:** A grade, document, helped answer or successful task is being used as evidence that a person can do later work.
-- **Question:** What did this person demonstrably contribute under the required conditions, and what bounded claim does that support?
-- **First useful result or honest blocker:** A capability-evidence account separating observations, help, material errors and inference; or a missing observation, assessment defect or criterion to obtain.
-- **Start with:** [HCD.11](#hcd-11), using a compatible HCD.1 demand frame or equivalent qualified input.
-- **Stop or return:** Stop at evidence sufficient for the stated use. Return missing domain criteria, inaccessible tasks and stronger assurance or authority questions to their actual owners.
+1. **Separate the successful product from the person's contribution.** In the constructed [APP-HCD-02](#app-hcd-02---constructed-performance-transfer-retention-and-revision), a teacher initially helps Learner-L17 reject a release proposal supported by the wrong firmware evidence. That correction is assisted. Two later fresh attempts show L17 detecting the mismatch before a teacher or AI cue, supporting a narrower independent configuration-checking conclusion.
+2. **Change the condition relevant to the next use.** [HCD.12 - Test Transfer to Unfamiliar Work](#hcd-12) uses unfamiliar work when transfer matters. A compatible release case requires two hours per change plus one hour per batch of at most four changes. Ten changes need `20 + 3 = 23` hours and fit a 24-hour allowance. At 22 hours, ten no longer fit; nine need `18 + 3 = 21`. L17's corrected nine-change answer after feedback supports helped resource adaptation while preserving the earlier configuration result.
+3. **Repair the development contribution exposed by that result.** [HCD.14 - Revise the Development Arrangement from Evidence](#hcd-14) can replace a cue-led resource exercise with cases requiring both a justified proposal and a justified refusal. It need not discard sound arithmetic or configuration practice. [HCD.10 - Vary, Space, Interleave, and Progress Practice](#hcd-10) uses the attempt history to select a consequential variation, separated return, competing task or assistance change; these are different choices, not a fixed progression.
+4. **Open a delay or support question only when it affects reliance.** [HCD.13 - Test Retention and Tool Dependence](#hcd-13) compares performance after a delay and under changed support with suitable earlier conditions. One delayed attempt with AI also removed cannot isolate the effect of delay from the effect of removing AI. Keep intervening practice and remaining tools visible. An immediate local repair need not wait for this separate investigation.
 
-### HCD-TRANSFER - Find what survives a meaningful change in work
+### HCD-CONTINUATION - Keep a useful arrangement while its conditions change
 
-- **Situation:** Familiar success is being relied upon in work whose task, data, tool, setting or coordination has materially changed.
-- **Question:** Which demonstrated contribution survives the unfamiliar change, and what still requires adaptation or help?
-- **First useful result or honest blocker:** A bounded transfer account preserving first and corrected attempts, justified action and refusal, tested variation and untested limits.
-- **Start with:** [HCD.12](#hcd-12), using prior qualified performance from HCD.11 or equivalent evidence.
-- **Stop or return:** Stop at the supported transfer or adaptation result. Return an invalid task or missing prerequisite; obtain a fresh uncued observation before strengthening a cue-dependent claim. Keep new-source learning separate.
+**Situation:** Development already has useful results, but later work, support or a claim about a development method changes.
 
-### HCD-RETENTION - Separate delayed performance from support dependence
+**Question:** What should continue for this person, and does the change also affect the method repertoire or a group's development practice?
 
-- **Situation:** Earlier success is being relied upon after a delay, or the person now performs differently with changed support.
-- **Question:** What remains demonstrable after this interval and practice history, and what depends on the support?
-- **First useful result or honest blocker:** Condition-qualified retention or support-dependence findings, with a separately justified independent-core result when needed and access or apparent-loss distinctions only where evidence supports them.
-- **Start with:** [HCD.13](#hcd-13), using qualified earlier performance of the same contribution by the same person.
-- **Stop or return:** Stop at the smallest interpretable comparison. Return a known access failure to its owner; leave delay versus withdrawal unresolved if only their combined condition was observed. Obtain resources for any extra follow-up.
+**First useful result or blocker:** A continuing arrangement for the person, a decision to retain, revise or stop a specified use of a development method, or a decision about a specified cultural relation. Each uses evidence appropriate to its own question.
 
-### HCD-REVISION - Change the part of development that evidence calls into question
+**Start with:** [HCD.15 - Sustain Continuing Human Capability Development](#hcd-15) for the person's continuing development, using current work and evidence, including an applicable HCD.14 revision. Open a repertoire or culture question only when that is the affected object.
 
-- **Situation:** An assessment changes an assumption behind the person's tasks, practice, feedback, support or provider arrangement.
-- **Question:** Which smallest justified change can improve the affected contribution while preserving what already works?
-- **First useful result or honest blocker:** An executable revision hypothesis with a fresh test, cost, protected conditions and retain/adapt/abandon rules; or the exact evidence, professional Method, resource or authority input to obtain.
-- **Start with:** [HCD.14](#hcd-14), using a compatible HCD.11, HCD.12 or HCD.13 result; all three are not required.
-- **Stop or return:** Stop at the proposal or the bounded authorized change and its observed result. Return diagnosis to HCD.3 when needed, and keep the person's direction, programme-wide reconstruction and causal effectiveness as separate questions.
+**Stop or return:** Continue what remains adequate. Return a missing allocation to its owner; retain an unresolved comparison when its proposed investigation is not feasible. A change to one use does not by itself establish a population-wide effect.
 
-### HCD-CONTINUING - Keep development responsive after the programme ends
-
-- **Situation:** One person's later Work, tool, provider, qualification condition or evidence has changed after an initial programme, while recurring activity is being treated as proof that capability remains current.
-- **Question:** Which continuing arrangement should reopen from this Work or evidence change, and what can remain protected?
-- **First useful result or honest blocker:** A holder-specific arrangement with decision-bearing triggers, practice and support contributions, evidence and reassessment, burden, owners, authority, re-entry and stops; or the exact missing result and retry condition.
-- **Start with:** [HCD.15](#hcd-15), using a compatible HCD.14 result or equivalent qualified evidence.
-- **Stop or return:** Stop at the arrangement or blocker. A calendar, participation record, authorized plan, performed development Work, later Work, achieved capability and causal effect remain different results.
-
-### HCD-REPERTOIRE - Change one HCD Method claim without rebuilding the repertoire
-
-- **Situation:** A learner population, later-Work condition, provider, tool or AI behavior, transfer or retention observation, safety boundary, source claim or serious alternative can change one HCD Method use.
-- **Question:** What does the available basis support for this exact admitted Method or status-preserved candidate and human-development claim, and is a change or further inquiry warranted for the bounded use?
-- **First useful result or honest blocker:** A current HCD repertoire slice with exact status, supported use and limits, material alternatives and gaps. A narrowed claim, unresolved comparison or real protection stop can finish; select a change or probe only for its obtainable contribution worth the full learner/provider burden.
-- **Start with:** [HCD.16](#hcd-16), after the Method or candidate status, receiving use and decision-changing claim are recoverable.
-- **Stop or return:** Stop at the supported bounded result or selected change. Return admission, reusable semantics, variants, provenance, generic trial, fit, worth and introduction to Method Engineering; use G.5 for an actual selector-facing declaration of grounded members and G.11 for an affected named maintained currentness object.
-
-### HCD-CULTURE - Continue or change one observable development-culture relation
-
-- **Situation:** Providers or practitioners say that a school, standard, syllabus, rollout, community, repository or value has become “the culture,” but the receiving relation and later consequence are unclear.
-- **Question:** Which exact HCD practice value is generated, transmitted, received, recognized, selected, remembered, retained or lost in this population? What does the available basis support, and is a new observation worth its obtainable work for this decision?
-- **First useful result or honest blocker:** A truthful enacted-Method or candidate/practice account and a supported `continue`, `revise`, `branch`, `replace`, `stop` or `unknown`, with the predicate, current evidence and scope, relevant uncertainty and separate capability limits. A selected new inquiry needs a feasible, worthwhile contribution and the authority and protection for its Work; it is not a universal completion condition.
-- **Start with:** [HCD.17](#hcd-17), from a bounded population, place and period and an honest Method/candidate branch.
-- **Stop or return:** Stop at the bounded cultural decision or exact missing value. Publication, institutional selection, attendance, community activity, capability and causal effect do not fill one another.
+1. **Locate what changed and what can be retained.** The constructed [APP-HCD-03](#app-hcd-03---constructed-continuation-method-repertoire-and-culture) preserves practice in tracing a release claim to its supporting evidence and referring safety or maintenance questions to the relevant specialist, while proposing a replacement for one cue-led correction exercise. HCD.15 uses that result to specify relevant cases, help, responsible providers and reopening conditions for the person. Until the needed learner and provider time is allocated, the affected practice cannot be arranged; the useful prior result remains available.
+2. **Carry evidence to the method claim only when it fits.** [HCD.16 - Develop and Refresh Human Capability-Development Methods](#hcd-16) can use compatible observations from continuing development to retain a supported use or narrow a claim. In the example, retain the method for practising evidence tracing and specialist referral through attempts, feedback, correction and retry. The available result supports performance with help; its contribution to independent learning remains unresolved. The proposed comparison needs three learner hours and two provider hours; only half a provider hour is available. Its useful return is the narrower claim and unresolved comparison. A later resource window may make the probe worthwhile; selecting it supplies no result.
+3. **Distinguish a group's continuation question.** [HCD.17 - Deliberately Continue and Change Human Capability-Development Culture](#hcd-17) asks about the specified transmission, receiving use, recognition or retention of practice within a population. Its example observes receiving trainers using a teaching sequence after combined preparation and coaching. Reducing trainer coaching changes that basis: a feasible, authorized comparison can support a branch proposal, while the trainers' later use and the learners' performance remain separate observations. The person's performance conclusion alone does not answer this cultural question.
 
 ### HCD-MATERIAL - Find what instructional material supports and what to repair
 
-- **Situation:** A worksheet, explanation, course route or instructional interface is being judged by present headings, fluent prose or correct expert answers while its contribution to the promised reader work remains unclear.
-- **Question:** Which material properties and observations can support this use decision, and what limiting defect, repair or evidence gap changes it?
-- **First useful result or honest blocker:** A compatible evaluation specification, or a material judgement with its evidence, actual assistance, limiting defect, repair reach and affected-use test.
-- **Start with:** The [instructional-material evaluation profile](#instructional-material-evaluation-profile); [HCD.18](#hcd-18) when specification construction is needed, or [HCD.19](#hcd-19) directly when a compatible specification exists.
-- **Stop or return:** Stop at the specified material-use or repair result. Use E.23 for improvement and HCD.11–HCD.13 for stronger human evidence claims. A reference-only use retains its own evaluation.
+**Situation:** An explanation, worksheet or learning route is meant to support a reader's task, but a correct reader answer may have depended on prior knowledge or help.
+
+**Question:** What did the material supply, what remains missing, and which repair would change its intended use?
+
+**First useful result or blocker:** A compatible evaluation specification, or a supported diagnosis of the material's contribution, limiting defect and repair reach.
+
+**Start with:** [HCD.19 - Evaluate Instructional Material through Representative Reader Work and Diagnose Its Repair](#hcd-19) when a compatible specification exists. Otherwise use [HCD.18 - Construct a Characterization and Evaluation Specification for Instructional Material](#hcd-18) to connect the promised task, audience, permitted help, criteria and evidence to the intended decision.
+
+**Stop or return:** Stop with the supported use or repair conclusion and any evidence gap that limits it. Repair the affected material through E.23; use human-performance methods only for a claim about the person's contribution or learning.
+
+1. **Use the specification to decide what must be inspected.** The [instructional-material evaluation profile](#instructional-material-evaluation-profile) explains how HCD.18 and HCD.19 work together. Select properties that can change the use or repair decision; a local false relation does not require evaluating an entire course.
+2. **Distinguish material contribution from reader repair.** In its Time-use S1 case, an uninterrupted example gives the same value for active effort and elapsed turnaround, so it cannot distinguish the two rules. A prepared reader separates them correctly using prior knowledge. HCD.19 preserves that fact rather than crediting the missing distinction to the material.
+3. **Repair the relation and inspect its affected use.** The revised material distinguishes the quantities, changes the columns, adds interruption and population conditions, and supports a changed two-person comparison of three consumed person-hours with four available person-hours. This supports the bounded repair and use, not a novice-learning claim.
+4. **Return remaining requirements at their actual reach.** The full specification still requires a concurrent-person example, an inspected task and key, and suitable explanatory and feedback evidence. Keep these gaps visible without withholding the narrower supported repair. Obtain additional reader work only when its result can change the decision enough to warrant its burden.
 
 # Preface
 
@@ -205,9 +155,9 @@ HCD.18 and HCD.19 address a different immediate object: the instructional materi
 
 `HCD.1` derives what a human holder must contribute in later Work. It does not establish the holder's current capability. `HCD.3` identifies a supported limiting target or returns the question elsewhere. It does not select an intervention. `HCD.4` compares current and target claim rows and may support one bounded choice. It does not create a programme, learning trajectory, performed development Work, or transformation.
 
-`HCD.2` composes and compares feasible programme candidates for one person's later Work, including complete contributions, burdens, support dependence and evidence needs; it does not choose or launch a programme. When no particular person is yet known, it returns the learning-product design result needed before a personal comparison. `HCD.5` selects a development Method for a qualified target and starting attempt; the selection is not an effectiveness finding. `HCD.6` designs a sufficiently whole, criterion-bearing practice task without treating surface realism as representation.
+`HCD.2` composes and compares feasible programme candidates for one person's later Work, including complete contributions, burdens, support dependence and evidence needs; it does not choose or launch a programme. When no particular person is yet known, it returns the learning-product design result needed before a personal comparison. `HCD.5` selects a development Method for a qualified target and starting attempt, or proposes conditional Methods with entry evidence for a future audience. Neither result is an effectiveness finding. `HCD.6` designs a sufficiently whole, criterion-bearing practice task without treating surface realism as representation.
 
-`HCD.7` establishes the provider, access, source, tool, AI, environment, human-check, capacity and fallback contributions required by a bounded use. `HCD.8` compares obtaining an exact missing contribution with building it, follows only the first blocking dependency, and requires an operating test. `HCD.9` preserves the first attempt, actual help, information-bearing feedback, learner correction, changed retry and next focus. `HCD.10` selects variation, spacing, retrieval, source, interleaving, support and challenge conditions separately across episodes.
+`HCD.7` establishes the provider, access, source, tool, AI, environment, human-check, capacity and fallback contributions required by a bounded use. `HCD.8` compares obtaining an exact missing contribution with building it, follows only the first blocking dependency, and requires an operating test. `HCD.9` preserves the first attempt, actual help, information-bearing feedback, learner correction, targeted retry and next focus. `HCD.10` selects variation, spacing, retrieval, source, interleaving, support and challenge conditions separately across episodes.
 
 HCD.11 returns observations and a bounded capability inference. HCD.12 tests a material unfamiliar variation. HCD.13 compares delayed performance and support conditions. HCD.14 uses an affected observation to revise a development assumption. A correct first attempt, a correction after feedback, learning from a newly supplied source, delayed performance, transfer, retention and a causal development effect are separately reportable.
 
@@ -226,11 +176,15 @@ Describe the contribution required in the person's work role and the conditions 
 Several people's development can support an organization's work, but an organizational result also depends on assignments, coordination, resources and other system contributions. Keep each person's evidence identifiable and take organization-holder capability or organization change to OCE and the relevant direct owners. A bounded cultural population is a different subject again: HCD.17 asks how one HCD practice value is transmitted, received, selected or retained among specified participants. It can examine that relation while individual capability consequences remain an HCD.11–HCD.13 question. A population becomes a capability holder only if the independent-System condition of E.23.CDI is separately established; HCD.1's population use otherwise preserves member or representative demand accounts.
 
 
+**Constituent actions in ongoing work.** Consider a dancer who has adequate strength, holds an axis when stationary and remembers a figure, but cannot maintain balance during its required rotation. During an attempted figure, muscular actions support rotational coordination, and that coordinated rotation is a constituent of performing the figure. The missing capability is in the middle. HCD.3 locates the supported limitation; HCD.2 includes its development in a programme that retains already mastered contributions; HCD.6 and HCD.10 prepare the combination and needed variation. Knowing the figure and succeeding in separate strength exercises do not fill this gap. A suitable teacher, space, time and conditions must also be available. These are conditions of performance, not items supplied by reading this DPF.
+
 ## HCD.Preface:5 - Pattern relations do not prescribe a lifecycle
 
 `HCD.1` may supply evidence input to `HCD.3` and scope or result frames to `HCD.4`, `HCD.2` and `HCD.11`. HCD.3 and HCD.4 may supply target, starting-evidence, protected-strength and priority values to HCD.2 or HCD.5. Equivalent qualified inputs permit direct entry; no pattern result follows merely from an adjacent number.
 
-A separately chosen programme or bounded use may call HCD.5 for Method selection, HCD.6 for representative tasks, HCD.7 for the support arrangement, and HCD.8 only for an exact missing contribution that must be obtained or built. HCD.5, HCD.6 and the enabled HCD.7/HCD.8 contributions may supply HCD.9. HCD.9 may supply practice history to HCD.10 or an attempt to HCD.11; HCD.10 designs later episodes but does not make their performance or retention findings.
+Before programme choice, HCD.5 can select a development Method for a candidate, HCD.6 can prepare its practice task, and HCD.7 can determine the support it needs and what is available. Use HCD.8 when obtaining or building a missing contribution changes the comparison. Develop only enough of each candidate to make the comparison useful. After a separate programme choice, complete or revise the selected Methods, tasks and support.
+
+HCD.5, HCD.6 and the enabled HCD.7/HCD.8 contributions may supply HCD.9. HCD.9 may supply practice history to HCD.10 or an attempt to HCD.11; HCD.10 designs later episodes but does not make their performance or retention findings.
 
 HCD.11 can supply performance evidence to HCD.12 and HCD.13. Equivalent qualified observations permit direct entry. HCD.14 may use a compatible result from any one of HCD.11, HCD.12 or HCD.13; it need not wait for all of them. New evidence may also update HCD.3's diagnosis, HCD.4's profile, HCD.2's comparison or HCD.5's selection when it changes their question.
 
@@ -289,6 +243,8 @@ The engineering examples foreground explicit sources, configurable tools, audita
 
 Use HCD.14 to test the smallest development assumption changed by an observation, with an executable change, fresh task, protected contributions and retain/adapt/abandon conditions. Use HCD.15 when subsequent Work or evidence changes require a continuing arrangement. A contradicted source claim or serious new Method alternative can reopen the bounded HCD.16 repertoire question; a changed receiving-use or retention relation among participants can reopen HCD.17. Practical revision can proceed under a proportionate reversible hypothesis while a stronger causal-effect claim remains a separate evidence question.
 
+
+## HCD.Preface:End
 
 
 # Part I — Human Capability Demand, Programme, Practice, Evidence, Continuation, Repertoire, and Culture
@@ -405,6 +361,8 @@ A practitioner stops asking, “Which course matches this role?” and first ask
 `ImpactReview-17` is a constructed pedagogical case. Its answer key, `ImpactReview-17-Domain-Oracle-v1`, supplies the engineering correctness and criticality criteria for `PumpWorks-Config-Baseline-42` and `AI-Assist-M4`. The review events and evidence below are stipulated case data.
 
 The human holder is Engineer-P14. The later-Work family is independent review of AI-proposed change-impact claims for mixed physical/software pump-controller changes before separate integration, assurance, and release decisions. The constructed 2026-Q4 conditions include the named configuration and AI assistant, current source access, a forty-five-minute case limit, recoverable audit records, and bounded safety and maintenance specialist returns. Final integration, safety, release, and employment authority remain with their direct owners.
+
+The stipulated work permits a routine reminder to construct and test an alternative configuration hypothesis. The engineer must supply that hypothesis and its test; neither another person nor the AI may supply the case-specific rival or rejection decision. Remembering to initiate the operation without a reminder is a separate, stronger question.
 
 The evidence packet stipulates eight representative review occurrences: four familiar and four unfamiliar variants; four include a plausible but wrong AI dependency claim; two require a specialist return; and every case requires a recoverable audit record. HCD.1 returns this human capability demand for Engineer-P14:
 
@@ -541,6 +499,7 @@ Do not use this pattern to diagnose a medical disorder, prescribe a clinical or 
 | qualified intervention target | The smallest supported human limitation, with evidence, any still-plausible rivals, conditions, intended observation, specialist boundary, and reopen condition. “Intervention target” names what a later choice might try to change; it selects no intervention. |
 | non-training return | A return to the owner of a nonhuman constraint, specialist question, or question outside the demand envelope; or a return naming evidence needed before a human target can be justified. |
 | protected condition | A condition held stable or bounded so that an observation can discriminate rivals without quietly changing the holder, task, tool, authority, or support arrangement. |
+| observed target change | A difference in the selected target between observations under stated conditions. It can inform the next development decision before its cause is established. |
 | target engagement | A change in the selected target attributable to an intervention. Evidence must concern that target and justify the attribution; a theory label or assigned activity does neither. |
 
 The diagnosis concerns the person's difficulty making the required contribution under the named conditions. A low score, poor result, behaviour label, or inferred latent state can inform the diagnosis but does not by itself show what human change would help.
@@ -604,6 +563,8 @@ Do not expand the set with every imaginable explanation. Include a branch when a
 
 Too few or poorly linked observations, coupled conditions, contamination, or unsafe collection can prevent this comparison from distinguishing the live branches. Narrow the conclusion or give a non-training return that names the evidence limit, the next needed observation, and safe conditions for obtaining it.
 
+Look for a missing intermediate performance, not just an absent basic skill or an unknown whole procedure. Use FPF B.1.5.EW to recover the relevant constituent–whole connections. In a stipulated dance case, the person has sufficient strength, holds the axis when stationary and recalls the figure, but loses balance during its rotation. Those observations locate a coordination question between the muscular actions and the figure; they do not establish a general lack of strength or memory. If existing observations already distinguish the decision-changing rivals, use them. Otherwise choose a suitable comparison of the rotation in isolation and in the figure, under domain-qualified conditions. Return the supported limitation or the unresolved alternative rather than prescribing more of whichever exercise is easiest to name.
+
 #### HCD.3:4.3 - Probe Before Declaring Capability Loss
 
 When a prior qualified capability or result exists and the differential can change the next Work, use an applicable `E.23.CAE` disposition before declaring loss or prescribing more practice. Return to a qualified reference condition without further development where safe, vary the smallest decision-bearing condition, and observe applicability, access, adaptation, enactment, and result separately.
@@ -657,7 +618,9 @@ HCD.3 therefore returns this **qualified intervention target**:
 
 > Generate and test an independent configuration counter-hypothesis before accepting plausible AI output in unfamiliar variants.
 
-The evidence is narrow: two unfamiliar misses inside eight constructed cases. A prompt-design rival remains live because the neutral prompt may have suppressed the counter-hypothesis move. The protected conditions are the same source, configuration, AI assistant, time limit, authority, and specialist routes. The intended observation is whether Engineer-P14 produces and tests a competing configuration hypothesis and rejects the planted wrong claim in each of two further unfamiliar cases: one first attempt with a neutral prompt, and one first attempt on the other case with an explicit counter-hypothesis prompt. Different cases leave case-difference uncertainty; the comparison informs the next decision without isolating a causal prompt effect. Reopen when the prompt, configuration, case family, source access, tool posture, time, observation count, or target-domain oracle changes.
+The stipulated review permits an ordinary reminder to construct and test a competing hypothesis, but the engineer must supply the case-specific rival and its test. In the proposed comparison, the neutral prompt is “Review this AI claim against the current configuration.” The other prompt adds “Before accepting it, construct and test a competing configuration hypothesis.” Neither supplies the alternative or tells the engineer which claim to reject.
+
+The evidence is narrow: two unfamiliar misses inside eight constructed cases. A prompt-design rival remains live because the neutral prompt may have suppressed the counter-hypothesis move. The protected conditions are the same source, configuration, AI assistant, time limit, authority, and specialist routes. The intended observation is whether Engineer-P14 produces and tests a competing configuration hypothesis and rejects the planted wrong claim in each of two further unfamiliar cases: one first attempt with a neutral prompt, and one first attempt on the other case with an explicit counter-hypothesis prompt. Success with the reminder supports performance under that permitted condition and may justify returning prompt design to the Method/tool owner; it does not establish self-initiated use of the operation. Different cases leave case-difference uncertainty; the comparison informs the next decision without isolating a causal prompt effect. Reopen when the prompt, configuration, case family, source access, tool posture, time, observation count, or target-domain oracle changes.
 
 The result is a bounded target for a later development decision, not an assignment to practice. Operational use needs qualified current domain criteria and observations for the actual person and Work, including evidence that distinguishes the live rivals.
 
@@ -710,7 +673,7 @@ HCD.3 returns a **non-training clinical route** whenever diagnosis, treatment ch
 | “The score is low, so train the skill” | The score does not identify the required contribution, where the person has difficulty, or the rival explanations. | Recover the later-Work account and compare decision-changing branches. |
 | “They know it when prompted, so the problem is solved” | Reference recovery does not establish unaided applicability, adaptation, enactment, or transfer. | Record the qualified differential and probe the earliest unresolved position. |
 | “They missed twice, so capability was lost” | Small, configuration-bound evidence cannot eliminate support, prompt, envelope, or measurement rivals. | Preserve uncertainty and any still-plausible rival; narrow or return the target. |
-| “Motivation is the cause” | Motivation rhetoric is not target engagement evidence. | Operationalize the proposed target and require an observation that it changed before linking it to a result. |
+| “Motivation is the cause” | Naming motivation supplies neither an observation of change nor a causal explanation. | Specify the proposed target and observe it. A claim that an intervention changed it and thereby changed a later result needs grounds for both links. |
 | “The AI made the error” or “the human made the error” | The joint Method, prompt, source, review, and authority arrangement is hidden. | Separate contributions and use a crossed or otherwise discriminating condition where safe. |
 | “A clinical technique is just another learning intervention” | HCD lacks diagnosis, treatment, provider, consent, safety, and clinical outcome authority. | Return the case to qualified clinical ownership and retain only a legitimate non-clinical Work question. |
 | “The target is practice” | Practice is an activity intended to produce a change; it does not identify the person's difficulty. | Name the difficulty making the required contribution, what must change, and the observation that would show that change. |
@@ -886,7 +849,7 @@ A practitioner stops asking, “What level is this person?” and asks, “Which
 
 `ImpactReview-17` is a constructed pedagogical case. `ImpactReview-17-Domain-Oracle-v1` supplies engineering correctness and criticality criteria for `PumpWorks-Config-Baseline-42` and `AI-Assist-M4`. The observations and decision conditions below are stipulated case data.
 
-The human holder is Engineer-P14. The later-Work demand is independent review of AI-proposed change-impact claims under a forty-five-minute case limit, current source/configuration access, auditable evidence, and bounded safety and maintenance specialist returns. HCD.4 keeps four claim rows:
+The human holder is Engineer-P14. The later-Work demand is independent review of AI-proposed change-impact claims under a forty-five-minute case limit, current source/configuration access, auditable evidence, and bounded safety and maintenance specialist returns. The work permits a routine reminder to construct and test an alternative hypothesis, while the engineer must supply the case-specific rival and its test. The explicit probe prompt in HCD.3:5.1 names that operation without supplying its answer. Self-initiated recall remains a separate question. HCD.4 keeps four claim rows:
 
 | Claim in the constructed profile | Current evidence | Target and trade-off disposition |
 | --- | --- | --- |
@@ -912,7 +875,7 @@ Engineer-P14 faces one person-level self-development-focus choice within a separ
 | `ProbeActionSet` | Two further unfamiliar seeded-error cases, with one first attempt per case: one uses a neutral prompt, the other an explicit counter-hypothesis prompt. Observe whether Engineer-P14 generates and tests a counter-hypothesis, and whether they reject the wrong AI claim. Keep the same sources, tools, specialist routes, and forty-five-minute limit per case. |
 | `ProbeBudget` | Two hours remaining for this pre-choice probe inside the twelve-hour allocation. |
 | `CostToProbe` | Up to ninety minutes for the two attempts, plus thirty minutes reserved for preparation and comparison: two hours in total. |
-| value of information | Decision-changing: a tested counter-hypothesis and rejection of the wrong claim only under the explicit prompt would strengthen `O3`; misses under both prompts would strengthen `O2`. Interpret these outcomes with the small sample and unresolved case differences. The seeded critical-error boundary makes this possible change in choice worth the bounded cost. |
+| value of information | A tested counter-hypothesis and rejection of the wrong claim only with the permitted reminder would strengthen `O3`: the observed human contribution works under that assistance condition. It would not establish self-initiated recall. Misses under both prompts would strengthen `O2`. Interpret either result with the small sample and unresolved case differences. The seeded critical-error boundary makes this possible change in choice worth the bounded cost. |
 | probe-worthiness | Feasible and worth its cost. |
 | `ChoiceResult` | **`probe again`** with this two-case comparison, one attempt per prompt condition. No profile option is selected yet. |
 | next question and authority | Return the new observations to HCD.3 and the updated comparison to HCD.4. The accountable manager owns time allocation, Work assignment, and employment consequences; safety and release owners retain their authority. |
@@ -1112,6 +1075,10 @@ If personal evidence, participation, later Work, or support conditions are missi
 5. **Include the complete development loop.** Account for preparation, demonstrations or explanations where useful, representative attempts, feedback, correction, retries, changed-condition or later checks, and the access and provider contributions that make those activities possible.
 6. **Keep downstream elaboration explicit.** HCD.5 can select the development Methods, HCD.6 can design the practice tasks, HCD.7 can establish available support, HCD.8 can compare obtaining or building a missing contribution and establish the preparation or operating test the selected route needs, and HCD.9–HCD.10 can specify practice and progression. HCD.2 needs enough of those contributions to make a candidate comparable; it does not pretend that an unperformed elaboration already exists.
 
+Recover the relevant vertical within each complete task, using FPF B.1.5.EW when the connections are unclear. Ask what the person or available contributors must perform together while the encompassing work is under way. Adequate performance of isolated constituents can leave their coordination unavailable. Keep already attained contributions and include development only for the missing or insufficiently transferable ones. Include the variety of constituent Methods that the intended task variants require; a single rehearsed path may leave the person unable to choose a different continuation. Check shared time, attention, equipment and assistance as a combined demand rather than counting the same available resource separately for every part.
+
+For example, in a stipulated dance case, strength and recall of the figure are adequate but balance during rotation is not. A programme adds suitable rotational-coordination practice and return to the figure under varied relevant conditions; it need not repeat the already mastered strength and recall work. HCD.3 distinguishes that gap from other causes, HCD.6 designs the practice and HCD.10 distributes its variation. A domain practitioner supplies the exercise and performance criterion.
+
 #### HCD.2:4.3 - Make the Descriptions Comparable
 
 Describe every candidate on the same decision-bearing positions:
@@ -1294,9 +1261,9 @@ This comparison adds design and evidence work, but it is non-dominated for the s
 
 ### HCD.5:0 - Use This When
 
-Use this pattern when a named person's development target is sufficiently qualified, an initial or recent attempt is available, and different ways of developing the contribution could lead to different practice or support. Begin with the exact action that must change and the conditions of the observed attempt; do not begin with a favourite pedagogy, a deficit label, or the instruction to practise more.
+Use this pattern to select how to develop a particular contribution. For a known person, begin with a qualified target and an initial or recent attempt. For a future audience, begin with the intended contribution and the entry conditions that would call for different teaching or practice. Return conditional design choices until evidence about a particular learner supports applying one of them.
 
-The first useful result is a **Method-selection account**: a justified set of capability-development Methods, the target contribution and proposed mechanism for each, their task and learner fit, required support, evidence limits, burden and risk, surviving alternatives, and the observation that would change the selection. The result can contain one Method or a small coordinated set. It does not establish target engagement, learning, transfer, or effectiveness.
+The first useful result is a **Method-selection account**: a justified set of capability-development Methods, the target contribution and proposed mechanism for each, their task and learner fit, required support, evidence limits, burden and risk, surviving alternatives, and the observation that would change the selection. The result can contain one Method or a small coordinated set. A future-audience result states the entry evidence on which each choice depends. Selection does not establish target engagement, learning, transfer, or effectiveness.
 
 The practical gain is discrimination. A person who calculates correctly but accepts an unsupported cause receives a different development proposal from someone who cannot perform the calculation, cannot recognize when the Method applies, or lacks the data and permission to act. An external constraint is returned to its owner instead of being disguised as a need for more training.
 
@@ -1308,14 +1275,16 @@ Do not use HCD.5 to diagnose a disorder or human limitation, design the full pra
 | --- | --- |
 | development target | The smallest supported change in the person's contribution that the proposed development should address under the named conditions. A score, trait label, activity, or programme topic is not the target by itself. |
 | starting attempt | A condition-qualified observation of the person's relevant action before the selected development. Record the task, help received, work product, result, and important errors rather than only a score. |
+| conditional design hypothesis | A proposed Method choice for a future learner whose entry evidence would meet stated conditions. It identifies the required evidence without asserting that any person already meets those conditions. |
 | capability-development Method | A repeatable way of arranging human action, task, information, feedback, support, and correction to pursue a named development target. Its description guides action; it does not establish that the Method was enacted or effective. |
 | proposed mechanism | The reason the Method is expected to change the target, stated as a testable local claim rather than a technique label. Causal effect remains unestablished until compatible evidence supports it. |
-| target engagement | An observed change in the selected target under the stated conditions. It is not the same as attendance, satisfaction, assisted task success, or a theory label. |
+| observed target change | A difference in the selected target between observations under stated conditions. It can inform the next development decision before its cause is established. |
+| target engagement | A change in the selected target attributable to an intervention. Evidence must concern that target and justify the attribution; a theory label or assigned activity does neither. |
 | Method set | One Method or a small combination whose members make distinct necessary contributions to the same bounded target or task. A catalogue of plausible techniques is not a selected set. |
 | surviving alternative | A serious alternative that remains compatible with the current evidence and would change the development action or evidence plan. |
 | non-training return | A return naming the external constraint, owner, blocked HCD decision, safe interim boundary, and retry condition when a human-development Method is not yet the supported next move. |
 
-The target, selected Method, Method description, provider, enacted development Work, observed target engagement, and later capability claim remain different objects. HCD.5 selects the Method and records the description and conditions needed by the next design use; later evidence determines what was enacted and what changed.
+The target, selected Method, Method description, provider, enacted development Work, observed target change, and later capability claim remain different objects. HCD.5 selects the Method and records the description and conditions needed by the next design use; later evidence determines what was enacted and what changed.
 
 ### HCD.5:1 - Problem Frame
 
@@ -1323,7 +1292,7 @@ The same poor result can arise from different action failures. A person may lack
 
 Development Methods act differently. A worked example can expose reasoning that unsupported problem solving hides, but unchanged guidance can obstruct an experienced learner. Part practice can stabilize a recurrent operation, but it cannot teach when to use it. Whole tasks can expose coordination, but they can overload a novice when a true prerequisite is missing. Feedback can change the next attempt only when its information identifies an actionable difference.
 
-Method selection therefore has to connect one qualified target and starting attempt to a plausible change mechanism, while preserving the task, learner, support, evidence, burden, and risk conditions under which that mechanism might help.
+Method selection connects a qualified target and starting attempt—or explicitly assumed entry conditions for a future audience—to a plausible change mechanism, while preserving the task, learner, support, evidence, burden, and risk conditions under which that mechanism might help.
 
 ### HCD.5:2 - Problem
 
@@ -1347,24 +1316,26 @@ The opposite failure is an exhaustive menu with no selection. The practitioner n
 
 ### HCD.5:4 - Solution
 
-Recover the target action and its starting conditions, compare a small set of Methods that propose materially different change mechanisms, and select only the Method or combination whose task fit, learner fit, support, burden, risk, and evidence plan remain credible. Return external constraints before prescribing development.
+Recover the target action and its observed or proposed entry conditions, compare a small set of Methods that propose materially different change mechanisms, and select only the Method or combination whose task fit, learner fit, support, burden, risk, and evidence plan remain credible. Return external constraints before prescribing development.
+
+Use observations of the target to decide whether to continue or change practice. Report the conditions and what changed; a before/after difference alone does not identify the intervention's effect. Obtain additional causal evidence only when the receiving decision needs that stronger claim and the inquiry is feasible and worth its cost. If the target observation is unavailable, leave change unknown rather than treating it as a demonstrated lack of improvement.
 
 #### HCD.5:4.1 - Bind the Selection Use
 
-Name:
+First distinguish selection for a known person from design for a future audience. Name:
 
-1. the exact human holder, participation basis, receiving decision, and decision owner;
+1. the person and participation basis, or the future audience and its assumptions; identify the receiving decision and decision owner in either case;
 2. the later-Work contribution, configuration, horizon, protected result and critical-error conditions;
-3. the HCD.3 target or another qualified basis that states the action to change and any still-plausible rival;
-4. the starting attempt, including the task, permitted and received help, work product, result, error pattern, uncertainty, and evidence window;
+3. the qualified target for that person and any still-plausible rival explanation, or the target contribution and proposed entry conditions for each design branch;
+4. the person's starting attempt, including task, permitted and received help, work product, result, errors, uncertainty and evidence window. For future design, state instead the entry task or existing evidence that would distinguish the branches, the allowed help and the response that would select or reopen each choice;
 5. current strengths, prior relevant practice, available time, access, tools, AI posture, provider contribution, environment, privacy, safety, and other protected conditions; and
 6. the observation that the receiving decision would use after the Method is applied.
 
-If the human target is not supported and rival causes would change the next action, return to HCD.3. If the target-domain Method, correctness criterion, access, permission, tool, specialist result, or safe participation condition is missing, issue a non-training return to its direct owner. Do not make the missing value into a motivation, practice, or knowledge deficit.
+For future design, keep unknown learner, support and resource values as assumptions with a return condition. Apply a personal choice only when the person's entry evidence supports it. If rival explanations then change the human target or next action, return to HCD.3. If the target-domain Method, correctness criterion, access, permission, tool, specialist result, or safe participation condition is missing, issue a non-training return to its direct owner. Do not make the missing value into a motivation, practice, or knowledge deficit.
 
 #### HCD.5:4.2 - Generate a Small Candidate Set by Mechanism
 
-Use the observed action difference to generate serious candidates. The following cues are questions, not an exhaustive intervention classification:
+Use the observed action difference, or the stated difference between possible entry conditions, to generate serious candidates. The following cues are questions, not an exhaustive intervention classification:
 
 | Observed difference | Candidate Method question | Boundary to preserve |
 | --- | --- | --- |
@@ -1391,7 +1362,7 @@ For each serious candidate, record:
 | enacted form | The minimally sufficient explanation, demonstration, practice, feedback, correction, plan, coaching, or support change; identify a qualified professional description when local design would be unsafe or under-specified. |
 | provider and access need | Competence, time, data, tools, AI, environment, supervision, permission, privacy, and peak-load conditions required for the Method. |
 | burden and risk | Learner and provider effort, displaced Work, error exposure, overload, autonomy, fatigue, clinical or safety risk, and the cost of another attempt or probe. |
-| evidence plan | Starting observation, target-engagement observation, independent or changed-condition attempt where relevant, later-Work evidence needed for the stronger claim, and contamination or measurement limits. |
+| evidence plan | Starting observation, observation of target change, independent or changed-condition attempt where relevant, later-Work evidence needed for the stronger claim, and contamination or measurement limits. |
 | alternatives and stop | Surviving alternative, rejected candidate with reason, condition for stopping or returning, and smallest change that reopens selection. |
 
 Compare candidates at comparable enactment effort. A richly specified Method does not defeat an unnamed alternative; make only the smallest alternative description needed to expose a decision-bearing difference. Preserve source limits instead of transporting one average effect, hours threshold, cue, sequence, or professional arrangement to a different task and population.
@@ -1404,7 +1375,7 @@ Select the smallest set whose members make distinct contributions to the target.
 2. whether it prepares a prerequisite, enables the first attempt, supplies feedback, supports correction, or tests changed performance;
 3. which order is required by dependence and which order is merely convenient;
 4. which help is allowed during each observation and what the person must do without an answer-bearing cue; and
-5. when the set stops, changes, or returns because target engagement is absent, another limitation appears, or a provider condition fails.
+5. when the set stops, changes, or returns because comparable observations show insufficient target change, another limitation appears, or a provider condition fails.
 
 Do not accumulate techniques as insurance. If two candidates propose the same contribution at higher burden, retain the lower-burden adequate candidate unless a material evidence, safety, participation, or future-use value justifies the difference. If methods address different supported targets, keep those targets and evidence plans distinct even when one programme coordinates their enactment.
 
@@ -1412,11 +1383,11 @@ Do not accumulate techniques as insurance. If two candidates propose the same co
 
 | Result position | Required content |
 | --- | --- |
-| selection boundary | Human holder, later-Work contribution, configuration, horizon, participation, receiving decision, decision owner, evidence window, and direct outside owners. |
-| target and start | Qualified development target, starting attempt, important conditions, current strengths, error pattern, help received, uncertainty, and surviving rivals. |
+| selection boundary | Person and participation basis, or future audience assumptions; later-Work contribution, configuration, horizon, evidence window, receiving decision, decision owner and outside owners. Mark which conditions are observed and which are proposed. |
+| target and start | For personal selection: qualified target and starting attempt with its conditions, strengths, errors, help, uncertainty and still-plausible rivals. For future design: target contribution, assumed starting conditions and the entry evidence that would select or reopen each branch. |
 | selected Method set | Each Method's action, proposed mechanism, intended target contribution, enacted form, required support, and stop condition. |
 | comparison | Serious alternatives, comparable effort, task and learner fit, evidence, burden, risk, and reason for selection or rejection. |
-| evidence plan | Target-engagement observation, permitted help, independent or changed-condition observation where material, stronger later-Work evidence, and inference limits. |
+| evidence plan | Observation of target change, permitted help, independent or changed-condition observation where material, stronger later-Work evidence, and inference limits. |
 | disposition | `selected Method set`, `conditional design hypothesis for stated entry evidence`, `non-training return`, or `Method description or provider result blocked`. |
 | continuation | The practice-task design, provider/access result, first enacted attempt, missing professional description, outside-owner question, or smallest condition that reopens selection. |
 
@@ -1424,9 +1395,9 @@ For a future audience, return only a conditional design hypothesis tied to the s
 
 #### HCD.5:4.6 - Recognition and Assurance
 
-**Recognition.** Use HCD.5 when the question is “What kind of development activity could change this person's specific action?” and a worked example, whole task, focused component practice, feedback loop, coaching arrangement, self-regulation aid, or support change would lead to different next Work.
+**Recognition.** Use HCD.5 when the question is “What kind of development activity could change this person's specific action?” and a worked example, whole task, focused component practice, feedback loop, coaching arrangement, self-regulation aid, or support change would lead to different next Work. For a future audience, ask the same question conditionally for each proposed entry branch.
 
-**Assurance.** Stronger reliance needs a qualified target, condition-compatible starting evidence, a task- and learner-matched mechanism claim, source limits, credible provider and access conditions, material burden and risk, and an observation that can detect target engagement without conflating helped performance with learning. Clinical, safety, employment, legal, provider-competence, and target-domain correctness decisions require their direct owners.
+**Assurance.** Stronger reliance needs a qualified target, condition-compatible starting evidence, a task- and learner-matched mechanism claim, source limits, credible provider and access conditions, material burden and risk, and an observation that can detect target change without conflating helped performance with learning. Attribution of that change to the intervention requires a further basis; it is not implied by this observation. Clinical, safety, employment, legal, provider-competence, and target-domain correctness decisions require their direct owners.
 
 #### HCD.5:4.7 - What Changes in Practice
 
@@ -1446,7 +1417,7 @@ The selection account records the proposed reasoning mechanism, teacher feedback
 
 A person can apply a finite comparison correctly whenever `C.11.CRC` is named, yet chooses a local score when a new situation requires comparing complete configurations. More worked examples with the PatternID printed beside the task would rehearse execution while preserving the selection failure.
 
-HCD.5 selects discrimination practice across cases in which a finite comparison, a sensitivity result, or a source check is appropriate. Early feedback names the decision-bearing cue; later tasks remove the answer-bearing Method label and change the configuration or horizon. The intended target-engagement observation is correct recognition and selection before execution. HCD.6 supplies the actual representative task set; HCD.9 records what happened in each attempt.
+HCD.5 selects discrimination practice across cases in which a finite comparison, a sensitivity result, or a source check is appropriate. Early feedback names the decision-bearing cue; later tasks remove the answer-bearing Method label and change the configuration or horizon. The intended observation is correct recognition and selection before execution on the changed case. It can support this performance claim without yet establishing whether the practice caused the change. HCD.6 supplies the actual representative task set; HCD.9 records what happened in each attempt.
 
 #### HCD.5:5.3 - Missing Project Access Is Not a Practice Dose
 
@@ -1458,12 +1429,12 @@ A learning-product author expects entrants to differ in unit work, causal discri
 
 ### HCD.5:6 - Bias-Annotation
 
-Lenses: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**. Scope: selecting capability-development Methods for one qualified human target under stated task, participation, support, and evidence conditions.
+Lenses: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**. Scope: selecting capability-development Methods from a person's qualified target and starting evidence, or proposing conditional choices for a future audience.
 
 | Recurring bias | Likely drift | Repair |
 | --- | --- | --- |
 | technique allegiance | One school or branded intervention becomes the default. | Compare proposed mechanisms and a serious alternative against the exact target and starting attempt. |
-| activity bias | Attendance, repetition, coaching time, or content exposure substitutes for change in the target. | Name the target-engagement observation and stronger evidence boundary. |
+| activity bias | Attendance, repetition, coaching time, or content exposure substitutes for change in the target. | Name the observation of target change and distinguish it from an intervention-effect claim. |
 | deficit bias | A tool, access, authority, workload, provider, or specialist failure becomes a human limitation. | Issue a non-training return while preserving any separately supported target. |
 | score bias | A scalar selects an intervention without the underlying action or error. | Recover the task, work product, help, error pattern, and inference limit. |
 | novice-default bias | Guidance is kept constant despite changing prior knowledge. | State the learner-fit condition and the rule for reducing, changing, or removing support. |
@@ -1473,15 +1444,15 @@ Lenses: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**. Scope: selecting c
 
 ### HCD.5:7 - Conformance Checklist
 
-- [ ] One human holder, later-Work contribution, qualified target, starting attempt, participation basis, horizon, receiving decision, and decision owner are explicit.
-- [ ] The starting attempt records task conditions, permitted and received help, work product, result, error pattern, current strengths, and uncertainty.
+- [ ] The selection concerns either a known person with a qualified target or a future audience with explicit entry assumptions; the intended contribution, horizon, receiving decision and decision owner are recoverable.
+- [ ] A personal selection uses a starting attempt with its conditions, help, work product, result, errors, strengths and uncertainty. A future-audience proposal identifies the entry evidence needed to distinguish its conditional branches without asserting that a learner has supplied it.
 - [ ] External access, Method, tool, authority, provider, specialist, clinical, safety, or environment constraints are returned to their direct owners rather than renamed as training needs.
 - [ ] Every serious candidate states a proposed mechanism, target contribution, task and learner fit, minimally sufficient enacted form, required support, burden, risk, and evidence plan.
 - [ ] The comparison includes one serious alternative at comparable enactment effort and preserves source population, task, measure, horizon, support, and causal limits.
 - [ ] Whole-task, part-practice, explanation, feedback, coaching, planning, and support candidates are selected by their contribution, not by label.
 - [ ] A selected combination assigns one distinct necessary contribution to each member and states required versus convenient order.
 - [ ] Intended help, permitted help, actual availability, received help, and independent action remain distinct.
-- [ ] Target engagement is distinguished from attendance, satisfaction, assisted success, later capability, transfer, and retention.
+- [ ] Observed target change is distinguished from attendance, satisfaction and the intervention's effect. Assistance conditions limit the performance claim; later capability, transfer and retention need their own grounds.
 - [ ] The result records surviving alternatives, rejected candidates with reasons, stop conditions, and the smallest change that reopens selection.
 - [ ] A future-audience result is conditional on stated entry evidence and does not prescribe for an unobserved person.
 - [ ] HCD.5 selects no provider, full task set, programme choice, intervention launch, clinical action, employment action, or effectiveness conclusion.
@@ -1504,25 +1475,25 @@ Lenses: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**. Scope: selecting c
 
 The practitioner gains a reasoned bridge from a qualified target to a practice design and evidence plan. Different error patterns receive different candidate mechanisms, and a provider or access failure can stop unhelpful development before time is committed.
 
-The cost is more precise starting evidence and explicit comparison. A selected Method may require a competent provider, safe task, additional observation, or professional description that is not yet available. Some familiar interventions will remain only conditional hypotheses, and absence of target engagement can force reselection.
+The cost is more precise starting evidence and explicit comparison. A selected Method may require a competent provider, safe task, additional observation, or professional description that is not yet available. Some familiar interventions will remain only conditional hypotheses, and observed failure to change the target can warrant reselection.
 
 ### HCD.5:10 - Rationale
 
 A development activity is useful only through the contribution it changes for the receiving later-Work use. Technique names and average effects compress away the holder, task, starting action, support, and evidence boundary that determine local fit.
 
-Mechanism comparison keeps the proposal generative without claiming causality in advance. The target-engagement observation makes failure informative: it can challenge the selected Method before a poor later result is blamed on the person. A small Method set preserves complementarity while preventing a catalogue from masquerading as a choice.
+Mechanism comparison keeps the proposal generative without claiming causality in advance. The observation of target change makes failure informative: it can challenge the selected Method before a poor later result is blamed on the person. A small Method set preserves complementarity while preventing a catalogue from masquerading as a choice.
 
 ### HCD.5:11 - SoTA-Echoing
 
 The working question is: **How should a practitioner select a human-development Method that fits one qualified target and starting attempt rather than merely choosing a familiar intervention label?**
 
-The selected best-known line is target-, task-, learner-, and evidence-sensitive Method selection. Paas and van Merriënboer's 2020 review ([`COG-05`](https://doi.org/10.1177/0963721420922183)) supports integrated information and worked examples for avoidable novice load while requiring guidance to change with prior knowledge. Wisniewski, Zierer, and Hattie's 2020 meta-analysis ([`MOT-05`](https://doi.org/10.3389/fpsyg.2019.03087)) shows why feedback must be selected by information content, task, receiver, and opportunity to use it rather than by the claim that “feedback works.” Sheeran and colleagues' 2020 meta-analysis ([`MOT-01`](https://doi.org/10.1037/ccp0000501)) contributes the need to observe engagement of the proposed target; its health-behaviour population and small average effect do not establish professional capability transfer.
+The selected best-known line is target-, task-, learner-, and evidence-sensitive Method selection. Paas and van Merriënboer's 2020 review ([`COG-05`](https://doi.org/10.1177/0963721420922183)) supports integrated information and worked examples for avoidable novice load while requiring guidance to change with prior knowledge. Wisniewski, Zierer, and Hattie's 2020 meta-analysis ([`MOT-05`](https://doi.org/10.3389/fpsyg.2019.03087)) shows why feedback must be selected by information content, task, receiver, and opportunity to use it rather than by the claim that “feedback works.” Sheeran and colleagues' 2020 meta-analysis ([`MOT-01`](https://doi.org/10.1037/ccp0000501)) distinguishes an intervention's effect on its proposed target from that target's contribution to the later outcome. Its health-behaviour population and small average effect do not establish professional capability transfer. HCD uses this distinction to limit causal claims while allowing local decisions based on condition-qualified observations.
 
 The serious ordinary alternative is intervention by family label: prescribe deliberate practice, mastery, coaching, motivation work, retrieval, interleaving, or AI tutoring from a broad diagnosis or a low score. It is cheaper to commission, but it cannot explain why the selected activity should change this action rather than a rival limitation. HCD.5 adapts the source line into the bound selection positions in §§4.1–4.5 and rejects a universal technique or dose.
 
 Macnamara, Hambrick, and Oswald's 2014 meta-analysis ([`BEH-02`](https://doi.org/10.1177/0956797614535810)) is limit evidence: observed deliberate-practice histories account for different and incomplete shares of performance variance and do not establish a universal hours threshold or causal intervention. Sheeran and colleagues' 2024 planning synthesis ([`MOT-03`](https://doi.org/10.1080/10463283.2024.2334563)) supplies a bounded if–then planning candidate only when a goal is endorsed, a cue is detectable, and an action is feasible. Carpenter, Pan, and Butler's 2022 review ([`COG-01`](https://doi.org/10.1038/s44159-022-00089-1)) supports spacing and retrieval as candidates for durable access under source-specific conditions, not as a complete curriculum or default Method for every target.
 
-The selected line costs more than matching labels to a catalogue, but it preserves target fit, external returns, provider needs, risks, and an observation capable of changing the selection. Reopen it when stronger source evidence changes a relied-on mechanism or limit, when target engagement contradicts the expected action, when the task or learner conditions change, or when a lower-effort selection practice preserves the same decision-bearing values.
+The selected line costs more than matching labels to a catalogue, but it preserves target fit, external returns, provider needs, risks, and an observation capable of changing the selection. Reopen it when stronger source evidence changes a relied-on mechanism or limit, when target observations contradict the expected change, when the task or learner conditions change, or when a lower-effort selection practice preserves the same decision-bearing values.
 
 ### HCD.5:12 - Relations
 
@@ -1537,6 +1508,7 @@ The selected line costs more than matching labels to a catalogue, but it preserv
 - **`HCD.11`–`HCD.13`:** supply stronger same-holder performance, transfer, retention, and support-dependence evidence; HCD.5's mechanism claim does not substitute for those results.
 - **`HCD.14`:** may revise the selected Method when compatible evidence changes the target, mechanism, fit, support, or result expectation.
 - **Target-domain, clinical, safety, legal, employment, privacy, organization, provider, and specialist practices:** retain correctness, risk, participation, authority, and competence decisions.
+- **Explanation Design:** when the selected activity needs an explanation, [EXD.1](https://github.com/ailev/FPF/blob/main/Engineering%20DPF%20Suite/EXPLANATION-DESIGN-PRINCIPLES-FRAMEWORK.md#exd1---establish-and-revise-the-explanatory-question) establishes the question, [EXD.2](https://github.com/ailev/FPF/blob/main/Engineering%20DPF%20Suite/EXPLANATION-DESIGN-PRINCIPLES-FRAMEWORK.md#exd2---build-and-bound-an-explanatory-example) constructs an example that exposes the relevant relation and its limits, and [EXD.5](https://github.com/ailev/FPF/blob/main/Engineering%20DPF%20Suite/EXPLANATION-DESIGN-PRINCIPLES-FRAMEWORK.md#exd5---guide-a-recipients-own-explanation) guides the learner's own explanation and correction. Use the needed contribution within HCD.6 task design or HCD.9 practice; HCD.10–HCD.13 retain progression and the performance, transfer and retention questions.
 - **Learning-product practices:** may enact a selected explanation, task, feedback interaction, plan, or schedule for a declared audience; the product does not make the Method effective for a person by publication.
 
 ### HCD.5:End
@@ -1549,9 +1521,9 @@ The selected line costs more than matching labels to a catalogue, but it preserv
 
 ### HCD.6:0 - Use This When
 
-Use this pattern when a named human contribution and a capability-development Method have been selected, but the person still needs a task in which to recognize the situation, act, obtain an inspectable result, receive feedback, and try again under a meaningful change. Begin with the target action and target-domain truth; do not begin by changing names, adding difficulty, or copying a production task without a learning purpose.
+Use this pattern when a named human contribution and a capability-development Method have been selected, but the person still needs a task in which to recognize the situation, act, obtain an inspectable result, receive feedback and improve the action. Begin with the target action and target-domain truth; do not begin by changing names, adding difficulty, or copying a production task without a learning purpose.
 
-The first useful result is a **representative practice set**: a sufficiently whole task family with a worked demonstration or explanation where useful, a first attempt, a materially varied attempt, target-domain success and critical-error criteria, permitted help, feedback and correction opportunities, and progression or return conditions. The set states what each task is intended to expose. It does not establish that the tasks were performed or that capability changed.
+The first useful result is a **representative practice set**: a sufficiently whole task family with a worked demonstration or explanation where useful, a first attempt, repetitions or variations selected for the practice purpose, target-domain success and critical-error criteria, permitted help, feedback and correction opportunities, and progression or return conditions. The set states what each task is intended to expose. It does not establish that the tasks were performed or that capability changed.
 
 The practical gain is an interpretable attempt. A practitioner can tell whether the person failed to calculate, to recognize the applicable Method, to challenge an unsupported source, to coordinate a specialist contribution, or to act when the supplied evidence is sufficient. A warranted refusal and a supported continuation can both be correct in different cases.
 
@@ -1578,7 +1550,7 @@ A practice task can look realistic while testing the wrong contribution. A pump 
 
 Support changes the task. A worked example may help a novice see the reasoning, but leaving the same intermediate prompts in the next attempt can turn recognition into copying. Removing every source or tool can make the task unlike later Work and test memory that was never required. AI assistance can generate a plausible answer while hiding whether the person noticed a configuration mismatch.
 
-The practitioner therefore has to preserve the relations that make the target action necessary, choose help for the current practice purpose, and vary a condition that changes the decision rather than the scenery.
+The practitioner therefore has to preserve the relations that make the target action necessary and choose help for the current practice purpose. When recognition or adaptation is the target, vary a condition that changes the warranted action rather than just the scenery.
 
 ### HCD.6:2 - Problem
 
@@ -1602,7 +1574,7 @@ A third shortcut treats refusal as the safest universal answer. It can hide a re
 
 ### HCD.6:4 - Solution
 
-Design backward from the target human action and the later-Work result it supports. Build one sufficiently whole task, expose the relevant reasoning in a demonstration when useful, create an independent attempt with only permitted help, and vary decision-bearing conditions so that different warranted actions become observable.
+Design backward from the target human action and the later-Work result it supports. Build one sufficiently whole task, expose relevant reasoning when useful, and choose the help, repetitions and variations that serve the present practice purpose. To observe independent recognition, selection or adaptation, withhold help that supplies the contribution being judged and change the case enough to distinguish that contribution from remembering the earlier answer.
 
 #### HCD.6:4.1 - Bind the Practice Use and Domain Truth
 
@@ -1626,11 +1598,15 @@ If domain correctness, a necessary Method description, safe conditions, or a req
 5. **Remove irrelevant burden.** Omit production detail that changes neither the target action nor its interpretation. When realism introduces another independently limiting contribution, prepare it, support it, or split the practice purpose.
 6. **Keep the result feasible.** Fit the case, feedback, correction, and retry inside the declared learner and provider resources. A case too large for the available observation window returns for redesign rather than silently extending the programme.
 
+Show what encompassing work is being performed through the target action during the attempt. A practice task can isolate a weak intermediate contribution, but it must also prepare the combination in which that contribution is needed. For a dancer whose strength and figure recall are already adequate, suitable reduced-demand practice can develop balance during rotation. Returning to the figure then tests coordination with its timing and other movements. Select variations that change that coordination; listing more figure names supplies no such test. State which assistance is available during practice and which will be available during later performance. FPF B.1.5.EW helps recover this vertical; the dance Method, not the framework example, determines the exercise and acceptable result.
+
 #### HCD.6:4.3 - Separate Demonstration, First Attempt, and Help
 
 A demonstration or worked explanation should expose the intermediate action the learner will later need: the cue noticed, Method selected, competing alternatives, calculation or transformation, check, remaining uncertainty, and next move. It should not rely on a final answer whose reasoning remains hidden.
 
-For the first attempt, change the surface particulars and at least one condition needed to elicit the target action. Remove the Method name, recommended option, decisive calculation, or next control move when that value is the target. Retain references, calculators, AI, specialist returns, or other supports that later Work legitimately allows, while stating the human check that remains required.
+For a first practice attempt, retain or supply worked support when it helps the person learn the target action. The learner may complete a partially worked task or repeat an operation before a new condition is useful. State what the learner performs and what the support supplies.
+
+When the purpose is to observe independent recognition, selection or adaptation, change a condition that can expose that contribution. Remove the Method name, recommended option, decisive calculation or next move when the person must supply that value. Retain references, calculators, AI and specialist results compatible with the intended contribution; independence does not require removing all support.
 
 Record permitted help before the attempt. Intended help in a programme, available help in the environment, and help actually received are separate. If a teacher or AI supplies an answer-bearing cue, keep the attempt as supported practice and do not reuse it as evidence of independent recognition.
 
@@ -1645,13 +1621,13 @@ Choose variations from the relation the person must discriminate:
 - change available time, support, task similarity, or authority when those values change the warranted continuation; and
 - change the cue that signals which Method applies when recognition and selection are the target.
 
-Do not require every type of variation. Select the smallest change that can distinguish the target action from repetition, answer recall, or generic caution. HCD.10 later chooses how variation, spacing, interleaving, progression, or support change should be distributed across practice episodes.
+Select a variation when its intended contribution is needed. Use the smallest change that can distinguish recognition or adaptation from answer recall or generic caution; ordinary acquisition or correction can first use a repeated task. HCD.10 later chooses how variation, spacing, interleaving, progression, or support change should be distributed across practice episodes.
 
 #### HCD.6:4.5 - Provide Feedback and Correction Opportunities
 
-Link feedback to the exact criterion or action difference. State what remains correct, what must change, why it matters to the result, and what the learner should inspect or try next. A score or praise can summarize but cannot replace actionable information.
+Link feedback to the criterion or action difference. State what remains correct, what must change, why it matters to the result, and what the learner should inspect or try next. A score or praise can summarize but cannot replace actionable information.
 
-The correction task should preserve the affected requirement while changing enough of the case to prevent answer replay. Recheck only the affected claims unless the changed response gives reason to reopen others. If feedback revealed a different limiting target, return to HCD.5 or HCD.3 rather than adding repetitions under the old explanation.
+Let the learner use the feedback to correct the affected action, on the same case when that makes the correction learnable. For a subsequent attempt intended to distinguish recognition or adaptation from remembering the answer, change enough of the case to expose that difference. Recheck only the affected claims unless the new response gives reason to reopen others. If feedback revealed a different limiting target, return to HCD.5 or HCD.3 rather than adding repetitions under the old explanation.
 
 Practice feedback and later assessment serve different uses. HCD.9 records the feedback and next attempt as practice history. HCD.11 decides what a condition-qualified performance attempt can support, including the effect of help and contamination.
 
@@ -1661,7 +1637,7 @@ Practice feedback and later assessment serve different uses. HCD.9 records the f
 | --- | --- |
 | practice boundary | Human holder or future-audience branch, later-Work family, target action, selected Method, practice purpose, participation, conditions, horizon, and receiving use. |
 | domain basis | Qualified source or stipulated oracle, required result, correct facts, quality criteria, critical errors, hazards, and outside-owner boundaries. |
-| task family | Demonstration where used, first attempt, decision-bearing variations, correction task, and the relation each task is meant to expose. |
+| task family | Demonstration where used, first attempt, correction task, and repetitions or variations selected for the practice purpose; the action or relation each task is meant to expose. |
 | human and support allocation | Human contribution, permitted references, tools, AI, prompts, peers, teachers, specialists, authority, and the required human check. |
 | materials and work products | Data, descriptions, models, reports, calculations, decisions, explanations, or other artifacts needed and returned by each task. |
 | criteria and feedback opportunity | Success, warranted uncertainty, critical error, stop conditions, feedback source and content, and retry condition. |
@@ -1718,6 +1694,12 @@ This task family makes evidence applicability and the resource calculation joint
 
 AI may propose sources, calculations, alternatives, or draft wording in a practice task. The task description states which actions the person still performs: checking decisive references, configuration, assumptions and calculations; selecting the Method; explaining the result; and returning unsupported claims. A later attempt may remove AI for a narrow independent contribution while retaining supplied tables and a calculator. The supported and changed-support attempts remain separate in the practice history; neither is silently upgraded to transfer or retention evidence.
 
+#### HCD.6:5.5 - Correct the Same Action before Adding a New Condition
+
+A trainee must enter a measurement and its unit in an inspection record. The teaching data give **2.4 mV**; the criterion is to preserve both the number and unit. Design the first task with a worked row available if the trainee needs it. If the trainee writes **2.4 V**, feedback points to the unit on the supplied reading and asks the trainee to correct the entry. The same reading is suitable for this correction: changing it would add a different demand before the present action has been repaired.
+
+That corrected entry is a useful supported practice result. When the later question is whether the trainee independently preserves units on a new reading, supply another reading and withhold the answer-bearing worked row. If later work also requires unit conversion, a separate variant can ask for **0.0024 V** to be entered in a column marked **mV**, whose correct value is **2.4**. Select that variant only for the conversion target. Each task keeps its own help and conclusion; the design alone establishes no learner performance.
+
 ### HCD.6:6 - Bias-Annotation
 
 Lenses: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**. Scope: representative practice-task design for a named human contribution or an explicitly conditional future-audience branch.
@@ -1726,7 +1708,7 @@ Lenses: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**. Scope: representat
 | --- | --- | --- |
 | surface-realism bias | A workplace story or visual detail is treated as representation. | Preserve the relations and conditions that elicit and discriminate the target action. |
 | difficulty bias | More complexity is assumed to create more learning. | Remove irrelevant burden and vary only what changes the Method, action, or interpretation. |
-| cue blindness | Method names, intermediate prompts, or AI output supply the answer being tested. | Declare permitted help and remove answer-bearing cues for the relevant attempt. |
+| cue blindness | Method names, intermediate prompts, or AI output supply the answer being tested. | Declare permitted help; remove the answer-bearing cue when the attempt must elicit that contribution independently. |
 | tool-removal bias | All references and tools are removed in the name of independence. | Retain legitimate later-Work supports and isolate only the human contribution the current task targets. |
 | caution bias | Refusal is accepted in every uncertain case. | Include sufficient-evidence cases that require bounded action as well as genuine missing-evidence stops. |
 | answer-key bias | The final answer is checked while the reasoning, source applicability, or critical error remains hidden. | Require the decision-bearing intermediate action and use domain criteria. |
@@ -1741,10 +1723,10 @@ Lenses: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**. Scope: representat
 - [ ] The result recipient, decision or operation, required work product, and next move are visible.
 - [ ] Human, reference, tool, AI, peer, teacher, specialist, environment, permission, and authority contributions remain distinct.
 - [ ] Permitted help is stated before each attempt, and answer-bearing cues are removed only where the target requires it.
-- [ ] A demonstration exposes intermediate reasoning rather than only the final answer.
-- [ ] The first attempt and later variation differ on a decision-bearing condition, not merely on names or scenery.
+- [ ] A demonstration, when used, exposes intermediate reasoning rather than only the final answer.
+- [ ] Help and repetition fit the current practice purpose. When recognition, selection or adaptation is the target, the set includes a condition change that can expose that contribution.
 - [ ] The set includes warranted refusal and supported continuation when that distinction belongs to the target.
-- [ ] Feedback names the affected criterion and next action; correction changes enough of the case to prevent answer replay.
+- [ ] Feedback names the affected criterion and next action. Same-case correction is distinguished from a later changed-case observation of recognition or adaptation.
 - [ ] Learner and provider resources include task, feedback, correction, and retry; an oversized case returns for redesign.
 - [ ] The result states progression or return conditions and distinguishes demonstration, supported practice, independent practice, correction, transfer, retention, and effectiveness uses.
 
@@ -1754,7 +1736,7 @@ Lenses: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**. Scope: representat
 | --- | --- | --- |
 | “Change the pump to a ticket queue” | New nouns can preserve the same cue and answer. | Change a relation or condition that alters the warranted Method or result. |
 | “Use a real project” | Production realism can add uncontrolled risk, access limits, and other human or specialist contributions. | Bound the task around the target action and obtain qualified domain and safety inputs. |
-| “Show the perfect answer, then ask for it again” | The second task may test recall of wording rather than recognition and adaptation. | Expose reasoning in the demonstration, then remove answer-bearing cues and change a decisive condition. |
+| “Repeating the shown answer demonstrates adaptation” | The repeated answer may depend on memory of that case. | Keep its legitimate practice use; test adaptation through a changed condition without supplying the answer being judged. |
 | “No help means independent” | Removing legitimate references or tools can test a different contribution from later Work. | Specify the exact human contribution and retain compatible support conditions. |
 | “Always refuse if evidence is uncertain” | Generic caution fails when sufficient compatible evidence supports bounded action. | Pair missing-evidence and sufficient-evidence variants with explicit criteria. |
 | “The learner got it after feedback” | Corrected practice is contaminated by the feedback event. | Record help and test the affected action on a changed task before stronger inference. |
@@ -1765,19 +1747,19 @@ Lenses: **Gov**, **Arch**, **Onto/Epist**, **Prag**, **Did**. Scope: representat
 
 The practitioner gains tasks that make a selected human action observable and correctable without pretending to be full production Work. Meaningful variations expose applicability, source compatibility, resource limits, and the difference between warranted refusal and supported continuation.
 
-The cost is domain and provider work. Someone must qualify the facts and hazards, prepare cases, expose intermediate reasoning, review attempts, and maintain enough variation to prevent answer replay. A task may return unfinished when correctness, access, safe conditions, or feedback capacity is absent.
+The cost is domain and provider work. Someone must qualify the facts and hazards, prepare cases, expose intermediate reasoning, review attempts, and prepare the variations needed to distinguish recognition or adaptation from answer recall. A task may return unfinished when correctness, access, safe conditions, or feedback capacity is absent.
 
 ### HCD.6:10 - Rationale
 
 A practice task is representative relative to the target contribution and intended evidence claim. It preserves the relations needed for that contribution and use, not every detail of the workplace. This permits bounded safe practice while protecting domain truth.
 
-Separating demonstration, first attempt, correction, and changed-condition practice keeps help and contamination visible. Designing both refusal and continuation cases prevents a safety-oriented boundary from becoming inert caution. The resulting work products give HCD.9 a focused practice object and HCD.11 an interpretable attempt without making their later conclusions in advance.
+Supported acquisition and correction can use the same task; a changed-condition attempt answers a different question when recognition or adaptation is required. Separating those uses keeps the learning contribution of help visible while preserving the limits of the resulting evidence. Designing both refusal and continuation cases prevents a safety-oriented boundary from becoming inert caution. The resulting work products give HCD.9 a focused practice object and HCD.11 an interpretable attempt without making their later conclusions in advance.
 
 ### HCD.6:11 - SoTA-Echoing
 
 The working question is: **How should a practitioner design practice tasks that elicit a target human contribution and support meaningful correction and variation without mistaking surface realism for representation?**
 
-The selected best-known line combines sufficiently whole complex tasks, expertise-sensitive worked support, and decision-bearing variation. The maintained [4C/ID model](https://www.4cid.org/about/) and its [fourth-edition presentation](https://www.4cid.org/readings/books/) supply the serious whole-task design candidate: learning tasks, support for non-routine reasoning, timely procedural information, and additional practice for recurrent parts. Paas and van Merriënboer's 2020 review ([`COG-05`](https://doi.org/10.1177/0963721420922183)) supports worked examples and integrated information for novices while warning that unchanged guidance can become redundant as task knowledge grows. HCD.6 adapts these contributions into §§4.2–4.3 and the separation of whole-task and focused-part practice.
+The selected best-known line combines sufficiently whole complex tasks, expertise-sensitive worked support, and decision-bearing variation. The maintained [4C/ID model](https://www.4cid.org/about/) and its [fourth-edition presentation](https://www.4cid.org/readings/books/) supply the serious whole-task design candidate: learning tasks, support for non-routine reasoning, timely procedural information, and additional practice for recurrent parts. Paas and van Merriënboer's 2020 review ([`COG-05`](https://doi.org/10.1177/0963721420922183)) supports worked examples and integrated information for novices while warning that unchanged guidance can become redundant as task knowledge grows. HCD.6 adapts these contributions into §§4.2–4.3 and the separation of whole-task and focused-part practice. The amount of help and the use of a repeated or varied task follow the learning purpose and starting capability; the sources do not prescribe a changed condition for every correction.
 
 The serious ordinary alternative is a topic exercise or surface-isomorphic scenario: present the rule, vary the nouns and numbers, and score the final answer. It is cheaper to produce, but it can preserve answer-bearing cues, omit the later-Work purpose and interfaces, and reward either calculation without judgement or generic caution. HCD.6 rejects surface change as representation and adds the decision-bearing variation, human/support allocation, domain criteria, and correction task in §§4.1–4.6.
 
@@ -3057,7 +3039,9 @@ Use C.16 for an actual measurement claim, including its scale, method and compar
 
 The first useful result is a **bounded transfer account**: which contribution survived which change, what required adaptation or help, and what remains untested. It lets a practitioner preserve familiar success while addressing a specific transfer gap.
 
-This Method concerns transfer of an already demonstrated contribution. It can also organize a separately declared test of learning from a new source, but that result must remain distinct. Do not call a renamed exercise unfamiliar, infer transfer from course completion, or use an unknown baseline as if prior capability had been demonstrated. When the earlier contribution is uncertain, assess it first through HCD.11.
+Also use §4.5 when the question is how the person learns with a newly supplied source. Begin with relevant prior preparation, familiarity, the source, access conditions and the task criteria. The result reports what the person could do after source access and with what help; prior successful execution of the new Method is not an entry requirement.
+
+Keep these questions distinct. Do not call a renamed exercise unfamiliar, infer transfer from course completion, or use an unknown baseline as if prior capability had been demonstrated. When the intended claim concerns transfer of an earlier contribution and that contribution is uncertain, assess it through HCD.11 or leave the transfer claim open.
 
 A delayed test of otherwise comparable work is primarily an HCD.13 question. Actual deployment, release, safety and employment reliance retain their own evidence and authority conditions.
 
@@ -3081,7 +3065,7 @@ A transfer test can also reward a new rigid habit. Someone who has learned to re
 
 #### HCD.12:4.1 - Recover the prior claim and the meaningful change
 
-Recover the same person's earlier contribution, task, conditions, permitted support, criterion and observations. Identify relevant prior exposure to the new task or response. If familiarity is uncertain, keep that uncertainty in the result.
+For a transfer claim, recover the same person's earlier contribution, task, conditions, permitted support, criterion and observations. For a declared new-source-learning question, enter through §4.5 instead; use §§4.2–4.3 for task criteria and observations as applicable. Identify relevant prior exposure to the new task or response. If familiarity is uncertain, keep that uncertainty in the result.
 
 Describe the material change and why the old answer might now fail. Examples include evidence from a different configuration, reduced capacity, a different tool with the same required result, or a new specialist interface. A change of names, numbers that leave the decisive reasoning untouched, or formatting alone is weak evidence of unfamiliarity.
 
@@ -3117,7 +3101,7 @@ After recording the first attempt, feedback can support learning. Record what it
 
 #### HCD.12:4.4 - Return the transferred contribution and its boundary
 
-Compare the new observations with the earlier claim under the named change. Preserve supported contributions even when another contribution fails.
+For transfer, compare the new observations with the earlier claim under the named change. Preserve supported contributions even when another contribution fails. For new-source learning, return the source, access conditions, observations and limits specified in §4.5 instead of inventing a prior-performance claim.
 
 State the tested change, independent and helped observations, failed criteria, uncertainty and untested variations. When a stronger receiving claim is pursued, state the observation it would require. Use “demonstrated in this unfamiliar case” when that is the scope. Do not use “transfers” without saying what transferred where.
 
@@ -3129,11 +3113,11 @@ Reopen only the contribution affected by a new variation, changed source or tool
 
 #### HCD.12:4.5 - Separate learning from a new source when that is the intention
 
-Sometimes the useful question is how well a person learns a new Method during the task. State that intention before the test. Identify the newly supplied contribution, the exact source and the opportunity to learn from it. Distinguish finding the source from learning with equal access to it.
+Sometimes the useful question is how well a person learns a new Method during the task. State that intention before the test, together with relevant prior preparation and what is known about familiarity with the Method. Identify the newly supplied contribution, the exact source and the opportunity to learn from it. Distinguish finding the source from learning with equal access to it.
 
 Observe prior familiarity, initial recognition, first application after source access, adaptation to a material change, help, time, material errors, corrections and unfinished work. Test the new Method's own contribution; familiar arithmetic or an already known comparison is not evidence of acquiring a different whole Method.
 
-A better first application after reading the new source supports that declared learning task. It is not retention of an already learned Method. A “faster learning at unchanged correctness” claim additionally needs comparable conditions, a suitable comparison and actual observations; shorter completion time alone cannot supply it.
+A first application after reading the new source supports a performance claim under those learning conditions; a claim of improvement also needs a relevant comparison. Earlier knowledge may help the person learn from the source. If that contribution or the effect of an earlier programme is the question, specify the comparison needed to distinguish it. Application after source access alone does not establish that effect or retention of the new Method. A “faster learning at unchanged correctness” claim additionally needs comparable conditions, a suitable comparison and actual observations; shorter completion time alone cannot supply it.
 
 ### HCD.12:5 - Archetypal Grounding
 
@@ -3153,7 +3137,7 @@ For this constructed comparison, L17's task history stipulates that the standalo
 | The assessor changes only available time from 24 to 22 hours. L17 initially keeps the ten-change promise. | A demonstrated adaptation failure under the changed resource condition. | A conclusion that the earlier configuration or calculation contribution has disappeared. |
 | After feedback asking L17 to check the changed time constraint, L17 calculates that nine changes require 18 + 3 = 21 hours, while ten still require 23, and revises the proposal. | Correct adaptation with feedback. | Independent resource adaptation on the first changed-condition attempt. |
 
-The useful local return is complete: preserve the supported finance and configuration evidence and identify capacity adaptation as unproven independently. If stronger reliance on independent capacity adaptation is pursued, arrange a fresh uncued variation before making that claim. HCD.14 can use this result immediately to propose a small practice revision; a retention test is not a prerequisite.
+The useful local return is complete: preserve the supported calculation and configuration evidence and identify capacity adaptation as unproven independently. If stronger reliance on independent capacity adaptation is pursued, arrange a fresh uncued variation before making that claim. HCD.14 can use this result immediately to propose a small practice revision; a retention test is not a prerequisite.
 
 An assessor who accepts “the evidence is never sufficient, so I refuse” would miss the positive-action criterion in the first row. An assessor who scores only the corrected final answer would miss the independent adaptation failure in the second.
 
@@ -3171,13 +3155,13 @@ Do not make “caution” a universal success criterion. A person who refuses ev
 
 ### HCD.12:7 - Conformance Checklist
 
-- Prior qualified performance belongs to the same person and contribution.
+- A transfer claim has prior qualified performance for the same person and contribution. A new-source-learning question instead names relevant prior preparation, familiarity, the new source and its access conditions.
 - The material change and person-relative unfamiliarity are recoverable.
 - The task preserves the target or explicitly declares the new requirement.
 - Positive action and refusal are distinguished where both matter.
 - Required selection is observed before the Method or cue supplies it.
 - Allowed sources, tools, help and first versus corrected attempts remain visible.
-- The conclusion states exactly what transferred, failed or remains untested.
+- The conclusion answers the declared transfer or new-source-learning question, with the supported contribution, failures, help and untested conditions.
 - New-source learning, delayed retention and deployment authority are not inferred from the transfer result.
 
 ### HCD.12:8 - Common Anti-Patterns and How to Avoid Them
@@ -3991,7 +3975,7 @@ Status laundering is especially dangerous. A well-documented candidate, successf
 
 - The bounded repertoire use, decision owner and authority, population, later Work, qualification window, and protected consequences are explicit.
 - One exact admitted Method or status-preserved candidate and one decision-changing HCD claim are named.
-- Admission, reusable semantics, description, variant lineage, provenance, generic trial, fit, worth, introduction, and currentness come from their direct ME results.
+- Method Engineering supplies the status, semantics or other result needed by this bounded judgement; unrelated ME evaluations are not prerequisites.
 - Assisted, unassisted, changed-support, same-job, unfamiliar-transfer, other-Work, delayed, provider, and organization evidence states remain distinct where material.
 - Source population, task, comparator, measure, horizon, support, provider, causal, and currentness limits travel with the claim.
 - Serious alternatives and the smallest contradiction or missing evidence are compared without a global Method score.
@@ -4012,7 +3996,7 @@ Status laundering is especially dangerous. A well-documented candidate, successf
 
 ### HCD.16:9 - Consequences
 
-The HCD repertoire becomes smaller, more explicit, and easier to repair. Practitioners can identify which Method use remains warranted, which claim changed, which branch needs direct evidence, and which candidate must stay a candidate. Source or tool changes no longer force a global rebuild.
+The HCD repertoire becomes more explicit and easier to repair. Practitioners can identify which Method use remains warranted, which claim changed, which branch needs direct evidence, and which candidate must stay a candidate. Source or tool changes no longer force a global rebuild.
 
 The cost is disciplined evidence binding. Some decisions finish with a limited current use or unresolved comparison; a selected probe consumes real learner and provider resources. A useful local Method can be retired from one use while remaining available elsewhere. Method Engineering, providers, target-domain owners and evidence owners supply only the separate results needed by the particular HCD use.
 
@@ -4108,6 +4092,8 @@ Preserve the branch across the result. If admission, description membership, reu
 
 #### HCD.17:4.3 - State one cultural value and predicate
 
+Identify the development practice whose continuation matters. For a teaching practice, observe how the receiving practitioner teaches; for a learning practice, observe how the learner studies or practises. Keep performance in the target job as a separate consequence. For example, a trainer's use of a feedback sequence and the learner's correct professional answer are different observations.
+
 Name the exact value said to be generated, transmitted, received in practice, recognized, selected, remembered, retained, or lost. Then state:
 
 - the transmitting, receiving, recognizing, selecting, remembering, retaining, generating, or losing participant meanings;
@@ -4172,38 +4158,38 @@ Return the exact missing Method status, Work, predicate, participant, evidence, 
 
 #### HCD.17:5.1 - A constructed E27 cultural-continuation branch
 
-This example is constructed. It supplies a complete decision form but no evidence that `CapabilityDevelopmentTeam-E27`, Engineer-E27, any provider Work, or ReleaseWork-R9 occurred. It preserves every current ReleaseWork-R9 evidence gap.
+This hypothetical example concerns CapabilityDevelopmentTeam-E27, its trainers and Engineer-E27. All described participants, records and decisions are stipulated.
 
-Bound the practice to the named provider group and assigned release-review practitioners in 2026-Q4. The later-Work family is independent review of AI-assisted mixed physical/software release claims. The intended human consequence is independent generation and testing of a configuration counter-hypothesis before accepting plausible wrong AI output, while preserving source trace, critical-error detection, justified action or refusal, evidence return, and specialist boundaries.
+The provider group prepares release-review practitioners in the stipulated 2026-Q4 period. The intended learner contribution is to generate and test a configuration counter-hypothesis before accepting plausible wrong AI output, while preserving source tracing, critical-error detection, justified action or refusal and specialist returns. The cultural question concerns how **other trainers take up the teaching practice** used to develop that contribution.
 
-Use the candidate/observed-practice branch for `Counter-Hypothesis-First Candidate-E27`; the example does not admit it as a Method or claim enactment. Stipulate only for the replay that a provider slice has used a scenario card, paired practice case, feedback record, current source set, permitted AI configuration, and coaching session in its development Work.
+Use the candidate/observed-practice branch for Counter-Hypothesis-First Candidate-E27. Its teaching sequence presents a fresh review case, elicits the learner's response before giving a cue that names the alternative, provides criterion-bearing feedback, and arranges an informative retry. Keep the candidate's status; using its materials does not admit a Method. A lead trainer prepares receiving trainers through the scenario card, paired cases, current sources and coached preparation. The receiving trainers then conduct practice sessions with learners.
 
-The primary cultural value is **receiving use before a cue supplies the alternative**. The constructed predicate is positive for one receiving practitioner only when, in a later fresh development-practice occurrence within the named period, that practitioner states and tests a relevant counter-hypothesis before a coach, card prompt, or AI output names it, while preserving trace and specialist return. A discriminating negative is completed fresh practice in which the alternative appears only after such help. Card access, attendance, corrected output, and community discussion do not satisfy the predicate.
+The primary cultural claim is that the receiving trainers use this teaching sequence in later sessions. A positive case shows a receiving trainer eliciting the learner's first response before the answer-bearing cue, then providing feedback and the intended retry. A negative case shows the trainer giving the alternative before the learner attempts it, so the session no longer elicits the intended first response. Trainers may use their card and references. The learner may still struggle in a session where the trainer follows the practice correctly; learner success alone also does not show what teaching practice the trainer used.
 
-Keep participating subjects separate: the candidate account, scenario card, paired cases, feedback records, source set, AI configuration, provider and practitioner Work, coaching Work, review forum, assignments, permissions, specialist access, and later observation. The current replay stipulates authority only for one provider steward to branch the practice arrangement for this provider slice; it grants no authority over ReleaseWork-R9, employment, safety, the wider organization, or the field.
+Keep the teaching materials, preparation, receiving trainer's session, learner's attempts and feedback distinguishable in the account. Permitted AI use, source/configuration checks, critical errors and specialist access remain conditions of the practice. Stipulated authority lets one provider steward change arrangements for this provider group; it grants no authority over release decisions, employment, safety or the wider field.
 
-For the unchanged provider arrangement, stipulate that available records of repeated fresh practice already support this bounded receiving-use predicate for the named practitioners, after the combined preparation and coaching. Their current participation, access, and protected conditions remain adequate. Return `continue` for that arrangement: another comparison would take provider time from its useful operation without changing this decision. The account leaves carrier-only transmission, long-term retention, wider prevalence, and ReleaseWork-R9 capability claims open. These stipulated records are not evidence that the real E27 or provider Work occurred.
+For the unchanged arrangement, stipulate that session records show receiving trainers using the sequence after combined material-based and coached preparation. Their participation, access and protected conditions remain adequate. Return `continue` for that bounded arrangement: another comparison would take time from useful operation without changing this decision. The records leave preparation by materials alone, long-term retention and wider prevalence unresolved.
 
-Now consider a proposal to use the materials with fewer coached sessions. The available combined-support evidence does not settle that receiving condition. A small protected preparation session with the same provider slice is authorized and obtainable before the decision; its outcome can determine whether to use the reduced-coaching arrangement or retain the current support, and that contribution warrants its burden. Two hypotheses are material to this selected comparison:
+Separately, the example may stipulate that E27 produced an uncued counter-hypothesis in a fresh learner attempt while preserving source trace and specialist return. HCD.11 interprets that performance under its conditions. It is not a substitute for the observation of receiving trainers, and it establishes neither broad capability nor the teaching practice's causal effect.
+
+Now consider preparing receiving trainers with fewer coached sessions. The combined-support records do not settle that proposal. A small protected preparation session is authorized and obtainable; its result can change whether to reduce coaching or retain the present support, and that contribution warrants the whole preparation, teaching, observation and feedback burden. Two hypotheses matter to this selected comparison:
 
 | Hypothesis | Discriminating expectation |
 | --- | --- |
-| `H-E27-CARRIER` — the revised scenario card and paired cases are sufficient for receiving use | After self-study and carrier access but before coaching, the practitioner applies the counter-hypothesis move on a fresh case. |
-| `H-E27-COACH` — criterion-bearing coached feedback supplies the decisive discrimination | Pre-coaching fresh cases remain cue-dependent, while equivalent post-coaching cases show independent first use. |
+| H-E27-CARRIER — the card and paired cases suffice for receiving trainers to use the sequence | After self-study, a trainer conducts a fresh teaching task with the card available, eliciting the learner's first response before supplying the alternative, then giving feedback and a suitable retry. |
+| H-E27-COACH — coached preparation is still needed for that use | The pre-coaching teaching task departs from the sequence, while an equivalent fresh task after coaching follows it. This observation can support retaining coaching without identifying a causal effect by itself. |
 
-For the changed receiving condition, return a bounded `branch` proposal: preserve the current provider arrangement, add the revised candidate materials only for the authorized slice, and select one equivalent fresh uncued case before and after coaching. The direct practice Method records actual help, critical errors, trace, specialist return, burden, and participant conditions when the trial is performed. The proposal completes the decision to try the branch, not a claimed trial or capability result. Stop on missing criteria, unsafe practice, absent specialist access, excessive burden, or damage to a protected contribution.
-
-The later result remains conditional:
+Return a bounded `branch` proposal: preserve the present arrangement, test the reduced preparation with the authorized trainers, and compare their use of the sequence on equivalent fresh teaching tasks before and after coaching. Record actual help, learner-task criteria, critical errors, source trace, specialist return and burden. If the trainer follows the sequence, assess any learner consequence separately. The proposal completes the decision to try the branch; its result remains to be observed.
 
 | Observation | Cultural decision |
 | --- | --- |
-| Positive cases occur before coaching across the bounded slice | Continue the branch provisionally and weaken the coaching-dependence hypothesis; long-term retention and wider selection remain open. |
-| Positive cases occur only after coaching | Revise the carrier-sufficiency claim and retain the combined-support branch; do not call the card alone culturally transmitted. |
-| Corrected output occurs but the predicate remains negative | Preserve any practice benefit separately; receiving use remains unproved. |
-| Burden rises or trace/specialist return deteriorates | Stop, revert, or redesign the branch even if the target move appears more often. |
-| No authorized later observation is available | Withhold the proposed branch's later receiving-use claim and return the exact blocked inquiry. Retain the independently supported current arrangement; publication or attendance cannot fill the missing later evidence. |
+| Receiving trainers use the sequence after material-based preparation, before coaching | Continue that preparation branch provisionally for the tested group and conditions; long-term retention and wider use remain open. |
+| Trainers use the sequence only after coaching | Revise the material-sufficiency claim and retain combined preparation; the card alone has not shown the required contribution. |
+| Learners give corrected answers, but trainers still supply the alternative before the first attempt | Preserve any learner practice benefit separately; the intended teaching sequence has not been taken up in those sessions. |
+| Burden rises, protected source tracing or specialist return deteriorates, or practice becomes unsafe | Stop, revert or redesign the branch even if more trainers follow the sequence. |
+| No authorized later observation is available | Withhold the branch's later receiving-use claim. Retain the independently supported current arrangement and state the missing observation only for the decision that needs it. |
 
-Any later capability claim requires its own HCD.11–HCD.13-compatible evidence. Any causal claim that the branch produced capability change requires a separately justified causal use.
+A claim about the receiving trainers' longer-term capability, learners' transfer or retention, or the intervention's causal contribution needs its own compatible basis. The cultural result concerns the stated practice, participants, sessions and conditions.
 
 #### HCD.17:5.2 - CDIO edition history is not enacted HCD culture
 
@@ -4913,7 +4899,7 @@ The best-known line used here is task- and interpretation-sensitive evaluation, 
 
 `ImpactReview-17` is a constructed pedagogical application. Its answer key, `ImpactReview-17-Domain-Oracle-v1`, supplies engineering correctness and criticality criteria for `PumpWorks-Config-Baseline-42` and `AI-Assist-M4`. Its observations and decision conditions are stipulated so that the reader can follow demand derivation, diagnosis, and profile comparison. Operational use needs qualified criteria and evidence for the actual person and Work.
 
-The exact human holder is Engineer-P14. The later Work is independent review of AI-proposed change-impact claims for mixed physical/software pump-controller changes before separate integration, assurance, and release decisions. The constructed 2026-Q4 conditions include current sources and configuration, a forty-five-minute case limit, the named AI assistant, recoverable audit records, and bounded safety and maintenance specialist returns. Final integration, safety, release, and employment authority remain elsewhere.
+The exact human holder is Engineer-P14. The later Work is independent review of AI-proposed change-impact claims for mixed physical/software pump-controller changes before separate integration, assurance, and release decisions. The constructed 2026-Q4 conditions include current sources and configuration, a forty-five-minute case limit, the named AI assistant, recoverable audit records, and bounded safety and maintenance specialist returns. Final integration, safety, release, and employment authority remain elsewhere. A routine reminder to construct and test an alternative configuration hypothesis is allowed; the engineer must supply the case-specific rival and its test. A cue giving that rival would no longer test the required human contribution.
 
 `HCD.1` uses eight stipulated representative review occurrences—four familiar and four unfamiliar, four with plausible wrong AI dependency claims, two needing specialist return—to return qualified demand only inside the constructed case. Engineer-P14 must recognize applicability, trace claims to source and configuration, independently challenge plausible AI output, delimit specialist results, return auditable evidence, and detect every seeded safety-critical omission under the protected conditions.
 
@@ -4930,7 +4916,7 @@ The constructed baseline has correct trace and evidence return in 8/8 cases, cor
 
 Engineer-P14 is the person-level `DecisionSubject` for one self-development-focus choice inside a separately pre-authorized twelve-hour allocation. The pre-existing options are: `O1` preserve without selecting change; `O2` prioritize independent AI-output challenge for later programme comparison while preserving the supported claims; and `O3` defer a human priority and return the prompt-design question to the Method/tool owner.
 
-The shared evidential comparison retains the small sample and prompt rival. Use two further unfamiliar seeded-error cases, one first attempt per case: a neutral prompt on one, an explicit counter-hypothesis prompt on the other. Keep the same sources, tools, specialist routes, and forty-five-minute limit per case. Up to ninety minutes for attempts and thirty minutes for preparation and comparison fit the two-hour probe budget inside the twelve-hour allocation. The observations can still change the `O2`-versus-`O3` comparison, but differences between the cases remain unresolved; this is not an isolated causal prompt test. The probe is feasible and worth its cost, so the explicit `C.11` result is **`ChoiceResult = probe again`**. No profile option or programme is selected. The separately named integration, safety, release, and employment decisions remain with their authorized owners.
+The shared evidential comparison retains the small sample and prompt rival. Use two further unfamiliar seeded-error cases, one first attempt per case: a neutral prompt on one, an explicit reminder of the operation on the other, using the prompt definitions in HCD.3:5.1. Success only with that reminder can support performance under the permitted assistance and favour returning prompt design to its owner; it leaves self-initiated recall open. Keep the same sources, tools, specialist routes, and forty-five-minute limit per case. Up to ninety minutes for attempts and thirty minutes for preparation and comparison fit the two-hour probe budget inside the twelve-hour allocation. The observations can still change the `O2`-versus-`O3` comparison, but differences between the cases remain unresolved; this is not an isolated causal prompt test. The probe is feasible and worth its cost, so the explicit `C.11` result is **`ChoiceResult = probe again`**. No profile option or programme is selected. The separately named integration, safety, release, and employment decisions remain with their authorized owners.
 
 ## APP-HCD-02 - Constructed performance, transfer, retention and revision
 
@@ -4957,7 +4943,7 @@ The intended later-Work family is independent review of AI-assisted mixed physic
 | --- | --- | --- |
 | HCD.15: what keeps development responsive? | A continuing arrangement reopens after a material release-Method, configuration, AI, critical-error, qualification, source, provider or support change. It specifies representative cases, first-attempt capture, current sources, permitted AI conditions, coaching and specialist access, reassessment, owners and stops. The protected learner/provider allocation is still missing, so that practice contribution returns `continuing-arrangement-blocked` until its allocation owner supplies an agreed limit. | A trigger or plan is not performed development Work, later Work, participation, achieved capability or causal effect. |
 | HCD.16: which repertoire claim changes? | Preserve the trace-and-specialist-return development Method, comprising representative attempts, feedback, correction or justified retention, and retry, only under the constructed admitted status and conditions; withdraw the unsupported independent-learning claim and keep cue-led and counter-hypothesis-first candidates as candidates. The proposed comparison costs three learner-hours and two provider-hours, including preparation, attempts, feedback and comparison; only half a provider-hour is available before the current decision. Finish with the trace/helped-use result and unresolved candidate comparison. In a later window supplying the full resources, access and protection, the independent-challenge offer can change enough to warrant `further probe` on matched unfamiliar cases. | Selecting that probe is not obtaining its result. The HCD result neither admits nor universally retires a Method, creates a variant, proves fit or worth, or transfers AI findings from customer support, consulting or school mathematics to release engineering. |
-| HCD.17: what cultural continuation is warranted? | Bound the provider slice and assigned practitioners in 2026-Q4. In HCD.17's unchanged constructed condition, available fresh-practice records support receiving use before a cue, so return `continue` for the combined support without a new experiment. For the reduced-coaching proposal, that basis is insufficient; the authorized, feasible and worthwhile pre/post-coaching contrast supports a `branch` proposal and a selected trial, not a performed result. | Candidate use is not Method enactment. Both branches retain their exact scope and establish no organization- or field-wide adoption, long-term retention, ReleaseWork-R9 consequence, capability change or causal effect. |
+| HCD.17: what cultural continuation is warranted? | In the constructed 2026-Q4 provider group, receiving trainers use the teaching sequence after combined material-based and coached preparation: elicit a learner's response before the answer-bearing cue, give feedback and arrange a suitable retry. Those session records support `continue`. A proposal to reduce trainer coaching needs a useful, feasible comparison of trainers' use after the two preparation arrangements. | The learner's uncued counter-hypothesis is a separate performance observation. Candidate-material use establishes no Method admission, wider adoption, long-term retention, general capability or causal effect. |
 
 The four direct relations remain conditional. The HCD.14 hypothesis can inform HCD.15 or HCD.17; observed HCD.15 use can inform HCD.16; and an HCD.16 disposition can inform HCD.17. A receiver must still verify holder or population, later Work, status, conditions, evidence window and authority. A stale, differently scoped or absent result is replaced only by a qualified direct substitute or an exact missing-result return, never by PatternID order.
 
@@ -4979,7 +4965,7 @@ HCD.2's useful immediate return is a comparable fragment for one complete task f
 
 Teaching capacity is another contribution account. For twelve participants, `32 × 6.5 + 2 × 16 = 240` teaching hours and `240 / 12 = 20` hours per participant are planning allocations, not twenty hours of individual teacher contact. HCD.7 must establish the actual modelling, feedback, assessment, specialist, tool, AI and checking contributions at their working times and peak load. With twenty-four participants, the same per-person checking demand either doubles the checking work or requires an explicit split or changed service design; the 240-hour label cannot simply be reused.
 
-The new programme-and-practice Methods make the design chain inspectable without turning it into a mandatory sequence. HCD.5 selects a Method from the target action, starting attempt, mechanism, task, provider, risk and evidence need. HCD.6 designs representative action-and-refusal contrasts, including compatible FW8 evidence and 24- versus 22-hour resource cases where the changed limit should change the answer. HCD.7 establishes the sources, tables, calculator, AI conditions, assessor competence, capacity, human checking and fallback. HCD.8 is used only if one exact contribution remains missing and obtaining or building it has to be decided.
+The new programme-and-practice Methods make the design chain inspectable without turning it into a mandatory sequence. HCD.5 selects a Method from the target action, starting attempt, mechanism, task, provider, risk and evidence need. For a future audience it supplies conditional choices and the entry evidence needed to apply them. HCD.6 designs representative action-and-refusal contrasts, including compatible FW8 evidence and 24- versus 22-hour resource cases where the changed limit should change the answer. HCD.7 establishes the sources, tables, calculator, AI conditions, assessor competence, capacity, human checking and fallback. HCD.8 is used only if one exact contribution remains missing and obtaining or building it has to be decided.
 
 For example, assessor preparation can use three contrasting answers: a supported ten-change proposal under 24 hours, an unsupported twelve-change promise under the same limit, and a justified request when the firmware evidence is absent. Independent judgements and criterion-level disagreement resolution are preparation. Consistent and timely judgement on a changed 22-hour case is the bounded operating test; it does not establish general assessor capability, whole-window service operation or a learner effect.
 
@@ -5084,13 +5070,16 @@ The constructed human-development and cultural cases supply no evidence that the
 | HCD.1 demand account and evidence needs | HCD.4 | Same-holder scope/result frame only. It creates no temporal order, current mastery, or choice. |
 | HCD.1 demand account, HCD.3 target, and HCD.4 profile values | HCD.2 | Same-holder later-Work, fit, starting-evidence, protected-strength and priority inputs, or qualified equivalents. They neither compose the candidates nor choose one. |
 | HCD.3 target and HCD.4 priorities | HCD.5 | Target, rival, starting-attempt, protected-condition and fit inputs. They do not select the development Method by themselves. |
-| HCD.2 programme comparison | Authorized chooser; HCD.5, HCD.6, HCD.7 and HCD.8 after a separate choice | Comparison and evidence needs for a decision; it is not the choice, commitment, launch or effect. Downstream work uses only the separately selected candidate and compatible conditions. |
+| HCD.5 Method proposal, HCD.6 task design, HCD.7 support account, and HCD.8 contribution plan when needed | HCD.2 | Prepare the smallest comparable programme fragment before choice. Retain actual availability separately from assumptions; preparation supplies comparison inputs without committing to the programme. |
+| HCD.2 programme comparison | Authorized chooser; HCD.5–HCD.8 for elaborating a chosen programme | The comparison informs a separate choice. After that choice, complete or revise the selected programme's Methods, tasks and support. Comparison alone establishes no commitment, launch or effect. |
 | HCD.5 selected Method and evidence plan | HCD.6, HCD.7 and HCD.9 | Proposed mechanism, target action, task, support and observation requirements. Selection is not evidence that the Method works. |
+| [EXD.1](https://github.com/ailev/FPF/blob/main/Engineering%20DPF%20Suite/EXPLANATION-DESIGN-PRINCIPLES-FRAMEWORK.md#exd1---establish-and-revise-the-explanatory-question), [EXD.2](https://github.com/ailev/FPF/blob/main/Engineering%20DPF%20Suite/EXPLANATION-DESIGN-PRINCIPLES-FRAMEWORK.md#exd2---build-and-bound-an-explanatory-example) or [EXD.5](https://github.com/ailev/FPF/blob/main/Engineering%20DPF%20Suite/EXPLANATION-DESIGN-PRINCIPLES-FRAMEWORK.md#exd5---guide-a-recipients-own-explanation) | HCD.6 task design or HCD.9 practice, when explanation is the selected contribution | A qualified question, discriminating example or guided learner explanation, with the subject grounds and assistance conditions retained. HCD keeps the practice, progression and learning-evidence questions. |
 | HCD.6 representative task and HCD.7 enabled support, with HCD.8 only when an exact contribution had to be obtained or built | HCD.9 | Practice object, criteria, permitted support, actual access and operating contribution. A design, booking or completed provider course is not a performed learner attempt. |
 | HCD.9 focused-practice episode and attempt history | HCD.10 and HCD.11 | Evidence for the next practice-condition decision or for bounded performance assessment. Correction after feedback remains distinct from an independent attempt. |
 | HCD.10 condition-sensitive progression | HCD.9, HCD.11 and later evidence uses | Next episode conditions and response rules only. Spacing, retrieval, transfer, retention and effectiveness do not follow from dates or design labels. |
 | HCD.1 or equivalent demand frame | HCD.11 | Same-holder contribution, conditions and receiving-use input; it is not current performance evidence. |
 | HCD.11 or equivalent qualified performance | HCD.12 and HCD.13 | Prior contribution and conditions for the specified unfamiliarity, delay or support comparison. No transfer or retention result follows automatically. |
+| New-source learning question, source and task criteria | HCD.12:4.5 | Prior preparation, familiarity and access conditions support this separate entry. Prior execution of the new Method is not required; report the observed application without inventing an earlier transfer basis. |
 | Any compatible HCD.11, HCD.12 or HCD.13 observation | HCD.14 | Evidence that changes an identified development assumption; all three assessments are not required. |
 | New compatible contribution evidence | HCD.3, HCD.4, HCD.2 or HCD.5 | Reopen only the affected diagnosis, profile, programme comparison or Method selection; preserve unchanged claims and candidates. |
 | HCD.14 revision hypothesis and test | Responsible practitioner or Learning Product owner | A proposed local arrangement change; authority, performed work and observed outcome remain separate. |
@@ -5175,7 +5164,7 @@ An assisting AI or other System may contribute Work or evidence when its capabil
 
 ## Edition return
 
-**Human Capability Development Principles Framework — Nineteen-pattern edition, 11 September 2026** designates this shared account and instructional-material profile, its Table of Contents and presentation carrier, and exactly nineteen authoritative bodies in reader order: HCD.1, HCD.3, HCD.4, HCD.2, HCD.5, HCD.6, HCD.7, HCD.8, HCD.9, HCD.10, HCD.11, HCD.12, HCD.13, HCD.14, HCD.15, HCD.16, HCD.17, HCD.18 and HCD.19.
+**Human Capability Development Principles Framework — Nineteen-pattern edition** designates this shared account and instructional-material profile, its Table of Contents and presentation carrier, and exactly nineteen authoritative bodies in reader order: HCD.1, HCD.3, HCD.4, HCD.2, HCD.5, HCD.6, HCD.7, HCD.8, HCD.9, HCD.10, HCD.11, HCD.12, HCD.13, HCD.14, HCD.15, HCD.16, HCD.17, HCD.18 and HCD.19. The version date below identifies the edition being used.
 
 The designation identifies the complete HCD pattern set and reader carrier. The Engineering DPF Suite includes this HCD framework alongside its other DPFs and common foundations. Actual use, provider operation, performed development Work, achieved capability, cultural continuation and causal effectiveness require the corresponding observations and decisions described here.
 
@@ -5183,7 +5172,7 @@ The designation identifies the complete HCD pattern set and reader carrier. The 
 
 **Author:** Anatoly Levenchuk with AI-assisted development and review.
 
-**Version:** 11 September 2026 — nineteen-pattern edition
+**Version:** 20 September 2026 — nineteen-pattern edition
 
 **Status:** Eternal alpha: used in working development projects and open to continuing correction.
 
@@ -5195,7 +5184,7 @@ Eternal alpha identifies a framework open to continuing correction and developme
 
 ## Citation
 
-Levenchuk, Anatoly, with AI-assisted development and review. *Human Capability Development Principles Framework*. Version: 11 September 2026 — nineteen-pattern edition. [FPF repository](https://github.com/ailev/FPF).
+Levenchuk, Anatoly, with AI-assisted development and review. *Human Capability Development Principles Framework*. Version date shown above — nineteen-pattern edition. [FPF repository](https://github.com/ailev/FPF).
 
 For a particular pattern, name the framework and PatternID; include the version date above when the citation must recover the body published in this version.
 

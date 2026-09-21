@@ -25,7 +25,7 @@ The following index lists the main sections and pattern entries.
 
 | Locus | Title | Kind | Use |
 | --- | --- | --- | --- |
-| Readme | First practical entries | Informative | Choose the first DPF entry from the working problem. |
+| Readme | First practical entries | Informative | Follow connected methods through narrative construction, repair and learning-route design. |
 | Preface | Cross-cutting ideas and principles | Informative | Understand narrativization as source-structure-to-sequence work rather than style polish. |
 | Package carrier structure-account note | What this DPF publication carrier exposes, for whom, captured structure, deliberately coarsened or deferred structure, and source-return boundary | Framework-level use note | Check what part of narrative-studies structure this package exposes before treating it as domain coverage. |
 | Framework context | Package boundary and owner routing | Normative package frame | See dependency, owner, and reliance limits. |
@@ -44,52 +44,64 @@ The following index lists the main sections and pattern entries.
 
 # Readme - First Practical Entries
 
-Narrativization and Narrative Studies DPF helps when a structure-bearing source must become a sequence that humans can follow, remember, teach, discuss, or generate, while source structure and source return remain recoverable.
+## Practical entries
 
-Treat this as a problem-solving DPF, not an ontology of narratives and not a guide to chatting about narrative. Its patterns target recurring narrative-work failures: starting from theme before source structure, hiding temporal posture, choosing story order by habit, making events happen because the writer wants them, treating viewpoint as agency, letting engagement become truth or permission, trusting generated fluency, and copying blocked technical structure into a bad learning route. The intended payoff is a set of source-grounded solution moves that make those failures harder.
 
-Use this DPF when the project question is not only "how do we write this nicely?" but one of these:
+This framework helps turn material with connected ideas, events or constraints into a narrative that a reader can follow and use. The work includes choosing what must survive, deciding its order, designing the reader's route and repairing misleading or unhelpful explanations. The examples below show several patterns working together. For a question already answered by one pattern, use its PatternID and title in the Table of Contents.
 
-- a source graph, architecture, proof dependency, event set, mechanism, evidence set, canon, or knowledge base must become a narrative route;
-- a historical, live, or prospective source must be narrated without hiding which temporal posture and uncertainty obligations apply;
-- a learning route must preserve source structure rather than only examples, analogies, mood, or slogans;
-- a generated text or story plan must be admitted, evaluated, and repaired before reliance;
-- engagement or viewpoint helps comprehension but may distort source structure, agency, ethics, evidence, or authority;
-- a team needs to know whether a narrative rendering is good enough for a declared use.
+Begin with the material and the intended use. A research account, fictional continuation, live commentary and learning course can use the same methods while preserving different things. A narrative may explain an established result or make an unresolved question visible; the relevant research, professional or mathematical work supplies the warrant for a stronger claim. You can ask an assisting agent to explain or apply these methods in the language of your work, without framework jargon.
 
-Do not use this DPF when the live issue is only source evidence, publication layout, legal permission, ethics mediation, proof status, generated-carrier admission, or pattern quality. Use the direct FPF owner first, then return here only if source structure is being rendered as narrative.
+### NSTD-CONTINUATION - Develop an engaging continuation consistent with its source
 
-## First Practical Entry 1 - Turn A Source Structure Into A Narrative Route
+- **Situation:** A fictional continuation needs both narrative interest and consistency with the established world.
+- **Question:** How can the event connections, presentation order and viewpoint work together?
+- **First useful result or blocker:** A usable scene or sequence, or an unresolved source condition.
+- **Start with:** NSTD.1 for the source and constraints; NSTD.2 for their presentation order.
+- **Stop or return:** Finish with the supported continuation. Return a failed event connection to the source or proposed action, and weak engagement to viewpoint or presentation.
 
-Start with `NSTD.1`, then `NSTD.2`. Name the admitted source basis, selected source structures, source temporal posture, rendering mediation mode, intended rendering Work role, any load-bearing narrative voice or viewpoint, intended reader use, narrative purpose, ordering rule, preserved structure, lost structure, and source-return condition. When automated output is used, cite its `NSTD.7` admission case separately.
+An author wants a continuation of a fictional story to be engaging while remaining consistent with the established world. **NSTD.1** first selects the source material and the constraints the new story must respect: what characters know, what they can do, earlier events and the proposed continuation's premises. That selection gives **NSTD.2** something to order. The author can show a discovery late for suspense while keeping the underlying order of events recoverable.
 
-Typical first result: one `NarrativePurposeIntake@Context` plus one `NarrativeOrderingRule@Context`.
+Consider a constructed case: a character uses a key on Tuesday, but the supplied source says the character first obtains it on Wednesday. Moving the reveal of Wednesday's event earlier in the text does not repair the Tuesday action. **NSTD.3** tests the connection between obtaining the key and using it. The author must change the proposed action or establish a compatible earlier means of access, then check that proposal against the selected source. If neither is available, the scene remains unresolved.
 
-## First Practical Entry 2 - Repair A Fluent But Misleading Narrative
+**NSTD.4** asks whose knowledge the chosen viewpoint reveals. The reader may be kept unaware of the key's origin while the character already knows it; the two knowledge states must remain distinguishable. **NSTD.5** can use that gap to sustain curiosity, provided the eventual explanation preserves the access condition. These decisions supply the material for **NSTD.6**: can the reader recover the event order, the available access and the difference between a delayed reveal and a missing cause? A continuity failure returns to source selection or event support. Weak suspense with intact continuity can instead return to viewpoint or engagement. The missing-key problem requires a supported event connection.
 
-Start with `NSTD.3`, `NSTD.4`, and `NSTD.5`. Check whether readers can reconstruct events, mechanisms, dependencies, viewpoint, agency, engagement boundary, and source-return limits.
+If an LLM drafts scenes, **NSTD.7** connects these same decisions to generation: selected sources and constraints, content plan, ordering plan, wording, admission for the intended use, and evaluation. Change the supplied access condition and inspect whether the generated scene responds; ask a reader to reconstruct it without the prompt. A fluent scene that silently invents another key returns to planning or source qualification. The author remains responsible for accepting the scene. Publication rights require their own determination.
 
-Typical first result: a repair note that lowers causal, agency, engagement, evidence, or assurance claims and points to the owner that can carry them.
+The result can be one usable scene, a repaired sequence or an unresolved source question. There is no need to construct an entire fictional universe before obtaining that result.
 
-## First Practical Entry 3 - Evaluate Rendering Quality For Declared Use
+### NSTD-INCIDENT - Repair a fluent account that implies an unsettled cause
 
-Start with `NSTD.6`. First confirm that the object is an admitted narrative rendering version for one declared use. Then evaluate the characteristics needed for that use: `NarrativeRenderingEpiplexity`, ordering recoverability, event-mechanism support, viewpoint-agency discipline, engagement boundedness, owner routing, medium fit, and source-return readiness. For structural recovery, `NSTD.6` applies `C.2.8` to the narrative account, its expression and the reader under the stated conditions. Use a qualitative comparison or an appropriate amount scale; keep its result separate from the quality judgements and their use thresholds.
+- **Situation:** An incident account turns an observed sequence into an established causal explanation.
+- **Question:** How can it explain the known events and decisions while preserving what remains unresolved?
+- **First useful result or blocker:** An account suited to the audience's question, or the causal result still needed for its decision.
+- **Start with:** NSTD.3 for support of the event connections, using the supplied log and intended use.
+- **Stop or return:** Finish with an accurate account of known events when that answers the question; obtain the causal investigation result when the decision requires it.
 
-Typical first result: `NarrativeRenderingQualityResultRow@Context` rows with values, evidence basis, lowering reason, repair action, owner, and reopen condition.
+A team has a polished account of a service incident. Its constructed source log records a configuration change at 14:00, failed requests at 14:02, a rollback at 14:05 and restored service at 14:07. The causal investigation is still open. The draft says the change caused the failure and the rollback fixed it.
 
-For repeated improvement, package those rows as `NarrativeRenderingQualityEvaluationResult@Context` and prepare `NarrativeRenderingImprovementLoopInput@Context` for `E.22`/`E.23`. Do not count a style pass, prompt retry, extra drama, or generated variant as improvement until the changed rendering version or declared changed slice is re-evaluated through `NSTD.6`.
+The existing source and intended use let the team enter **NSTD.3** directly. It separates the observed sequence from the two causal claims. **NSTD.2** then preserves chronology while making the unresolved explanation visible: the setting changed before the failures, and service returned after rollback; the log alone does not establish why. If the audience needs a causal conclusion to choose a remedy, the question returns to the investigation. If it needs an accurate account of known events, the corrected account can already serve that use.
 
-## First Practical Entry 4 - Use LLM Or NLG Output Safely
+**NSTD.4** examines the account's operator viewpoint. A source-backed description of what the operator saw can explain the rollback decision; selecting that viewpoint does not establish the operator's responsibility for the original failure. The account should expose any other recorded condition that changes that interpretation. **NSTD.5** may preserve the urgency and unresolved question without presenting the confident ending that the investigation has not supplied.
 
-Start with `NSTD.7` and `C.35`. Treat the generated result as a produced carrier until admitted source basis, selected structure, generation method, admission note, losses, evaluation, and human responsibility are explicit.
+**NSTD.6** tests the repaired version for that audience and use. Ask what happened, which explanation remains a hypothesis, and what information would be needed for the proposed remedy. Keep the response obtained before extra help. An expert walkthrough, an actual reader's response and a formal estimate support different conclusions. If the reader still reconstructs a settled cause, repair the sentence or ordering that produces that reading and check the affected part again. If a later investigation establishes a mechanism, return its result to the explanation and reconsider the dependent conclusion.
 
-Typical first result: `AutomatedNarrativizationAdmissionCase@Context`.
+### NSTD-LEARNING - Teach selection and use of methods across unfamiliar cases
 
-## First Practical Entry 5 - Build A Learning Route
+- **Situation:** Learners can repeat separate explanations but cannot choose a repair in an unfamiliar project.
+- **Question:** Which content, order and tasks will help them distinguish and perform the needed repair?
+- **First useful result or blocker:** A learning route with the support each task needs, and an evaluation of the learner's resulting understanding or use.
+- **Start with:** NSTD.1 for the learning purpose and NSTD.8 for the route across cases.
+- **Stop or return:** Repair missing content or mistimed support where the response exposes it. Retain an adequate explanation; qualify learning and transfer claims by what was actually observed.
 
-Start with `NSTD.8`, then `NSTD.6`. Keep actual lessons, slides, scripts, exercises, seminar notes, and teaching examples in separate teaching or test-run files. Pattern bodies only govern the route, reconstruction tasks, source return, and evaluation.
+An engineering course presents source selection, ordering, viewpoint and evaluation in separate blocks. Learners can repeat each block's explanation but struggle to choose a repair when an unfamiliar project story goes wrong. **NSTD.1** turns that difficulty into the learning purpose: select and perform the appropriate repair in a new case. **NSTD.8** separates this learning route from the source publication's topic order.
 
-Typical first result: `LearningNarrativeRoute@Context` plus narrative rendering quality result rows.
+The course can begin with a supported source-selection case, then introduce an ordering failure. It later returns to the first case with a viewpoint question and asks learners to distinguish the two repairs in unlabelled situations. **NSTD.2** explains why this teaching order differs from the source's organization. Before each task, **NSTD.8** checks that the needed distinction, operation or accessible reference has been introduced. A deliberate initial attempt before instruction can help surface alternatives, but its subsequent explanation must resolve the difficulty.
+
+**NSTD.3** supplies concrete reconstruction questions; **NSTD.5** selects examples or hooks that help learners stay with them. In the framework's mathematical teaching case, a deformation image is useful only when the learner can recover which changes the formal definition allows and where the analogy ends. If that boundary is missing, adding another attractive image will not supply it. The formal definition and its mathematical justification remain in the source.
+
+**NSTD.6** evaluates the route and the account, expression and reader under the declared conditions, using **C.2.8** for recoverable structure. First identify which necessary relations were recovered or missed; a count is useful only when the unit and selected set are defined. Keep this structural result separate from usefulness, human effort, retention and transfer. One successful response with a reference supports that observed use; it does not show unaided performance on unfamiliar work.
+
+The response determines the return. A missing relation needs content repair; a demand encountered before its support needs a change in the route; an adequate explanation may need no change. Use **E.22** when the improvement question or protected qualities need clarification, and **E.23** to compare a worthwhile repair and re-evaluate what changed. Lessons, slides and exercises are the resulting teaching materials. The patterns explain how to construct and improve them.
 
 # Preface - Cross-Cutting Ideas And Principles
 
@@ -118,6 +130,8 @@ The first discipline is source return. A good narrative can foreground one route
 The second discipline is owner routing. Engagement is not truth. Viewpoint is not responsibility. Protagonist is not `U.Role`. Actant is not `U.RoleAssignment`. Generated fluency is not admission. A learning route is not the source framework. Each stronger claim goes to the FPF pattern that owns it.
 
 The third discipline is evaluation before improvement. `NSTD.6` does not ask whether a narrative is beautiful in general. It evaluates one admitted narrative rendering version for one declared use under `NarrativeRenderingEpiplexity` as the narrative specialization of `C.2.8`, alongside ordering recoverability, source-return readiness, bounded engagement, owner-routed claims, values, evidence basis, missingness rules, repair actions, and reopen conditions.
+
+## NSTD.Preface:End
 
 ## Package Carrier Structure-Account Note
 
