@@ -3,7 +3,7 @@
 > Methods for constructing mathematical representations of a question, connecting unknown relations, observations and available actions, and revising the resulting models.
 
 - **Author:** Anatoly Levenchuk, with AI-assisted development and review
-- **Version:** 20 September 2026
+- **Version:** 22 September 2026
 - **Status:** Eternal alpha: a growing language of general modeling methods.
 - **License:** © 2026 Anatoly Levenchuk. Original framework text: [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). Cited sources retain their own terms.
 - **Publication:** [FPF ecosystem repository](https://github.com/ailev/FPF)
@@ -27,9 +27,9 @@ To cite this edition: Anatoly Levenchuk, *Mathematical Modeling DPF*, [FPF ecosy
 
 | § | ID & Title | Status | Keywords & Search Queries | Dependencies |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | [MMP.10 - Construct and Revise a Constraint Formulation](#mmp10---construct-and-revise-a-constraint-formulation) | Usable, evolving | objects; representation; domains; constraints; recovery; multiplicity; optimization. How can the objects and conditions of a working question be expressed so that mathematical answers still refer to the intended possibilities? | B.5.FM for initial formulation; MATH.1/.5 for construction and representation; C.29.1 for transferring results; MMP.11 for unknown relations. |
-| 2 | [MMP.11 - Construct a Model Family from Known Relations](#mmp11---construct-a-model-family-from-known-relations) | Usable, evolving | unknown relation; family; grounded structure; parameterization; completeness; identifiability. How can an unknown contribution vary without losing known relations, and which remaining ambiguity changes the requested consequence? | MMP.10 for admissible representation; A.3.3.TR for state; C.16.IR for observation-based inference; C.28.MR for intervention; MMP.9 for reduction. |
-| 3 | [MMP.8 - Formulate Choices under Incomplete Information](#mmp8---formulate-choices-under-incomplete-information) | Usable, evolving | available information; action; policy; decision timing; objective; conditional requirement; average performance. What can be chosen with information available in time, and which conditions must that choice satisfy? | MMP.7 for reports; A.3.3.TR for change; MMP.10 for constraints; ME for changing the corresponding way of working. |
+| 1 | [MMP.10 - Construct and Revise a Mathematical Constraint Formulation](#mmp10---construct-and-revise-a-mathematical-constraint-formulation) | Usable, evolving | objects; representation; domains; constraints; recovery; multiplicity; optimization. How can the objects and conditions of a working question be expressed so that mathematical answers still refer to the intended possibilities? | B.5.FM for initial formulation; MATH.1/.5 for construction and representation; C.29.1 for transferring results; MMP.11 for unknown relations. |
+| 2 | [MMP.11 - Construct a Mathematical Model Family from Known Relations](#mmp11---construct-a-mathematical-model-family-from-known-relations) | Usable, evolving | unknown relation; family; grounded structure; parameterization; completeness; identifiability. How can an unknown contribution vary without losing known relations, and which remaining ambiguity changes the requested consequence? | MMP.10 for admissible representation; A.3.3.TR for state; C.16.IR for observation-based inference; C.28.MR for intervention; MMP.9 for reduction. |
+| 3 | [MMP.8 - Formulate Information-Dependent Choices Mathematically](#mmp8---formulate-information-dependent-choices-mathematically) | Usable, evolving | available information; action; policy; decision timing; objective; conditional requirement; average performance. What can be chosen with information available in time, and which conditions must that choice satisfy? | MMP.7 for reports; A.3.3.TR for change; MMP.10 for constraints; ME for changing the corresponding way of working. |
 | 4 | [MMP.8.SD - Construct a Sequential Decision Model from Information and Consequences](#mmp8sd---construct-a-sequential-decision-model-from-information-and-consequences) | Usable, evolving | sequential decision; sufficient state; belief; policy; transition; accumulated consequence; continuation. What information must a continuing instruction retain, and how do present choices affect later possibilities and results? | MMP.8 for available choices; A.3.3.PI for predictive state and belief; MMP.7 for records; CMP.3/.5/.9 for policy computation. |
 
 ## B. Infer, distinguish and revise
@@ -37,17 +37,18 @@ To cite this edition: Anatoly Levenchuk, *Mathematical Modeling DPF*, [FPF ecosy
 | § | ID & Title | Status | Keywords & Search Queries | Dependencies |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | [MMP.7 - Construct a Probability Model of the Recorded Data](#mmp7---construct-a-probability-model-of-the-recorded-data) | Usable, evolving | observation; recorded data; selection; missing records; censoring; noise; probability law. What distribution does the recording procedure produce from the modeled possibilities? | C.16.IR for interpretation and inference; MMP.11 for unknown relations; MMP.8 when the record informs a choice. |
-| 2 | [MMP.12 - Formulate an Inverse Problem and Its Regularization](#mmp12---formulate-an-inverse-problem-and-its-regularization) | Usable, evolving | inverse problem; identifiability; conditioning; regularization; restriction; penalty; target. Which unknowns can the records resolve, and what improvement and loss does a stable reconstruction introduce? | C.16.IR for compatible cases; MMP.11/.7 for the forward and recording relations; MMP.13 for inferential uncertainty; CMP for solving the formulated problem. |
-| 3 | [MMP.13 - Infer Unknowns under a Stated Observation Model](#mmp13---infer-unknowns-under-a-stated-observation-model) | Usable, evolving | estimator; confidence coverage; prior; posterior; predictive uncertainty; dependence; target propagation. Which inferential construction supports the statement the receiver needs? | MMP.7 for the record law; MMP.12/C.16.IR for ambiguity; CMP.8/.9 for numerical computation; MMP.14/.8 for prediction checks and decisions. |
-| 4 | [MMP.14 - Find and Repair a Model's Failed Predictions](#mmp14---find-and-repair-a-models-failed-predictions) | Usable, evolving | model criticism; predictive comparison; residual; conditional response; selection; repair; held-out prediction. Which discrepancy changes the use, what assumption can repair it, and what consequence must be recalculated? | MMP.7/.11/.13 for comparable predictions; B.5.RR for affected revision; CMP.8/.9 for numerical error; C.11.DUA for worthwhile further checking. |
+| 2 | [MMP.12 - Formulate an Inverse Problem and Choose Whether and How to Use Regularization](#mmp12---formulate-an-inverse-problem-and-choose-whether-and-how-to-use-regularization) | Usable, evolving | inverse problem; identifiability; conditioning; regularization; restriction; penalty; target. Which unknowns can the records resolve, and what improvement and loss does a stable reconstruction introduce? | C.16.IR for compatible cases; MMP.11/.7 for the forward and recording relations; MMP.13 for inferential uncertainty; CMP for solving the formulated problem. |
+| 3 | [MMP.13 - Infer Unknowns Statistically under a Stated Observation Model](#mmp13---infer-unknowns-statistically-under-a-stated-observation-model) | Usable, evolving | estimator; confidence coverage; prior; posterior; predictive uncertainty; dependence; target propagation. Which inferential construction supports the statement the receiver needs? | MMP.7 for the record law; MMP.12/C.16.IR for ambiguity; CMP.8/.9 for numerical computation; MMP.14/.8 for prediction checks and decisions. |
+| 4 | [MMP.14 - Find and Repair a Mathematical Model's Failed Predictions](#mmp14---find-and-repair-a-mathematical-models-failed-predictions) | Usable, evolving | model criticism; predictive comparison; residual; conditional response; selection; repair; held-out prediction. Which discrepancy changes the use, what assumption can repair it, and what consequence must be recalculated? | MMP.7/.11/.13 for comparable predictions; B.5.RR for affected revision; CMP.8/.9 for numerical error; C.11.DUA for worthwhile further checking. |
 | 5 | [MMP.15 - Identify an Intervention Effect from Available Data](#mmp15---identify-an-intervention-effect-from-available-data) | Usable, evolving | causal identification; intervention; adjustment; mediation; population transfer; support; partial identification. Which intervention consequence follows from the available laws and causal assumptions? | C.28.MR for intervention meaning; MMP.7/.13 for recording and estimation; C.16.IR for compatible possibilities; MMP.16 for worthwhile distinguishing observations. |
-| 6 | [MMP.16 - Design Observations to Separate Model Alternatives](#mmp16---design-observations-to-separate-model-alternatives) | Usable, evolving | observation design; discrimination; nuisance; recording law; value of information; feasible design. Which obtainable observation separates a consequential ambiguity, and can its benefit repay its burden? | MMP.7/.11/.12/.13 for predicted record laws; MMP.8/.8.SD for decisions; C.11.DUA for worthwhile further work; subject methods for realization. |
+| 6 | [MMP.19 - Construct and Bound a Mathematical Counterfactual Comparison under a Causal Model](#mmp19---construct-and-bound-a-mathematical-counterfactual-comparison-under-a-causal-model) | Stable | counterfactual; same case; factual inference; common input; joint response; pathway; bounds. What would happen to the same case under another action, and what does the available information determine? | C.28.MR for changed mechanisms; MMP.7/.13 for factual records and inference; MMP.15 for identification; MMP.10/.16 for bounds and useful observations. |
+| 7 | [MMP.16 - Design Observations to Separate Mathematical Model Alternatives](#mmp16---design-observations-to-separate-mathematical-model-alternatives) | Usable, evolving | observation design; discrimination; nuisance; recording law; value of information; feasible design. Which obtainable observation separates a consequential ambiguity, and can its benefit repay its burden? | MMP.7/.11/.12/.13 for predicted record laws; MMP.8/.8.SD for decisions; C.11.DUA for worthwhile further work; subject methods for realization. |
 
 ## C. Change the model while retaining its use
 
 | § | ID & Title | Status | Keywords & Search Queries | Dependencies |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | [MMP.9 - Derive a Reduced Evolution Model](#mmp9---derive-a-reduced-evolution-model) | Usable, evolving | reduction; hidden state; closure; memory; approximation; error; sufficient bound. What contribution is left by eliminated detail, and which replacement preserves the consequence needed? | A.3.3.TR for evolution; C.29.1 for preserved structure; MMP.11 for a replacement family; B.5.RR for affected revision. |
+| 1 | [MMP.9 - Derive a Reduced Mathematical Model of State Evolution](#mmp9---derive-a-reduced-mathematical-model-of-state-evolution) | Usable, evolving | reduction; hidden state; closure; memory; approximation; error; sufficient bound. What contribution is left by eliminated detail, and which replacement preserves the consequence needed? | A.3.3.TR for evolution; C.29.1 for preserved structure; MMP.11 for a replacement family; B.5.RR for affected revision. |
 | 2 | [MMP.17 - Construct a Surrogate for Selected Model Responses](#mmp17---construct-a-surrogate-for-selected-model-responses) | Usable, evolving | surrogate; selected response; input region; approximation; correction; tail; refinement. Which cheaper construction can supply the model response the next operation actually needs? | MMP.11 for retained structure; CMP.7/.6 for learning and updates; MMP.14 for consequential mismatch; MMP.18 for coupled use. |
 | 3 | [MMP.18 - Couple Models with Compatible Exchanges and Scales](#mmp18---couple-models-with-compatible-exchanges-and-scales) | Usable, evolving | coupling; interface; scale; conservation; closure; shared uncertainty; double counting. How can component models exchange quantities and information without changing the required joint answer? | A.3.3.TR and MMP.10 for joint conditions; MATH.18 for retained consequences; MMP.9/.17 for missing contributions; CMP.8/.14 for interacting computation. |
 
@@ -72,7 +73,7 @@ A contribution already available can supply its result without being reconstruct
 - **Situation:** A proposed way of working includes an observation followed by a decision, but their combined benefit is unclear.
 - **Question:** What instruction can use that report, and which change to the work is worth making?
 - **First useful result or blocker:** An instruction with its required information, timing and supported performance, or a contribution still needed before it can be used.
-- **Start with:** [MMP.8](#mmp8---formulate-choices-under-incomplete-information) to formulate the choice; [MMP.7](#mmp7---construct-a-probability-model-of-the-recorded-data) when its reporting law is missing; ME.7 when the observing and acting methods must be combined or changed.
+- **Start with:** [MMP.8](#mmp8---formulate-information-dependent-choices-mathematically) to formulate the choice; [MMP.7](#mmp7---construct-a-probability-model-of-the-recorded-data) when its reporting law is missing; ME.7 when the observing and acting methods must be combined or changed.
 - **Stop or return:** Use a sufficient instruction. A changed recording procedure reopens the observation model; changed timing, allowed choices or success requirements reopen the decision. Use C.11.DUA when the benefit of further inquiry is uncertain.
 
 #### Worked connection for MMP-OBSERVATION-TO-ACTION
@@ -94,7 +95,7 @@ ME.7:4.1 helps examine the proposed composition: what each method contributes, h
 - **Situation:** A fitted model produces an answer, but ambiguity in the unknowns or in the observing procedure may change what that answer supports.
 - **Question:** Which conclusion do the records warrant, and what must be revised when a consequential assumption fails?
 - **First useful result or blocker:** An identifiable target and an inferential result with a stated meaning, or the unresolved difference that still changes its use.
-- **Start with:** [MMP.7](#mmp7---construct-a-probability-model-of-the-recorded-data) for the record law, [MMP.12](#mmp12---formulate-an-inverse-problem-and-its-regularization) for recovery and ambiguity, [MMP.13](#mmp13---infer-unknowns-under-a-stated-observation-model) for inference, and [MMP.14](#mmp14---find-and-repair-a-models-failed-predictions) when a prediction needs repair.
+- **Start with:** [MMP.7](#mmp7---construct-a-probability-model-of-the-recorded-data) for the record law, [MMP.12](#mmp12---formulate-an-inverse-problem-and-choose-whether-and-how-to-use-regularization) for recovery and ambiguity, [MMP.13](#mmp13---infer-unknowns-statistically-under-a-stated-observation-model) for inference, and [MMP.14](#mmp14---find-and-repair-a-mathematical-models-failed-predictions) when a prediction needs repair.
 - **Stop or return:** Use a sufficient result under its stated assumptions. Additional diagnostics or observations are needed only when they can change the warranted use. A changed target, recording rule or dependence returns to the contribution it affects.
 
 #### Worked connection for MMP-RECORDS-TO-ANSWER
@@ -124,7 +125,7 @@ The same joins support other observing procedures. Their general contribution is
 - **Situation:** A model omits internal distinctions, and reconstructing them may cost more than the requested answer needs.
 - **Question:** Which consequences are shared by the remaining possibilities, and do they already decide the question?
 - **First useful result or blocker:** A bound that settles the stated threshold, or the distinction whose unresolved value still changes the answer.
-- **Start with:** [MMP.9](#mmp9---derive-a-reduced-evolution-model) for lost evolution information; [MATH.20](https://github.com/ailev/FPF/blob/main/Foundational%20Thinking%20DPF%20Suite/MATHEMATICAL-PRACTICE-DPF.md#math20---bound-an-unknown-by-comparable-constructions) for bounds; FPF C.29 for subject interpretation and C.11.DUA when further inquiry is a live choice.
+- **Start with:** [MMP.9](#mmp9---derive-a-reduced-mathematical-model-of-state-evolution) for lost evolution information; [MATH.20](https://github.com/ailev/FPF/blob/main/Foundational%20Thinking%20DPF%20Suite/MATHEMATICAL-PRACTICE-DPF.md#math20---bound-a-mathematical-unknown-by-comparable-constructions) for bounds; FPF C.29 for subject interpretation and C.11.DUA when further inquiry is a live choice.
 - **Stop or return:** Use a settled answer under the supplied premises. A changed threshold, observation, law or time horizon returns to the affected comparison.
 
 #### Worked connection for MMP-SUFFICIENT-ANSWER
@@ -146,7 +147,7 @@ A different population or physical decay process can use this example when it su
 - **Situation:** Several actions have different consequences in circumstances that the current record does not fully distinguish.
 - **Question:** What can the available data establish about those actions, and is another observation worth obtaining before acting?
 - **First useful result or blocker:** A justified action comparison and a contingent instruction, or an assumption, distinction or timing condition still needed.
-- **Start with:** [MMP.15](#mmp15---identify-an-intervention-effect-from-available-data) to identify the intervention consequences; [MMP.16](#mmp16---design-observations-to-separate-model-alternatives) to compare obtainable information; [MMP.8.SD](#mmp8sd---construct-a-sequential-decision-model-from-information-and-consequences) when observing and acting form successive choices.
+- **Start with:** [MMP.15](#mmp15---identify-an-intervention-effect-from-available-data) to identify the intervention consequences; [MMP.16](#mmp16---design-observations-to-separate-mathematical-model-alternatives) to compare obtainable information; [MMP.8.SD](#mmp8sd---construct-a-sequential-decision-model-from-information-and-consequences) when observing and acting form successive choices.
 - **Stop or return:** Use the sufficient existing instruction when further information cannot repay its burden. A changed recording law, effect of observing or available action reopens the affected construction.
 
 #### Worked connection for MMP-INTERVENTION-AND-INFORMATION
@@ -170,7 +171,11 @@ Without another indication, A has expected loss 5 and B has expected loss 2. Thi
 
 **5. Revise only what changed.** Suppose the available diagnostic now has the same positive probability, 0.5, in both circumstances. MMP.7's new law leaves the belief at 0.5 after either report. MMP.16 returns zero information benefit for the response decision; MMP.8.SD chooses B without the diagnostic and avoids its cost. If observing instead changes the circumstance, include that transition and the changed intervention consequences before reusing the former calculation.
 
-The connection can stop at a sufficient existing choice. Its purpose is to carry identified consequences through an obtainable report into a feasible instruction, not to prescribe additional observation.
+**6. Recover the comparison if the question changes.** A later inquiry may ask which cases would have benefited from the other response, rather than which response minimizes future expected loss. [MMP.19](#mmp19---construct-and-bound-a-mathematical-counterfactual-comparison-under-a-causal-model) constructs the relation between a case's alternative responses. For an observed case, MMP.7/.13 first recover what its factual record implies about the underlying conditions; C.28.MR then changes the mechanism while retaining that case information.
+
+Check what the available laws actually determine. In MMP.19:5.2, two models have identical action-specific success probabilities and identical randomized records, but give different answers about the same observed case under the other action. MMP.19 returns that ambiguity; a feasible observation is considered through MMP.16 only if it could resolve a useful distinction. Returning to the future expected-outcome criterion can make the unresolved same-case relation irrelevant. The earlier choice is then usable without that extra inquiry.
+
+The connection can stop at a sufficient existing choice. The needed comparison determines whether to construct a report, a continuing instruction or a same-case counterfactual.
 
 ### MMP-REPLACE-AND-COUPLE - Use cheaper models without losing the combined answer
 
@@ -195,7 +200,7 @@ A different question can instead change what the interface must carry. A time of
 - **Situation:** A request can be left unassigned or assigned option 0 or 1. The data format uses a presence bit and an option bit.
 - **Question:** Does counting the records count the intended assignments?
 - **First useful result or blocker:** A representation with three possibilities per request, or weights that correct duplicate representations. When the presence bit is zero, either option bit denotes the same absent assignment.
-- **Start with:** [MMP.10 - Construct and Revise a Constraint Formulation](#mmp10---construct-and-revise-a-constraint-formulation), especially :5.2. Construct a valid representation, then determine whether its multiplicities preserve the requested count or sampling law.
+- **Start with:** [MMP.10 - Construct and Revise a Mathematical Constraint Formulation](#mmp10---construct-and-revise-a-mathematical-constraint-formulation), especially :5.2. Construct a valid representation, then determine whether its multiplicities preserve the requested count or sampling law.
 - **Stop or return:** Use a sufficient count or representation. Reopen the translation when requirements or the requested operation change; a representation adequate for finding an assignment can still distort counting.
 
 # Mathematical Modeling - Preface
@@ -246,9 +251,9 @@ A drawing, formula, program or learned representation also needs an operation th
 
 ### MMP.Preface:3.2 - Represent admissible objects and construct missing relations
 
-[MMP.10](#mmp10---construct-and-revise-a-constraint-formulation) starts from intended candidate objects and their requirements. It chooses a representation, derives the conditions that make the representation valid and expresses the required answer. These steps matter for sets, sequences, functions and quantitative objects alike. If several records describe one object, a count or probability over records can require correction before it answers the subject question.
+[MMP.10](#mmp10---construct-and-revise-a-mathematical-constraint-formulation) starts from intended candidate objects and their requirements. It chooses a representation, derives the conditions that make the representation valid and expresses the required answer. These steps matter for sets, sequences, functions and quantitative objects alike. If several records describe one object, a count or probability over records can require correction before it answers the subject question.
 
-[MMP.11](#mmp11---construct-a-model-family-from-known-relations) starts with supported relations and an unknown contribution among them. It constructs adjustable families that retain the needed properties and inserts that contribution into the connected model. A known total, a monotone response and a normalized probability law require different mathematical constructions. Their common modeling question is how to permit the unknown variation while retaining what is supported.
+[MMP.11](#mmp11---construct-a-mathematical-model-family-from-known-relations) starts with supported relations and an unknown contribution among them. It constructs adjustable families that retain the needed properties and inserts that contribution into the connected model. A known total, a monotone response and a normalized probability law require different mathematical constructions. Their common modeling question is how to permit the unknown variation while retaining what is supported.
 
 Choose the form from the next operation. Direct constraints may already describe all useful candidates. A parameterization can make changes preserve the constraints automatically, but may introduce duplicate descriptions or omit parts of the allowed family. Retain that difference when interpreting a fitted value, an impossibility result or an observed agreement.
 
@@ -258,33 +263,35 @@ For an evolving situation, A.3.3.TR constructs a state-change rule from the cont
 
 [MMP.7](#mmp7---construct-a-probability-model-of-the-recorded-data) derives a probability law for the record produced by an observing procedure. Compose the source and recording laws, retain shared unknowns, sum or integrate unrecorded alternatives, and account for selection. The resulting law can supply a statistical inference or prediction method. C.16.IR addresses what a supplied observation relation resolves, including bounds and consequential ambiguity.
 
-[MMP.12](#mmp12---formulate-an-inverse-problem-and-its-regularization) constructs recovery from a forward relation. Find which changes to the unknown leave the records unchanged or change them too little for stable recovery. A restriction or penalty can make a useful reconstruction possible; derive both the error it suppresses and the target detail it may remove. A bound that already settles the question can end the work before regularization.
+[MMP.12](#mmp12---formulate-an-inverse-problem-and-choose-whether-and-how-to-use-regularization) constructs recovery from a forward relation. Find which changes to the unknown leave the records unchanged or change them too little for stable recovery. A restriction or penalty can make a useful reconstruction possible; derive both the error it suppresses and the target detail it may remove. A bound that already settles the question can end the work before regularization.
 
-[MMP.13](#mmp13---infer-unknowns-under-a-stated-observation-model) constructs the inferential claim. Choose whether the use needs a repeated-sampling guarantee, a posterior probability or a prediction for a new outcome; derive that result under the record law and the additional assumptions it requires. Propagate joint uncertainty to the quantity the receiver actually needs. A regularized optimum alone supplies neither a posterior distribution nor a coverage guarantee.
+[MMP.13](#mmp13---infer-unknowns-statistically-under-a-stated-observation-model) constructs the inferential claim. Choose whether the use needs a repeated-sampling guarantee, a posterior probability or a prediction for a new outcome; derive that result under the record law and the additional assumptions it requires. Propagate joint uncertainty to the quantity the receiver actually needs. A regularized optimum alone supplies neither a posterior distribution nor a coverage guarantee.
 
 Observation can also change the situation. C.28 and C.28.MR help formulate that intervention and replace the affected mechanism. [MMP.15](#mmp15---identify-an-intervention-effect-from-available-data) asks whether its requested consequence is determined by the available laws and causal assumptions. It derives an identifying expression, a sufficient bound or an unresolved difference between compatible causal accounts. MMP.13 can then estimate an identified quantity from finite records; an observational fit alone does not identify it.
 
+A question about the same case under another action needs a further connection. [MMP.19](#mmp19---construct-and-bound-a-mathematical-counterfactual-comparison-under-a-causal-model) constructs the underlying conditions shared by its alternatives, uses MMP.7/.13 to recover what the factual record says about them, then applies the changed mechanisms. Separately known intervention distributions can leave their same-case relation ambiguous. The result can be a conditional response or a bound; a choice based only on expected outcomes can remain settled without resolving that ambiguity.
+
 ### MMP.Preface:3.4 - Turn uncertainty into a question about available action
 
-[MMP.8](#mmp8---formulate-choices-under-incomplete-information) separates circumstances from choices and specifies when information arrives. It then formulates whether the work needs a fixed decision or an instruction depending on an available report, and whether performance is required for each admitted circumstance or on average under a stated probability law.
+[MMP.8](#mmp8---formulate-information-dependent-choices-mathematically) separates circumstances from choices and specifies when information arrives. It then formulates whether the work needs a fixed decision or an instruction depending on an available report, and whether performance is required for each admitted circumstance or on average under a stated probability law.
 
 This formulation can expose a change needed in the work itself: observe earlier, distinguish another circumstance, permit another action or revise the requirement. [Method Engineering (ME)](https://github.com/ailev/FPF/blob/main/Engineering%20DPF%20Suite/METHOD-ENGINEERING-PRINCIPLES-FRAMEWORK.md) develops the observing and acting methods and their composition. Their timing and resource demands return as premises of the mathematical question.
 
 An information-dependent instruction needs both an obtainable report and a participant able to act on it at the stated time. Check this condition for the combined method. A correct reporting law and a correct decision calculation can still describe an instruction that the proposed work cannot perform.
 
-[MMP.16](#mmp16---design-observations-to-separate-model-alternatives) constructs the records that alternatives would produce under feasible designs. Compare the distinction an observation could resolve with its contribution to the receiving question and its burden. An informative report can still leave the preferred action unchanged.
+[MMP.16](#mmp16---design-observations-to-separate-mathematical-model-alternatives) constructs the records that alternatives would produce under feasible designs. Compare the distinction an observation could resolve with its contribution to the receiving question and its burden. An informative report can still leave the preferred action unchanged.
 
 [MMP.8.SD](#mmp8sd---construct-a-sequential-decision-model-from-information-and-consequences) develops continuing choice: retain a state or belief sufficient for the proposed decisions, construct transitions and observations, and derive how a present choice and its continuation determine the accumulated consequence. This joins observation design to action when timing, information or changes caused by observing matter.
 
 ### MMP.Preface:3.5 - Simplify, diagnose and revise for the required consequence
 
-[MMP.9](#mmp9---derive-a-reduced-evolution-model) starts with a source evolution law and quantities to retain. It derives their change, identifies the contribution that depends on removed detail and constructs a replacement through elimination, memory, added state, approximation or a sufficient bound. Initial conditions, inputs and the requested horizon determine whether the replacement serves the question. MMP.11 can supply a family for a still-unknown replacement relation.
+[MMP.9](#mmp9---derive-a-reduced-mathematical-model-of-state-evolution) starts with a source evolution law and quantities to retain. It derives their change, identifies the contribution that depends on removed detail and constructs a replacement through elimination, memory, added state, approximation or a sufficient bound. Initial conditions, inputs and the requested horizon determine whether the replacement serves the question. MMP.11 can supply a family for a still-unknown replacement relation.
 
 [MMP.17](#mmp17---construct-a-surrogate-for-selected-model-responses) constructs a cheaper supplier for selected source-model responses. Choose the responses and input region from their intended use, build the replacement, and refine or return to the source where approximation changes the answer. Retaining a value can be insufficient when the receiver needs a derivative, tail event or explanation.
 
 [MMP.18](#mmp18---couple-models-with-compatible-exchanges-and-scales) connects models through the quantities and conditions they exchange. Translate between their quantities and scales, supply any omitted influence needed by the connection, and retain shared information. Preserving a total amount, a constant field or a joint probability law requires different conditions on that connection. Matching software inputs and outputs does not establish those conditions.
 
-[MMP.14](#mmp14---find-and-repair-a-models-failed-predictions) helps when available observations reveal a consequential prediction failure, or a proposed use makes a comparison worth performing. Choose a discrepancy relevant to that use, derive predictions for comparable records, locate the mismatch and change the implicated relation or assumption. Recalculate the receiving consequence. Several repairs may explain one discrepancy; predictive improvement alone does not identify its cause. Existing records, an algebraic comparison or a restricted use can be sufficient.
+[MMP.14](#mmp14---find-and-repair-a-mathematical-models-failed-predictions) helps when available observations reveal a consequential prediction failure, or a proposed use makes a comparison worth performing. Choose a discrepancy relevant to that use, derive predictions for comparable records, locate the mismatch and change the implicated relation or assumption. Recalculate the receiving consequence. Several repairs may explain one discrepancy; predictive improvement alone does not identify its cause. Existing records, an algebraic comparison or a restricted use can be sufficient.
 
 When a premise or question changes, B.5.RR identifies the reasoning that depends on it and derives the revised consequence. If the argument must first be recovered, use B.5.RA. B.5.MPC.R develops the comparison when the difficulty concerns a connection among physical, mathematical and computational accounts. The repair may belong to subject assumptions, observation, mathematical formulation or computation.
 
@@ -393,7 +400,7 @@ For evaluating alternatives and improving them, reuse FPF's characteristic, comp
 
 # A. Formulate the subject question
 
-## MMP.10 - Construct and Revise a Constraint Formulation
+## MMP.10 - Construct and Revise a Mathematical Constraint Formulation
 
 > **Type:** Method pattern
 > **Status:** Usable, evolving
@@ -590,7 +597,7 @@ To apply the formulation in another subject, obtain the relations and mathematic
 
 ### MMP.10:End
 
-## MMP.11 - Construct a Model Family from Known Relations
+## MMP.11 - Construct a Mathematical Model Family from Known Relations
 
 > **Type:** Method pattern
 > **Status:** Usable, evolving
@@ -800,7 +807,7 @@ Revisit the chosen family when new subject knowledge changes its restrictions, a
 
 ### MMP.11:End
 
-## MMP.8 - Formulate Choices under Incomplete Information
+## MMP.8 - Formulate Information-Dependent Choices Mathematically
 
 > **Type:** Method pattern
 > **Status:** Usable, evolving
@@ -1018,7 +1025,7 @@ Start with two possible first actions. For each, write what becomes available be
 
 The object being constructed is a **sequential decision model**: a mathematical account connecting available information, allowed actions, subsequent observations and accumulated consequences. Its result lets a reader compare a present action together with an admissible continuation. A continuation is the later policy: a rule for choosing actions from the information available then.
 
-This is the sequential refinement of **MMP.8 - Formulate Choices under Incomplete Information**. It retains that pattern's separation of chosen quantities, uncontrolled circumstances and information available at each choice. It adds the construction of a state sufficient for the selected decision problem and the relation between current action and remaining consequence. A short history tree is a valid starting model; a compact state becomes useful when the tree repeats questions or grows too large.
+This is the sequential refinement of **MMP.8 - Formulate Information-Dependent Choices Mathematically**. It retains that pattern's separation of chosen quantities, uncontrolled circumstances and information available at each choice. It adds the construction of a state sufficient for the selected decision problem and the relation between current action and remaining consequence. A short history tree is a valid starting model; a compact state becomes useful when the tree repeats questions or grows too large.
 
 A reader can work the finite cases with conditional probability, finite sums and maxima, or with sets of possible outcomes. For continuous, constrained or indefinitely continuing models, the person supplying the mathematical argument needs the relevant preparation in stochastic control, decision theory or the applicable field. This can be the reader or an available specialist. Give a specialist the actual timing, allowable actions and consequence criterion; ask for the resulting model and its limitations.
 
@@ -1289,13 +1296,13 @@ The practice question is how to retain enough information for a useful sequentia
 
 ### MMP.8.SD:12 - Relations
 
-- **MMP.8 - Formulate Choices under Incomplete Information** supplies choices, uncertainty, information timing and admissible policies. This nested refinement constructs their sequential state and continuation.
+- **MMP.8 - Formulate Information-Dependent Choices Mathematically** supplies choices, uncertainty, information timing and admissible policies. This nested refinement constructs their sequential state and continuation.
 - **A.3.3.PI - Retain the Information Needed for Prediction**, especially :4.4, supplies prediction and hidden-state belief updates. This method consumes them in action and accumulated-consequence comparisons.
 - **MMP.7** supplies the recording law and available observations. **MMP.13** can supply inferred model quantities with their uncertainty; neither contribution alone establishes the effect of a new action policy.
 - **C.28.MR** supplies intervention through a changed mechanism. A subject method supplies or justifies the resulting action and observation relations used here.
 - **MMP.14** supplies criticism and repair when comparable predictions fail. A detected failure here identifies which state, information or consequence premise must return to modeling.
 - **C.29.2 - Computational Formulation** specifies the computational answer or continuing response and the procedure needed to obtain it.
-- **CMP.3 - Share and Schedule Repeated Subcomputations** organizes repeated evaluations of the continuation. **CMP.9 - Construct a Randomized Estimator or Sampling Procedure** estimates expectations with a computational error account. **CMP.5 - Improve a Candidate through a Relaxed Problem** supplies relaxation, candidate recovery and improvement bounds for the chosen formulation.
+- **CMP.3 - Share and Schedule Repeated Subcomputations** organizes repeated evaluations of the continuation. **CMP.9 - Construct a Randomized Estimator or Sampling Procedure** estimates expectations with a computational error account. **CMP.5 - Bound an Optimum or Recover a Feasible Candidate through a Relaxed Problem** supplies relaxation, candidate recovery and improvement bounds for the chosen formulation.
 - **C.11.DUA** helps decide whether further information or computation is worth obtaining. FPF choice and portfolio methods and the applicable DOCA, Strategy or Method Engineering practice supply criteria, compare the returned alternatives and organize their practical use.
 
 ### MMP.8.SD:End
@@ -1497,7 +1504,7 @@ C.16.MR constructs the relation from a sought property to its indication; this p
 
 ### MMP.7:End
 
-## MMP.12 - Formulate an Inverse Problem and Its Regularization
+## MMP.12 - Formulate an Inverse Problem and Choose Whether and How to Use Regularization
 
 > **Type:** Method pattern
 > **Status:** Usable, evolving
@@ -1736,7 +1743,7 @@ This method extends compatible-case interpretation by constructing the recovery 
 
 ### MMP.12:End
 
-## MMP.13 - Infer Unknowns under a Stated Observation Model
+## MMP.13 - Infer Unknowns Statistically under a Stated Observation Model
 
 > **Type:** Method pattern
 > **Status:** Usable, evolving
@@ -2026,7 +2033,7 @@ This preserves the distinction from inverse-problem regularization, numerical co
 
 ### MMP.13:End
 
-## MMP.14 - Find and Repair a Model's Failed Predictions
+## MMP.14 - Find and Repair a Mathematical Model's Failed Predictions
 
 > **Type:** Method pattern
 > **Status:** Usable, evolving
@@ -2318,7 +2325,7 @@ This is a method of mathematical modeling within causal reasoning. It constructs
 
 Preparation requires conditional probability, expectation and the ability to follow a mathematical argument about assumed causal relations. For graphical derivations, the practitioner or an available specialist must be able to check which paths remain open under conditioning and intervention. A specialist contribution must return the target, assumptions, required observable quantities and derivation or obstruction; a software answer alone is insufficient.
 
-Do not reconstruct identification when an applicable result already answers the unchanged question. Use MMP.13 for estimation under an already identified expression, and C.28.MR for a consequence inside a fully supplied causal model. Design another experiment only when the existing result is insufficient and further evidence is worth obtaining.
+Do not reconstruct identification when an applicable result already answers the unchanged question. Use MMP.13 for estimation under an already identified expression, and C.28.MR for a consequence inside a fully supplied causal model. Design another experiment only when the existing result is insufficient and further evidence is worth obtaining. For a question about the same observed case under another action, or a joint or nested comparison of its responses, MMP.19 constructs the common-case relation and determines what the available information fixes.
 
 ### MMP.15:2 - Problem
 
@@ -2571,12 +2578,231 @@ Reopen the chosen derivation when the target, available laws, causal exclusions,
 - **MMP.7** supplies the observation law, including selection and missingness. **MMP.11** supplies an explicit model family when its restrictions are needed.
 - **MMP.12** handles inverse ambiguity and justified regularization. A restriction used here remains an added causal or response assumption, not new evidence.
 - **MMP.13** constructs inference for the identified expression or explicitly assumption-dependent target. **MMP.14** investigates failed model predictions; observational checks alone need not distinguish observationally equivalent causal models.
+- **MMP.19** constructs and bounds history-conditioned, joint and nested counterfactual comparisons; an intervention mean can remain sufficient for a choice based on expected outcome.
 - **MMP.16** addresses a chosen need for additional observation design. **C.11.DUA** governs whether that work is worthwhile.
 - **Computational Thinking**, including **CMP.8/CMP.9** where their numerical methods apply, obtains numerical values without supplying the missing causal argument. Subject methods justify and realize the intervention and the asserted invariances.
 
 ### MMP.15:End
 
-## MMP.16 - Design Observations to Separate Model Alternatives
+## MMP.19 - Construct and Bound a Mathematical Counterfactual Comparison under a Causal Model
+
+> **Type:** Method pattern
+> **Status:** Stable
+> **Normativity:** Normative unless marked informative
+
+### MMP.19:1 - Problem frame
+
+Use this pattern when the question concerns the same case under another action, a joint comparison of its possible responses, or a specified pathway through which a change would act. A population average may be available while the case-specific or pathway question remains unanswered.
+
+Start with the intended use, the observations about the case or population, and a causal account of the relevant mechanisms. Construct what remains common across the alternatives, carry factual information into that construction and calculate the consequence or range it supports. A useful first result can be two compatible models that give different answers: the supplied information then leaves this distinction unresolved.
+
+The mathematical prerequisites are function evaluation and the probability operations used in the chosen construction. A qualified contributor can supply them. The meaning of the variables, observations and interventions still needs subject knowledge. Small finite cases can be calculated by hand.
+
+For a population intervention effect, use MMP.15 and C.28.MR directly. A choice maximizing expected realized outcome under each action can also need only those intervention distributions, conditional on the information available before acting. Constructing a joint counterfactual law is useful when the receiving question actually depends on it.
+
+### MMP.19:2 - Problem
+
+An intervention distribution describes results across the selected population. Information about an observed case can select different underlying conditions. Reusing the population distribution then answers another question.
+
+There is also a difference between knowing each alternative's distribution and knowing how their results correspond for the same unit. Two causal accounts can agree on every available observation and intervention yet disagree about whether this unit would have succeeded under both actions. Independent simulation of the two distributions silently chooses one such correspondence.
+
+A pathway question adds another dependency: a variable may be set to the value it would have had under a different action. Substituting its population mean can erase the case relation that the question needs.
+
+### MMP.19:3 - Forces
+
+| Force | Consequence for construction |
+| --- | --- |
+| Case information and population variation | Infer the case's conditions under the factual account before changing its mechanisms. |
+| Marginal agreement and joint ambiguity | Recover or bound the dependence across alternatives when the target uses it. |
+| Mechanistic detail and obtainable information | A supplied model can determine a conditional consequence that the data alone do not identify. |
+| Pathway meaning and interactions | State which nested comparison is intended; different decompositions can answer different questions. |
+| Useful decisions and unresolved counterfactuals | A sufficient action comparison may finish without recovering the whole joint law. |
+
+### MMP.19:4 - Solution
+
+**Specify the comparison → construct the common case → use its factual information → evaluate the alternative mechanisms → identify or bound the target → return the consequence to use.**
+
+#### MMP.19:4.1 - State what the comparison must answer
+
+Name the unit, relevant time and population. State the action or mechanism alternatives and what would count as their outcomes. C.28 distinguishes the causal-use question; C.28.MR supplies the meaning of mechanism replacement.
+
+Distinguish the targets that the question could need. Common examples are a mean under an intervention, the response under another action given what happened to this case, and a joint property such as succeeding under one action while failing under another. For a pathway question, name which mechanism's input is to be changed and which other route remains as specified.
+
+Recover what the recipient will do with the answer. A future choice based on expected outcome and action cost can depend only on each action's marginal distribution. A probability of benefit, an explanation of an observed result or a nested pathway contrast can depend on more. C.11 and MMP.8 retain the decision criterion; the mathematical construction must answer that criterion rather than substituting another one.
+
+#### MMP.19:4.2 - Construct one common basis for the alternatives
+
+In a structural model, write the relevant variables as functions of their parents and underlying inputs U. Recover the joint law p(u), given input values, or a set of admissible input laws and mechanisms. U can include shared disturbances and persistent characteristics; its meaning depends on the subject account.
+
+For each action a, let Y_a(u) denote the output of the modified model at the same underlying input u. A response-type representation can instead give a joint vector such as (Y_0,Y_1) directly. Its joint distribution states which responses belong to the same modeled unit. Having the two marginal distributions alone does not supply this dependence.
+
+Keep common conditions common, and identify which changes the action itself causes. Two runs with independently drawn U describe different modeled cases. Reusing a random seed is a numerical way to implement a specified coupling; the seed does not justify that coupling in the subject. Repeating work later with changed conditions likewise needs an account of which inputs persist and which are newly drawn.
+
+Use a model with well-defined responses for the requested inputs. In the finite acyclic case, evaluation in dependency order suffices. Continuous, cyclic or multiple-solution models require their own existence and solution-selection conditions; a solver's returned trace does not settle an unspecified response relation.
+
+#### MMP.19:4.3 - Infer case conditions from the factual observations
+
+Let e denote the available factual record. Use the model and recording procedure that produced it, including the actual action regime. MMP.7 constructs the recording law; MMP.13 supplies the needed conditioning.
+
+For a finite supplied input law and record likelihood k(e given u), form
+
+```text
+w(u given e) = k(e given u) p(u) / sum_v k(e given v) p(v).
+```
+
+The denominator must be positive. An exact deterministic record has a likelihood of one for compatible inputs and zero for incompatible ones. A noisy or selected record needs its actual likelihood. An individually observed continuous value uses the appropriate conditional distribution or density, not division by the probability of a zero-probability point.
+
+This operation uses the factual mechanisms. Conditioning after replacing them can select a different set of cases. If the supplied account cannot produce the record, return the conflict; changing an assumed mechanism or observation model is a separate justified repair.
+
+A probability law need not be invented when only possible inputs are supported. Retain the inputs compatible with the record and derive the range of responses they permit. If there is no factual conditioning in the query, use the selected population law or set directly.
+
+#### MMP.19:4.4 - Evaluate the compared responses with that common basis
+
+Replace the selected mechanisms using C.28.MR. At each retained u, evaluate all the responses needed by the question before averaging. For a finite conditional comparison,
+
+```text
+P(Y_a=y, Y_b=z given e)
+    = sum_u w(u given e) 1[Y_a(u)=y and Y_b(u)=z].
+```
+
+Here the indicator is one when both conditions hold. A single response or expected difference uses the corresponding function inside the same sum. The shared u preserves the modeled relation between alternatives. Use integration when the model supports a continuous version of this operation.
+
+For a nested response Y_(a,M_b)(u), first compute the intermediate value M_b(u) under b. In the second model set A to a and M to that computed value for the same u, then evaluate Y. Averaging M_b before this replacement generally changes the target. The construction defines a model consequence even when no available physical procedure can jointly realize every term; C.28:4.5 governs a separate claim about obtaining samples.
+
+For a pathway decomposition, state both component contrasts and verify that their sum is the intended total. Interactions can make another choice of reference mechanism give different components. A component's numerical size does not by itself establish the adequacy of the explanation or the feasibility of a proposed physical intervention.
+
+#### MMP.19:4.5 - Determine what the available information fixes
+
+A fully supplied model gives a consequence conditional on that model. Identification asks whether all admissible models agreeing with the available information give the same target. Use MMP.15's distinction between a proof of ambiguity and an unfinished search on the counterfactual construction now specified.
+
+Two compatible models with different target values prove non-identification under their shared assumptions and available laws. More samples from those same laws cannot distinguish them. A narrower quantity can nevertheless be identified.
+
+For a finite response-type construction, assign a nonnegative mass to each admitted type, with total mass one. Express the known marginal, joint and regime laws as constraints on those masses. Add a structural restriction only when the causal account supports it. Minimize and maximize the target over the compatible masses; for a conditional probability retain its conditioning denominator. MMP.10 helps formulate the constraints and an appropriate computational method can solve them.
+
+Call the resulting bounds tight only when the construction establishes that no smaller range follows and that its extremes are attainable, or specifies unattained limiting extremes. A numerical search that finds two values supplies witnesses, not necessarily the full range. Uncertainty from estimating an input law with finite data is another layer, handled by MMP.13; it is not the same as ambiguity remaining even when that law is known.
+
+#### MMP.19:4.6 - Use a sufficient consequence and reopen the affected assumption
+
+Return the target's meaning, the supported value or range, and the assumptions that determine its use. The calculation can already carry these facts; a separate record is needed only by a receiving use.
+
+If every compatible answer supports the same sufficient action or explanation, use that result. If the distinction matters, identify what would change it: a defensible restriction on mechanisms, informative existing records, a feasible different observation, or a different question. MMP.16 and C.11.DUA compare the value and burden of obtaining that contribution. Unavailable evidence can leave a bounded answer and a choice under uncertainty.
+
+A revised recording rule changes the factual conditioning. A revised intervention changes the response functions. A changed criterion can make joint dependence irrelevant. Recalculate the affected contribution while retaining the rest.
+
+During an investigation, this construction can perform its mathematical-modeling contribution while conditioning and mechanism evaluation supply constituent Methods. The investigator or subject specialist supplies the case and causal interpretation; a mathematical or AI collaborator may supply the calculation. Availability of one contribution leaves the others to be obtained where the work needs them.
+
+### MMP.19:5 - Archetypal Grounding
+
+These are constructed cases with supplied mechanisms or exact probability laws. They demonstrate the mathematical operations and limits, not empirical effectiveness.
+
+#### MMP.19:5.1 - Change the route for an already observed processing case
+
+A routing model gives latency in ticks as Y=2A+U. Route A=1 adds two ticks; residual latency U is 0 or 1 with equal probability. The recorded case used A=1 and had Y=3.
+
+Under the factual equation only U=1 is compatible. Keeping that input and replacing the route by A=0 gives Y_0=1. Drawing a fresh U from the population instead gives mean latency 1/2. That is a new-case mean, not the requested alternative for the observed case.
+
+If the record is noisy, use its likelihood rather than selecting U with certainty. If an exact Y=4 is reported under the unchanged model, neither admitted U is compatible; return the conflict instead of calculating a posterior with zero denominator. Whether the same residual condition would persist under a real route change is a subject premise of this model.
+
+#### MMP.19:5.2 - Expose a coupling that experiments do not determine
+
+Let a randomized binary action A be independent of the response type U=(Y_0,Y_1). Consider two possible type distributions:
+
+| Type (Y_0,Y_1) | Model S | Model T |
+| --- | ---: | ---: |
+| (0,0) | 3/8 | 1/8 |
+| (0,1) | 1/8 | 3/8 |
+| (1,0) | 1/8 | 3/8 |
+| (1,1) | 3/8 | 1/8 |
+
+Each action succeeds with probability 1/2 in both models. With a fair random assignment, all four observed (A,Y) combinations have probability 1/4 in each model.
+
+For a case observed with A=1,Y=1, only types (0,1) and (1,1) remain. In S, the probability that it would also succeed under A=0 is (3/8)/(1/2)=3/4. In T it is (1/8)/(1/2)=1/4. Both models fit the supplied observational and intervention laws, so these laws do not identify the answer.
+
+For a future choice scored only by expected success, the actions tie at 1/2 under both models. If A=1 adds a positive cost and no other consequence, A=0 is sufficient for that criterion. Resolving the counterfactual ambiguity would not improve this choice.
+
+#### MMP.19:5.3 - Bound benefit without inventing a joint law
+
+Suppose binary success probabilities under actions 1 and 0 are p1=7/10 and p0=2/5. Let b=P(Y_0=0,Y_1=1), the probability of succeeding only under action 1. The four type masses must be
+
+```text
+P(0,1)=b                 P(1,1)=p1-b
+P(1,0)=p0-p1+b           P(0,0)=1-p0-b.
+```
+
+Nonnegativity gives max(0,p1-p0) <= b <= min(p1,1-p0), hence 3/10 <= b <= 3/5. At b=3/10 the masses in order (00,01,10,11) are (3/10,3/10,0,2/5); at b=3/5 they are (0,3/5,3/10,1/10). Both attain the supplied marginals, establishing the bounds for this unrestricted response-type class.
+
+Now suppose assignment A is independent of the response pair (Y_0,Y_1), P(A=1)>0, and a case is observed with A=1,Y=1. The probability that this case would fail under action 0 is P(Y_0=0 given A=1,Y=1)=b/p1, hence between 3/7 and 6/7. Conditioning retains the types with Y_1=1; the independent assignment probability cancels from numerator and denominator. The same endpoint distributions attain these conditional bounds, since their denominator is the fixed positive p1=7/10.
+
+The mean effect is p1-p0=3/10 in every compatible model. An expected-success criterion with an action-1 cost of 1/10 therefore has net gain 1/5 without identifying b. A criterion that explicitly requires b to exceed 2/5 remains unsettled by these bounds.
+
+If subject knowledge warrants that action 1 never changes a success into failure, P(1,0)=0 fixes b=3/10. That is an additional monotonicity assumption; it was not learned from the two marginal probabilities.
+
+#### MMP.19:5.4 - State which mediated contrast is being calculated
+
+Take the supplied mechanisms M=A+U and Y=3A+2M+AM, with U=0 or 1. Compare actions 0 and 1 for the same u. The total change is 6+u.
+
+First retain the mediator at M_0=u while changing A: Y_(1,M_0)-Y_(0,M_0)=3+u. Then change the mediator to M_1=1+u while retaining A=1: Y_(1,M_1)-Y_(1,M_0)=3. The components sum to 6+u.
+
+Reversing that decomposition gives mediator change 2 at A=0, followed by direct change 4+u at M_1. These components also sum to 6+u. The interaction AM makes the two decompositions different. A request for “the part caused through M” must select its intended contrast. Knowing the total effect alone supplies neither decomposition; observing data that identify it is a further question.
+
+### MMP.19:6 - Bias-Annotation
+
+The explicit examples use finite inputs and simple structural functions. Their transparency helps inspect a comparison but does not show that such a causal account is obtainable for every subject. Subject ambiguity can remain after a numerical method computes a definite answer.
+
+The same-unit relation is part of the model. Its appropriateness in a physical, organizational or human setting depends on what is held common and what each action changes. A purely numerical pairing can be useful for variance reduction while lacking the interpretation required by the causal question.
+
+### MMP.19:7 - Conformance Checklist
+
+- The target states the unit, alternatives, relevant factual information and receiving use.
+- Common conditions and changed mechanisms have a subject interpretation.
+- Factual conditioning uses the factual mechanism and recording law.
+- Joint or nested responses use the specified common-case dependence.
+- A model-conditional calculation is distinguished from identification across admissible models.
+- An ambiguity or bound is returned at its proved scope, with estimation uncertainty kept distinct.
+- A sufficient action can finish without recovering an irrelevant joint law.
+
+### MMP.19:8 - Common Anti-Patterns and How to Avoid Them
+
+| Recognizable failure | Repair |
+| --- | --- |
+| Use the population input law after receiving information about the case. | Condition under the factual account before evaluating its alternative response. |
+| Independently simulate two marginals and interpret the pairs as the same units. | Construct or bound the joint response law the interpretation needs. |
+| Replace a nested intermediate value by its population mean. | Compute the intermediate response for each common input before evaluating the outer mechanism. |
+| Report a uniquely identified answer because one chosen model yields a number. | Examine the target across the admissible models, or report the result as conditional on that model. |
+| Demand a benefit probability for a choice determined by expected outcomes. | Recover the criterion and use the sufficient marginal comparison. |
+
+### MMP.19:9 - Consequences
+
+The recipient obtains a comparison whose case relation and assumptions can be inspected, changed and used. A proved range exposes what remains unresolved without replacing the result by a generic request for more data.
+
+Constructing a common causal account and solving its constraints has a cost. Its value depends on whether the joint, conditional or pathway distinction changes the explanation or decision. An intervention mean or conditional outcome prediction can remain the sufficient result.
+
+### MMP.19:10 - Architectural Rationale
+
+The hard step is often the relation between calculations, rather than each calculation separately. Ordinary conditioning recovers case information; mechanism replacement constructs an alternative; the common input or response-type law connects them. Maintaining that relation permits a joint question and exposes assumptions invisible in separate marginal fits.
+
+The same construction supports historical explanation, probabilities of benefit and nested pathways. Their targets remain distinct. In particular, a decision based on realized outcomes can use less structure than a question about how those outcomes would differ for the same unit.
+
+### MMP.19:11 - SoTA-Echoing
+
+[Correa and Bareinboim (2025)](https://proceedings.mlr.press/v267/correa25a.html), Definitions 1.1–1.3 and §2.1.1, supply the shared-input and nested-response semantics used in :4.2–:4.4. The finite examples here use those definitions; the richer graphical calculus has further conditions and operations.
+
+[Mueller and Pearl (2023)](https://ftp.cs.ucla.edu/pub/stat_ser/r513.pdf) separate average effects from probabilities of benefit or harm. [Dawid and Senn (2025, v2)](https://arxiv.org/pdf/2301.11976), §§2–4, supply a serious alternative: intervention distributions suffice for maximizing expected realized outcomes under the stated information and constraints. Adopt the target distinction in :4.1/:4.6. In :5.2 the same two models require a joint account for the historical question but no such recovery for the stated future choice. The changed question justifies the more elaborate construction.
+
+[Raghavan and Bareinboim (2026, preprint)](https://arxiv.org/html/2602.23541v1), §§2 and 4–5, distinguish identification, partial identification and physically realizable counterfactual sampling. Adapt those distinctions in :4.4–:4.5. Their available-action, finite recursive and positivity assumptions limit the algorithmic results. Establishing a model consequence leaves its physical sampling conditions to be established separately when sampling is needed.
+
+Reopen the selected construction when a supported additional mechanism or information source changes the compatible comparisons, or when another method obtains the required answer with less unsupported structure or burden. The worked finite constructions establish their stated mathematical consequences; practical validity still depends on the subject account.
+
+### MMP.19:12 - Relations
+
+- **C.28** governs causal-use questions and support; **C.28.MR** constructs mechanism replacements and their consequences.
+- **MMP.7/.13** supplies the recording and inferential operations used to recover factual case information. **MMP.15** identifies intervention effects from available laws and supplies the identification/ambiguity distinction reused here.
+- **MMP.10** formulates compatible response-type constraints. **MMP.16** constructs a worthwhile distinguishing observation; **MMP.14** repairs an account contradicted by appropriate records.
+- **MMP.8/.8.SD**, **C.11** and **C.11.DUA** connect the consequence to choice, continuation and proportionate further inquiry. **EXD.1** recovers what connection an explanation must supply.
+
+### MMP.19:End
+
+## MMP.16 - Design Observations to Separate Mathematical Model Alternatives
 
 > **Type:** Method pattern
 > **Status:** Usable, evolving
@@ -2829,7 +3055,7 @@ These sources develop statistical branches. The bounded-error construction in :5
 
 # C. Change the model while retaining its use
 
-## MMP.9 - Derive a Reduced Evolution Model
+## MMP.9 - Derive a Reduced Mathematical Model of State Evolution
 
 > **Type:** Method pattern
 > **Status:** Usable, evolving

@@ -41,7 +41,7 @@ This is the public constitution and membership account for the Foundational Thin
 | Product series | Publication status | Useful contribution |
 | --- | --- | --- |
 | [Mathematical Thinking DPF](MATHEMATICAL-PRACTICE-DPF.md) | Published - 20 patterns | Construct objects, operations and arguments; derive and use consequences. |
-| [Mathematical Modeling DPF](MATHEMATICAL-MODELING-PRACTICE-DPF.md) | Published - 13 patterns | Formulate questions, infer unknowns and intervention effects, choose useful observations, construct continuing decisions, and change or combine models while retaining the needed answer. |
+| [Mathematical Modeling DPF](MATHEMATICAL-MODELING-PRACTICE-DPF.md) | Published - 14 patterns | Formulate questions, infer unknowns, construct causal comparisons, choose useful observations, construct continuing decisions, and change or combine models while retaining the needed answer. |
 | [Physical Thinking DPF](PHYSICAL-THINKING-DPF.md) | Published - 10 patterns | Construct physical accounts, derive their consequences, build observations and revise physical assumptions. |
 | [Computational Thinking DPF](COMPUTATIONAL-THINKING-DPF.md) | Published - 14 patterns | Construct and transform algorithms; connect their meaning, representations, resource requirements and interactions. |
 | [Notational Engineering DPF](NOTATIONAL-ENGINEERING-DPF.md) | Published - 8 patterns | Design, interpret, transform and coordinate expressions, including temporal and embodied notation. |
