@@ -8,9 +8,9 @@ First edition, 2026-09-25. [Edition and citation](#edition-and-citation).
 | --- | --- |
 | [Readme](#checklist-principles-framework-readme) | Find the Method for an omitted question, a misleading form, an unusable occasion, an actual answer, shared reliance or an uncertain check. |
 | [Preface](#preface) | Understand how the six Methods connect and what their results mean. |
-| [Applications](#applications) | Follow a card set through change and a shared workshop through uncertain criteria and partial results. |
-| [Sources and dependencies](#sources-and-dependencies) | Recover the contributions used, their limits and conditions for reconsideration. |
-| [Edition and citation](#edition-and-citation) | Interpret CHK references and identify this edition. |
+| [CHK.Application - Applications](#applications) | Follow a card set through change and a shared workshop through uncertain criteria and partial results. |
+| [CHK.Reference - Sources and dependencies](#sources-and-dependencies) | Recover the contributions used, their limits and conditions for reconsideration. |
+| [CHK.Edition - Edition and citation](#edition-and-citation) | Interpret CHK references and identify this edition. |
 
 Within Checklist Principles Framework, the reference code is **CHK** and numeric local locators identify patterns: **CHK.1** through **CHK.6**. The § column gives publication position, not a prescribed order of use.
 
@@ -18,7 +18,7 @@ Within Checklist Principles Framework, the reference code is **CHK** and numeric
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | [CHK.1 - Select Checklist Questions for a Work Result](#chk1---select-checklist-questions-for-a-work-result) |  | consequential omission; subject; description; useful characteristics. “Which questions deserve attention?” “What does this list leave uncovered?” | ME.3; FPF B.1.5, E.10.D2; CHK.6 when criteria are uncertain |
 | 2 | [CHK.2 - Construct a Checklist Template That Preserves Its Questions](#chk2---construct-a-checklist-template-that-preserves-its-questions) |  | template; instance; table; local view; answer meanings. “Can I transpose or split this list without losing its meaning?” | CHK.1 or an existing question set; ME.8; EXD.1, EXD.6 |
-| 3 | [CHK.3 - Fit a Checklist to Its Occasion of Use](#chk3---fit-a-checklist-to-its-occasion-of-use) |  | pause; read-do; do-confirm; assistance; tools; adoption. “Why is this list skipped or prefilled?” | CHK.2 or an existing template; ME.10, ME.11, ME.16 |
+| 3 | [CHK.3 - Fit a Checklist to Its Occasion of Use](#chk3---fit-a-checklist-to-its-occasion-of-use) | Stable | pause; read-do; do-confirm; assistance; tools; adoption. “Why is this list skipped or prefilled?” | CHK.2 or an existing template; ME.10, ME.11, ME.16 |
 | 4 | [CHK.4 - Use a Checklist to Answer Questions and Act on the Results](#chk4---use-a-checklist-to-answer-questions-and-act-on-the-results) |  | observation; reuse; no; unknown; action; changed description. “What can I answer now, and what follows?” | ADM.7; OPS.6, OPS.18; CHK.5 for shared reliance |
 | 5 | [CHK.5 - Reconcile Checklist Results Across Shared Work](#chk5---reconcile-checklist-results-across-shared-work) |  | partial result; whole; conflict; changed premise; resumption. “Do these local answers support our shared result?” | CHK.4; OPS.3, OPS.4; ADM.13; FPF B.1.5, A.15.10 |
 | 6 | [CHK.6 - Qualify Checklist Criteria and Checking Means](#chk6---qualify-checklist-criteria-and-checking-means) |  | counterexample; discrimination; false pass; AI; test; evidence. “Could this check miss the very difference we care about?” | ME.3, ME.11, ME.14; ADM.7; CHK.1 for coverage |
@@ -67,7 +67,7 @@ These are selected examples of first use, not a catalogue or coverage boundary. 
 
 ## What changes in practice
 
-The starting result is often small: three better questions, a repaired answer field, access to the right observation, or a decision to remove an unnecessary list. The framework also describes two larger combinations: [from a recurring omission to a useful aid](#from-a-recurring-omission-to-a-useful-aid), and [from local answers to shared work through change](#shared-work-with-uncertain-criteria-and-changed-premises). Each complete application includes a long mantra for repeated or interrupted use.
+The starting result is often small: three better questions, a repaired answer field, access to the right observation, or a decision to remove an unnecessary list. The framework also describes two larger combinations: [from a recurring omission to a useful aid](#chkapplication1---from-a-recurring-omission-to-a-useful-aid), and [from local answers to shared work through change](#chkapplication2---shared-work-with-uncertain-criteria-and-changed-premises). Each complete application includes a long mantra for repeated or interrupted use.
 
 If a capable participant can answer the one live question directly, do that. If the work calls for a complete operating procedure, substantive domain judgement or development of a missing ability, obtain that contribution from its own practice. A longer checklist does not supply it. You can ask an assisting agent to explain or comment on an application in ordinary language, without framework jargon.
 
@@ -427,6 +427,7 @@ CHK.1 supplies questions and bounded coverage. CHK.3 consumes the usable templat
 
 ## CHK.3 - Fit a Checklist to Its Occasion of Use
 
+> **Status:** Stable
 
 ### CHK.3:1 - Problem frame
 
@@ -471,6 +472,8 @@ Put the current question, help and response mechanism in the working environment
 Recover the specific capability needed to answer. Counting supplied items may be easy; interpreting a specialist defect can call for another person. [HCD.3][HCD3] helps identify the capability demanded by the work. Nearby explanation can help a capable user apply a distinction; it does not create all missing competence.
 
 For human participants, inspect whether time pressure, hierarchy, mistrust or incentives discourage a truthful response. Explain the practical purpose, involve people who bear the burden, and change the arrangement that prevents use. An instruction to “be more diligent” does not diagnose the obstacle. Where introduction changes established organizational practice, [OCE.6][OCE6] and [OCE.10][OCE10] supply that work beyond this fitting Method.
+
+When the proposed change still needs examination and agreement, [OCE.12:4.3.3][OCE12PREP] connects preparation with relevant advisers, the organizational decision and a shared understanding of the agreed start. Return its accepted contributions and conditions to this work occasion: who supplies the observation, who has time to check, what help is available and who receives an unresolved answer. Confirming those arrangements can support first use; the trial below must still show whether the aid contributes to a useful handover. A new consequential objection or an unavailable resource returns to the affected decision before dependent use.
 
 For an AI agent, provide the applicable description and criteria, usable tools, relevant retained observations and a way to express uncertainty. Mixed human/AI work needs a clear handover of unresolved judgement.
 
@@ -985,7 +988,9 @@ CHK.1 supplies proposed work questions and receives coverage corrections. CHK.2 
 
 # Applications
 
-## From a recurring omission to a useful aid
+<a id="from-a-recurring-omission-to-a-useful-aid"></a>
+
+## CHK.Application:1 - From a recurring omission to a useful aid
 
 An organizer repeatedly receives physically complete seminar cards containing wording from an earlier exercise. The facilitator can explain the exercise, and the packer can count and inspect cards; neither currently sees the whole question at the useful moment.
 
@@ -1009,7 +1014,9 @@ Keep use, detected problems and work outcomes distinct. A caught wording mismatc
 
 The worked route uses CHK.1–4 with Method engineering; uncertain criteria or shared reliance bring in CHK.6 or CHK.5 when needed. It can return at several points: unsupported usefulness calls for domain inquiry; lost references call for template repair; inaccessible information calls for fitting; unchanged adequate grounds support economical reuse. The three physical-set answers never settle the exercise's usefulness by themselves.
 
-## Shared work with uncertain criteria and changed premises
+<a id="shared-work-with-uncertain-criteria-and-changed-premises"></a>
+
+## CHK.Application:2 - Shared work with uncertain criteria and changed premises
 
 A rented-room workshop combines projection, card exercises and participant coordination. The technician uses a venue tool, the facilitator a materials workspace, and the organizer a session calendar. The team is uncertain whether “readable on screen” can be judged reliably at the technician's desk.
 
@@ -1031,16 +1038,21 @@ The worked case below connects these moves to the room, materials and workshop. 
 
 The route uses all six Checklist Methods because this constructed case has uncertain criteria, local forms, an occasion, actual answers and shared reliance. A simpler workshop may need only a conversation and a direct check. The example explains the connections; it does not prescribe six phases for every session.
 
+## CHK.Application:End
+
+
 # Sources and dependencies
 
-## Source contributions and their limits
+<a id="source-contributions-and-their-limits"></a>
+
+## CHK.Reference:1 - Source contributions and their limits
 
 These sources inform the Methods in different ways. The historical and conceptual sources support problem recognition and synthesis. Empirical studies and engineering accounts support their stated observations under their own conditions.
 
 | Source and return | Contribution used here | Limit and reconsideration condition |
 | --- | --- | --- |
 | R7, Methodology, connected checklist passages in chapter 6 and their Method, qualification and change context | Questions about work subjects; reusable templates and filled instances; local adaptation; timing, assistance, skill, motivation and worth. | Translate the ideas under current FPF rather than importing meta-level or alpha terminology. Revisit the affected Method if a source distinction lost in translation changes use. |
-| R10, Systems Management, connected operational model, shared-state and administration passages | Local interpretation, shared views, coordination and change in work involving several participants. | A shared representation does not establish performed work or the state of every subject. Revisit CHK.5 when the work arrangement changes. |
+| R10, Systems Management, connected operational model, shared-state and administration passages; 10:2 and 10:5 on introducing a practice | Local interpretation, shared views and coordination; preparing an organizational decision and fitting the aid to its first working use. | CHK.3 develops the use occasion and returns organizational preparation to OCE.12:4.3.3; CHK.5 reconciles shared results. A publicly confirmed start or completed representation leaves performed work and the receiving result to establish. |
 | Atul Gawande, *The Checklist Manifesto* (2009; 2010 UK edition), especially the professional-reminder, team-interaction and design/trial cases | Historical practitioner account of selecting attention and arranging real use. | Domain cases and suggested design heuristics do not establish universal list length, timing or causal effect. |
 | [Urbach et al., 2014][URBACH] | A population-level implementation result constraining easy effectiveness claims. | Its before/after setting does not show that every checklist is ineffective. Seek domain-specific evidence when making an outcome claim. |
 | [Facey et al., 2024][FACEY] | Mechanisms by which documentation can diverge from observed checklist practice. | One institutional setting does not establish prevalence elsewhere. Inspect the actual local arrangement. |
@@ -1059,7 +1071,9 @@ These sources inform the Methods in different ways. The historical and conceptua
 
 The useful synthesis is a short question set with recoverable meaning, an actual occasion and suitable grounds. A checklist does not supply all professional knowledge, prove that its described characteristics are useful, or establish a whole result merely through constituent passes.
 
-## Relied-on framework content
+<a id="relied-on-framework-content"></a>
+
+## CHK.Reference:2 - Relied-on framework content
 
 The Checklist edition relies on the following content for the receiving uses stated here. The direct pattern links identify the supplying text.
 
@@ -1078,11 +1092,16 @@ The Checklist edition relies on the following content for the receiving uses sta
 
 This edition uses the supplying text identified in its first-edition source basis. A later date or a working hyperlink does not establish semantic compatibility. Before reusing an answer affected by a supplier change, compare the actual changed content with its named receiving use. Unaffected Methods remain usable.
 
-## Refresh and improvement
+<a id="refresh-and-improvement"></a>
+
+## CHK.Reference:3 - Refresh and improvement
 
 Return first to the smallest affected contribution. A missed consequential question reopens CHK.1; lost meaning reopens CHK.2; unusable timing or access reopens CHK.3; unsupported subject answers reopen CHK.4; broken shared reliance reopens CHK.5; an inadequate criterion or checker reopens CHK.6.
 
 Repeated non-use, prefilled answers, interpretation errors, burdens shifted to others and weak whole-result inferences can reveal defects in the aid or its arrangement. Use representative work and worth appraisal before expanding it. A changed source, model, tool or framework supplier reopens the dependent claim, not automatically the entire edition. Distinguish a changed way of working from a new release of its supporting tool: newer software does not by itself make the criterion or underlying Method better. Compare actual alternatives and their conditions of use. A new independently useful Method or a materially different human/AI practice boundary can justify reconsidering the framework's scope.
+
+## CHK.Reference:End
+
 
 # Edition and citation
 
@@ -1092,7 +1111,9 @@ Cite a pattern as “Checklist Principles Framework, CHK.4.” Add “first edit
 
 This first edition covers the selection, construction, fitting, use, reconciliation and qualification of checklists in human, AI and mixed professional work. Its Readme, Preface, applications and source account support the same use. Its examples are constructed cases, and any claim of effectiveness in a particular field calls for evidence about that field and arrangement.
 
-## License and reuse
+<a id="license-and-reuse"></a>
+
+## CHK.Edition:1 - License and reuse
 
 Copyright (c) Anatoly Levenchuk. The original text and worked examples in this Checklist Principles Framework publication are available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). When sharing under that license, give attribution, link to the license and indicate changes. The [licensing scope](https://github.com/ailev/FPF/blob/main/LICENSING.md) identifies the covered material and third-party and software boundaries. Cited third-party works retain their own terms.
 
@@ -1131,3 +1152,7 @@ Copyright (c) Anatoly Levenchuk. The original text and worked examples in this C
 [AUTOCHECKLIST]: https://arxiv.org/html/2603.07019v1
 [ANTHROPIC1]: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
 [ANTHROPIC2]: https://www.anthropic.com/engineering/harness-design-long-running-apps
+
+[OCE12PREP]: ORGANIZATION-CHANGE-ENGINEERING-PRINCIPLES-FRAMEWORK.md#oce12433---prepare-a-proposal-for-decision-and-first-use
+
+## CHK.Edition:End

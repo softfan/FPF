@@ -145,7 +145,7 @@ A different population or physical decay process can use this example when it su
 ### MMP-INTERVENTION-AND-INFORMATION - Decide whether an observation will improve the next action
 
 - **Situation:** Several actions have different consequences in circumstances that the current record does not fully distinguish.
-- **Question:** What can the available data establish about those actions, and is another observation worth obtaining before acting?
+- **Question:** What can the available data establish about those actions, and is another observation worth obtaining before acting? When the observation supplies a training label, which request and continuation improve the rule's further use enough to justify their cost?
 - **First useful result or blocker:** A justified action comparison and a contingent instruction, or an assumption, distinction or timing condition still needed.
 - **Start with:** [MMP.15](#mmp15---identify-an-intervention-effect-from-available-data) to identify the intervention consequences; [MMP.16](#mmp16---design-observations-to-separate-mathematical-model-alternatives) to compare obtainable information; [MMP.8.SD](#mmp8sd---construct-a-sequential-decision-model-from-information-and-consequences) when observing and acting form successive choices.
 - **Stop or return:** Use the sufficient existing instruction when further information cannot repay its burden. A changed recording law, effect of observing or available action reopens the affected construction.
@@ -176,6 +176,66 @@ Without another indication, A has expected loss 5 and B has expected loss 2. Thi
 Check what the available laws actually determine. In MMP.19:5.2, two models have identical action-specific success probabilities and identical randomized records, but give different answers about the same observed case under the other action. MMP.19 returns that ambiguity; a feasible observation is considered through MMP.16 only if it could resolve a useful distinction. Returning to the future expected-outcome criterion can make the unresolved same-case relation irrelevant. The earlier choice is then usable without that extra inquiry.
 
 The connection can stop at a sufficient existing choice. The needed comparison determines whether to construct a report, a continuing instruction or a same-case counterfactual.
+
+
+#### Obtain labels for a rule that will be used on further cases
+
+The next action can be another query rather than the final subject action. Use this branch when examples are available without their labels and obtaining a label can improve a rule used on further cases. The result is a policy: which label to request now, what to do with each possible answer, when to request another, and what rule to use when questioning ends. Use an adequate existing rule without further labeling when it already serves the receiving work.
+
+**Construct the query and its consequence together.** First name the cases on which the rule will be used, the response it must give and the loss of a wrong response. A query that reveals much about a rare case can be less useful than a less uncertain query that changes many consequential predictions. Learning a rule and estimating the accuracy of a fixed rule are also different purposes; the same selected labels need not serve both.
+
+Recover what is observable before asking. In a pool, the unlabeled cases are already available; in a stream, rejecting a case may lose the opportunity to label it. A synthesized input may not be interpretable or labelable by the person answering. Specify the available answer, its reliability and delay, and the full cost of requesting it, including preparation and waiting. If asking changes the object, include that transition as in the diagnostic connection above.
+
+[CMP.7](https://github.com/ailev/FPF/blob/main/Foundational%20Thinking%20DPF%20Suite/COMPUTATIONAL-THINKING-DPF.md#cmp7---construct-a-learner-from-examples-and-feedback) supplies an effective procedure for obtaining and updating the rule from examples. MMP.16 then compares requests through what that procedure and the receiving use would obtain. For each affordable candidate query, enumerate or otherwise model its possible answers, update the rule under each answer, and calculate the resulting loss on the receiving cases. Average over the answers that have not yet been observed; do not use the future true label as if it were available when selecting the query. Include the query's cost in the same comparison as acting now.
+
+Choose the organization that is feasible:
+
+- **One-step adaptive choice:** compare the next query assuming the returned rule is then used. Repeat after each actual answer if further queries remain possible. This uses feedback but can miss a query whose value lies in its continuation.
+- **Conditional continuation:** use MMP.8.SD to compare the present query together with later choices contingent on its answers. Retain the remaining requests, resources, timing and other conditions that change those choices, not just the current probabilities.
+- **Fixed batch:** choose a set before receiving its answers. This can avoid waiting between requests, but pays for every member and cannot skip one made unnecessary by an earlier answer. Evaluate the set jointly; the highest individual scores can select redundant cases.
+
+The full comparison may itself be too costly. Uncertainty, disagreement among plausible rules, expected change in a rule and coverage of the receiving cases are possible cheaper indicators. They estimate different things. Use one because its relation to the present use and cost is adequate, not because “most uncertain” defines “most useful.” Retain a way to investigate plausible regimes omitted by a confident but inadequate model. Preparing a sophisticated policy is worthwhile only when its improvement can repay that preparation as well as the queries.
+
+**A finite construction.** A service will classify 100 documents: 95 of observable type X and 5 of type Y. Each wrong classification takes one minute to correct. Three candidate rules assign the following labels, with supplied initial probabilities:
+
+| Rule | Label for X | Label for Y | Initial probability |
+| --- | ---: | ---: | ---: |
+| h1 | 0 | 0 | 0.45 |
+| h2 | 0 | 1 | 0.45 |
+| h3 | 1 | 1 | 0.10 |
+
+These are stipulated teaching premises, not estimates or a claim about actual documents. Exactly one rule is assumed true, every document of a type has that type's label, and the available specialist answers without error. Requesting X costs two minutes; requesting Y costs three. These are full costs. At most these two requests are available, and an answer can arrive before the next request and before classification. Acquisition does not alter the labels or subsequent correction costs.
+
+Construct the learner by retaining the rules consistent with each answer and renormalizing their probabilities. For a type, predict the label with smaller conditional expected correction loss; choose label 0 if the losses tie. Applying the returned rule to the documents is distinct from computing these updates. If an answer leaves no consistent rule, this construction has failed its premises and must return to the model or answer account.
+
+With no request, predict X as 0 and Y as 1. The expected correction time is
+
+`95 × 0.10 + 5 × 0.45 = 11.75 minutes`.
+
+Work backwards from the final classification choice. After each possible first answer, compare stopping with obtaining the remaining label. This constructs the value of a first request from its obtainable continuation rather than from its uncertainty alone.
+
+| First request | Possible answer and update | Best continuation under the stated costs |
+| --- | --- | --- |
+| X | X=0 has probability 0.9, leaving h1 and h2 at 0.5 each. | X is settled. The expected remaining correction time for Y is 2.5 minutes. Learning Y costs 3, so stop and use the tie rule for Y. |
+| X | X=1 has probability 0.1, leaving h3 alone. | Both labels are settled; stop. |
+| Y | Y=0 has probability 0.45, leaving h1 alone. | Both labels are settled; stop. |
+| Y | Y=1 has probability 0.55, leaving h2 at 9/11 and h3 at 2/11. | Unresolved X costs `95 × 2/11`, about 17.27 expected minutes. Obtain X for 2 minutes, then apply h2 after X=0 or h3 after X=1. |
+
+Thus requesting X first costs `2 + 0.9 × 2.5 = 4.25` expected minutes in total. Requesting Y first with its conditional continuation costs `3 + 0.55 × 2 = 4.10`. Select Y first under these premises and costs.
+
+This choice is not obtainable by treating every first request as the last. Y alone leaves 9.5 expected minutes of correction, so its total of 12.5 is worse than the original 11.75. A one-step comparison chooses X instead. A fixed batch of X and Y costs 5 and settles both labels, but purchases X even when Y=0 already identifies h1. The conditional policy saves that unnecessary request. These numbers compare the stated acquisition and correction costs; if constructing the policy adds material work, add that burden before adopting it over the simpler choice.
+
+**Use the actual answer.** If the specialist returns Y=1, retain the updated probabilities 9/11 and 2/11, ask X, and apply the corresponding rule. If Y=0, apply h1 without another query. Record and use the answer actually obtained; a predicted branch is not evidence that its label has been received. If the answer arrives too late for another query, the conditional policy is unavailable. With only one request allowed and the other premises unchanged, choose X, whose total remains 4.25. A feasible alternative that returns both batch answers in time can still be compared at its full cost.
+
+**Recalculate what changed.** Suppose the full price of Y rises from 3 to 3.2 minutes. The response probabilities do not change. The Y-first policy now costs `3.2 + 0.55 × 2 = 4.30`, while X-first still costs 4.25, so choose X first. Y remains the more uncertain answer, but that fact no longer selects the better policy. After X=0, stop with Y unresolved: its remaining expected correction time is 2.5, less than the cost of settling it. This is a sufficient economic choice for this use, not knowledge of every label.
+
+Changed proportions of X and Y, correction losses, time available or permissible predictions likewise reopen the affected comparison. Repeating an already answered type adds no information under the noiseless, constant-label premises. Noisy or dependent answers require their actual likelihood and a new update; a second answer cannot be treated as independent merely because it is a second request. A later observation of X=1 and Y=0 contradicts every rule in the example. Check the labels and the type definition, then revise the family or the response model through MMP.14 rather than continuing to report a zero model risk.
+
+**Keep stopping and further-use evidence distinct.** A stopping decision can mean that the present rule is adequate, that additional expected benefit does not repay its cost, or that resources are exhausted while a required result remains unresolved. Return which of these holds. A narrow cost comparison does not establish a broader required accuracy level.
+
+The example's expected losses are conditional on its supplied class, probabilities and constant labels. They are not measured accuracy on actual future documents. For an empirical accuracy claim, use assessment cases and a justified uncertainty account suited to the receiving population. Keep them separate from cases used to fit, select or repeatedly tune the rule. The average error on adaptively requested labels is generally not the receiving population's average: requests were chosen for another purpose. MMP.13 preserves the selection and stopping law in an inference. If assessment is itself adaptive, use a method qualified for that design; an ordinary fixed-sample interval or a naive reweighting does not supply that qualification. MMP.17 supplies a related adaptive construction when queries obtain responses of a costly source model, while keeping agreement with that model distinct from agreement with the world.
+
+[Settles's Active Learning Literature Survey](https://burrsettles.com/pub/settles.activelearning.pdf), §§2–4 and 6, develops query settings, alternative selection criteria and their practical limitations. [Huan, Jagalur and Marzouk](https://arxiv.org/html/2407.16212v1), §5, develops the distinction between fixed designs and policies that use intermediate observations. [Farquhar, Gal and Rainforth](https://sebastianfarquhar.com/assets/papers/farquharStatistical2021.pdf) shows why correcting an adaptively selected risk estimate and improving the learned predictor are different questions. The construction here uses a small explicit family; it does not supply those papers' specialized estimators or guarantee improvement for arbitrary learned models.
 
 ### MMP-REPLACE-AND-COUPLE - Use cheaper models without losing the combined answer
 
@@ -2367,6 +2427,8 @@ For identification, provisionally treat these population laws as known. This ask
 
 Describe the admitted causal relations. An acyclic causal graph is a useful representation: directed arrows allow direct causal influence, and a shared unobserved cause can be represented explicitly or by a bidirected edge. The absence of an arrow excludes a possible influence relative to the represented variables. A good observational fit does not justify that exclusion. Time-indexed variables can express feedback across time; a theorem for acyclic graphs must not be applied unchanged to an equilibrium model with unresolved cycles.
 
+When these causal relations or material rival mechanisms still need construction, C.28.CM develops the model family, its subject meanings and the consequences that could distinguish its members. Bring that result back to the identification question. A sufficient already supplied family needs no additional construction.
+
 The operative identification test is this: whenever two admitted causal models induce the same available laws, must they give the same requested quantity? If the assumptions themselves conflict with the available laws, return that conflict rather than declaring a result identified through an empty model class.
 
 #### MMP.15:4.3 - Derive an expression, using the simplest sufficient route
@@ -2402,6 +2464,40 @@ P(Y=y\mid do(A=a))
 The outer factor identifies the effect of action on the mediator. The inner adjustment identifies the outcome law under intervention on the mediator. The pathway restrictions license combining them for the action's total effect. Merely including a post-action measurement in a regression does not perform this construction. These classical conditions are sufficient; their failure does not establish that this functional or another identifying expression is impossible. [Front-door criteria and their extension](https://arxiv.org/html/2604.15288v1), §§2.1.5–3.
 
 For a more involved graph or several input laws, derive a sequence of intermediate distributions using the rules of do-calculus and probability. Each exchange between observation and intervention needs the corresponding separation condition in the modified graph. A suitable identification implementation can carry out that search: provide the graph, the target and the actual input laws, then recover the returned derivation and check its required factors. The historical ID algorithm covers a specified acyclic model class with latent common causes and an observed joint law; generalized search can use several incomplete or experimental laws. Do not replace those inputs by a joint law that the records never supplied. [ID algorithm](https://ftp.cs.ucla.edu/pub/stat_ser/r327.pdf), Figure 3; [generalized search](https://arxiv.org/html/1902.01073v5), §§2–3.
+
+##### MMP.15:4.3.1 - Use a binary instrument for a specified local effect
+
+Use this branch when a binary assignment or encouragement \(Z\) changes actual action \(A\in\{0,1\}\), and an instrumental-variable argument might identify an effect of \(A\). The effect of offering an action and the effect of performing it are different targets. If the receiving question requires the population average effect, determine whether the local quantity below answers it before using the result.
+
+Let \(A(z)\) be the action a unit would take under assignment \(z\). Start with \(Y(z,a)\) for its outcome under assignment \(z\) and action \(a\). Use the simple argument only under these assumptions:
+
+- **Consistency and stable versions:** observed \(A=A(Z)\) and \(Y=Y(Z,A)\); the specified interventions have fixed meanings and no interference between units.
+- **Assignment independence and support:** \(Z\) is independent of the potential actions and outcomes, and both assignment levels have positive probability in the population supplying the law.
+- **Exclusion:** \(Y(z,a)=Y(a)\); assignment has no effect on the outcome except through actual action.
+- **Monotonicity:** \(A(1)\geq A(0)\) for each unit. Assignment 1 never discourages a unit that would act under assignment 0.
+- **Relevance and finite means:** \(\delta_A=E[A\mid Z=1]-E[A\mid Z=0]>0\), and the required outcome expectations exist.
+
+These premises can be more demanding than random assignment alone. Randomizing an offer can support assignment independence without establishing exclusion or monotonicity. This is the binary local-effect argument of [Angrist, Imbens and Rubin, 1996, §§2–4](https://www.math.mcgill.ca/dstephens/AngristIV1996-JASA-Combined.pdf).
+
+The response pair \((A(0),A(1))\) separates always-takers \((1,1)\), never-takers \((0,0)\), compliers \((0,1)\) and defiers \((1,0)\). These are potential-response groups; observing one assignment and action generally does not label the individual's group. Monotonicity excludes defiers.
+
+To derive the result, use exclusion and the binary-action identity \(Y(a)=Y(0)+a\{Y(1)-Y(0)\}\). Independence and consistency give
+
+\[
+\delta_Y=E[Y\mid Z=1]-E[Y\mid Z=0]
+=E[(A(1)-A(0))(Y(1)-Y(0))].
+\]
+
+The same argument gives \(\delta_A=E[A(1)-A(0)]\). Under monotonicity, that difference is one for compliers and zero for the other admitted groups. Consequently,
+
+\[
+\frac{\delta_Y}{\delta_A}
+=E[Y(1)-Y(0)\mid A(1)>A(0)].
+\]
+
+This Wald ratio identifies the local average treatment effect for compliers under the named instrument and population. It is neither automatically the effect for everyone who took the action nor the population average effect. Changing the encouragement can change the complier group.
+
+If \(\delta_A=0\), the ratio is undefined. A small nonzero population first stage can still identify the local quantity under the assumptions, while finite-sample uncertainty and sensitivity to premise violations can be large; MMP.13 must supply suitable inference for the receiving use. If defiers are possible, the numerator and denominator instead mix oppositely signed response-group contributions. A direct \(Z\)-to-\(Y\) route, assignment dependence or interference also requires a different argument. Conditional instrument validity, continuous action and transport to another population need their own derivations; the simple unadjusted ratio does not supply them.
 
 #### MMP.15:4.4 - Carry selection, transport and support through the expression
 
@@ -2514,6 +2610,31 @@ Now suppose the source is found to contain experimental outcomes only for \(L=0\
 
 The endpoints are attainable by making every uncovered site respectively harmed or helped: \((Y(0),Y(1))=(1,0)\) or \((0,1)\). Those choices do not alter any available experimental outcome. The bound is sharp under these assumptions, and the sign of the target effect is not identified. The effect 0.30 remains available for the covered stratum if that is the agreed receiving question; it must not silently replace the original population target.
 
+#### MMP.15:5.4 - Distinguish an offer effect, a local use effect and an overall effect
+
+A team considers offering help with a work procedure. Let \(Z=1\) mean an independently randomized offer, \(A=1\) actual use, and \(Y=1\) successful completion. Assume fixed versions, no interference, exclusion, monotonicity and complete outcome recording. The following constructed population supplies one possible basis:
+
+| Response group | Population share | \(A(0),A(1)\) | Mean \(Y(0)\) | Mean \(Y(1)\) |
+| --- | --- | --- | --- | --- |
+| Always-takers | 0.2 | \(1,1\) | 0.10 | 0.60 |
+| Compliers | 0.4 | \(0,1\) | 0.40 | 0.65 |
+| Never-takers | 0.4 | \(0,0\) | 0.30 | 0.30 |
+
+Randomization is independent of response group and potential outcomes. The action rates are 0.2 without the offer and 0.6 with it. The outcome means are
+
+\[
+E[Y\mid Z=0]=0.2(0.60)+0.4(0.40)+0.4(0.30)=0.40,
+\]
+\[
+E[Y\mid Z=1]=0.2(0.60)+0.4(0.65)+0.4(0.30)=0.50.
+\]
+
+The offer effect is 0.10. The first stage is 0.40, so the ratio gives \(0.10/0.40=0.25\), the complier mean effect. Under the stipulated full table, the population effect is instead \(0.2(0.50)+0.4(0.25)+0.4(0)=0.20\).
+
+The observational law does not reveal the full table. Change the never-takers' mean \(Y(1)\) from 0.30 to 0.80 while retaining all other quantities. Their action remains zero under both assignments, so this change leaves the full observed law of \(Z,A,Y\) unchanged and preserves the assumptions. The overall effect becomes 0.40; the identified complier effect remains 0.25. This pair of models shows why the available law does not identify the overall effect under these premises.
+
+Now change the offer itself: it teaches a technique that can improve success without use of the help. Exclusion no longer holds. Retain the randomized offer-effect question, but withdraw the former interpretation of the ratio as the complier use effect until a revised model supplies a valid argument. Observing the same four means would not restore the missing exclusion premise.
+
 ### MMP.15:6 - Bias-Annotation
 
 Predictive success invites reading inputs as controls. Readily measured variables invite unjustified adjustment, while unmeasured common causes disappear for lack of a data column. Construct the causal account from the subject process.
@@ -2523,6 +2644,7 @@ Failure of a familiar criterion can instead encourage unnecessary data collectio
 ### MMP.15:7 - Conformance Checklist
 
 - The intervention, comparator and receiving quantity are defined, with consistency and interference handled where relevant.
+- A local instrumental-variable effect retains its assignment, response group and assumptions; a different requested population effect remains a different target.
 - The derivation uses the laws actually supplied by the recording and selection procedures.
 - Every causal substitution has an assumption or applicable graphical argument; every final data factor is available on its required support.
 - A nonidentifiability claim has a target-matched witness or applicable complete-method obstruction. An unfinished search is reported separately.
@@ -2569,11 +2691,13 @@ The governing question is whether the available laws and defensible causal assum
 
 **Population scope is part of identification.** Dahabreh and colleagues, *Generalizing causal inferences from individuals in randomized trials to all trial-eligible individuals* (2019; arXiv v2, 29 October 2019), §§2–4, separates within-trial exchangeability from the conditional-mean and participation assumptions required for generalization. That distinction is adapted in :4.4 and :5.3: the target mixture can differ even when the experimental comparisons are valid. Its particular nested-trial setup is not presumed for arbitrary selected records. [Read version](https://arxiv.org/html/1709.04589v2).
 
+**A local effect under a binary encouragement.** The serious alternative to :4.3.1 is reporting the randomized offer's effect, or seeking a population effect of actual use under additional assumptions. Adopt the narrower response-group derivation when its local target serves the receiving use: it needs no fully specified outcome mechanism, but does require substantive exclusion and monotonicity. The historical [Angrist–Imbens–Rubin argument, 1996, §§2–5](https://www.math.mcgill.ca/dstephens/AngristIV1996-JASA-Combined.pdf) supplies that identification result, not a complete modern inference method for weak instruments. The calculation and two compatible populations in :5.4 expose what the local result leaves undetermined. Reopen when assignment can affect outcomes directly, response types change, or the receiving population or target differs.
+
 Reopen the chosen derivation when the target, available laws, causal exclusions, population bridge or support changes. Consider a different identification method when it answers the same question under more defensible assumptions or with materially less effort; source recency alone does not require replacing an already sufficient argument.
 
 ### MMP.15:12 - Relations
 
-- **C.28** supplies the causal-use question and the distinction between identification, estimation and realizability. **C.28.MR** supplies intervention semantics and calculations within a specified causal model.
+- **C.28** supplies the causal-use question and the distinction between identification, estimation and realizability. **C.28.MR** supplies intervention semantics and calculations within a specified causal model. **C.28.CM** constructs missing causal relations and material alternatives before their identifying implications are assessed.
 - **C.16.IR** supplies compatible-case and sufficient-target reasoning; this pattern constructs the causal identification expressions and ambiguity witnesses.
 - **MMP.7** supplies the observation law, including selection and missingness. **MMP.11** supplies an explicit model family when its restrictions are needed.
 - **MMP.12** handles inverse ambiguity and justified regularization. A restriction used here remains an added causal or response assumption, not new evidence.

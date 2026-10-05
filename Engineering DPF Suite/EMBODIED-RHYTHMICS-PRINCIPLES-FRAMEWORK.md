@@ -18,7 +18,7 @@ The framework belongs to the [Engineering DPF Suite](https://github.com/ailev/FP
 | --- | --- | --- |
 | Readme | [Embodied Rhythmics Principles Framework Readme](#embodied-rhythmics-principles-framework-readme) | Choose a direct entry or a connected use. |
 | Preface | [Preface](#preface) | Understand the language, prerequisites, shared examples and limits. |
-| Edition | [Edition and reuse](#edition-and-reuse) | Cite, adapt and return to this publication. |
+| Edition | [RHY.Edition - Edition and reuse](#edition-and-reuse) | Cite, adapt and return to this publication. |
 
 ## Part I - Find and shape the rhythmic relation
 
@@ -2501,3 +2501,5 @@ This publication contains the fourteen methods of Embodied Rhythmics, RHY.1–RH
 The [Engineering DPF Suite directory](https://github.com/ailev/FPF/tree/main/Engineering%20DPF%20Suite) provides the public carrier and its neighbouring frameworks. A local copy remains usable when links are unavailable; source-dependent or stronger claims retain the source-return conditions stated in the relevant pattern.
 
 Original framework text is available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Attribute Anatoly Levenchuk, retain the license reference and identify your changes. Independently created DPFs and LPFs may choose their own licenses; reuse of protected expression follows its applicable terms.
+
+## RHY.Edition:End

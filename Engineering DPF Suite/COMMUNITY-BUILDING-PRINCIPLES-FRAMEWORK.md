@@ -53,9 +53,9 @@ CB is this framework's reference code; its numeric local locators give CB.1–16
 
 | Unit | Reader use |
 | --- | --- |
-| [Applications](#applications) | Follow professional, voluntary, independent and customer uses. |
-| [Sources, relations and renewal](#sources-relations-and-renewal) | Recover source limits, external contributions and changed-use returns. |
-| [Edition and use](#edition-and-use) | Identify and cite this edition; find licensing terms. |
+| [CB.Application - Applications](#applications) | Follow professional, voluntary, independent and customer uses. |
+| [CB.Reference - Sources, relations and renewal](#sources-relations-and-renewal) | Recover source limits, external contributions and changed-use returns. |
+| [CB.Edition - Edition and use](#edition-and-use) | Identify and cite this edition; find licensing terms. |
 
 # Community Building Readme
 
@@ -139,7 +139,7 @@ When combining these contributions, establish their joint feasibility. An expert
 
 An **arrangement based on mutual participation** makes contributions available through people working or spending time with one another. It may be a case exchange, music group, shared workshop or professional network. The arrangement must obtain suitable participants, material, interaction, support and a return to use. Its benefit can include valued relationships or an enjoyable experience; it need not be justified as a course or commercial acquisition mechanism.
 
-An **arrangement for independent use** makes a practice obtainable and usable in people's separate settings. It may rely on a description, demonstration, exercise, tool and correction route. Cultural continuation then depends on actual acquisition, performance, selection and retention of the practice. A forum is optional. The [independent-use application](#application-3---extend-a-practice-without-a-discussion-group) shows how a missing resource changes this route even when the learner understands the method.
+An **arrangement for independent use** makes a practice obtainable and usable in people's separate settings. It may rely on a description, demonstration, exercise, tool and correction route. Cultural continuation then depends on actual acquisition, performance, selection and retention of the practice. A forum is optional. The [independent-use application](#cbapplication3---application-3---extend-a-practice-without-a-discussion-group) shows how a missing resource changes this route even when the learner understands the method.
 
 These alternatives can be combined within one person's changing participation. Someone can learn independently, ask one question, contribute an example and then return to private work. CB.3 supports that change when participation itself needs help. FPF Core's treatment of cultural evolution (C.36) supplies the wider distinctions among cultural transmission, performance, retention and renewal; CB.1 makes a particular cultural offer useful and feasible.
 
@@ -155,7 +155,7 @@ Another condition can change the constituent action without changing its convers
 
 The same relation applies to voluntary activity. Welcoming a newcomer may be part of running a garden session. Safe access to the shared tools, suitable supervision and the session host's available attention constrain the welcome. If the host must simultaneously resolve an urgent access incident, a prepared small task with another capable, willing helper may keep entry feasible; otherwise the session's promise must shrink.
 
-Community Building provides only part of this work. The relevant practice supplies its professional method and correctness criteria. Human Capability Development (HCD) supplies development of a needed human capability and the conditions for practice and feedback. Organization Change Engineering (OCE) and Operations Management (OPS) help establish work arrangements and capacity when those contributions are missing; Management Accounting (MA) helps compare costs created by the chosen promise. Method Engineering (ME) and Research Method Practice (RMP) supply method development or research when those questions are open. The [supplier returns](#actual-supplier-returns) identify where those contributions become useful.
+Community Building provides only part of this work. The relevant practice supplies its professional method and correctness criteria. Human Capability Development (HCD) supplies development of a needed human capability and the conditions for practice and feedback. Organization Change Engineering (OCE) and Operations Management (OPS) help establish work arrangements and capacity when those contributions are missing; Management Accounting (MA) helps compare costs created by the chosen promise. Method Engineering (ME) and Research Method Practice (RMP) supply method development or research when those questions are open. The [supplier returns](#cbreference2---actual-supplier-returns) identify where those contributions become useful.
 
 Replacing a contribution requires examining what it did in the whole. A written answer may replace an explanation of a known procedure while leaving a new case's diagnosis unresolved. Paying a coordinator may supply booking and material preparation while leaving expert capacity unchanged. Keep these differences visible when comparing alternatives and receiving the changed work.
 
@@ -182,11 +182,11 @@ Whose account is easiest to hear can bias the result. Include a consequential mi
 
 This publication selects sixteen recurring community and cultural work problems and develops methods for answering them. The complete bodies preserve their recognition conditions, construction, alternatives, worked cases, costs and return conditions. The ToC compresses each to a search row; the Readme compresses selected uses to entry guidance; the Preface explains connections. None of these compressed forms replaces the body needed to perform or adapt a method.
 
-The source basis combines practitioner community-building accounts, the communities-of-practice repertoire, conceptual distinctions about culture and communities, bounded research contributions, and current FPF and domain-method suppliers. The [source-use account](#source-use-and-limits) states what was adopted, adapted or bounded and which changes would reopen it. Each body's SoTA-Echoing section gives the closer comparison and source return.
+The source basis combines practitioner community-building accounts, the communities-of-practice repertoire, conceptual distinctions about culture and communities, bounded research contributions, and current FPF and domain-method suppliers. The [source-use account](#cbreference1---source-use-and-limits) states what was adopted, adapted or bounded and which changes would reopen it. Each body's SoTA-Echoing section gives the closer comparison and source return.
 
 The framework deliberately leaves the full history and vocabulary of each source, platform-specific implementation, the complete professional methods used by a community, and the full learning, research or commercial product outside this edition. It also coarsens variation across local cultures and institutions. Return to the original source for a claim about its evidence or broader theory; to the domain supplier for work requiring its full method; and to the people and conditions of use before applying a general example as a local arrangement.
 
-Unresolved use, repeated misunderstanding, changed provision or new source evidence should reopen the smallest affected method or relation. Inspect a proposed repair through the actual work and recipient result, including a contrasting condition that could defeat it. Wider causal or general effectiveness claims require further inquiry. The [renewal route](#renew-the-affected-contribution) keeps that work distinct from changing a link, publishing an edition or continuing the activity itself.
+Unresolved use, repeated misunderstanding, changed provision or new source evidence should reopen the smallest affected method or relation. Inspect a proposed repair through the actual work and recipient result, including a contrasting condition that could defeat it. Wider causal or general effectiveness claims require further inquiry. The [renewal route](#cbreference3---renew-the-affected-contribution) keeps that work distinct from changing a link, publishing an edition or continuing the activity itself.
 
 ## CB.Preface:End
 
@@ -3877,7 +3877,9 @@ Reopen the selected approach when the receiving decision changes, a missing cons
 
 These constructed applications show how the language can produce different useful results. The observations and outcomes are stipulated to make the choices inspectable. They do not report field tests or estimate an intervention's effect. Each application can be entered through the direct patterns it names.
 
-## Application 1 - Obtain useful professional help and develop what recurs
+<a id="application-1---obtain-useful-professional-help-and-develop-what-recurs"></a>
+
+## CB.Application:1 - Application 1 - Obtain useful professional help and develop what recurs
 
 Twenty independent repairers sometimes encounter unfamiliar faults. Three initial accounts reveal different difficulties: locating an approved procedure, interpreting an unusual observation and obtaining restricted equipment data. A manufacturer offers a branded forum. Through [CB.1](#cb1---choose-a-useful-cultural-or-community-contribution), the organiser compares a maintained reference, an accountable specialist service and a voluntary case exchange. The data restriction needs its actual owner's decision. The first offer combines a reference route with a brand-neutral, non-urgent case exchange; the sponsor accepts discussion of competing equipment and receives no private case data.
 
@@ -3895,7 +3897,9 @@ Five repairers want the manufacturer to provide a permitted diagnostic-data rout
 
 Finally, CB.10 compares concrete uses, failures, potential later uses and burden. The association retains the low-frequency exchange and preparation aid because the repairers who returned accounts find the next action useful at the agreed cost. It does not claim that attendance, gratitude or three favourable accounts establish a causal business return. If the actual decision later depends on that stronger claim, a suitable inquiry becomes additional work.
 
-## Application 2 - Keep a voluntary garden workable through conflict and succession
+<a id="application-2---keep-a-voluntary-garden-workable-through-conflict-and-succession"></a>
+
+## CB.Application:2 - Application 2 - Keep a voluntary garden workable through conflict and succession
 
 Twelve neighbours use a shared garden. They value company, access to growing space and occasional shared produce, but do not want the same frequency or kind of participation. The founder has been hosting two sessions a week and will leave in four weeks. A dispute over the shared tools has also made two newcomers reluctant to return.
 
@@ -3913,7 +3917,9 @@ The first independent session finishes within the available time but reveals fif
 
 The transfer under CB.11 includes the usable key arrangement, remaining supplies, current contact and the receiving session's result. The founder's support ends at the agreed date. One unresolved reimbursement has a named receiver after departure. If the landowner withdraws access or neither host can continue, the group returns to the feasible alternatives; a hopeful roster would not justify keeping the promise. The common activity can shrink or end while the neighbours retain what they learned and any independent relationships they choose.
 
-## Application 3 - Extend a practice without a discussion group
+<a id="application-3---extend-a-practice-without-a-discussion-group"></a>
+
+## CB.Application:3 - Application 3 - Extend a practice without a discussion group
 
 A professional association wants more independent repairers to recognise a well-understood fault condition. An adequate method, correctness criteria and authorised examples already exist. [CB.1](#cb1---choose-a-useful-cultural-or-community-contribution) compares a discussion group with making that practice obtainable in individual workshops. The latter fits the receiving situation: people need to choose and perform the action when it arises, without a recurring meeting obligation.
 
@@ -3927,7 +3933,9 @@ No communication among the learners is required for these results. If unusual ca
 
 Later, the association replaces the website hosting the guide. Using CB.11, it obtains permission to move the material and a capable person who accepts correction requests. It updates the directory links it controls and notifies existing users through their usual information channel. After the old host closes, an independent user follows the updated directory, reaches the moved guide and reports a missing example reference; the new maintainer restores it. The practice remains obtainable through this provision.
 
-## Application 4 - Separate customer help, learning and provider commitments
+<a id="application-4---separate-customer-help-learning-and-provider-commitments"></a>
+
+## CB.Application:4 - Application 4 - Separate customer help, learning and provider commitments
 
 A software provider invites customers to exchange examples. Its commercial team hopes to retain subscriptions; participants want to complete particular tasks. Using CB.1, the organiser makes both interests visible and compares peer help, documentation and paid support. An outage requiring a dependable response goes to the provider's service. One customer's non-urgent question fits an exchange: how to send each project team a weekly digest containing only its own records.
 
@@ -3943,10 +3951,15 @@ A sales colleague quotes the customer's contribution as an endorsement without a
 
 Continue the group under terms participants can understand and accept. Obtain a dependable support service through its responsible provider. A proposed course whose complete programme or qualified provision is still missing remains a proposal; this clinic can contribute worked material without supplying that whole product.
 
+## CB.Application:End
+
+
 
 # Sources, relations and renewal
 
-## Source use and limits
+<a id="source-use-and-limits"></a>
+
+## CB.Reference:1 - Source use and limits
 
 The sources below shaped the connected language. Their practical contributions, evidence and limits remain distinct. The detailed comparisons in each pattern's SoTA-Echoing section should be used when a source-specific choice matters.
 
@@ -3964,7 +3977,9 @@ Source returns: [The Business of Belonging](https://www.wiley-vch.de/en/areas-in
 
 The Guidebook adaptations are attributed to its four authors and retain [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) as identified in the affected patterns. The constructed cases and connections are developed here. Other third-party contributions retain the terms and qualifications stated at their source returns. The edition's original content has the separate licence stated in [Edition and use](#edition-and-use).
 
-## Actual supplier returns
+<a id="actual-supplier-returns"></a>
+
+## CB.Reference:2 - Actual supplier returns
 
 Use the external contribution when the receiving question requires it. The cited frameworks retain their own content and edition boundaries; these returns do not include them inside Community Building.
 
@@ -3987,7 +4002,9 @@ A later edition of a supplier reopens only the CB claims and uses that rely on i
 
 A new or unknown professional method, a complete service and a commercial strategy retain their own development questions. Use the available contributions identified above, and obtain any further result needed by the particular community's promise before relying on it.
 
-## Renew the affected contribution
+<a id="renew-the-affected-contribution"></a>
+
+## CB.Reference:3 - Renew the affected contribution
 
 Begin with the changed fact and the use it can defeat. A failed invitation may concern access or wording; repeated inability to obtain qualified help may defeat the offer itself. A disputed incident may require correction of one response, a changed rule or a renewed mandate. New evidence about a professional method can invalidate a repertoire entry while leaving the social connection useful.
 
@@ -3996,6 +4013,9 @@ Return to the smallest affected source, method or arrangement. Check the propose
 For this pattern language, repeated reader failure should reopen the affected explanation, example or practical entry. A change in the promised field or useful pattern division reopens the framework's organization. A changed source or external method first reopens its particular adopted contribution and dependent CB uses. A broken link first needs a working source return; repairing the link establishes access to text, not the text's adequacy.
 
 Keep a usable return when changing a published pattern's title, order or interpretation. CB.1–16 are stable local addresses within the Community Building framework; Part and section positions are publication navigation. Preserve an old address when the practical answer continues. A different answer needs an explicit replacement or migration explanation so that a previous citation does not silently acquire a new meaning.
+
+## CB.Reference:End
+
 
 # Edition and use
 
@@ -4006,3 +4026,5 @@ This edition contains the sixteen complete CB pattern bodies, its Readme and Pre
 CB is the short reference code of the Community Building Principles Framework. A local numeric locator completes each PatternID, such as CB.14. When citing outside this framework, name Community Building; when a particular published text matters, also name this edition. Authority to act and evidence for an intervention's effect depend on the particular use and its grounds.
 
 Original framework content: Anatoly Levenchuk, with AI-assisted development and review. Original content is offered under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Third-party material and adaptations retain their own terms as identified above and in each pattern. Preserve applicable attribution and source boundaries when copying or adapting a standalone publication.
+
+## CB.Edition:End
