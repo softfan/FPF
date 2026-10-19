@@ -1,36 +1,37 @@
 # Decomposing any kind of framework
 
 `skill-maker` started with two hard-coded families — FPF Core and the DPFs —
-and grew one config entry per publication. That worked for fifteen skills and
-stopped there: a new publication meant editing `skill_config.py`, and a
-framework the Library does not publish had no way in at all.
+and grew one config entry per publication. Curated entries still preserve the
+published names, while `discover_skills.py` now discovers unclaimed local
+publications under `DPFs/` and repo-root `frameworks/` without more config entries.
 
-The `frameworks/` package replaces that with a structure. A framework is
+The `frameworks/` package supplies the classification structure. A framework is
 described by **what kind of document it is**, and each kind states its own
 **unit grammar** and **skill shape**. Decomposition then runs the same way for
 all of them.
+
+Discovery merges curated configs first, then detects each unclaimed document's
+profile. Existing Suites absorb new siblings; a new `* DPF Suite` directory
+requires one Suite Architectural Reference and at least one DPF. The complete
+plan is validated before output is written, including source/DocID ownership,
+case-insensitive filename collisions and destination markers. `--dry-run` and
+`--json` expose the plan without changing the corpus. Validation compares the
+current sources and generated artefacts, not a saved publisher inventory.
 
 ---
 
 ## 1. The taxonomy
 
-The vocabulary is not invented here. A published catalogue classifies every
-publication it serves with a `kind`, and the current one uses exactly four:
+Publication kinds describe structure, not an expected number of documents:
 
-| kind | publications | what it is |
-|---|---:|---|
-| `FPF` | 1 | FPF Core: the shared pattern language |
-| `DPF` | 33 | A domain pattern language |
-| `Reference` | 4 | A DPF Suite Architectural Reference |
-| `Guide` | 8 | An introduction or working instruction |
+| kind | what it is |
+|---|---|
+| `FPF` | FPF Core: a shared pattern language |
+| `DPF` | A domain pattern language |
+| `Reference` | A DPF Suite Architectural Reference |
+| `Guide` | An introduction or working instruction |
 
-46 publications in total, carrying **885 patterns** — the same figure the
-Library front page reports as "885 patterns & other named entries".
-
-Four kinds are not enough to answer *"decompose all types of frameworks"*,
-because the frameworks a team actually holds are rarely Library publications.
-So `PublicationKind` also carries the kinds the toolchain can already handle
-without any new parsing code:
+`PublicationKind` also supports other framework structures:
 
 | kind | example heading | unit |
 |---|---|---|
@@ -47,18 +48,14 @@ for frameworks.
 
 ## 2. What a decomposition produces
 
-Measured on the current tree:
+Each document produces its own inventory of units, classified by role. A
+Suite groups constituent documents; guides and generic prose ship whole.
+The actual publication, Suite, pattern, reference-unit and section counts are
+computed from the input. They are neither configured totals nor limits.
 
-| kind | publications | units | patterns | other units |
-|---|---:|---:|---:|---:|
-| `FPF` | 1 | 418 | 397 | 21 reference |
-| `DPF` | 33 | 1027 | 488 | 539 reference / application / sources |
-| `Reference` | 4 | 53 | 0 | 53 reference |
-| `Guide` | 8 | 58 | 0 | 58 sections |
-| **total** | **46** | **1556** | **885** | 671 |
-
-The pattern count is the load-bearing number: it is what the Library catalogue
-publishes, and `test_frameworks.py` checks every one of the 46 against it.
+`test_frameworks.py` compares the current source identities and roles against
+generated manifests. Rebuild tests check content preservation, so matching
+counts alone cannot hide missing or substituted units.
 
 ---
 
@@ -83,25 +80,11 @@ one-line question in `split_spec.ROLE_QUESTIONS`.
 
 ## 4. Reading less than a unit
 
-`sections.py` derives the section map from each unit's own headings. It exists
-because a pattern is one file but not one reading:
-
-| | FPF Core | Systems Engineering |
-| :--- | ---: | ---: |
-| median unit | 33 KB | 19 KB |
-| largest unit | 258 KB | 79 KB |
-| working sections | 60% | 56% |
-
-The tiers follow the sections the publications actually use. Across the built
-tree there are 11 378 sections under 1 234 distinct titles; the working ones
-are the frequent ones -- `relations` 862, `forces` 841, `problem frame` 835,
-`consequences` 829, `problem` 828, `solution` 793, `conformance checklist` 788
--- against the depth ones -- `common anti-patterns and how to avoid them` 722,
-`SoTA-echoing` 720, `bias-annotation` 693, `archetypal grounding` 641,
-`rationale` 474.
-
-Titles vary by publication (`use this when` 252, `architectural rationale` 331),
-which is why the tier is decided by prefix rather than by an exact list.
+`sections.py` derives section maps from each unit's own headings. A unit can
+be large, and its working sections need not occupy a contiguous range.
+The tiers follow section-title prefixes such as `solution`, `problem frame`
+and `conformance checklist`, rather than corpus frequencies. Titles and
+section counts can vary freely across inputs.
 
 Offsets rather than files: the working sections are not contiguous (in `A.1`
 they run `:4`, `:7`, `:9`, `:12`), so selecting them needs ranges, not
@@ -179,7 +162,7 @@ DecompositionProfile(
 )
 ```
 
-`docid_prefix=True` is why one profile serves 33 publications: each DPF
+`docid_prefix=True` lets one profile serve arbitrary publications: each DPF
 declares `**DocID:** `SYSE``, and the grammar binds itself to that prefix. A
 DPF that forgot its header is still recognised — the prefix is recovered from
 the first dotted heading.
@@ -234,7 +217,7 @@ $ python skill-maker/src/skillmaker/fpf_frameworks.py probe DPFs/README.md
   profile    guide (Guide)
   evidence   path~DPFs/README.md (score 114)
   grammar    level ##, id=(?:[A-Za-z][A-Za-z0-9]*)(?:[.:]...)+, sep=[-–—:], roles=dotted
-  units      5 (0 patterns, 5 other)
+  # Unit and role totals are measured from the current input.
 ```
 
 The scoring has three sources:
@@ -259,19 +242,17 @@ outranked the guide profile on structure alone — the exact failure that
 
 ## 10. Verification against the publisher
 
-`catalogue.snapshot.json` is a saved copy of `/api/publications`
-(snapshot `20261018T215642Z`, 46 publications, 885 patterns). It exists so the
-tests compare the decomposition to **the publisher**, not to the previous build:
+Publisher verification is an optional comparison with a particular external
+edition. It is not part of default build acceptance. No fixed catalogue is
+bundled. Supply a catalogue JSON explicitly for offline comparison:
 
 ```
-$ python skill-maker/src/skillmaker/fpf_frameworks.py catalogue --verify
-Publisher catalogue: 20261018T215642Z-2f2973dc00742cd6 (46 publications, live)
-
-✅ 46 publications agree with the publisher (kind and pattern count).
+python skill-maker/src/skillmaker/fpf_frameworks.py catalogue --verify --offline --snapshot catalogue.json
 ```
 
-`--offline` uses the saved copy, `--counts` decomposes each publication to fill
-in the pattern column, and `--json` emits the whole register.
+`--counts` computes the current input's pattern column; `--json` emits the local
+register. `--verify` without `--offline` uses the configured publisher endpoint.
+MCP `verify_catalogue` defaults to local discovery validation with no network.
 
 ---
 
@@ -279,9 +260,8 @@ in the pattern column, and `--json` emits the whole register.
 
 Two parsers now exist: `split_spec.build_heading_re` (which writes the skills)
 and `frameworks.grammar` (which plans and classifies). They must not disagree,
-so `test_frameworks.py` runs both over every heading of FPF Core and all 33
-DPFs and asserts identical `(id, title)` results — 1445 unit headings, zero
-disagreements.
+so `test_frameworks.py` runs both over the current framework headings and
+checks that they recognize the same unit IDs, regardless of corpus size.
 
 This is also why the dotted grammar keeps the lookahead `(?=\s|$)`: a
 relaxed lookahead lets `## FPF.Reference:End` split at its own colon into unit
@@ -295,7 +275,7 @@ identifier (`## 12. THE GATE`) may relax it, via `id_abuts_separator=True`.
 ```
 python skill-maker/src/skillmaker/fpf_frameworks.py kinds
 python skill-maker/src/skillmaker/fpf_frameworks.py profiles
-python skill-maker/src/skillmaker/fpf_frameworks.py catalogue [--verify] [--offline] [--counts] [--json]
+python skill-maker/src/skillmaker/fpf_frameworks.py catalogue [--verify] [--offline --snapshot PATH] [--counts] [--json]
 python skill-maker/src/skillmaker/fpf_frameworks.py probe PATH... [--all]
 python skill-maker/src/skillmaker/fpf_frameworks.py tree PATH [--limit N] [--role pattern|all]
 python skill-maker/src/skillmaker/fpf_frameworks.py plan PATH [--skill NAME] [--json]
@@ -322,15 +302,14 @@ skill-maker/src/skillmaker/
     profiles/
       __init__.py          PROFILES (most specific first)
       fpf_core.py          FPF-Spec.md
-      dpf_framework.py     33 DPFs
-      suite_reference.py   4 Suite References
-      guide.py             8 guides
+      dpf_framework.py     domain frameworks
+      suite_reference.py   Suite References
+      guide.py             guides
       adr.py               extension: decision records
       standards.py         extension: clause-numbered standards
       pattern_language.py  extension: Alexander-style patterns
       generic.py           fallback: any Markdown
   fpf_frameworks.py        CLI
-  catalogue.snapshot.json  saved publisher catalogue
   sections.py              per-unit section map: anchors, tiers, offsets
   derive.py                routes, entries, glossary, boot
   skill_root.py            .skill.json marker
@@ -343,9 +322,8 @@ skill-maker/src/skillmaker/
 
 ## 14. Deliberate limits
 
-* **Units are `##`-level.** Nested `###` headings count as subsections, not as
-  units. FPF Core publishes 5572 `###` headings; promoting them to files would
-  turn a 418-file skill into a 6000-file one.
+* **Unit levels belong to the grammar.** The dotted profile uses `##` units;
+  deeper headings remain subsections rather than extra unit files.
 * **Tables of contents are not parsed here.** `split_spec` still reads them for
   keywords, statuses and dependencies. The decomposer reports what the
   headings say.

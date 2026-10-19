@@ -19,9 +19,10 @@ import time
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "skill-maker/src"))
 from skillmaker._fpf_common import ensure_utf8_stdio
+from skillmaker.mcp_server import READING_TOOLS, DERIVED_TOOLS
 
 ensure_utf8_stdio()
-SERVER = ROOT / "skill-maker/src/skillmaker/mcp_server.py"
+SERVER = ROOT / "skill-maker/run-mcp.py"
 
 
 def wait_ready(process, log_path, timeout):
@@ -104,7 +105,7 @@ def walkthrough(port, check):
     check("notification accepted with 202", status == 202)
     _, _, body = post({"jsonrpc": "2.0", "id": 2, "method": "tools/list"}, session)
     tools = json.loads(body)["result"]["tools"]
-    check("at least ten tools listed", len(tools) >= 10)
+    check("registered reading/derived tools listed", len(tools) == len(READING_TOOLS) + len(DERIVED_TOOLS))
     names = {tool["name"] for tool in tools}
     for name in ("search", "read_pattern", "read_section", "get_table_of_contents",
                  "list_publications", "get_corpus_status", "backlinks", "route", "entries", "glossary"):

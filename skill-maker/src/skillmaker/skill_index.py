@@ -2,7 +2,7 @@
 """
 skill_index.py -- write the map of ``skills/``.
 
-Fifteen directories with names like ``psda`` and ``nstd`` are not a map.  This
+Directories with names like ``psda`` and ``nstd`` are not a map. This
 script writes two:
 
 ``skills/README.md``
@@ -44,10 +44,8 @@ from skillmaker._fpf_common import ensure_utf8_stdio, manifest_entry_path, write
 ensure_utf8_stdio()
 
 from skillmaker.skill_config import (  # noqa: E402
-    DPF_SKILL_CONFIGS,
     FPF_CONFIG,
     SUITE_SKILL_CONFIGS,
-    SUITES,
     SkillConfig,
 )
 
@@ -90,8 +88,8 @@ def _entry(cfg: SkillConfig, kind: str) -> Dict:
     docs = sum(1 for e in entries if e.get("kind") == "doc")
     intros = sum(1 for e in entries if e.get("kind") == "intro")
 
-    sources = [str(fw.source.relative_to(_REPO_ROOT)).replace("\\", "/")
-               for fw in cfg.frameworks]
+    sources = [item.source.relative_to(_REPO_ROOT).as_posix()
+               for item in [*cfg.frameworks, *cfg.docs]]
 
     return {
         "name": cfg.name,
@@ -196,14 +194,23 @@ def cross_references(rows: List[Dict]) -> Dict[str, List[Dict]]:
 
 def collect() -> List[Dict]:
     """Every skill, in a deliberate order: Core, Suites, then frameworks."""
-    rows: List[Dict] = [_entry(FPF_CONFIG, "FPF Core")]
-    for slug in SUITES:
-        cfg = SUITE_SKILL_CONFIGS[slug]
+    from skillmaker.discover_skills import discover
+
+    configs = discover(_REPO_ROOT, output_root=SKILLS_ROOT).configs
+    rows: List[Dict] = ([_entry(configs[FPF_CONFIG.name], "FPF Core")]
+                        if FPF_CONFIG.name in configs else [])
+    suites = [configs[c.name] for c in SUITE_SKILL_CONFIGS.values() if c.name in configs]
+    suites.extend(c for c in configs.values() if c.kind_label == "DPF Suite"
+                  and c.name not in {s.name for s in suites})
+    for cfg in suites:
         row = _entry(cfg, "Suite")
-        row["members"] = [m.title for m in SUITES[slug].members]
+        row["members"] = [fw.name for fw in cfg.frameworks if fw.role != "reference"]
         rows.append(row)
-    for cfg in sorted(DPF_SKILL_CONFIGS.values(), key=lambda c: c.name):
-        rows.append(_entry(cfg, "Framework"))
+    known = {row["name"] for row in rows}
+    for cfg in configs.values():
+        if cfg.name not in known:
+            kind = "Framework" if cfg.profile_key == "dpf-framework" else cfg.kind_label
+            rows.append(_entry(cfg, kind))
     known = {row["name"] for row in rows}
     for marker in sorted(SKILLS_ROOT.glob("*/.skill.json")):
         name = marker.parent.name

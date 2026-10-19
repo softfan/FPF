@@ -4,7 +4,7 @@ test_fpf_pipeline.py — End-to-end tests for the FPF skill pipeline.
 
 Verifies: split -> structure -> audit -> rebuild -> tools -> idempotency.
 
-The FPF skill ships four publications:
+The curated FPF configuration uses these publications:
 
     FPF-Spec.md                Core patterns + embedded Architectural Reference
     USING-FPF.md               Library working instruction
@@ -46,7 +46,12 @@ LIBRARY_PATH = _REPO_ROOT / "FPF-LIBRARY-REFERENCE.md"
 README_PATH = _REPO_ROOT / "Readme.md"
 SKILL_DIR = _REPO_ROOT / "skills" / "fpf"
 
-EXPECTED_PATTERNS = 397
+def source_units():
+    """Independent inventory of the current input, never a saved edition total."""
+    from skillmaker import frameworks as F
+
+    text = SPEC_PATH.read_text("utf-8")
+    return F.decompose(F.by_key("fpf-core"), text, "FPF-Spec.md").units
 
 
 class TestRunner:
@@ -116,9 +121,9 @@ def _err_detail(r: subprocess.CompletedProcess, max_len: int = 500) -> str:
 def test_prerequisites(t: TestRunner):
     print("\n[Prerequisites]")
     t.check("FPF-Spec.md exists", SPEC_PATH.exists(), f"Expected at {SPEC_PATH}")
-    t.check("FPF-Spec.md > 1MB",
-            SPEC_PATH.exists() and SPEC_PATH.stat().st_size > 1_000_000,
-            "File too small")
+    t.check("FPF-Spec.md is nonempty",
+            SPEC_PATH.exists() and bool(SPEC_PATH.read_text("utf-8").strip()),
+            "Empty source")
     for path, label in [(USING_PATH, "USING-FPF.md"),
                         (LIBRARY_PATH, "FPF-LIBRARY-REFERENCE.md"),
                         (README_PATH, "Readme.md")]:
@@ -140,8 +145,9 @@ def test_split(t: TestRunner):
                  "--views"])
     t.check("split exit code 0", r.returncode == 0, _err_detail(r))
     m = re.search(r"(\d+) patterns", r.stdout)
-    t.check(f"split reports {EXPECTED_PATTERNS} patterns",
-            bool(m) and int(m.group(1)) == EXPECTED_PATTERNS,
+    expected_patterns = sum(u.role == "pattern" for u in source_units())
+    t.check("split reports current source pattern count",
+            bool(m) and int(m.group(1)) == expected_patterns,
             r.stdout.strip()[:200])
 
 
@@ -159,9 +165,12 @@ def test_structure(t: TestRunner):
     t.check("fpf-patterns/ exists", pdir.exists())
     if pdir.exists():
         patterns = [f for f in pdir.glob("*.md") if f.name != "index.md"]
-        t.check(f"{EXPECTED_PATTERNS} unit files",
-                len(patterns) == EXPECTED_PATTERNS + 21,
-                f"Found {len(patterns)}")
+        from skillmaker._fpf_common import id_to_filename
+
+        expected_files = {id_to_filename(u.id) + ".md" for u in source_units()}
+        t.check("unit files match current source inventory",
+                {f.name for f in patterns} == expected_files,
+                f"Found {len(patterns)}, expected {len(expected_files)}")
         t.check("index.md exists", (pdir / "index.md").exists())
         t.check("A.1.md exists", (pdir / "A.1.md").exists())
         t.check("no ':' in file names",
@@ -177,11 +186,13 @@ def test_structure(t: TestRunner):
         p = ref / "docs" / f"{slug}.md"
         t.check(f"docs/{slug}.md", p.exists())
         if p.exists():
-            t.check(f"docs/{slug}.md non-trivial", p.stat().st_size > 2_000,
+            t.check(f"docs/{slug}.md nonempty", bool(p.read_text("utf-8").strip()),
                     f"{p.stat().st_size} bytes")
 
     intros = list((ref / "intro").glob("*.md"))
-    t.check("intro sections >= 10", len(intros) >= 10, f"Found {len(intros)}")
+    t.check("intro files match manifest",
+            {p.name for p in intros} == {e["key"] for e in json.loads(
+                (SKILL_DIR / ".fpf_manifest.json").read_text("utf-8")) if e["kind"] == "intro"})
     t.check("intro/table_of_content.md",
             (ref / "intro" / "table_of_content.md").exists())
     t.check("intro/readme.md", (ref / "intro" / "readme.md").exists())
@@ -248,8 +259,8 @@ def test_manifest(t: TestRunner):
         t.check("has intro + unit + doc kinds",
                 {"intro", "unit", "doc"} <= kinds, f"Found: {kinds}")
         roles = {e.get("role") for e in manifest if e.get("kind") == "unit"}
-        t.check("has pattern + reference roles",
-                {"pattern", "reference"} <= roles, f"Found: {roles}")
+        t.check("unit roles match source",
+                {u.role for u in source_units()} == roles, f"Found: {roles}")
         missing = []
         for entry in manifest:
             if entry["kind"] == "doc":
@@ -278,8 +289,8 @@ def test_audit(t: TestRunner):
             t.check("audit no missing", len(data.get("missing", [])) == 0,
                     f"Missing: {data.get('missing', [])[:5]}")
             gen = data.get("generated_count", 0)
-            t.check(f"audit generated {EXPECTED_PATTERNS}",
-                    gen == EXPECTED_PATTERNS, f"Got {gen}")
+            t.check("audit generated matches current source",
+                    gen == data.get("expected_count"), f"Got {gen}")
         except json.JSONDecodeError as e:
             t.check("audit JSON output", False, f"JSON parse error: {e}")
 

@@ -5,7 +5,7 @@ fpf_update.py — Self-update pipeline for the FPF skill.
 Downloads the current Core specification and the Library documents from GitHub,
 splits them into the skill, audits and tests the result.
 
-The FPF skill carries four source documents:
+The curated FPF configuration includes these source documents:
 
     FPF-Spec.md                Core patterns (A–K) + embedded Architectural Reference
     USING-FPF.md               Library working instruction

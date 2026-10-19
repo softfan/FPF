@@ -2,8 +2,8 @@
 """
 genre.py -- what a skill is *for*, which decides its shape and its roles.
 
-A skill is not only data.  The four skills this toolchain was modelled against
-differ in purpose, and purpose changes two things the data does not:
+A skill is not only data. Skills differ in purpose, and purpose changes
+things the data does not:
 
 * **the middle of SKILL.md** -- a lookup skill explains indexes, an apply skill
   explains how to choose a scope and stop, a setup skill explains how to

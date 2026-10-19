@@ -5,10 +5,8 @@ sections.py -- where the working sections of a unit are, and what they cost.
 A pattern is one file, but it is not one reading.  Its first sections answer
 "does this apply?", "what are the moves?", "how do I check the result?"; the
 later ones carry worked cases, rationale and source comparisons that answer
-"why?" and are usually unnecessary.  Measured over the built tree, the working
-sections are 54% of the bytes overall -- 56% across Systems Engineering, 60%
-across FPF Core.  The FPF median unit is 33 KB and the largest is 258 KB,
-roughly 65k tokens for a single unit.
+"why?" and may be unnecessary for the current question. The number and size
+of sections depend entirely on the input document.
 
 So a reader needs two things this module computes:
 
@@ -20,12 +18,7 @@ Both are derived, never hand-maintained: :func:`analyse` reads the unit's own
 headings.  Nothing is duplicated on disk, so a unit file stays the canonical
 whole and a rebuild stays byte-identical.
 
-The vocabulary follows the sections the publications actually use.  Counting
-across FPF Core and the DPFs:
-
-    forces 487   problem frame 478   problem 477   consequences 466
-    relations 484   conformance checklist 432   solution 416
-    rationale 363   archetypal grounding 304   anti-patterns 373
+The vocabulary follows section-title conventions, not corpus frequencies.
 """
 
 from __future__ import annotations

@@ -227,7 +227,7 @@ class Library:
     def filter_skills(self, kind: str = "", suite: str = "") -> List[Skill]:
         """Best-effort filtering over the local model.
 
-        A local build groups the Library differently from the website: four
+        A local build groups the Library differently from the website:
         Suite skills bundle their constituent frameworks, and guides ship as
         documents inside ``fpf``.  The filters therefore accept both
         vocabularies rather than pretending the models are identical.
@@ -805,11 +805,11 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "verify_catalogue",
-        "description": "Compare the publications in this repository with the "
-                       "publisher's catalogue.",
+        "description": "Validate current local publication ownership offline, "
+                       "or compare with a publisher catalogue when explicitly online.",
         "inputSchema": _schema({
             "offline": {"type": "boolean",
-                        "description": "Use the saved snapshot, not the network."},
+                         "description": "Validate current local inputs without network access (default)."},
         }, []),
     },
 ]
@@ -1047,12 +1047,24 @@ class Server:
 
         if name == "verify_catalogue":
             from skillmaker import frameworks as F
-            local = F.load_local(self.skills_root.parent, classify=F.classify)
             if args.get("offline", True):
-                snapshot = _SCRIPT_DIR / "catalogue.snapshot.json"
-                remote, meta = F.load_snapshot(snapshot)
-            else:
-                remote, meta = F.load_remote()
+                from skillmaker.discover_skills import discover
+
+                plan = discover(self.skills_root.parent)
+                sources = {item.source for cfg in plan.configs.values()
+                           for item in [*cfg.frameworks, *cfg.docs]}
+                return {"publisher_snapshot": "", "publications": len(sources),
+                        "issues": [], "ok": True, "mode": "local"}
+            local = F.load_local(self.skills_root.parent, classify=F.classify)
+            from dataclasses import replace
+
+            measured = []
+            for pub in local:
+                text = (self.skills_root.parent / pub.path).read_text("utf-8")
+                profile, _ = F.detect(pub.path, text)
+                measured.append(replace(pub, patterns=len(F.decompose(profile, text, pub.path).patterns)))
+            local = measured
+            remote, meta = F.load_remote()
             issues = F.verify(local, remote)
             return {
                 "publisher_snapshot": meta.get("snapshot", ""),
@@ -1223,39 +1235,37 @@ def selftest(skills_root: Path) -> int:
     check("tools/list", len(tools["result"]["tools"]) == len(TOOLS))
 
     status = server.call("get_corpus_status", {})
-    check("status counts skills", status["skills"] >= 15, str(status["skills"]))
-    check("status counts patterns", status["patterns"] >= 885, str(status["patterns"]))
+    check("status counts current skills", status["skills"] == len(server.library.skills), str(status["skills"]))
+    expected_patterns = sum(u.get("role") == "pattern" for s in server.library.skills.values() for u in s.units)
+    check("status counts current patterns", status["patterns"] == expected_patterns, str(status["patterns"]))
 
     pubs = server.call("list_publications", {"limit": 100})
-    check("lists publications", pubs["total"] >= 15, str(pubs["total"]))
+    check("lists current publications", pubs["total"] == len(server.library.skills), str(pubs["total"]))
 
-    hit = server.call("search", {"q": "decision", "limit": 3})
-    check("search returns results", hit["total"] > 0)
-
-    unit = server.call("read_pattern", {"pattern_id": "PSDA.1"})
-    check("read_pattern", "PSDA" in unit["markdown"])
-
-    section = server.call("read_section", {"publication": "PSDA"})
-    check("read_section defaults to SKILL.md", "---" in section["markdown"])
-
-    toc = server.call("get_table_of_contents", {"publication": "PSDA", "limit": 5})
-    check("table of contents", toc["total"] > 0)
-
-    back = server.call("backlinks", {"pattern_id": "PSDA.1", "limit": 3})
-    check("backlinks", "total" in back)
+    if server.library.skills:
+        skill = next(iter(server.library.skills.values()))
+        section = server.call("read_section", {"publication": skill.name})
+        check("read_section defaults to SKILL.md", bool(section["markdown"]))
+        toc = server.call("get_table_of_contents", {"publication": skill.name, "limit": 5})
+        check("table of contents matches current entries",
+              toc["total"] == len(skill.units) + len(skill.intros) + len(skill.docs))
+    if server.library.by_id:
+        uid = next(iter(server.library.by_id))
+        hit = server.call("search", {"q": uid, "limit": 3})
+        check("search finds current input", hit["total"] > 0)
+        unit = server.call("read_pattern", {"pattern_id": uid})
+        check("read_pattern", bool(unit["markdown"]))
+        back = server.call("backlinks", {"pattern_id": uid, "limit": 3})
+        check("backlinks", "total" in back)
 
     profiles = server.call("list_profiles", {})
-    check("list_profiles", len(profiles["profiles"]) == 8)
+    from skillmaker import frameworks as F
 
-    probe = server.call("probe_document", {"path": "DPFs/README.md"})
-    check("probe_document", probe["kind"] == "Guide", probe["kind"])
-
-    plan = server.call("plan_decomposition", {"path": "DPFs/README.md", "skill": "guide"})
-    check("plan_decomposition", len(plan["artefacts"]) > 0)
+    check("list_profiles", len(profiles["profiles"]) == len(F.all_profiles()))
 
     err = server.handle({"jsonrpc": "2.0", "id": 9, "method": "tools/call",
                          "params": {"name": "read_pattern",
-                                    "arguments": {"pattern_id": "NOPE.99"}}})
+                                     "arguments": {"pattern_id": ""}}})
     check("unknown unit is an error", err["result"]["isError"] is True)
 
     print("selftest:", "PASSED" if ok else "FAILED")

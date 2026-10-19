@@ -46,7 +46,7 @@ ROOT_DOCUMENTS = (
 )
 
 #: Directories scanned for publications.
-DOCUMENT_DIRS = ("DPFs",)
+DOCUMENT_DIRS = ("DPFs", "frameworks")
 
 
 @dataclass(frozen=True)
@@ -191,9 +191,8 @@ def load_remote(url: str = REMOTE_URL, timeout: float = 20.0) -> Tuple[List[Publ
 def load_snapshot(path: Path) -> Tuple[List[Publication], Dict]:
     """Load a saved copy of the publisher catalogue.
 
-    ``catalogue.snapshot.json`` in this directory is such a copy.  It lets
-    verification run offline and, more importantly, lets the tests check the
-    decomposition against the publisher rather than against itself.
+    Supplied explicitly for an optional comparison with a particular edition.
+    No publisher inventory is bundled or required for building local inputs.
     """
     payload = json.loads(path.read_text("utf-8"))
     pubs = [

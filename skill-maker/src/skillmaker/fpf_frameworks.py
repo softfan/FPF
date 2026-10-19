@@ -49,9 +49,6 @@ ensure_utf8_stdio()
 
 from skillmaker import frameworks as F  # noqa: E402
 
-#: Saved copy of the publisher catalogue, used for offline verification.
-SNAPSHOT = _SCRIPT_DIR / "catalogue.snapshot.json"
-
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -121,6 +118,10 @@ def cmd_profiles(_args) -> int:
 
 def cmd_catalogue(args) -> int:
     local = F.load_local(_REPO_ROOT, classify=F.classify)
+    if args.json and (args.verify or args.remote):
+        print("Error: --json cannot be combined with publisher verification; "
+              "use --counts --json for the current local catalogue.", file=sys.stderr)
+        return 1
     if args.verify and not args.counts:
         # Comparing pattern counts is the point of --verify, so it implies the
         # decomposition that produces them.
@@ -163,10 +164,11 @@ def cmd_catalogue(args) -> int:
     remote: Optional[List[F.Publication]] = None
     meta = {}
     if args.offline:
-        if not SNAPSHOT.exists():
-            print(f"\nNo snapshot at {SNAPSHOT}; cannot verify offline.", file=sys.stderr)
+        if args.snapshot is None:
+            print("\nOffline publisher verification needs --snapshot PATH; "
+                  "no fixed catalogue is bundled.", file=sys.stderr)
             return 1
-        remote, meta = F.load_snapshot(SNAPSHOT)
+        remote, meta = F.load_snapshot(args.snapshot)
         print(f"\nPublisher snapshot: {meta.get('snapshot', '?')} "
               f"({meta.get('count')} publications, saved copy)")
     else:
@@ -176,13 +178,22 @@ def cmd_catalogue(args) -> int:
                   f"({meta.get('count')} publications, live)")
         except (urllib.error.URLError, TimeoutError, OSError) as exc:
             print(f"\nCould not reach {F.REMOTE_URL}: {exc}", file=sys.stderr)
-            if SNAPSHOT.exists():
-                remote, meta = F.load_snapshot(SNAPSHOT)
+            if args.snapshot is not None:
+                remote, meta = F.load_snapshot(args.snapshot)
                 print(f"Falling back to the saved snapshot "
                       f"{meta.get('snapshot', '?')}.", file=sys.stderr)
             else:
                 return 1
 
+    if args.allow_local:
+        published_paths = {pub.path for pub in remote}
+        additions = [pub for pub in local if pub.path not in published_paths]
+        local = [pub for pub in local if pub.path in published_paths]
+        if additions:
+            print(f"\n{len(additions)} local addition(s) outside the publisher baseline "
+                  "(not checked against the publisher):")
+            for pub in additions:
+                print(f"  {pub.path}")
     issues = F.verify(local, remote)
     if not issues:
         print(f"\n\u2705 {len(local)} publications agree with the publisher "
@@ -293,7 +304,11 @@ def build_parser() -> argparse.ArgumentParser:
                    help="compare kind and pattern counts with the publisher")
     p.add_argument("--remote", action="store_true", help="fetch the publisher catalogue")
     p.add_argument("--offline", action="store_true",
-                   help="verify against the saved snapshot instead of the network")
+                   help="verify against an explicitly supplied snapshot instead of the network")
+    p.add_argument("--snapshot", type=Path,
+                   help="Optional publisher catalogue JSON for offline verification or fallback")
+    p.add_argument("--allow-local", action="store_true",
+                   help="verify the published baseline while reporting unpublished local additions")
     p.add_argument("--counts", action="store_true",
                    help="decompose each publication to fill in pattern counts")
     p.add_argument("--json", action="store_true", help="machine-readable output")

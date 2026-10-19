@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""A DPF Suite Architectural Reference -- four publications, one profile.
+"""A DPF Suite Architectural Reference -- shared structure, variable inventory.
 
 Each Reference declares its own DocID (``Engineering``, ``Management``,
 ``Foundational``, ``HCE``) and publishes ``<DocID>.Reference:N`` units.  Nothing

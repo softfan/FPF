@@ -7,9 +7,9 @@ value.  The current catalogue uses exactly four:
 
 ===========  ============================================================
 ``FPF``      FPF Core -- the shared pattern language (``FPF-Spec.md``)
-``DPF``      A domain principles framework (33 publications)
-``Reference``A DPF Suite Architectural Reference (4 publications)
-``Guide``    An introduction or working instruction (8 publications)
+``DPF``      A domain principles framework
+``Reference``A DPF Suite Architectural Reference
+``Guide``    An introduction or working instruction
 ===========  ============================================================
 
 That vocabulary is the starting point, not the limit.  A framework that FPF

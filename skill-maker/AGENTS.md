@@ -6,15 +6,18 @@ holds only what you cannot get from reading them.
 
 ## What this directory is
 
-One parser (`split_spec.py`) plus one declarative catalogue (`skill_config.py`)
-turn the Library's publications into **skills** — 15 of them under `skills/`,
-one per FPF Core / DPF Suite / standalone DPF, 1498 unit files.
+One parser (`split_spec.py`) plus local discovery (`discover_skills.py`) and
+curated overrides (`skill_config.py`) turn publications into **skills**.
+Markdown under `DPFs/` and repo-root `frameworks/` is discovered automatically.
+The current input defines all corpus counts. Never hard-code publication,
+Suite, skill, pattern, reference-unit or section totals in code, tests or docs.
+Measured build summaries are useful; they are not fixed acceptance thresholds.
 
 ```
-FPF-Spec.md, DPFs/**  ──►  skill_config.py  ──►  split_spec.py  ──►  skills/<name>/
-                          (what to build)       (the engine)         (generated)
+FPF-Spec.md, DPFs/**, frameworks/**
+    ──► discover_skills.py + skill_config.py ──► split_spec.py ──► skills/<name>/
 
-                          both live in skill-maker/src/skillmaker/
+    engine, discovery and configs live in skill-maker/src/skillmaker/
 ```
 
 Layout: `src/skillmaker/` is the package (engine, catalogue, CLIs, `frameworks/`,
@@ -37,6 +40,11 @@ powershell -File skill-maker\build.ps1       # pwsh  (PYTHON=python, or $env:PYT
 skill-maker\build.cmd                        # cmd
 ```
 
+MCP launcher: `python3 skill-maker/run-mcp.py` (stdio), or
+`bash skill-maker/run-mcp.sh --http`. Native Windows wrappers are `run-mcp.ps1`
+and `run-mcp.cmd`; all forward server flags and respect `PYTHON`. Build first;
+launching never builds. Defaults resolve from the script, not the caller's cwd.
+
 Inner loop — seconds, not minutes:
 
 ```bash
@@ -45,6 +53,7 @@ SM=skill-maker/src/skillmaker
 python3 $SM/split_fpf_spec.py split --source FPF-Spec.md --output skills/fpf --views
 python3 $SM/split_dpf_spec.py split --framework PSDA    # or --suite / --all
 python3 $SM/split_dpf_spec.py analyze                   # parse only, no writes
+python3 $SM/discover_skills.py --dry-run                # merge discovery + curated overrides
 python3 $SM/skill_index.py --check                      # exit 1 if the index is stale
 python3 $SM/build_generic.py DOC.md --skill x --dry-run # plan without writing
 python3 $SM/fpf_frameworks.py probe DOC.md              # classify; `plan` for artefacts
@@ -71,47 +80,46 @@ copy inside a skill relies on `_PKG_PARENT` pointing at `scripts/`.
 - The rest read the built tree: `test_mcp_server.py` refuses to start without
   `skills/`, and `test_derived.py` / `test_frameworks.py` fail their built-tree
   checks. Build first — "skills/ missing" is an unbuilt tree, not a bug.
-- The original suites carry **1099 assertions**: FPF 91, DPF 539, frameworks 116,
-  generic 48, MCP 118, derived 158, HTTP 29. `test_hardening.py` adds 193 offline
-  regression assertions on Linux (symlink and special-file assertions depend
-  on OS support); the complete Linux build has 1292 assertions. Native Windows
-  also runs eight real Hidden/System/ReadOnly assertions, not executed on Linux.
-- A user-provided native Win10 PowerShell run with Python 3.13.7 passed 1299
-  assertions (hardening 200, HTTP 29) and the audit. Do not label that combination
+- Tests compare current sources, generated identities/roles, manifests, files,
+  routing and reconstruction. Fixture-specific assertions may use their own
+  explicit inventories; repository corpus totals must be derived at runtime.
+  Native Windows also exercises real Hidden/System/ReadOnly file attributes.
+- A user-provided native Win10 PowerShell run with Python 3.13.7 passed its
+  regression suites and audit. Do not label that combination
   unverified; native cmd and other Windows/Python combinations remain untested.
-- The suites are offline. They verify against the committed
-  `catalogue.snapshot.json`. Only `fpf_frameworks.py catalogue --verify`
+- The suites are offline and require no saved publisher inventory.
+  Only `fpf_frameworks.py catalogue --verify`
   (without `--offline`) and `fpf_update.py` reach the network — do not wire
   either into a default path.
 - **Step 4, the audit, is non-fatal in all three build scripts.** A green build
   does not mean the audit was clean; read its output.
-- Step 10 runs natively in PowerShell/cmd via `test_mcp_http.py` (29 checks),
+- Step 10 runs natively in PowerShell/cmd via `test_mcp_http.py`,
   using the build's own Python and no Bash/curl/WSL. `build.sh` uses the shell
   equivalent. Do not count both alternatives twice in default test totals.
 - The shell walkthrough waits 60 seconds by default (`MCP_STARTUP_TIMEOUT`, 1–3600);
   the native alternative accepts `--startup-timeout`, also defaulting to 60.
   Failure retains server/probe logs in the printed temporary directory. Optional
   `test_http_startup.py` exercises delayed/crashed startup and timeout diagnostics
-  with Bash/curl and the native runner; its 14 checks are separate from default totals.
+  with Bash/curl and the native runner; these are separate from the default suites.
 
 ## Where a change belongs
 
 | Change | File |
 | --- | --- |
-| Add / move a publication | `src/skillmaker/skill_config.py` — a `DPFSpec`, plus `SuiteSpec.members` if it belongs to a Suite |
+| Add a publication | Place Markdown in `DPFs/` or repo-root `frameworks/`; `discover_skills.py` classifies and groups it |
+| Curate a name/grouping or move a curated publication | `src/skillmaker/skill_config.py` — explicit source ownership takes precedence |
 | New framework kind (ADR, standards, …) | a module in `src/skillmaker/frameworks/profiles/` exporting `PROFILE`, registered in `frameworks/profiles/__init__.py`. Nothing else. |
 | Wording / structure of a generated skill | `src/skillmaker/templates/` — `{{placeholder}}` syntax, `genres/<genre>.md`, `roles/<role>.md` |
 | Retrieval artefacts (routes, entries, glossary, boot) | `derive.py`; section offsets and tiers in `sections.py` |
 | Hand-written routes that must survive a rebuild | `<skill>/curated-routes.json` — the builder never overwrites it |
 
-After editing `skill_config.py`, run `split_dpf_spec.py analyze` and compare the
-counts with the "Patterns" column of `DPFs/README.md`.
+After editing `skill_config.py`, inspect `discover_skills.py --dry-run` and
+run the source-to-output inventory and reconstruction tests.
 
 The build stamp `.<skill>_build.json` digests every engine module, the whole
 `frameworks/` package, the whole `templates/` tree and the resolved sources, so
-**any** of those edits invalidate all 15 skills. That is the point: editing one
-template rewrites exactly the files derived from it (verified: 2 of 892) and
-leaves the rest skipped.
+**any** of those edits invalidate affected build stamps. Editing a template
+rewrites the files derived from it and leaves unchanged output skipped.
 
 ## Gotchas that cost real time
 
@@ -175,7 +183,7 @@ leaves the rest skipped.
 - An empty result from a graph or index means *not indexed*, not *does not
   exist*. Say which.
 - Do not answer live facts (publisher catalogue, upstream FPF repository) from
-  memory — read `catalogue.snapshot.json` or look it up.
+  memory — inspect the current sources or an explicitly supplied catalogue.
 - Do not invent tool names or flags; every entry point has `--help`.
 - One graph system per question. Do not merge CodeGraph and GitNexus results.
 - `mcp_server.py`'s reading contract lives in `READING_TOOLS` and is asserted

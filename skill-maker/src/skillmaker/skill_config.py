@@ -5,8 +5,9 @@ skill_config.py -- Declarative skill definitions for the skill-maker toolchain.
 Every generated skill is described by a :class:`SkillConfig`: where its source
 documents live, how each document is split into addressable units, which
 templates to use and where the output goes.  The generic engine
-(``split_spec.py``) reads these configs, so FPF Core, the four DPF Suites and
-the ten standalone DPF frameworks all share one parser and one writer.
+(``split_spec.py``) reads these configs, so Core, Suites and standalone
+frameworks all share one parser and one writer. These are naming/grouping
+overrides, not a fixed inventory or a source of expected pattern counts.
 
 Library layout reproduced here (see ``FPF-LIBRARY-REFERENCE.md`` and
 ``DPFs/README.md``):
@@ -14,10 +15,9 @@ Library layout reproduced here (see ``FPF-LIBRARY-REFERENCE.md`` and
 * **FPF Core** -- ``FPF-Spec.md`` plus the Library documents ``USING-FPF.md``
   and ``FPF-LIBRARY-REFERENCE.md`` (shipped inside the skill as reference
   documents).
-* **Four DPF Suites** -- Engineering, Management, Foundational Thinking and
-  Human Capability Engineering.  A Suite skill holds its constituent
+* **DPF Suites** -- a Suite skill holds its constituent
   frameworks plus the Suite Architectural Reference.
-* **Ten standalone DPFs** -- frameworks published directly in ``DPFs/``.
+* **Standalone DPFs** -- frameworks published directly in ``DPFs/``.
 
 Each source document is parsed with the same rules: a ``## <ID> - <Title>``
 heading starts an addressable unit; units whose first segment is numeric are
@@ -332,9 +332,6 @@ class DPFSpec:
     title: str
     filename: str
     description: str
-    patterns: int
-    """Number of pattern bodies (the "Patterns" column of the DPF catalogue)."""
-
     slug: str = ""
     """Readable skill directory name (``decision-design`` for PSDA).
 
@@ -364,20 +361,20 @@ ENGINEERING_DPFS = [
     DPFSpec("SYSE", "Systems Engineering",
             "Engineering DPF Suite/SYSTEMS-ENGINEERING-PRINCIPLES-FRAMEWORK.md",
             "Define the system and intended use; compare designs and ways to "
-            "obtain them; realize, integrate, qualify and change the result.", 53),
+            "obtain them; realize, integrate, qualify and change the result."),
     DPFSpec("MNT", "Maintenance Engineering and Management",
             "Engineering DPF Suite/MAINTENANCE-ENGINEERING-PRINCIPLES-FRAMEWORK.md",
             "Select maintenance policy from condition and failure knowledge; "
-            "prepare interventions, restore functioning and qualify return to use.", 16),
+            "prepare interventions, restore functioning and qualify return to use."),
     DPFSpec("KCAE", "Knowledge-Corpus Access Engineering",
             "Engineering DPF Suite/KNOWLEDGE-CORPUS-ACCESS-ENGINEERING-PRINCIPLES-FRAMEWORK.md",
             "Engineer arrangements for finding, reading and using documentary "
             "knowledge, including links back to source passages, delivery and "
-            "coherent updates.", 11),
+            "coherent updates."),
     DPFSpec("SIE", "Semantic Integration Engineering",
             "Engineering DPF Suite/SEMANTIC-INTEGRATION-ENGINEERING-PRINCIPLES-FRAMEWORK.md",
             "Make separately governed meanings usable together through models, "
-            "mappings, interfaces, validation and response to change.", 12),
+            "mappings, interfaces, validation and response to change."),
 ]
 
 MANAGEMENT_DPFS = [
@@ -385,75 +382,75 @@ MANAGEMENT_DPFS = [
             "Management DPF Suite/STRATEGY-PRINCIPLES-FRAMEWORK.md",
             "Find a worthwhile direction; compare options, capabilities, "
             "investments and business models; revise commitments when "
-            "conditions change.", 17),
+            "conditions change."),
     DPFSpec("OPS", "Operations Management",
             "Management DPF Suite/OPERATIONS-MANAGEMENT-PRINCIPLES-FRAMEWORK.md",
             "Organize flow, queues, capacity, admission, quality and "
-            "simultaneous work under actual operating conditions.", 28),
+            "simultaneous work under actual operating conditions."),
     DPFSpec("ADM", "Organization Administration",
             "Management DPF Suite/ORGANIZATION-ADMINISTRATION-PRINCIPLES-FRAMEWORK.md",
             "Make requests, permissions, obligations, provision, records and "
-            "provider coordination effective without unnecessary burden.", 15),
+            "provider coordination effective without unnecessary burden."),
     DPFSpec("CGOV", "Corporate Governance",
             "Management DPF Suite/CORPORATE-GOVERNANCE-PRINCIPLES-FRAMEWORK.md",
             "Constitute and exercise corporate powers, decisions, controls and "
-            "accountability under applicable governing rules.", 17),
+            "accountability under applicable governing rules."),
     DPFSpec("MA", "Management Accounting",
             "Management DPF Suite/MANAGEMENT-ACCOUNTING-PRINCIPLES-FRAMEWORK.md",
             "Construct cost and capacity accounts, forecasts and explanations "
-            "that inform organizational choices.", 9),
+            "that inform organizational choices."),
     DPFSpec("FIN", "Corporate Finance",
             "Management DPF Suite/CORPORATE-FINANCE-PRINCIPLES-FRAMEWORK.md",
             "Arrange financing, liquidity and capital allocation; compare value, "
-            "exposure and financial consequences.", 22),
+            "exposure and financial consequences."),
     DPFSpec("MKT", "Marketing",
             "Management DPF Suite/MARKETING-PRINCIPLES-FRAMEWORK.md",
             "Investigate customers and markets; design, communicate and sustain "
-            "feasible offers and relationships.", 14),
+            "feasible offers and relationships."),
     DPFSpec("CUST", "Customization and Productization Management",
             "Management DPF Suite/CUSTOMIZATION-AND-PRODUCTIZATION-MANAGEMENT-PRINCIPLES-FRAMEWORK.md",
             "Handle client differences while developing repeatable offerings, "
-            "delivery and compatible transitions for existing clients.", 8),
+            "delivery and compatible transitions for existing clients."),
     DPFSpec("EAM", "Engineering Asset Management",
             "Management DPF Suite/ENGINEERING-ASSET-MANAGEMENT-PRINCIPLES-FRAMEWORK.md",
             "Compare use, renewal, replacement and other asset changes over "
-            "time, including shared risk, cost and capacity.", 16),
+            "time, including shared risk, cost and capacity."),
     DPFSpec("LDR", "Leadership",
             "Management DPF Suite/LEADERSHIP-PRINCIPLES-FRAMEWORK.md",
             "Obtain feasible agreement and contributions to joint work, "
-            "including preparation through first useful work.", 3),
+            "including preparation through first useful work."),
     DPFSpec("CB", "Community Management",
             "Management DPF Suite/COMMUNITY-MANAGEMENT-PRINCIPLES-FRAMEWORK.md",
             "Develop useful participation, relationships, shared practices and "
-            "contributions in organizations or voluntary communities.", 16),
+            "contributions in organizations or voluntary communities."),
     DPFSpec("OCE", "Organization Change Engineering",
             "Management DPF Suite/ORGANIZATION-CHANGE-ENGINEERING-PRINCIPLES-FRAMEWORK.md",
             "Construct and qualify organizational changes to contributions, "
-            "roles, authority, interfaces, capabilities and culture.", 17),
+            "roles, authority, interfaces, capabilities and culture."),
 ]
 
 FOUNDATIONAL_DPFS = [
     DPFSpec("MATH", "Mathematical Thinking",
             "Foundational Thinking DPF Suite/MATHEMATICAL-PRACTICE-DPF.md",
             "Construct mathematical objects, operations and alternatives; "
-            "derive consequences and meet proof obligations.", 20),
+            "derive consequences and meet proof obligations."),
     DPFSpec("MMP", "Mathematical Modeling",
             "Foundational Thinking DPF Suite/MATHEMATICAL-MODELING-PRACTICE-DPF.md",
             "Relate a subject question to mathematics; infer, predict, compare "
-            "interventions, design observations and revise or combine models.", 17),
+            "interventions, design observations and revise or combine models."),
     DPFSpec("PHY", "Physical Thinking",
             "Foundational Thinking DPF Suite/PHYSICAL-THINKING-DPF.md",
             "Construct and test physical accounts; select interactions and "
             "idealizations, derive consequences and distinguish them by "
-            "observation.", 10),
+            "observation."),
     DPFSpec("CMP", "Computational Thinking",
             "Foundational Thinking DPF Suite/COMPUTATIONAL-THINKING-DPF.md",
             "Construct algorithms that obtain the required answer within "
-            "correctness, resource and interaction conditions.", 15),
+            "correctness, resource and interaction conditions."),
     DPFSpec("NOT", "Notational Engineering",
             "Foundational Thinking DPF Suite/NOTATIONAL-ENGINEERING-DPF.md",
             "Design expressions, interpretations and transformations that make "
-            "operations usable and changes recoverable.", 8),
+            "operations usable and changes recoverable."),
 ]
 
 HUMAN_CAPABILITY_DPFS = [
@@ -461,12 +458,12 @@ HUMAN_CAPABILITY_DPFS = [
             "Human Capability Engineering DPF Suite/HUMAN-CAPABILITY-DEVELOPMENT-PRINCIPLES-FRAMEWORK.md",
             "Connect later work to capability demand, personal programmes, "
             "learning products, individual and shared practice, feedback, "
-            "assessment, transfer and retention.", 29),
+            "assessment, transfer and retention."),
     DPFSpec("SOM", "Somatic Movement Modeling",
             "Human Capability Engineering DPF Suite/SOMATIC-MOVEMENT-MODELING-PRINCIPLES-FRAMEWORK.md",
             "Connect bodily experience, regulated effort and coordinated "
             "movement; adapt within a familiar movement practice as support or "
-            "load changes.", 5),
+            "load changes."),
 ]
 
 STANDALONE_DPFS = [
@@ -474,54 +471,54 @@ STANDALONE_DPFS = [
             "DECISION-DESIGN-PRINCIPLES-FRAMEWORK.md",
             "Formulate a decision problem, construct alternatives, compare "
             "consequences and uncertainty, and connect a recommendation to its "
-            "use.", 18,
+            "use.",
             slug="decision-design"),
     DPFSpec("RMP", "Research Method Practice",
             "RESEARCH-METHOD-PRACTICE-PRINCIPLES-FRAMEWORK.md",
             "Frame and design research, obtain and criticize evidence, "
-            "synthesize sources, and return a warranted knowledge contribution.", 11,
+            "synthesize sources, and return a warranted knowledge contribution.",
             slug="research-methods"),
     DPFSpec("EXD", "Explanation Design",
             "EXPLANATION-DESIGN-PRINCIPLES-FRAMEWORK.md",
             "Design an explanation, worked example or dialogue that helps its "
-            "recipient understand and perform the needed operation.", 6,
+            "recipient understand and perform the needed operation.",
             slug="explanation-design"),
     DPFSpec("NSTD", "Narrativization and Narrative Studies",
             "Narrativization-and-Narrative-Studies-Principles-Framework.md",
             "Turn source material into a followable account while retaining the "
             "relations, uncertainty and links back to the source passages the "
-            "reader needs.", 8,
+            "reader needs.",
             slug="narrativization"),
     DPFSpec("IS", "Implementation Facilitation",
             "IMPLEMENTATION-FACILITATION-PRINCIPLES-FRAMEWORK.md",
             "Help participants put an evidence-informed practice to use under "
             "local conditions, adapt the assistance and develop their capacity "
-            "for further change.", 7,
+            "for further change.",
             slug="implementation-facilitation"),
     DPFSpec("ECO", "Economic Reasoning and Coordination",
             "ECONOMIC-REASONING-AND-COORDINATION-PRINCIPLES-FRAMEWORK.md",
             "Reason about exchange, commitments, incentives, shared resources "
-            "and coordination under changing information and demand.", 10,
+            "and coordination under changing information and demand.",
             slug="economic-reasoning"),
     DPFSpec("FDM", "Financial Domain Modeling",
             "FINANCIAL-DOMAIN-MODELING-PRINCIPLES-FRAMEWORK.md",
             "Model financial positions, rights, obligations, events and payment "
-            "flows without confusing their different effects.", 5,
+            "flows without confusing their different effects.",
             slug="financial-modeling"),
     DPFSpec("DTM", "Defense and Transmission Modeling",
             "DEFENSE-AND-TRANSMISSION-MODELING-DPF.md",
             "Explain how practices persist and spread, how they help or impair "
-            "work, and how protective action changes those outcomes.", 9,
+            "work, and how protective action changes those outcomes.",
             slug="defense-transmission"),
     DPFSpec("RHY", "Embodied Rhythmics",
             "EMBODIED-RHYTHMICS-PRINCIPLES-FRAMEWORK.md",
             "Recognize, represent, alter and perform rhythmic relations; "
-            "coordinate sound, movement, reference and simultaneous layers.", 14,
+            "coordinate sound, movement, reference and simultaneous layers.",
             slug="embodied-rhythmics"),
     DPFSpec("MDPE", "Music and Dance Practice Engineering",
             "MUSIC-AND-DANCE-PRACTICE-ENGINEERING-PRINCIPLES-FRAMEWORK.md",
             "Create, configure, perform, learn and transmit music and dance "
-            "practices, including changes in tools, environments and styles.", 22,
+            "practices, including changes in tools, environments and styles.",
             slug="music-dance-practice"),
 ]
 
@@ -551,7 +548,7 @@ class SuiteSpec:
         """Suite skills carry a ``-suite`` suffix.
 
         ``engineering`` beside ``decision-design`` gives no hint that one is a
-        bundle of four frameworks and the other is a single framework.  The
+        bundle of frameworks and the other is a single framework. The
         suffix makes the difference visible in a directory listing."""
         return f"{self.slug}-suite"
 
@@ -687,12 +684,12 @@ def build_suite_skill_config(suite: SuiteSpec) -> SkillConfig:
     )
 
 
-#: One config per standalone DPF (10 skills).
+#: Curated standalone DPF configs; discovery supplies other local inputs.
 DPF_SKILL_CONFIGS: Dict[str, SkillConfig] = {
     spec.docid: build_dpf_skill_config(spec) for spec in STANDALONE_DPFS
 }
 
-#: One config per Suite (4 skills).
+#: Curated Suite configs; discovery supplies other local Suites and members.
 SUITE_SKILL_CONFIGS: Dict[str, SkillConfig] = {
     slug: build_suite_skill_config(suite) for slug, suite in SUITES.items()
 }
@@ -702,6 +699,3 @@ ALL_DPF_CONFIGS: Dict[str, SkillConfig] = {
     **{cfg.name: cfg for cfg in SUITE_SKILL_CONFIGS.values()},
     **{cfg.name: cfg for cfg in DPF_SKILL_CONFIGS.values()},
 }
-
-#: Expected pattern counts per DocID (the DPF catalogue's "Patterns" column).
-EXPECTED_PATTERNS: Dict[str, int] = {d.docid: d.patterns for d in ALL_DPFS}

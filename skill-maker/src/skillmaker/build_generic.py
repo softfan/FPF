@@ -2,8 +2,8 @@
 """
 build_generic.py -- build a skill from any framework kind.
 
-``split_fpf_spec.py`` and ``split_dpf_spec.py`` build the fifteen skills this
-repository publishes, from hand-written configs.  This command builds a skill
+``split_fpf_spec.py`` and ``split_dpf_spec.py`` build configured/discovered
+publications. This command builds a skill
 from *any* document, using a decomposition profile to decide how it splits:
 
     python skill-maker/src/skillmaker/build_generic.py docs/adr/adr-0001.md --skill payments-adr

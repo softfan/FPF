@@ -24,8 +24,11 @@ Usage from repo root::
 from __future__ import annotations
 
 import json
+import os
+import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -36,14 +39,14 @@ if str(_PKG_PARENT) not in sys.path:
     sys.path.insert(0, str(_PKG_PARENT))
 _SCRIPT_DIR = _PKG_PARENT / "skillmaker"        # the package: entry points, templates
 _REPO_ROOT = _MAKER_DIR.parent                  # repository root
-SERVER = _SCRIPT_DIR / "mcp_server.py"
+SERVER = _MAKER_DIR / "run-mcp.py"
 SKILLS = _REPO_ROOT / "skills"
 
 from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 
-from skillmaker.mcp_server import DERIVED_TOOLS, MAKER_TOOLS, READING_TOOLS  # noqa: E402
+from skillmaker.mcp_server import DERIVED_TOOLS, MAKER_TOOLS, READING_TOOLS, TOOLS  # noqa: E402
 
 PARITY_TOOLS = tuple(READING_TOOLS)
 PARITY_ARGS = {name: set(args) for name, args in READING_TOOLS.items()}
@@ -151,7 +154,7 @@ def test_handshake(t: TestRunner) -> None:
 
         listing = c.send("tools/list")
         tools = listing["result"]["tools"]
-        t.check("tools listed", len(tools) >= 11, str(len(tools)))
+        t.check("registered tools listed", len(tools) == len(TOOLS), str(len(tools)))
         for tool in tools:
             t.check(f"{tool['name']} has a schema",
                     isinstance(tool.get("inputSchema"), dict))
@@ -191,8 +194,10 @@ def test_parity(t: TestRunner) -> None:
 
         # kind / suite filters behave, rather than being accepted and ignored.
         frameworks = c.payload("list_publications", {"kind": "DPF", "limit": 100})
+        indexed = json.loads((SKILLS / "index.json").read_text("utf-8"))["skills"]
         t.check("kind=DPF filters to frameworks",
-                frameworks["total"] >= 10, str(frameworks["total"]))
+                frameworks["total"] == sum(row["kind"] == "Framework" for row in indexed),
+                str(frameworks["total"]))
         t.check("kind=DPF excludes fpf",
                 all(p["id"] != "fpf" for p in frameworks["publications"]))
 
@@ -276,7 +281,7 @@ def test_reading(t: TestRunner) -> None:
 
         unit = c.payload("read_pattern", {"pattern_id": "SYSE.24"})
         t.equal("read_pattern publication", unit["publication"], "engineering-suite")
-        t.check("read_pattern returns markdown", len(unit["markdown"]) > 500,
+        t.check("read_pattern returns markdown", bool(unit["markdown"].strip()),
                 str(len(unit["markdown"])))
         t.check("read_pattern names the file",
                 unit["file"].startswith("skills/engineering-suite/reference/syse/"),
@@ -296,14 +301,16 @@ def test_reading(t: TestRunner) -> None:
                 doc["markdown"][:120])
 
         toc = c.payload("get_table_of_contents", {"publication": "PSDA", "limit": 200})
-        t.check("toc lists sections", toc["total"] > 40, str(toc["total"]))
+        psda_manifest = json.loads((SKILLS / "decision-design/.decision-design_manifest.json").read_text("utf-8"))
+        t.check("toc lists current sections", toc["total"] == len(psda_manifest), str(toc["total"]))
         keys = {s["key"] for s in toc["sections"]}
         t.check("toc includes units", "PSDA.1" in keys)
         t.check("toc includes intros", any(k.startswith("intro:") for k in keys))
 
         only = c.payload("get_table_of_contents",
                          {"publication": "PSDA", "patterns_only": True, "limit": 200})
-        t.equal("patterns_only filters", only["total"], 18)
+        t.equal("patterns_only filters", only["total"],
+                sum(e.get("role") == "pattern" for e in psda_manifest))
 
         back = c.payload("backlinks", {"pattern_id": "PSDA.1", "limit": 100})
         t.check("backlinks finds mentions", back["total"] > 0, str(back["total"]))
@@ -337,7 +344,9 @@ def test_skill_maker_tools(t: TestRunner) -> None:
                 all(len(e["meaning"]) > 20 for e in terms["entries" if False else "terms"]))
 
         profiles = c.payload("list_profiles")
-        t.equal("lists 8 profiles", len(profiles["profiles"]), 8)
+        from skillmaker import frameworks as F
+
+        t.equal("lists registered profiles", len(profiles["profiles"]), len(F.all_profiles()))
         kinds = {p["kind"] for p in profiles["profiles"]}
         t.check("profiles cover extension kinds",
                 {"ADR", "Standards", "Generic"} <= kinds, str(sorted(kinds)))
@@ -349,7 +358,10 @@ def test_skill_maker_tools(t: TestRunner) -> None:
         probe2 = c.payload("probe_document",
                            {"path": "DPFs/Management DPF Suite/LEADERSHIP-PRINCIPLES-FRAMEWORK.md"})
         t.equal("probe finds a DPF", probe2["kind"], "DPF")
-        t.equal("probe counts patterns", probe2["patterns"], 3)
+        source = "DPFs/Management DPF Suite/LEADERSHIP-PRINCIPLES-FRAMEWORK.md"
+        text = (_REPO_ROOT / source).read_text("utf-8")
+        profile, _ = F.detect(source, text)
+        t.equal("probe counts current patterns", probe2["patterns"], len(F.decompose(profile, text).patterns))
 
         plan = c.payload("plan_decomposition", {"path": "DPFs/README.md", "skill": "guide"})
         t.check("plan lists artefacts", len(plan["artefacts"]) >= 3, str(plan["artefacts"]))
@@ -409,7 +421,53 @@ def test_cli(t: TestRunner) -> None:
                        encoding="utf-8", errors="replace", cwd=str(_REPO_ROOT))
     t.check("--list-tools exits 0", r.returncode == 0, (r.stderr or "")[-300:])
     tools = json.loads(r.stdout)
-    t.check("--list-tools prints JSON", len(tools) >= 11, str(len(tools)))
+    t.check("--list-tools prints registered tools", len(tools) == len(TOOLS), str(len(tools)))
+
+
+def test_runners(t: TestRunner) -> None:
+    print("\n[7] MCP launchers")
+    runners = [("Python", [sys.executable, str(SERVER)])]
+    if os.name == "nt":
+        runners.append(("cmd", ["cmd.exe", "/d", "/c", str(_MAKER_DIR / "run-mcp.cmd")]))
+        powershell = shutil.which("pwsh") or shutil.which("powershell")
+        if powershell:
+            runners.append(("PowerShell", [powershell, "-NoProfile", "-File",
+                                            str(_MAKER_DIR / "run-mcp.ps1")]))
+    elif shutil.which("bash"):
+        runners.append(("Bash", [shutil.which("bash"), str(_MAKER_DIR / "run-mcp.sh")]))
+    env = dict(os.environ, PYTHON=sys.executable)
+    with tempfile.TemporaryDirectory(prefix="mcp runner ") as temporary:
+        cwd = Path(temporary)
+        # A deliberately small corpus also checks argument quoting for spaces.
+        corpus = cwd / "custom skills"
+        corpus.mkdir()
+        request = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "initialize",
+                              "params": {"protocolVersion": "2025-06-18"}}) + "\n"
+        for name, command in runners:
+            r = subprocess.run([*command, "--list-tools"], capture_output=True,
+                               text=True, encoding="utf-8", errors="replace",
+                               cwd=cwd, env=env, timeout=60)
+            t.check(f"{name}: forwards --list-tools from another cwd", r.returncode == 0
+                    and isinstance(json.loads(r.stdout), list), (r.stderr or "")[-300:])
+            r = subprocess.run([*command, "--bad-option"], capture_output=True,
+                               text=True, encoding="utf-8", errors="replace",
+                               cwd=cwd, env=env, timeout=60)
+            t.check(f"{name}: preserves argument-error exit code", r.returncode == 2,
+                    f"exit={r.returncode} {(r.stderr or '')[-300:]}")
+            r = subprocess.run([*command, "--skills-root", "custom skills"], input=request,
+                               capture_output=True, text=True, encoding="utf-8",
+                               errors="replace", cwd=cwd, env=env, timeout=60)
+            lines = r.stdout.splitlines()
+            t.check(f"{name}: stdout is only MCP JSON", r.returncode == 0 and len(lines) == 1
+                    and json.loads(lines[0]).get("id") == 1, (r.stderr or "")[-300:])
+            t.check(f"{name}: relative skills root uses caller cwd", str(corpus) in r.stderr,
+                    (r.stderr or "")[-300:])
+        # No override: a client need not set cwd to get this repository's corpus.
+        r = subprocess.run([sys.executable, str(SERVER)], input=request,
+                           capture_output=True, text=True, encoding="utf-8", errors="replace",
+                           cwd=cwd, timeout=60)
+        t.check("default corpus independent of caller cwd", r.returncode == 0
+                and str(SKILLS) in r.stderr, (r.stderr or "")[-300:])
 
 
 # ---------------------------------------------------------------------------
@@ -432,6 +490,7 @@ def main() -> int:
     test_skill_maker_tools(t)
     test_errors(t)
     test_cli(t)
+    test_runners(t)
     return t.summary()
 
 

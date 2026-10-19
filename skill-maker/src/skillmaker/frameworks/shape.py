@@ -8,17 +8,17 @@ into*: which artefacts a skill gets, and therefore what an agent can retrieve.
 The four published kinds need four different shapes, and the difference is not
 cosmetic:
 
-* **FPF Core** -- one flat ``reference/fpf-patterns/`` tree of 418 unit files,
+* **FPF Core** -- one flat ``reference/fpf-patterns/`` tree of source-derived units,
   plus the three Library guides copied whole into ``reference/``.
 * **A DPF** -- one flat tree per framework, patterns and reference units
   separated by role in the indexes.
 * **A Suite** -- one tree per constituent framework under a shared
-  ``reference/`` root, so a Suite skill holds 4-14 frameworks at once.
+  ``reference/`` root, grouping its constituent frameworks.
 * **A Guide** -- no unit files at all: the guide is one document an agent reads
   top to bottom, with an entry-point hub.
 
 Naming the shapes makes the difference explicit and testable instead of
-implicit in fifteen hand-written configs.
+implicit in a fixed catalogue of hand-written configs.
 """
 
 from __future__ import annotations

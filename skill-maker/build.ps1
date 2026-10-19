@@ -24,20 +24,11 @@ Write-Host "============================================"
 # Check Python
 try {
     & $Python --version | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "Python exited with code $LASTEXITCODE" }
 } catch {
     Write-Host "Error: $Python not found. Set PYTHON env var."
     exit 1
 }
-
-# Skills: FPF Core, the four DPF Suites, the ten standalone DPFs.
-$skills = @(
-    "fpf",
-    "engineering-suite", "management-suite", "foundational-thinking-suite",
-    "human-capability-engineering-suite",
-    "decision-design", "research-methods", "explanation-design", "narrativization",
-    "implementation-facilitation", "economic-reasoning", "financial-modeling",
-    "defense-transmission", "embodied-rhythmics", "music-dance-practice"
-)
 
 # Nothing is cleared here on purpose: each skill carries a build stamp and the
 # split is skipped when nothing changed.  Delete skills/ for a clean rebuild.
@@ -51,8 +42,8 @@ Write-Host "[1/10] Splitting FPF Core + Library documents..."
 if ($LASTEXITCODE -ne 0) { Write-Host "FPF split failed"; exit 2 }
 
 Write-Host ""
-Write-Host "[2/10] Splitting DPF Suites and standalone DPFs..."
-& $Python skill-maker/src/skillmaker/split_dpf_spec.py split --all --views
+Write-Host "[2/10] Discovering and building local frameworks and Suites..."
+& $Python skill-maker/src/skillmaker/discover_skills.py --views
 if ($LASTEXITCODE -ne 0) { Write-Host "DPF split failed"; exit 2 }
 
 Write-Host ""
@@ -75,7 +66,7 @@ if ($LASTEXITCODE -ne 0) { Write-Host "FPF tests failed"; exit 4 }
 if ($LASTEXITCODE -ne 0) { Write-Host "  X DPF tests failed"; exit 1 }
 
 Write-Host ""
-Write-Host "[6/10] Checking framework decomposition against the publisher catalogue..."
+Write-Host "[6/10] Checking framework decomposition against current sources..."
 & $Python skill-maker/tests/test_frameworks.py
 if ($LASTEXITCODE -ne 0) { Write-Host "  X Framework tests failed"; exit 1 }
 
@@ -83,6 +74,8 @@ Write-Host ""
 Write-Host "[7/10] Checking the generic skill builder..."
 & $Python skill-maker/tests/test_build_generic.py
 if ($LASTEXITCODE -ne 0) { Write-Host "  X Generic builder tests failed"; exit 1 }
+& $Python skill-maker/tests/test_discovery.py
+if ($LASTEXITCODE -ne 0) { Write-Host "  X Discovery tests failed"; exit 1 }
 
 Write-Host ""
 Write-Host "[8/10] Checking the MCP server..."

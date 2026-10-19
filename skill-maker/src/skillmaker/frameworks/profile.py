@@ -13,8 +13,8 @@ bundles the four things a new framework type needs:
    (:class:`~frameworks.shape.SkillShape`).
 
 A profile that resolves its ID prefix from the publication's own ``DocID``
-covers a whole family: one ``dpf_framework`` profile serves all 33 DPFs, and one
-``suite_reference`` profile serves all 4 Suite References.
+covers a whole family: ``dpf_framework`` serves DPFs and ``suite_reference``
+serves Suite References without enumerating their documents or units.
 
 Detection is scored, not guessed.  Path globs are decisive for documents the
 Library publishes under known names; header markers and structural evidence
@@ -121,7 +121,7 @@ class DecompositionProfile:
     docid_prefix: bool = False
     """Resolve the ID prefix from the publication's own ``DocID``.
 
-    One profile then serves every member of a family (all 33 DPFs)."""
+    One profile then serves every member of a family without fixed counts."""
 
     fixed_prefix: Optional[str] = None
     """A constant ID prefix, for publications whose IDs do not match their

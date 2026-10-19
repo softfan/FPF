@@ -19,7 +19,8 @@ checks their format; it does not invoke a model or access the network.
 5. Compare correctness, relevance, unsupported claims and reading cost. A
    structurally valid answer is not automatically a useful one.
 
-For trigger checks, install all fifteen skills and use `trigger_queries`.
+For trigger checks, install the skills generated from your current inputs and
+use `trigger_queries`.
 `should_trigger: false` cases are close alternatives, not random irrelevant
 questions. Observe whether the named skill was actually loaded. Report raw
 counts initially; repeat runs before drawing reliability conclusions. Keep

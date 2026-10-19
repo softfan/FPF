@@ -22,16 +22,6 @@ if ! command -v "$PYTHON" &>/dev/null; then
     exit 1
 fi
 
-# Skills: FPF Core, the four DPF Suites, the ten standalone DPFs.
-SKILLS=(
-    fpf
-    engineering-suite management-suite foundational-thinking-suite
-    human-capability-engineering-suite
-    decision-design research-methods explanation-design narrativization
-    implementation-facilitation economic-reasoning financial-modeling
-    defense-transmission embodied-rhythmics music-dance-practice
-)
-
 # Nothing is cleared here on purpose.  Each skill carries a build stamp
 # (.<skill>_build.json) naming the engine and source digests it was built from;
 # when both match and every manifest file exists, the split is skipped.  Delete
@@ -45,8 +35,8 @@ echo "[1/10] Splitting FPF Core + Library documents..."
     --views
 
 echo ""
-echo "[2/10] Splitting DPF Suites and standalone DPFs..."
-"$PYTHON" skill-maker/src/skillmaker/split_dpf_spec.py split --all --views
+echo "[2/10] Discovering and building local frameworks and Suites..."
+"$PYTHON" skill-maker/src/skillmaker/discover_skills.py --views
 
 echo ""
 echo "[3/10] Writing the skills index (skills/README.md, skills/index.json)..."
@@ -70,7 +60,7 @@ echo "[5/10] Running tests (FPF + DPF)..."
 }
 
 echo ""
-echo "[6/10] Checking framework decomposition against the publisher catalogue..."
+echo "[6/10] Checking framework decomposition against current sources..."
 "$PYTHON" skill-maker/tests/test_frameworks.py || {
     echo "  ✗ Framework tests failed"
     exit 1
@@ -80,6 +70,10 @@ echo ""
 echo "[7/10] Checking the generic skill builder..."
 "$PYTHON" skill-maker/tests/test_build_generic.py || {
     echo "  ✗ Generic builder tests failed"
+    exit 1
+}
+"$PYTHON" skill-maker/tests/test_discovery.py || {
+    echo "  ✗ Discovery tests failed"
     exit 1
 }
 

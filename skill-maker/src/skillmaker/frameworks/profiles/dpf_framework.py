@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""A Domain Principle Framework -- 33 publications, one profile.
+"""A Domain Principle Framework -- a profile shared by arbitrary publications.
 
 The DocID is the ID prefix: ``PSDA`` publishes ``PSDA.1``, ``MATH`` publishes
 ``MATH.1``, and so on.  A DPF that forgot its header is still recognised: the

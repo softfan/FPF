@@ -5,13 +5,13 @@ test_dpf_pipeline.py -- End-to-end tests for the DPF skill pipeline.
 Verifies the whole DPF side of the toolchain:
 
 * **Catalogue completeness** -- every framework file published in ``DPFs/``
-  (including the four Suite folders) is used by exactly one skill config, and
+  (including Suite folders) is used by exactly one skill config, and
   every configured source exists.
 * **Catalogue agreement** -- DocIDs, titles and carriers agree with the
   Library's own catalogue in ``FPF-LIBRARY-REFERENCE.md``.
 * **Split** -- every skill builds without error.
 * **Structure** -- SKILL.md, README.md, manifest, indexes and unit files.
-* **Counts** -- pattern counts equal the "Patterns" column of ``DPFs/README.md``.
+* **Inventory** -- generated units match the current source documents.
 * **Rebuild** -- a skill can be reassembled from its own files.
 
 Usage from repo root:
@@ -27,7 +27,6 @@ import re
 import subprocess
 import sys
 import tempfile
-import urllib.parse
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -43,12 +42,9 @@ from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 
-from skillmaker.skill_config import (  # noqa: E402
-    ALL_DPF_CONFIGS, ALL_DPFS, EXPECTED_PATTERNS, STANDALONE_DPFS, SUITES,
-)
+from skillmaker.skill_config import ALL_DPF_CONFIGS  # noqa: E402
 
 DPF_ROOT = _REPO_ROOT / "DPFs"
-LIBRARY_REF = _REPO_ROOT / "FPF-LIBRARY-REFERENCE.md"
 
 
 class TestRunner:
@@ -101,8 +97,12 @@ def test_catalogue_completeness(t: TestRunner):
         for p in DPF_ROOT.rglob("*.md")
         if p.name != "README.md"
     )
-    configured = [fw.source.relative_to(DPF_ROOT).as_posix()
-                  for cfg in ALL_DPF_CONFIGS.values() for fw in cfg.frameworks]
+    from skillmaker.discover_skills import discover
+
+    configs = discover().configs
+    configured = [item.source.relative_to(DPF_ROOT).as_posix()
+                  for cfg in configs.values() for item in [*cfg.frameworks, *cfg.docs]
+                  if item.source.is_relative_to(DPF_ROOT) and item.source.name != "README.md"]
     t.check("every DPF file is used",
             set(published) == set(configured),
             f"unused={sorted(set(published) - set(configured))[:4]} "
@@ -114,46 +114,24 @@ def test_catalogue_completeness(t: TestRunner):
 
 
 def test_library_catalogue_agreement(t: TestRunner):
-    """DocIDs, titles and carriers agree with Library.Reference:11.1."""
-    print("\n[Library catalogue agreement]")
-    if not LIBRARY_REF.exists():
-        t.check("FPF-LIBRARY-REFERENCE.md exists", False); return
-    text = LIBRARY_REF.read_text("utf-8")
-    start = text.find("### Library.Reference:11.1")
-    section = text[start:start + 12000] if start >= 0 else ""
-    rows: Dict[str, str] = {}
-    for line in section.splitlines():
-        m = re.match(r"^\|\s*`([A-Za-z]+)`\s*\|\s*([^|]+?)\s*\|\s*\[[^\]]*\]\(([^)]+)\)\s*\|",
-                     line.strip())
-        if m:
-            rows[m.group(1)] = urllib.parse.unquote(m.group(3))
-    t.check("catalogue parsed", len(rows) >= 39, f"found {len(rows)} rows")
-    for spec in ALL_DPFS:
-        carrier = rows.get(spec.docid)
-        t.check(f"{spec.docid}: catalogue carrier matches config",
-                carrier is not None and
-                carrier == f"DPFs/{spec.filename}",
-                f"catalogue={carrier!r} config=DPFs/{spec.filename}")
-    suite_docids = {s.docid: s.reference for s in SUITES.values()}
-    for docid, ref in suite_docids.items():
-        carrier = rows.get(docid)
-        t.check(f"{docid}: Suite Reference carrier",
-                carrier is not None and carrier == f"DPFs/{ref}",
-                f"catalogue={carrier!r} config=DPFs/{ref}")
-    t.check("catalogue has FPF and Library", {"FPF", "Library"} <= set(rows))
+    """Current source DocIDs agree with their owning config."""
+    print("\n[Source identity]")
+    from skillmaker import frameworks as F
+    from skillmaker.discover_skills import discover
+
+    for cfg in discover().configs.values():
+        for item in [*cfg.frameworks, *cfg.docs]:
+            declared = F.docid_of(item.source.read_text("utf-8"))
+            if declared:
+                t.check(f"{item.source.name}: declared DocID retained",
+                        declared == item.docid, f"source={declared!r}, config={item.docid!r}")
 
 
 def test_expected_counts(t: TestRunner):
-    """Pattern counts equal the DPF catalogue's Patterns column."""
-    print("\n[Catalogue counts]")
-    for spec in ALL_DPFS:
-        t.check(f"{spec.docid}: expected {spec.patterns} patterns",
-                EXPECTED_PATTERNS[spec.docid] == spec.patterns)
-    t.check("33 DPFs configured", len(ALL_DPFS) == 33, f"got {len(ALL_DPFS)}")
-    t.check("23 Suite members", sum(len(s.members) for s in SUITES.values()) == 23,
-            f"got {sum(len(s.members) for s in SUITES.values())}")
-    t.check("10 standalone DPFs", len(STANDALONE_DPFS) == 10,
-            f"got {len(STANDALONE_DPFS)}")
+    """Configs describe ownership, not expected corpus sizes."""
+    print("\n[Catalogue ownership]")
+    paths = [fw.source for cfg in ALL_DPF_CONFIGS.values() for fw in cfg.frameworks]
+    t.check("configured sources have unique ownership", len(paths) == len(set(paths)))
 
 
 def test_split(t: TestRunner):
@@ -186,19 +164,28 @@ def test_structure(t: TestRunner):
 
 def test_counts(t: TestRunner):
     print("\n[Pattern counts]")
-    for name, cfg in sorted(ALL_DPF_CONFIGS.items()):
+    from skillmaker import frameworks as F
+    from skillmaker.discover_skills import discover
+
+    configs = discover().configs
+    for name, cfg in configs.items():
+        if name == "fpf":
+            continue
         mpath = _skill_dir(cfg) / f".{name}_manifest.json"
         if not mpath.exists():
             t.check(f"{name}: manifest", False); continue
         entries = json.loads(mpath.read_text("utf-8"))
         units = [e for e in entries if e.get("kind") == "unit"]
         pats = [e for e in units if e.get("role") == "pattern"]
-        docids = {e["id"].split(".")[0] for e in pats}
-        expected = sum(EXPECTED_PATTERNS.get(d, 0) for d in docids)
-        t.check(f"{name}: {len(pats)} patterns", len(pats) == expected,
-                f"found {len(pats)}, expected {expected}")
-        t.check(f"{name}: reference units present", len(units) > len(pats),
-                f"units={len(units)} patterns={len(pats)}")
+        expected = set()
+        for fw in cfg.frameworks:
+            text = fw.source.read_text("utf-8")
+            profile, _ = F.detect(fw.source.relative_to(_REPO_ROOT).as_posix(), text)
+            expected.update((fw.key, u.id, u.role) for u in F.decompose(profile, text).units)
+        actual = {(e["framework"], e["id"], e["role"]) for e in units}
+        t.check(f"{name}: unit identities and roles match source", actual == expected,
+                f"missing={sorted(expected - actual)[:4]} extra={sorted(actual - expected)[:4]}")
+        t.check(f"{name}: no duplicate manifest units", len(units) == len(actual))
 
 
 def test_unit_files(t: TestRunner):
@@ -234,7 +221,11 @@ def test_intro_files(t: TestRunner):
     are unique, and every framework contributes its own.
     """
     print("\n[Intro files]")
-    for name, cfg in sorted(ALL_DPF_CONFIGS.items()):
+    from skillmaker.discover_skills import discover
+
+    configs = discover().configs
+    for name in sorted(ALL_DPF_CONFIGS):
+        cfg = configs[name]
         mpath = _skill_dir(cfg) / f".{name}_manifest.json"
         if not mpath.exists():
             continue
@@ -243,14 +234,21 @@ def test_intro_files(t: TestRunner):
         t.check(f"{name}: intro keys are unique", len(keys) == len(set(keys)),
                 f"{len(keys)} keys, {len(set(keys))} distinct")
         if len(cfg.frameworks) > 1:
+            from skillmaker.split_spec import SpecParser
+
             owners = {e.get("framework") for e in entries
-                      if e.get("kind") == "intro"}
-            expected = {fw.key for fw in cfg.frameworks}
+                       if e.get("kind") == "intro"}
+            expected = set()
+            for fw in cfg.frameworks:
+                parser = SpecParser(cfg, fw)
+                parser.parse()
+                if any(c.kind == "intro" for c in parser.chunks):
+                    expected.add(fw.key)
             t.check(f"{name}: every framework contributes front matter",
                     expected <= owners, f"missing: {sorted(expected - owners)}")
             t.check(f"{name}: intro names carry their framework",
-                    all(k.split("_")[0] in expected for k in keys),
-                    str([k for k in keys if k.split("_")[0] not in expected][:3]))
+                     all(any(k.startswith(key + "_") for key in expected) for k in keys),
+                     str(keys[:3]))
 
 def test_indexes(t: TestRunner):
     print("\n[Indexes]")
@@ -262,16 +260,22 @@ def test_indexes(t: TestRunner):
         rows = [l for l in apath.read_text("utf-8").splitlines()
                 if l.startswith("| ") and not l.startswith("| :")
                 and not l.startswith("| ID ")]
-        t.check(f"{name}: pattern index rows", len(rows) > 0, "empty index")
+        entries = json.loads((cfg.output / f".{cfg.name}_manifest.json").read_text("utf-8"))
+        expected_units = (sum(e.get("kind") == "unit" and e.get("role") == "pattern" for e in entries)
+                          or sum(e.get("kind") == "unit" for e in entries))
+        t.check(f"{name}: pattern index follows current units", len(rows) == expected_units,
+                f"rows={len(rows)}, units={expected_units}")
         t.check(f"{name}: index rows carry a File column",
                 all("`reference/" in r for r in rows),
                 f"first row: {rows[0][:120] if rows else '(none)'}")
         rpath = ref / "reference-index.md"
         if rpath.exists():
             rrows = [l for l in rpath.read_text("utf-8").splitlines()
-                     if l.startswith("| ") and not l.startswith("| :")
-                     and not l.startswith("| Unit ")]
-            t.check(f"{name}: reference index rows", len(rrows) > 0, "empty index")
+                      if l.startswith("| ") and not l.startswith("| :")
+                      and not l.startswith("| Unit ") and not l.startswith("| _(none)_")]
+            expected_refs = sum(e.get("kind") == "unit" and e.get("role") != "pattern" for e in entries)
+            t.check(f"{name}: reference index follows current units", len(rrows) == expected_refs,
+                    f"rows={len(rrows)}, units={expected_refs}")
 
 
 def test_skill_md_quality(t: TestRunner):
@@ -303,8 +307,11 @@ def test_rebuild(t: TestRunner):
                          "rebuild", "--skill-dir", str(d), "--output", str(tmp_path)])
             t.check(f"{name}: rebuild exit 0", r.returncode == 0, _err(r))
             if r.returncode == 0:
-                size = len(tmp_path.read_bytes())
-                t.check(f"{name}: rebuild non-trivial", size > 50_000, f"got {size} bytes")
+                rebuilt = tmp_path.read_bytes().replace(b"\r\n", b"\n")
+                expected = b"".join(fw.source.read_bytes().replace(b"\r\n", b"\n")
+                                    for fw in cfg.frameworks)
+                t.check(f"{name}: rebuild retains source content",
+                        rebuilt.replace(b"\n", b"") == expected.replace(b"\n", b""))
         finally:
             tmp_path.unlink(missing_ok=True)
 
@@ -336,29 +343,31 @@ def test_skill_index(t: TestRunner) -> None:
     data = _json.loads(index.read_text("utf-8"))
     names = {row["name"] for row in data["skills"]}
     manifests = {path.parent.name for path in root.glob("*/.*_manifest.json")}
-    configured = {"fpf"} | {cfg.name for cfg in ALL_DPF_CONFIGS.values()}
+    from skillmaker.discover_skills import discover
+
+    configs = discover().configs
+    configured = set(configs)
     t.check("index lists every built and configured skill",
             names == manifests | configured, str(sorted(names)))
-    t.check("index lists fpf", "fpf" in names)
-    t.check("index lists the suites",
-            {"engineering-suite", "management-suite",
-             "foundational-thinking-suite",
-             "human-capability-engineering-suite"} <= names)
-    t.check("index lists readable framework names",
-            {"decision-design", "research-methods", "embodied-rhythmics"} <= names)
+    t.check("index lists discovered suites",
+            {c.name for c in configs.values() if c.kind_label == "DPF Suite"} <= names)
+    t.check("index lists discovered standalone frameworks",
+            {c.name for c in configs.values() if c.kind_label != "DPF Suite"} <= names)
 
     routing = data["docid_to_skill"]
-    t.check("DocID routing covers every framework", len(routing) >= 39, str(len(routing)))
-    t.check("PSDA routes to decision-design",
-            routing.get("PSDA") == "decision-design", str(routing.get("PSDA")))
-    t.check("SYSE routes to engineering-suite",
-            routing.get("SYSE") == "engineering-suite", str(routing.get("SYSE")))
-    t.check("FPF routes to fpf", routing.get("FPF") == "fpf", str(routing.get("FPF")))
+    expected_docids = {item.docid for cfg in discover().configs.values()
+                       for item in [*cfg.frameworks, *cfg.docs] if item.docid}
+    t.check("DocID routing covers every framework", expected_docids <= set(routing), str(routing))
+    t.check("DocID routes match discovered owners",
+            all(routing.get(item.docid) == cfg.name for cfg in configs.values()
+                for item in [*cfg.frameworks, *cfg.docs] if item.docid))
 
     body = readme.read_text("utf-8")
     for name in names:
         t.check(f"README links {name}", f"]({name}/)" in body)
-    t.check("README states the totals", "885 patterns" in body, body[-300:])
+    expected_patterns = sum(row["patterns"] for row in data["skills"])
+    t.check("README states the totals", f"{expected_patterns} patterns" in body,
+            body[-300:])
 
     cross = root / "CROSS-REFERENCES.md"
     t.check("skills/CROSS-REFERENCES.md exists", cross.exists())
@@ -366,13 +375,15 @@ def test_skill_index(t: TestRunner) -> None:
         body_cross = cross.read_text("utf-8")
         targets = re.findall(r"\]\(([^)]+)\)", body_cross)
         t.check("cross-references resolve to skills",
-                bool(targets) and all((cross.parent / target).is_dir() for target in targets),
+                all((cross.parent / target).is_dir() for target in targets),
                 body_cross[:300])
-        t.check("cross-references are non-trivial",
-                body_cross.count("\n| ") > 100, str(body_cross.count("\n| ")))
+        refs = sum(len(v) for v in data.get("cross_skill", {}).values())
+        t.check("cross-reference table matches index",
+                body_cross.count("\n| ") == (refs or 1) + 2,
+                str(body_cross.count("\n| ")))
 
     data = _json.loads(index.read_text("utf-8"))
-    t.check("index carries cross-skill links", bool(data.get("cross_skill")),
+    t.check("index carries cross-skill mapping", isinstance(data.get("cross_skill"), dict),
             str(list(data)[:8]))
 
     # The index must describe what was actually built.

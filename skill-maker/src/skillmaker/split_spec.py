@@ -5,7 +5,7 @@ split_spec.py -- Config-driven splitter for skill generation.
 One generic engine turns a source publication into an agent-readable skill:
 per-unit files, navigation indexes, ``SKILL.md`` and ``README.md``.  It is
 driven entirely by a ``SkillConfig`` (see ``skill_config.py``), so FPF Core,
-the four DPF Suites and the standalone DPF frameworks share one parser.
+DPF Suites and standalone frameworks share one parser.
 
 Parsing model
 -------------
@@ -1330,7 +1330,7 @@ class FileWriter:
     def _rebuild_cmd(self) -> str:
         if self.config.name == "fpf":
             return "python skill-maker/src/skillmaker/split_fpf_spec.py split"
-        if self.config.name in SUITE_NAMES:
+        if self.config.kind_label == "DPF Suite":
             return "python skill-maker/src/skillmaker/split_dpf_spec.py split --all"
         return f"python skill-maker/src/skillmaker/split_dpf_spec.py split --framework {self.config.prefix_token}"
 
@@ -1448,11 +1448,6 @@ class FileWriter:
                   "fpf_read_doc)\n"
                   "__all__ = ['fpf_search_index', 'fpf_read_pattern', "
                   "'fpf_list_domain', 'fpf_read_intro', 'fpf_read_doc']\n")
-
-
-SUITE_NAMES = {"engineering-suite", "management-suite",
-               "foundational-thinking-suite",
-               "human-capability-engineering-suite"}
 
 
 # ---------------------------------------------------------------------------

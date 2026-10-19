@@ -1,23 +1,26 @@
-# skill-maker — build agent skills from the FPF Library
+# skill-maker — build agent skills from Markdown frameworks
 
-This directory turns the Library's publications into **skills**: directories an
+This directory turns Markdown publications into **skills**: directories an
 AI agent can navigate without loading multi-megabyte files. One parser
-(`split_spec.py`) and one declarative catalogue (`skill_config.py`) produce all
-of them.
+(`split_spec.py`) builds them; `discover_skills.py` combines automatic local
+discovery with the curated names and groupings in `skill_config.py`.
 
 ```
 bash skill-maker/build.sh             # or build.ps1 / build.cmd on Windows
 ```
 
-## What is in the Library
+## Supported input structures
 
-The Library has three kinds of publication, and the skills mirror them exactly.
+The input documents determine the skills, Suites, patterns and reference units.
+There is no expected corpus size or fixed publication inventory. Profiles
+describe supported structures; curated configs supply optional naming/grouping.
 
 | Kind | What it is | Where |
 | --- | --- | --- |
-| **FPF Core** | 397 patterns (`A.1`, `C.40.OD`, `G.Core`) plus an embedded Architectural Reference (`FPF.Reference:N`) | `FPF-Spec.md` |
-| **Four DPF Suites** | a composite discipline: several constituent DPFs plus the Suite Architectural Reference | `DPFs/<Suite> DPF Suite/` |
-| **Ten standalone DPFs** | one field, one file | `DPFs/*.md` |
+| **FPF Core** | Shared pattern language with an optional embedded Architectural Reference | `FPF-Spec.md` |
+| **DPF Suites** | Constituent frameworks plus a Suite Architectural Reference | `DPFs/<Suite> DPF Suite/` |
+| **Standalone DPFs** | A domain framework document | `DPFs/*.md` |
+| **Other Markdown** | ADRs, standards, pattern languages, guides and prose | `frameworks/**/*.md` or explicit source roots |
 
 Library-level guidance ships with the FPF skill: `USING-FPF.md` (how to find and
 apply a contribution), `FPF-LIBRARY-REFERENCE.md` (why the publications are
@@ -35,9 +38,8 @@ arranged this way) and `Readme.md` (the landing page).
 
 A **DocID** (`SYSE`, `MATH`, `Library`) identifies a whole document; a
 **PatternID** identifies a pattern; a **SectionRef** (`SYSE.24:4.1`) locates a
-section inside it. `FPF-LIBRARY-REFERENCE.md` § `Library.Reference:11.1` is the
-authoritative DocID → title → carrier table, and the tests check this
-toolchain against it.
+section inside it. DocIDs and units come from the input; they are not an
+enumeration embedded in the generic engine.
 
 ### Units: patterns versus reference units
 
@@ -103,59 +105,101 @@ skills/<skill>/
 Every index row ends with the exact `File` to load, so an agent never has to
 guess a path.
 
-The four index files are named after what they index, not after who they are
-for. `docs/` and `intro/` are directories because a flat `reference/` used to
-mix 26 entries of five different kinds.
+Index files are named after what they index, not after who they are for.
+`docs/` and `intro/` keep whole documents and front matter distinct from units.
 
 ### Which skills are produced
 
 Skill directory names say what the skill is. The DocID stays the framework key
 (`reference/psda/PSDA.1.md`), so pattern IDs keep working.
 
-| Skill | Kind | Sources |
-| --- | --- | --- |
-| `fpf` | FPF Core | `FPF-Spec.md`, `USING-FPF.md`, `FPF-LIBRARY-REFERENCE.md`, `Readme.md` |
-| `engineering-suite` | Suite | SYSE, MNT, KCAE, SIE + Engineering Suite Reference |
-| `management-suite` | Suite | STR, OPS, ADM, CGOV, MA, FIN, MKT, CUST, EAM, LDR, CB, OCE + Suite Reference |
-| `foundational-thinking-suite` | Suite | MATH, MMP, PHY, CMP, NOT + Suite Reference |
-| `human-capability-engineering-suite` | Suite | HCD, SOM + Suite Reference |
-| `decision-design` | PSDA | Decision Design |
-| `research-methods` | RMP | Research Method Practice |
-| `explanation-design` | EXD | Explanation Design |
-| `narrativization` | NSTD | Narrativization and Narrative Studies |
-| `implementation-facilitation` | IS | Implementation Facilitation |
-| `economic-reasoning` | ECO | Economic Reasoning and Coordination |
-| `financial-modeling` | FDM | Financial Domain Modeling |
-| `defense-transmission` | DTM | Defense and Transmission Modeling |
-| `embodied-rhythmics` | RHY | Embodied Rhythmics |
-| `music-dance-practice` | MDPE | Music and Dance Practice Engineering |
+The discovery plan is the current inventory:
 
-`skills/README.md` is generated and lists all fifteen with their DocIDs, counts
+```bash
+python3 skill-maker/src/skillmaker/discover_skills.py --json
+```
+
+Names and Suite membership are derived from the current files, with existing
+curated naming/grouping overrides taking precedence. Do not copy a build's
+totals into configuration or documentation as expected values.
+
+`skills/README.md` is generated and lists all built skills with their DocIDs, counts
 and when to use each. `skills/index.json` carries the same facts plus a
 DocID → skill routing table, so a caller holding `PSDA.1` can find
 `decision-design` without knowing the mapping.
 
-## Adding or moving a publication
+## Automatic discovery: adding a framework
 
-Everything is declared in `skill_config.py`:
+Put new Markdown publications in **`DPFs/`** or **`frameworks/`** at the repository
+root, then run the normal build. No `DPFSpec`, pattern-count constant or new
+Suite entry is required for these additions. Discovery is offline and uses the
+registered profiles (path, header and heading structure), not an external service.
 
-1. Add a `DPFSpec` to the right list (`ENGINEERING_DPFS`, … `STANDALONE_DPFS`)
-   with its DocID, title, path under `DPFs/`, one-line description and the
-   number of pattern bodies published in the catalogue.
-2. If it belongs to a Suite, add it to that `SuiteSpec.members`; a new Suite is
-   a new `SuiteSpec` in `SUITES`.
-3. Run `python3 skill-maker/src/skillmaker/split_dpf_spec.py analyze` and compare the reported
-   counts with the "Patterns" column in `DPFs/README.md`.
-4. Run the tests — they fail if a file in `DPFs/` is unused, if a configured
-   source is missing, or if a DocID/carrier disagrees with
-   `Library.Reference:11.1`.
+| Input | Result |
+| --- | --- |
+| `DPFs/EXAMPLE-DPF.md` declaring DocID `XYZ` | `skills/xyz/` |
+| A new DPF beside the members of an existing Suite | Added to that Suite's skill |
+| `DPFs/Example DPF Suite/` with at least one DPF and exactly one `*-SUITE-REFERENCE.md` | `skills/example-suite/`, including its README as a whole document |
+| `frameworks/adr-payments.md`, `frameworks/iso-example.md`, a pattern language or plain Markdown | One skill per document, using a lower-case hyphenated filename stem when no DocID is declared |
 
-Paths in `skill_config.py` are relative to the repository root, which is the
-parent of this directory, so the toolchain works from any working directory.
+Present curated inputs such as `decision-design` and `engineering-suite` keep
+their paths and grouping. A declared DocID determines a new skill's name and
+reference directory; without one, a DPF's single heading prefix may be inferred.
+`DPFs/README.md` and the existing Suite READMEs stay navigation, not separate skills.
+
+Preview without writing:
+
+```bash
+python3 skill-maker/src/skillmaker/discover_skills.py --dry-run
+python3 skill-maker/src/skillmaker/discover_skills.py --json
+```
+
+Build discovered and curated skills, then refresh the index (the normal build
+already does both):
+
+```bash
+python3 skill-maker/src/skillmaker/discover_skills.py --views
+python3 skill-maker/src/skillmaker/skill_index.py
+```
+
+`split_dpf_spec.py split --all` also discovers new DPF-side skills; individual
+`--framework XYZ` and `--suite example` selections work for discovered
+frameworks and Suites. `skills/index.json` and DocID routing use the same plan.
+
+For a private corpus without the curated FPF publications:
+
+```bash
+python3 skill-maker/src/skillmaker/discover_skills.py --repo-root /path/to/corpus --unconfigured --dry-run
+# Repeat --source-root to replace the default DPFs/ and frameworks/ roots:
+python3 skill-maker/src/skillmaker/discover_skills.py --unconfigured --source-root docs/decisions --dry-run
+```
+
+Relative `--source-root` and `--output` paths are relative to `--repo-root`.
+Discovery never scans outside that repository or follows symbolic links.
+It rejects duplicate DocIDs, unit IDs and normalized filenames, skill-name
+collisions, ambiguous profile matches and incomplete Suites. Before building,
+it checks every destination: nonempty directories without a matching skill and
+source marker are not overwritten. Renaming/moving a source requires an explicit
+ownership decision; old generated directories are **not** automatically deleted.
+
+Curated entries are optional overrides for source files present in the input;
+they do not require absent publications to exist. An explicitly supplied
+configuration still requires all of its declared sources.
+
+Use `skill_config.py` when you want a curated name, description or explicit
+grouping, or to move a curated source. Those entries override discovery by
+claiming their source paths. A new heading format still needs a profile; use
+`build_generic.py --profile KEY` for a deliberate one-document override.
+
+Build validation compares current sources with generated unit identities,
+roles, files and rebuilt content. No publisher snapshot or fixed totals are
+required. Publisher comparison is optional: supply your own catalogue with
+`fpf_frameworks.py catalogue --verify --offline --snapshot PATH`. Add
+`--allow-local` to report extra local publications without failing comparison.
 
 ## Decomposing other kinds of framework
 
-`skill_config.py` describes the fifteen skills this repository publishes. A
+`skill_config.py` holds curated naming and grouping overrides. A
 framework the Library does *not* publish — an ADR set, a clause-numbered
 standard, a third-party pattern language, or plain Markdown — is handled by the
 `frameworks/` package instead.
@@ -319,10 +363,32 @@ tools answer the retrieval questions the indexes answer on disk -- `route`
 `list_profiles`, `probe_document`, `plan_decomposition`, `verify_catalogue`.
 
 ```bash
-python3 skill-maker/src/skillmaker/mcp_server.py --selftest          # no client needed
-python3 skill-maker/src/skillmaker/mcp_server.py --skills-root skills
-python3 skill-maker/src/skillmaker/mcp_server.py --http 127.0.0.1:8765
+python3 skill-maker/run-mcp.py --selftest          # no client needed
+bash skill-maker/run-mcp.sh                       # stdio (default)
+bash skill-maker/run-mcp.sh --http                # http://127.0.0.1:8765/mcp
 ```
+
+On Windows (native Python, no Bash/WSL):
+
+```powershell
+skill-maker\run-mcp.ps1                           # stdio
+skill-maker\run-mcp.ps1 --http 127.0.0.1:8765       # HTTP, Ctrl+C to stop
+skill-maker\run-mcp.cmd --http                    # cmd alternative
+```
+
+The runners work from any working directory, defaulting to this repository's
+built `skills/`. Build first; starting the server never builds or downloads
+anything. All server options are forwarded unchanged, including `--help`,
+`--list-tools`, `--selftest`, `--skills-root PATH` and `--allow-maker-tools`.
+An explicit relative `--skills-root` stays relative to the caller's directory.
+The shell/native wrappers respect `PYTHON` (`python3` on Bash, `python` on
+PowerShell/cmd by default); invoking `run-mcp.py` directly uses your chosen
+interpreter. The server runs in the foreground and stdout remains the MCP
+stream, with startup diagnostics on stderr.
+
+For an MCP client's stdio command, use an absolute interpreter and script path,
+for example `python C:/X/FPF-skills/fpf10/skill-maker/run-mcp.py` (as separate
+command/argument entries). No client working-directory setting is required.
 
 Two transports. **stdio**: newline-delimited JSON-RPC, no third-party packages,
 registered with any client as a command. **Streamable HTTP**: `POST /mcp`
@@ -382,10 +448,9 @@ connections to 32, and sessions to 1024 with a one-hour lifetime. It has no
 authentication or TLS. Do not expose it directly to the internet: shared hosting
 requires a maintained reverse proxy providing authentication, TLS and rate limits.
 
-It serves whatever was built here -- a patched edition, a private framework, an
-ADR set -- and answers one question across all fifteen skills at once (1498
-unit files) instead of an agent loading four index files per skill to find a
-path.
+It serves whatever was built here -- a patched edition, a private framework or
+an ADR set -- across the current built corpus, without assuming how many skills
+or unit files it contains.
 
 ## Building a skill from any framework
 
@@ -468,32 +533,33 @@ required for these build entry points. `build.sh` retains the curl walkthrough.
 
 ## Test suites
 
-All three build scripts run eight offline suites and stop at the first failure.
-The original suites carry 1 099 assertions; `test_hardening.py` adds regression
-coverage for malformed requests, snapshots, boundaries, cache repair and updates.
+All three build scripts run the offline suites below and stop at the first
+failure. Assertion totals vary with the local corpus and available platform
+wrappers. `test_hardening.py` covers malformed requests, snapshots, boundaries,
+cache repair and updates.
 
-| Suite | Assertions | What it covers |
-| :--- | ---: | :--- |
-| `test_fpf_pipeline.py` | 91 | FPF split, structure, SKILL.md, manifest, audit, byte-identical rebuild, bundled engine |
-| `test_dpf_pipeline.py` | 539 | every DPF and Suite: catalogue, DocIDs, indexes, per-skill structure, front matter |
-| `test_frameworks.py` | 116 | kind coverage, publisher agreement, parser agreement, generality, vendor/placeholder/portability sweeps |
-| `test_build_generic.py` | 48 | ADR, standards, pattern language, whole documents, genre shapes |
-| `test_mcp_server.py` | 118 | MCP protocol, reading-tool contract, derived tools, stdio client |
-| `test_derived.py` | 158 | section map, routes, entries, glossary, genres, markers, build stamp |
-| `test-mcp-http.sh` | 29 | Streamable HTTP: sessions, guards, `GET`/`DELETE`, curl only |
-| `test_mcp_http.py` | 29 (alternative) | native equivalent used by PowerShell/cmd; same Python child, free loopback port, no Bash/curl/WSL |
-| `test_hardening.py` | 193 on Linux | content snapshots, malformed envelopes, schema checks, path/HTTP limits, build repair, staged updates, safe lookup/reconstruction/text output, metadata and eval fixtures |
+| Suite | What it covers |
+| :--- | :--- |
+| `test_fpf_pipeline.py` | Current source split, manifest, audit, reconstruction and bundled engine |
+| `test_dpf_pipeline.py` | Discovered frameworks and Suites: source identity, unit inventory, indexes and reconstruction |
+| `test_frameworks.py` | Source-to-manifest agreement, parser agreement, generality and portability |
+| `test_build_generic.py` | ADR, standards, pattern language, whole documents and genre shapes |
+| `test_mcp_server.py` | MCP protocol, reading-tool contract, derived tools and launchers |
+| `test_discovery.py` | Automatic discovery, variable input inventories, routing and output preflight |
+| `test_derived.py` | Section maps, routes, entries, glossary, genres, markers and build stamps |
+| `test-mcp-http.sh` | Streamable HTTP walkthrough with curl |
+| `test_mcp_http.py` | Native HTTP walkthrough used by PowerShell/cmd |
+| `test_hardening.py` | Malformed requests, boundaries, cache repair and transactional updates |
 
 On Windows the hardening suite additionally exercises real Hidden/System and
 ReadOnly file attributes. Its total varies with platform support for symlinks
 and special files; Windows-only checks are not counted as Linux executions.
 
 A user-provided native Windows 10 run of `build.ps1` with Python 3.13.7 passed
-all 1299 assertions (including 200 hardening and 29 native HTTP checks) and the
-FPF audit. This confirms that configuration, not every Windows/Python version;
+its regression suites and FPF audit. This confirms that configuration, not every Windows/Python version;
 the native cmd entry point has not yet been execution-verified.
 
-`test_http_startup.py` adds 14 optional startup/regression checks, separate from
+`test_http_startup.py` adds optional startup/regression checks, separate from
 default totals; these include a native run with an empty PATH, broken proxy and
 unusable `PYTHON` override, plus child lifecycle and shell fallback checks.
 
@@ -528,8 +594,10 @@ except the explicitly preserved `curated-routes.json`.
 ## Invariants the tests protect
 
 - Every `.md` under `DPFs/` (except READMEs) is used by exactly one skill.
-- Pattern counts equal the DPF catalogue (`DPFs/README.md`).
-- DocIDs, titles and carrier paths equal `Library.Reference:11.1`.
+- Generated unit identities and roles match the current source documents.
+- Declared DocIDs agree with their source ownership and generated routing.
+- New local documents are classified and assigned once; discovery is read-only,
+  deterministic and rejects ambiguous or colliding ownership before writing.
 - No file name contains `:`, so skills work on Windows as well.
 - Every generated file is written with LF endings, so a Windows build produces
   the same bytes as a Linux build.
@@ -554,10 +622,8 @@ except the explicitly preserved `curated-routes.json`.
 - Routes reference existing units only; a dependency cycle terminates.
 - Every built skill carries a `.skill.json` marker and resolves after a move.
 - No generated file names a vendor product; copied publications are exempt.
-- All 46 publications classify into the kind the catalogue assigns them.
-- Every pattern count equals the publisher's (`catalogue.snapshot.json`).
-- `frameworks` and `split_spec` agree on every unit heading (1445 across FPF
-  Core and the 33 DPFs).
+- Publications classify using registered profiles, without a fixed inventory.
+- `frameworks` and `split_spec` agree on current unit headings.
 
 ## Files
 
@@ -569,18 +635,19 @@ everything the engine imports, `tests/` holds the suites that run it, and
 skill-maker/
 ├── .gitignore, .gitattributes          # local exclusions and line endings
 ├── build.sh, build.cmd, build.ps1     # the ten-step build
+├── run-mcp.py, run-mcp.sh, run-mcp.cmd, run-mcp.ps1  # foreground MCP launchers
 ├── README.md, FRAMEWORKS.md, AGENTS.md
 ├── evals/                             # optional paired/trigger quality scenarios
 ├── src/skillmaker/
 │   ├── split_spec.py                  # the engine
 │   ├── skill_config.py                # the catalogue
+│   ├── discover_skills.py             # local discovery + curated overrides
 │   ├── split_fpf_spec.py, split_dpf_spec.py, build_generic.py
 │   ├── skill_index.py, mcp_server.py, http_transport.py
 │   ├── audit_fpf_patterns.py, fpf_lookup.py, fpf_update.py, fpf_frameworks.py
 │   ├── sections.py, derive.py, skill_root.py, _fpf_common.py
 │   ├── frameworks/                    # kinds, grammars, shapes, profiles
-│   ├── templates/                     # entry points + genres/ and roles/
-│   └── catalogue.snapshot.json
+│   └── templates/                     # entry points + genres/ and roles/
 └── tests/
     ├── test_*.py                      # regression suites + optional startup checks
     └── test-mcp-http.sh               # the curl walkthrough
@@ -593,6 +660,7 @@ works from any cwd and from inside a built skill.
 | File | Role |
 | --- | --- |
 | `src/skillmaker/skill_config.py` | the catalogue: sources, DocIDs, suites, templates, outputs |
+| `src/skillmaker/discover_skills.py` | discover local publications, validate the complete plan, build with existing profiles |
 | `src/skillmaker/split_spec.py` | parser + writer + indexes + rebuild (the engine) |
 | `src/skillmaker/_fpf_common.py` | identifier grammar, unit roles, slugs, fence tracking |
 | `src/skillmaker/split_fpf_spec.py` | FPF CLI (`split`/`analyze`/`stats`/`rebuild`/`diff`) |
@@ -610,11 +678,11 @@ works from any cwd and from inside a built skill.
 | `src/skillmaker/frameworks/genre.py` | what a skill is for: `lookup`, `apply`, `setup`, `maintain` |
 | `src/skillmaker/skill_root.py` | `.skill.json` marker, so a copied skill finds itself |
 | `src/skillmaker/http_transport.py` | Streamable HTTP transport: sessions, guards, `/health` |
-| `src/skillmaker/catalogue.snapshot.json` | saved publisher catalogue (`/api/publications`) |
 | `src/skillmaker/templates/` | entry-point templates, plus the `genres/` and `roles/` partials |
 | `tests/test_fpf_pipeline.py`, `tests/test_dpf_pipeline.py` | end-to-end tests |
-| `tests/test_frameworks.py` | kind coverage, publisher agreement, generality, vendor and placeholder sweeps |
+| `tests/test_frameworks.py` | current input coverage, source-to-manifest agreement, generality and portability |
 | `tests/test_build_generic.py` | ADR / standards / pattern-language / generic builds, genre shapes |
+| `tests/test_discovery.py` | offline discovery, suite grouping, naming, selection, routing and output-safety regressions |
 | `tests/test_mcp_server.py` | MCP protocol, reading-tool contract, tool behaviour |
 | `tests/test_derived.py` | section map, routes, entries, glossary, genres, markers, build stamp |
 | `tests/test-mcp-http.sh` | the HTTP transport, walked by curl with assertions |
@@ -635,7 +703,7 @@ Temporary implementation plans and review reports are not release documentation.
 2. Check the offline catalogue, generated index and MCP server:
 
    ```bash
-   python skill-maker/src/skillmaker/fpf_frameworks.py catalogue --verify --offline --counts
+    python skill-maker/src/skillmaker/fpf_frameworks.py catalogue --counts
    python skill-maker/src/skillmaker/skill_index.py --check
    python skill-maker/src/skillmaker/mcp_server.py --selftest
    ```
@@ -643,8 +711,8 @@ Temporary implementation plans and review reports are not release documentation.
 3. Optionally run `python skill-maker/tests/test_http_startup.py` with Bash/curl
    available. Model-quality evaluations remain a separate, opt-in activity.
 4. Repeat the split phase without source edits and confirm zero writes. Keep
-   the published source documents and `catalogue.snapshot.json` unchanged unless
-   a source-edition update is explicitly part of the release.
+   input documents unchanged unless a source-edition update is explicitly part
+   of the release. Never pin the new corpus totals in implementation or tests.
 5. Run `git diff --check` and inspect `git status --short --untracked-files=all`.
    Include the new source/tests/configuration, but no local credentials, caches
    or machine-specific logs. Preserve the repository's license notices.
