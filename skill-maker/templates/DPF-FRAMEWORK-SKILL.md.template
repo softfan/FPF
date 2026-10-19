@@ -1,0 +1,124 @@
+---
+name: {{SKILL_NAME}}
+description: >
+  {{TITLE}} — a Domain Principle Framework publication of reusable patterns,
+  each with a Problem frame, Solution, worked cases and a conformance checklist.
+  Use when the task needs a decision, comparison, recommendation or working
+  method from this field. Skip for quick code-only fixes or work already
+  settled by a narrower method.
+---
+
+# {{TITLE}}
+
+{{TITLE}} is published in **FPF Library** as a pattern language: each pattern names a recurring difficulty, a way to address it, the result to obtain, and the conditions that affect its use. This skill carries {{FRAMEWORK_COUNT}} {{FRAMEWORK_NOUN}}, {{PATTERN_COUNT}} pattern bodies and {{REFERENCE_COUNT}} reference units (Architectural Reference, worked applications, source notes).
+
+## When to use / When to skip
+
+- **Use when:** the task calls for a decision, comparison, recommendation or
+  working method from {{TITLE}}.
+- **Skip when:** quick code-only fixes, single-file typos, or work already
+  settled by a narrower method.
+
+## How to use this skill
+
+**Path base:** all paths relative to this skill root.
+
+**Entry point (pick one):**
+
+| User gave… | Start with |
+|------------|------------|
+| Pattern ID (e.g. `{{PREFIX_EXAMPLE}}`) | `reference/pattern-index.md` |
+| Natural-language question | `reference/query-index.md` |
+| Domain keyword | `reference/keyword-index.md` |
+| "How do these frameworks connect?" | `reference/reference-index.md` |
+
+Each index row ends with the exact `File` to load. Framework directories follow
+the publication DocID, for example `reference/syse/SYSE.24.md`.
+
+### Quick flow
+
+1. **Identify** the difficulty and the result needed.
+2. **Choose one index** and locate candidate patterns.
+3. **Resolve dependencies** from the pattern's `Dependencies` / `Builds on`.
+4. **Load** the listed files in batches of 5–8.
+5. **Apply** the Problem frame, Solution, worked cases and checklist to the
+   actual situation, then answer in the working language.
+
+### Dependency resolution
+
+```
+1. Collect target ID(s) + all IDs named in "Builds on"/"Dependencies"
+2. Expand ranges (SYSE.25–SYSE.29 → SYSE.25, SYSE.26, ...)
+3. Recursively add dependencies for each new ID
+4. Topological sort (deps before dependents)
+5. Load in batches of 5-8
+```
+
+If >10 deps: load **kernel patterns first** + target. Others on demand.
+Dependencies name result relations, not a mandatory work order.
+
+### Kernel patterns (no dependencies)
+
+{{KERNEL_PATTERNS}}
+
+### Example
+
+User: *"<a question about {{TITLE}}>"*
+→ `reference/query-index.md` → a target ID → its `Builds on` IDs
+→ Load the files listed in the `File` column → Answer.
+
+## How a pattern is written
+
+| Part | Meaning |
+|------|---------|
+| **Problem frame** | The situation the pattern fits; check it before applying. |
+| **Solution** | The working moves the pattern prescribes. |
+| **Worked case** | A constructed example showing the pattern in use. |
+| **Conformance checklist** | Items to inspect your own result against. |
+| **Relations** | Other patterns that supply an input or receive the result. |
+
+A pattern body ends at its `:End` heading. Section references such as
+`SYSE.24:4.1` point inside the body; read through to the next heading of the
+same or a higher level.
+
+## Framework documents in this skill
+
+{{FRAMEWORK_BLOCK}}
+
+## Domains ({{PATTERN_COUNT}} patterns)
+
+{{DOMAIN_BLOCK}}
+
+## Reference units ({{REFERENCE_COUNT}})
+
+These explain how the contributions connect. They are not normative pattern
+bodies; read them when the field boundaries, worked cases or source basis matter.
+
+{{REFERENCE_BLOCK}}
+
+## Intro sections
+
+Publication front matter, tables of contents and navigation sections.
+
+{{INTRO_BLOCK}}
+
+{{DOC_SECTION}}
+## Self-update
+
+Rebuild this skill from the local publications:
+
+```bash
+# From repo root:
+{{REBUILD_CMD}}
+```
+
+## Checklist (before answering)
+
+- [ ] Input type determined (question / keyword / pattern ID)
+- [ ] One starting index chosen
+- [ ] The pattern's Problem frame matches the actual situation
+- [ ] Dependencies resolved; if >10, kernel + target loaded first
+- [ ] Result separated from assumptions and missing evidence
+- [ ] All file paths relative to skill root
+
+{{GENRE_BLOCK}}

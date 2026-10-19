@@ -1,47 +1,42 @@
 # FPF AI-Agent Skill
 
-Auto-generated from FPF-Spec.md. **{{PATTERN_COUNT}}** patterns across **{{DOMAIN_COUNT}}** domains.
+Auto-generated from {{SOURCE_NOTE}}. **{{PATTERN_COUNT}}** patterns across
+**{{DOMAIN_COUNT}}** domains.
 
 ## What is this?
 
-This directory contains the FPF specification split into individual pattern
-files for efficient AI-agent consumption. Instead of loading a ~4 MB monolithic
-file, agents load only the patterns they need via indexes.
+This directory contains the First Principles Framework specification split into
+individual pattern files for efficient AI-agent consumption. Instead of loading
+one ~18 MB monolithic file, agents load only the patterns they need via the
+indexes. The Library's working instruction and architectural reference ship
+alongside the patterns as reference documents.
 
 ## Structure
 
 ```
-skills/fpf/
-├── SKILL.md                    # Agent navigation hub (start here)
-├── README.md                   # This file
-├── reference/
-│   ├── agent_index_patterns.md # ID → Title → Builds on
-│   ├── agent_index_keywords.md # Keyword → Pattern IDs
-│   ├── agent_index_queries.md  # Question → Pattern ID
-│   ├── intro_*.md              # Preface/intro sections
-│   └── fpf-patterns/
-│       ├── index.md            # Full pattern table
-│       └── A.1.md … G.13.md   # Individual pattern files
-└── scripts/
-    ├── __init__.py
-    ├── _fpf_common.py
-    ├── fpf_tools.py
-    └── audit_fpf_patterns.py
+{{STRUCTURE_BLOCK}}
 ```
 
 ## Usage
 
-See `SKILL.md` for complete agent instructions.
+See `SKILL.md` for complete agent instructions. The short version:
+
+1. Read `reference/docs/using-fpf.md` when the method's conditions matter.
+2. Pick an index in `reference/` (ID, question or keyword).
+3. Read the `File` column of the matching row.
+4. Load that file, plus the files named under `Builds on` when they matter.
 
 ## Rebuilding
 
 ```bash
 # From repo root:
-python skill-maker/fpf_update.py           # full update from GitHub
+python skill-maker/fpf_update.py            # full update from GitHub
 python skill-maker/build.sh                 # build from local FPF-Spec.md
 python skill-maker/test_fpf_pipeline.py     # run tests
 ```
 
 ## Source
 
-Generated from [FPF-Spec.md](https://github.com/ailev/FPF) by the skill-maker toolchain.
+Generated from [FPF-Spec.md](https://github.com/ailev/FPF) and the Library
+documents `USING-FPF.md`, `FPF-LIBRARY-REFERENCE.md` and `Readme.md` by the
+`skill-maker/` toolchain.

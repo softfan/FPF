@@ -1,38 +1,165 @@
 #!/usr/bin/env python3
 """
-_fpf_common.py — Shared utilities for FPF toolchain.
+_fpf_common.py — Shared utilities for the FPF / DPF toolchain.
 
-Used by split_fpf_spec.py, fpf_tools.py, and audit_fpf_patterns.py.
+Used by split_spec.py, fpf_lookup.py, audit_fpf_patterns.py and the tests.
+
+The same helpers serve two different identifier families:
+
+* **FPF Core** — ``A.1``, ``C.40.OD``, ``C.2.2a`` (single-letter prefix, dotted
+  numeric/word segments).
+* **DPF frameworks** — ``SYSE.24``, ``MATH.Reference:3.2``,
+  ``PSDA.Advising:1``, ``HCD.Application:10`` (word prefix, dotted segments and
+  ``:``-separated section or role segments).
+
+A *unit* is any ``## <ID> - <Title>`` block.  A unit whose first segment after
+the prefix is numeric is a **pattern**; a unit whose first segment is a word
+(``Reference``, ``Application``, ``Sources``, ``Advising``, ...) is a
+**reference unit** of that role.  This distinction is what keeps a framework's
+Architectural Reference, worked applications and source notes out of the
+pattern index while still making them individually addressable.
 """
 
 from __future__ import annotations
 
 import hashlib
 import re
+import sys
+from pathlib import Path
 from typing import List, Tuple
 
 # ---------------------------------------------------------------------------
-# Regex constants
+# Console encoding
 # ---------------------------------------------------------------------------
 
-PATTERN_ID_RE = re.compile(
-    r"^[A-K](?:\.(?:\d+|[A-Za-z][A-Za-z0-9_]*))+$"
-)
+def ensure_utf8_stdio() -> None:
+    """Make stdout and stderr write UTF-8 whatever the console code page is.
 
+    A Windows terminal defaults to a legacy code page (cp1251, cp437, ...), and
+    printing a check mark, an en dash or a pattern title in another script
+    raises ``UnicodeEncodeError`` there.  ``errors="replace"`` is the belt to
+    the braces: a stream that still cannot represent a character degrades to
+    ``?`` instead of aborting a build half-way through.
+
+    Safe to call more than once, and safe when the streams are redirected to a
+    file or a pipe.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):
+            # AttributeError: a stream that is not a TextIOWrapper (a test
+            # double, or Python < 3.7).  ValueError: a detached stream.
+            pass
+
+# ---------------------------------------------------------------------------
+# File output
+# ---------------------------------------------------------------------------
+
+def write_text_lf(path: Path, content: str) -> None:
+    """Write UTF-8 text with ``\\n`` line endings on every platform.
+
+    ``Path.write_text`` opens in text mode, which translates ``\\n`` to
+    ``os.linesep`` -- so the same build on Windows would write CRLF and differ
+    byte-for-byte from the build on Linux.  The generated tree is meant to be a
+    function of the sources alone, and ``rebuild`` is compared byte-for-byte,
+    so the newline is pinned here rather than left to the platform.
+
+    Creates the parent directory, which every caller would otherwise repeat.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(content)
+
+# ---------------------------------------------------------------------------
+# Identifier grammar
+# ---------------------------------------------------------------------------
+
+#: One identifier segment: a dot- or colon-separated run of word characters.
+#: ``[A-Za-z0-9_]+`` (not just ``\d+``) is required because FPF and DPF both
+#: publish IDs such as ``C.2.2a``, ``A.19.SCR`` and ``SYSE.Reference:3.2``.
+#: Hyphens are allowed *inside* a segment because FPF publishes IDs such as
+#: ``A.19.SOURCE-SET-SPACE-SUBSTRATE`` and ``C.30.TFS-REL``.
+ID_SEGMENT_RE = r"(?:[.:][A-Za-z0-9_]+(?:-[A-Za-z0-9_]+)*)+"
+
+#: Prefix: a leading word (``A``, ``SYSE``, ``Engineering``, ``Library``).
+ID_PREFIX_RE = r"[A-Za-z][A-Za-z0-9]*"
+
+#: Full generic unit identifier, anchored.
+GENERIC_ID_RE = re.compile(r"^" + ID_PREFIX_RE + ID_SEGMENT_RE + r"$")
+
+#: FPF Core pattern identifiers (single capital letter A–K).
+PATTERN_ID_RE = re.compile(r"^[A-K]" + ID_SEGMENT_RE + r"$")
+
+#: Unit heading: ``## ID - Title`` or ``## ID — Title`` / ``## ID: Title``.
+#: The separator may be preceded by bold markers, which ``clean()`` strips.
+#: ``## <ID> - <Title>``.  The ``(?=\s|$)`` lookahead keeps the ID greedy so
+#: that sectioned IDs such as ``IS.Reference:1`` are read whole instead of
+#: being split at the ``:`` that belongs to the identifier.
 PATTERN_HEADING_RE = re.compile(
-    r"^##\s+(?:\*\*)?(?P<id>[A-K](?:\.(?:\d+|[A-Za-z][A-Za-z0-9_]*))+)"
+    r"^##\s+(?:\*\*)?(?P<id>" + ID_PREFIX_RE + ID_SEGMENT_RE + r")(?=\s|$)"
     r"(?:\*\*)?\s*[-–—:]\s*(?P<title>.+)$"
 )
 PATTERN_HEADING_BARE_RE = re.compile(
-    r"^##\s+(?:\*\*)?(?P<id>[A-K](?:\.(?:\d+|[A-Za-z][A-Za-z0-9_]*))+)"
-    r"(?:\*\*)?\s*$"
+    r"^##\s+(?:\*\*)?(?P<id>" + ID_PREFIX_RE + ID_SEGMENT_RE + r")(?:\*\*)?\s*$"
 )
 
 H1_RE = re.compile(r"^#\s+(.+)$")
 H2_RE = re.compile(r"^##\s+(.+)$")
 TOC_START_RE = re.compile(r"^#\s+Table\s+of\s+Content", re.IGNORECASE)
 FENCE_OPEN_RE = re.compile(r"^(`{3,}|~{3,})")
-PART_TOC_RE = re.compile(r"\*\*Part\s+([A-K])\s*[-–—]")
+PART_H1_RE = re.compile(r"^#\s+(?:\*\*)?Part\b", re.IGNORECASE)
+
+#: Roles that are never pattern bodies, keyed by the first non-numeric segment.
+KNOWN_ROLES = {
+    "reference", "application", "applications", "sources", "advising",
+    "annex", "appendix", "glossary", "index",
+}
+
+
+def is_pattern_id(pid: str) -> bool:
+    """True when *pid* is a pattern ID rather than a reference unit."""
+    return unit_role(pid) == "pattern"
+
+
+def unit_role(pid: str) -> str:
+    """Classify a unit ID.
+
+    ``SYSE.24``, ``KCAE.USE`` and ``G.Core`` -> ``pattern``;
+    ``MATH.Reference:3.2`` -> ``reference``; ``PSDA.Advising:1`` ->
+    ``advising``; ``HCD.Application:10`` -> ``application``.
+
+    The distinguishing feature is the ``:`` section separator: a unit heading
+    such as ``## SYSE.24 - ...`` is a pattern body, while
+    ``## SYSE.Reference:1 - ...`` names a sectioned reference unit.  Word-only
+    IDs without a section (``KCAE.USE``) are ordinary patterns.
+    """
+    if ":" not in pid:
+        return "pattern"
+    head = pid.split(":", 1)[0]
+    for seg in re.split(r"[.:]", head)[1:]:
+        if not seg.isdigit():
+            return seg.lower()
+    return "section"
+
+
+def is_end_marker(pid: str) -> bool:
+    """True for ``X.Reference:End`` style closing markers (no body of their own)."""
+    return pid.rsplit(":", 1)[-1].lower() == "end"
+
+
+def id_to_filename(pid: str) -> str:
+    """Filesystem-safe file stem for a unit ID.
+
+    ``:`` cannot appear in Windows file names, so section separators become
+    ``-``: ``MATH.Reference:3.2`` -> ``MATH.Reference-3.2``.
+    """
+    return pid.replace(":", "-")
+
+
+def filename_to_id(stem: str) -> str:
+    """Inverse of :func:`id_to_filename` for the ``X.Y-N`` shape."""
+    return stem
 
 
 # ---------------------------------------------------------------------------
@@ -80,8 +207,8 @@ def sha256(content: str) -> str:
 
 
 def sort_key(pattern_id: str) -> Tuple:
-    """Sort key that orders pattern IDs naturally (A.1 < A.2 < A.10)."""
-    parts = pattern_id.split(".")
+    """Sort key that orders IDs naturally (A.1 < A.2 < A.10)."""
+    parts = re.split(r"[.:]", pattern_id)
     result: List[Tuple[int, int, str]] = []
     for p in parts:
         try:
@@ -127,4 +254,33 @@ def slugify(text: str) -> str:
         else:
             out.append("_")
     slug = "_".join("".join(out).split())
+    # "part_c_-_kernel" -> "part_c_kernel": a lone dash between words carries
+    # no information in a file name.
+    slug = re.sub(r"_+-+_+", "_", slug)
     return re.sub(r"_+", "_", slug).strip("_")[:120]
+
+
+#: Short, predictable names for the recurring navigation sections of a
+#: publication.  Anything else falls back to :func:`slugify` of its heading.
+_INTRO_ALIASES = (
+    ("table of content", "table_of_content"),
+    ("contents", "contents"),
+    ("practical entries", "practical_entries"),
+    ("architectural reference", "architectural_reference"),
+    ("readme", "readme"),
+    ("citation", "citation"),
+    ("public units", "public_units"),
+    ("pattern index", "pattern_index"),
+)
+
+
+def intro_slug(heading: str) -> str:
+    """Filesystem slug for an intro section heading."""
+    text = clean(heading)
+    low = text.lower()
+    for needle, slug in _INTRO_ALIASES:
+        if needle in low:
+            return slug
+    if not text:
+        return "preamble"
+    return slugify(text)

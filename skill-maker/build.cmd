@@ -1,12 +1,14 @@
 @echo off
-REM build.cmd — Build FPF skill from spec (Windows CMD)
+REM build.cmd â€” Rebuild every FPF + DPF skill from the local publications (Windows CMD)
 REM Usage: skill-maker\build.cmd
 
-setlocal
+setlocal EnableDelayedExpansion
 
 set SCRIPT_DIR=%~dp0
 set REPO_ROOT=%SCRIPT_DIR%..
-set PYTHON=python
+REM Respect a PYTHON the caller already set, like build.sh and build.ps1 do.
+REM It is exported, so step 10's bash script starts the server with the same one.
+if not defined PYTHON set PYTHON=python
 
 REM Ensure UTF-8 output for cp1251 consoles
 set PYTHONIOENCODING=utf-8
@@ -14,7 +16,7 @@ set PYTHONIOENCODING=utf-8
 cd /d "%REPO_ROOT%"
 
 echo ============================================
-echo FPF Skill Builder
+echo FPF + DPF Skill Builder
 echo ============================================
 
 %PYTHON% --version >nul 2>&1
@@ -23,36 +25,103 @@ if errorlevel 1 (
     exit /b 1
 )
 
-REM Remove hash cache to force fresh writes (cross-platform safety)
-if exist "%REPO_ROOT%\skills\fpf\.fpf_hashes.json" (
-    del "%REPO_ROOT%\skills\fpf\.fpf_hashes.json"
-    echo (cleared hash cache for cross-platform safety)
-)
+REM Nothing is cleared here on purpose: each skill carries a build stamp and the
+REM split is skipped when nothing changed.  Delete skills for a clean rebuild.
 
-echo.
-echo [1/4] Splitting spec...
-%PYTHON% skill-maker\split_fpf_spec.py split --source FPF-Spec.md --output skills\fpf
+echo [1/10] Splitting FPF Core + Library documents...
+%PYTHON% skill-maker\split_fpf_spec.py split --source FPF-Spec.md --output skills\fpf --views
 if errorlevel 1 (
-    echo Split failed
+    echo FPF split failed
     exit /b 2
 )
 
 echo.
-echo [2/4] Running audit...
+echo [2/10] Splitting DPF Suites and standalone DPFs...
+%PYTHON% skill-maker\split_dpf_spec.py split --all --views
+if errorlevel 1 (
+    echo DPF split failed
+    exit /b 2
+)
+
+echo.
+echo [3/10] Writing the skills index...
+%PYTHON% skill-maker\skill_index.py
+if errorlevel 1 (
+    echo   X Skill index failed
+    exit /b 1
+)
+
+echo.
+echo [4/10] Running FPF audit...
 %PYTHON% skill-maker\audit_fpf_patterns.py --source FPF-Spec.md --skill-dir skills\fpf
 if errorlevel 1 echo   Warning: Audit reported issues
 
 echo.
-echo [3/4] Running tests...
+echo [5/10] Running tests (FPF + DPF)...
 %PYTHON% skill-maker\test_fpf_pipeline.py
 if errorlevel 1 (
-    echo Tests failed
+    echo FPF tests failed
     exit /b 4
+)
+%PYTHON% skill-maker\test_dpf_pipeline.py
+if errorlevel 1 (
+    echo   X DPF tests failed
+    exit /b 1
 )
 
 echo.
-echo [4/4] Done!
-echo   Skill directory: skills\fpf\
+echo [6/10] Checking framework decomposition against the publisher catalogue...
+%PYTHON% skill-maker\test_frameworks.py
+if errorlevel 1 (
+    echo   X Framework tests failed
+    exit /b 1
+)
+
+echo.
+echo [7/10] Checking the generic skill builder...
+%PYTHON% skill-maker\test_build_generic.py
+if errorlevel 1 (
+    echo   X Generic builder tests failed
+    exit /b 1
+)
+
+echo.
+echo [8/10] Checking the MCP server...
+%PYTHON% skill-maker\test_mcp_server.py
+if errorlevel 1 (
+    echo   X MCP server tests failed
+    exit /b 1
+)
+
+echo.
+echo [9/10] Checking the derived retrieval layer...
+%PYTHON% skill-maker\test_derived.py
+if errorlevel 1 (
+    echo   X Derived-layer tests failed
+    exit /b 1
+)
+
+echo.
+echo [10/10] Checking the HTTP transport...
+where bash >nul 2>&1
+if errorlevel 1 goto nobash
+REM A forward slash: bash reads a backslash as an escape and would look for
+REM "skill-makertest-mcp-http.sh".
+bash skill-maker/test-mcp-http.sh
+if errorlevel 1 (
+    echo   X HTTP transport tests failed
+    exit /b 1
+)
+goto afterhttp
+:nobash
+echo   - skipped: bash not found ^(Git Bash or WSL runs the curl walkthrough^)
+:afterhttp
+
+echo.
+echo Build summary
+echo --------------------------------------------
+%PYTHON% skill-maker\split_fpf_spec.py stats
+%PYTHON% skill-maker\split_dpf_spec.py stats
 echo ============================================
 
 endlocal

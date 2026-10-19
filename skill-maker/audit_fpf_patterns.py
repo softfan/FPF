@@ -15,20 +15,16 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-# Ensure UTF-8 stdout for cp1251 consoles (Unicode characters like ℹ️)
-try:
-    sys.stdout.reconfigure(encoding="utf-8")
-except AttributeError:
-    pass
-
 _SCRIPT_DIR = Path(__file__).resolve().parent
 if str(_SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPT_DIR))
 
-from _fpf_common import (
+from _fpf_common import (  # noqa: E402
     PATTERN_ID_RE, PATTERN_HEADING_RE, PATTERN_HEADING_BARE_RE,
-    TOC_START_RE, FenceTracker,
+    TOC_START_RE, FenceTracker, ID_SEGMENT_RE, ensure_utf8_stdio,
 )
+
+ensure_utf8_stdio()
 
 _ROMAN = re.compile(r"^[IVX]+$")
 
@@ -151,7 +147,7 @@ def _extract_row_id(cells: List[str]) -> Optional[str]:
     for cell in cells[:4]:
         cv = cell.replace("*", "").replace("`", "").strip()
         if not cv: continue
-        m = re.match(r"([A-K](?:\.(?:\d+|[A-Za-z][A-Za-z0-9_]*))+)", cv)
+        m = re.match(r"([A-K]" + ID_SEGMENT_RE + r")", cv)
         if m and PATTERN_ID_RE.match(m.group(1)):
             return m.group(1)
     return None
@@ -190,7 +186,7 @@ def _validate_deps(patterns_dir: Path, all_known: Set[str], report: AuditReport)
             r"Integrates|Coordinates\s+with|Constrains)[^.]*?(?:\.|$)",
             content, re.IGNORECASE,
         ):
-            refs = re.findall(r"\b([A-K](?:\.(?:\d+|[A-Za-z][A-Za-z0-9_]*))+)\b", m.group(0))
+            refs = re.findall(r"\b([A-K]" + ID_SEGMENT_RE + r")\b", m.group(0))
             for ref in refs:
                 if ref == stem or not PATTERN_ID_RE.match(ref): continue
                 if ref in all_known or _is_pseudo_id(ref): continue

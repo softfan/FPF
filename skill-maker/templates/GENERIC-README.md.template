@@ -1,0 +1,29 @@
+# {{TITLE}} AI-Agent Skill
+
+Auto-generated from the {{KIND}} publication `{{SOURCE_PATH}}`.
+**{{UNIT_COUNT}}** units, decomposed by the `{{PROFILE}}` profile.
+
+## What is this?
+
+The source document split into individually addressable files, so an agent
+loads only the units it needs instead of the whole document.
+
+## Structure
+
+```
+{{STRUCTURE_BLOCK}}
+```
+
+## Usage
+
+See `SKILL.md` for complete agent instructions. The short version:
+
+1. Pick an index in `reference/` (ID, question or keyword).
+2. Read the `File` column of the matching row.
+3. Load that file, plus the files named under `Builds on` when they matter.
+
+## Rebuilding
+
+```bash
+{{REBUILD_CMD}}
+```

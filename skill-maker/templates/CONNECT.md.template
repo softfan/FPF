@@ -1,0 +1,201 @@
+# Connect to this skill library
+
+A read-only MCP server over the skills in this directory. Any MCP client can
+use it; nothing here is specific to one product.
+
+{{SKILL_COUNT}} skills · {{PATTERN_COUNT}} patterns · {{UNIT_COUNT}} addressable units · {{TOOL_COUNT}} tools
+
+---
+
+## 1. Choose a transport
+
+| Transport | When | What the client needs |
+| :--- | :--- | :--- |
+| **stdio** | the client can launch a command | the command below |
+| **Streamable HTTP** | the client accepts a URL | the endpoint below |
+
+### stdio
+
+```
+python {{MAKER_DIR}}/mcp_server.py --skills-root {{SKILLS_DIR}}
+```
+
+Register it with your client as a stdio server whose command is that line.
+Messages are newline-delimited JSON-RPC on stdin and stdout; the server writes
+nothing else to stdout.
+
+### Streamable HTTP
+
+```bash
+python {{MAKER_DIR}}/mcp_server.py --http 127.0.0.1:8765
+```
+
+| | |
+| :--- | :--- |
+| Endpoint | `http://127.0.0.1:8765/mcp` |
+| Connect page | `http://127.0.0.1:8765/` |
+| Health | `http://127.0.0.1:8765/health` |
+| Authentication | none |
+| Binds to | `127.0.0.1` by default |
+
+The server is read-only: it cannot edit your files or the publications. It
+serves the skills in this directory and answers questions about how they were
+built.
+
+A browser `GET` to the endpoint returns `405 Method Not Allowed`. That is
+correct: it is a JSON-RPC endpoint, not a web page. Use `POST`.
+
+---
+
+## 2. Connect your client
+
+Every MCP client has its own configuration syntax; follow its documentation.
+The two facts a client needs are always the same:
+
+- **stdio**: the command `python {{MAKER_DIR}}/mcp_server.py`
+- **HTTP**: the URL `http://127.0.0.1:8765/mcp`
+
+No credentials are involved. If a client offers only a local command, use
+stdio; if it offers only a URL, run the HTTP server and point the client at it.
+
+---
+
+## 3. Check the connection
+
+Ask the client:
+
+> Use this server: report the corpus status and list the publications.
+
+A working connection calls `get_corpus_status` and `list_publications`, and
+reports a snapshot, a skill count and a pattern count. An answer that only
+describes this file means the server is not connected.
+
+Keep four kinds of evidence apart when you report the result:
+
+| Layer | Claim | Evidence |
+| :--- | :--- | :--- |
+| Configuration | a setting was added | the snippet you added |
+| Connection | the client reaches the server | the tool list it received |
+| Runtime | a request answers | one call's actual result |
+| Freshness | the answer is current | the snapshot the server reported |
+
+---
+
+## 4. Tools
+
+### Reading
+
+| Tool | Arguments | Returns |
+| :--- | :--- | :--- |
+| `get_corpus_status` | — | snapshot, skill and pattern counts |
+| `list_publications` | `limit`, `offset`, `kind`, `suite` | skills with their DocIDs |
+| `search` | `q`, `publication`, `kind`, `suite`, `limit`, `offset` | units ranked by ID and title match |
+| `get_table_of_contents` | `publication`, `patterns_only`, `limit`, `offset` | sections of one publication |
+| `read_pattern` | `pattern_id`, `tier`, `section`, `limit`, `offset` | one unit, one tier, or one section |
+| `read_section` | `publication`, `section`, `through`, `limit`, `offset` | a skill's entry point, a document, or `ID#anchor` |
+| `backlinks` | `pattern_id`, `limit`, `offset` | units that mention an ID |
+
+### Derived
+
+| Tool | Arguments | Returns |
+| :--- | :--- | :--- |
+| `route` | `pattern_id` | what to read first, and the section that checks a result |
+| `entries` | `q`, `publication`, `limit`, `offset` | starting units for a described situation |
+| `glossary` | `q`, `publication`, `limit`, `offset` | one-line meanings, taken from the units |
+
+### Skill-maker
+
+| Tool | Arguments | Returns |
+| :--- | :--- | :--- |
+| `list_profiles` | — | the decomposition profiles this toolchain knows |
+| `probe_document` | `path` | a document's kind, profile and unit count |
+| `plan_decomposition` | `path`, `skill` | the artefacts a build would produce |
+| `verify_catalogue` | `offline` | local publications against a publisher catalogue |
+
+### Reading less
+
+`read_pattern` accepts a `tier`:
+
+- `contract` — the working sections only (problem frame, solution, conformance
+  checklist, consequences, relations). Typically 35–60% of the bytes.
+- `source` — worked cases, rationale, source comparison.
+- `all` — the whole unit (default).
+
+`reference/sections.json` records the line range and byte size of every section,
+so a client without section-aware tooling can read exactly what it needs.
+
+---
+
+## 5. Test it from a shell
+
+```bash
+bash {{MAKER_DIR}}/test-mcp-http.sh
+```
+
+The script starts the server, walks the protocol by hand, and asserts each step:
+initialize, `Mcp-Session-Id`, the initialized notification, `tools/list`,
+`tools/call`, the protocol guards and session termination.
+
+To test a server that is already running elsewhere:
+
+```bash
+MCP_ENDPOINT=http://host:port/mcp START_SERVER=0 bash {{MAKER_DIR}}/test-mcp-http.sh
+```
+
+### By hand
+
+```bash
+# 1. initialize -- capture the session id from the response headers
+curl -sS -D - -X POST \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -d '{"jsonrpc":"2.0","method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"curl","version":"1"}},"id":1}' \
+  http://127.0.0.1:8765/mcp
+
+# 2. initialized notification -- 202, no body
+curl -sS -X POST -H 'Content-Type: application/json' \
+  -H 'Mcp-Session-Id: <id>' \
+  -d '{"jsonrpc":"2.0","method":"notifications/initialized"}' \
+  http://127.0.0.1:8765/mcp
+
+# 3. list tools
+curl -sS -X POST -H 'Content-Type: application/json' \
+  -H 'Mcp-Session-Id: <id>' \
+  -d '{"jsonrpc":"2.0","method":"tools/list","id":2}' \
+  http://127.0.0.1:8765/mcp
+
+# 4. call a tool
+curl -sS -X POST -H 'Content-Type: application/json' \
+  -H 'Mcp-Session-Id: <id>' \
+  -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"read_pattern","arguments":{"pattern_id":"{{ENTRY_EXAMPLE}}","tier":"contract"}},"id":3}' \
+  http://127.0.0.1:8765/mcp
+
+# 5. terminate
+curl -sS -X DELETE -H 'Mcp-Session-Id: <id>' http://127.0.0.1:8765/mcp
+```
+
+### Errors you may see
+
+| Response | Meaning | Fix |
+| :--- | :--- | :--- |
+| `404 unknown or expired session` | no `Mcp-Session-Id`, or the id is stale | send `initialize` again |
+| `400 unsupported MCP-Protocol-Version` | the header names a version this server does not speak | send `2025-06-18` or `2025-03-26` |
+| `400 parse error` | the body is not JSON | check the JSON-RPC envelope |
+| `403 origin not allowed` | a browser page tried to reach the server | use a loopback origin, or call it from a non-browser client |
+| `405` on `GET /mcp` | expected | use `POST` |
+| the request hangs | you sent `GET` and expected a reply | `POST` returns immediately |
+
+---
+
+## 6. Without MCP
+
+Every file here is plain Markdown. Without a server:
+
+1. Read `boot.md` in the skill you need.
+2. Pick an index in `reference/` — by ID, by question, or by keyword.
+3. Load the `File` column of the matching row.
+4. For a large unit, read only its working sections: the line ranges are in
+   `reference/sections.json`, and `reference/contract/<ID>.md` holds them as a
+   file when the build emitted views.
+
+Nothing in this directory requires a server to be useful.

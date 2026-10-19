@@ -12,12 +12,21 @@ description: >
 
 FPF is a first-principles pattern language for systems, epistemes, and
 collective thinking: generative patterns with assurance and open-ended evolution.
+This skill carries the Core specification ({{PATTERN_COUNT}} patterns), the
+Library's working instruction and its architectural reference.
 
 ## When to use / When to skip
 
 - **Use when:** first-principles decomposition, evidence chains, audit trail,
   FPF terms, systematic reasoning on engineering/research/management.
 - **Skip when:** quick code-only fixes, single-file typos, unrelated domains.
+
+## Read the working instruction first
+
+Before applying any pattern, read [Using FPF Library](reference/docs/using-fpf.md).
+It explains how to find a useful contribution, read its conditions, connect it
+to the rest of the work, and distinguish a source citation from a direction to
+apply another method. An adequate known answer can be used directly.
 
 ## How to use this skill
 
@@ -27,14 +36,18 @@ collective thinking: generative patterns with assurance and open-ended evolution
 
 | User gave… | Start with |
 |------------|------------|
-| Pattern ID (A.1, B.3.4) | `reference/agent_index_patterns.md` |
-| Natural-language question | `reference/agent_index_queries.md` |
-| Domain keyword | `reference/agent_index_keywords.md` |
+| Pattern ID (A.1, B.3.4, C.40.OD) | `reference/pattern-index.md` |
+| Natural-language question | `reference/query-index.md` |
+| Domain keyword | `reference/keyword-index.md` |
+| A question about the Library as a whole | `reference/docs/library-reference.md` |
+| "How do I use FPF at all?" | `reference/docs/using-fpf.md` |
+
+Every index row ends with the exact `File` to load, so no path guessing is needed.
 
 ### Quick flow
 
 1. **Identify** task → 2. **Choose one index** → 3. **Resolve deps** →
-4. **Load** `reference/fpf-patterns/<ID>.md` in batches of 5–8 → 5. **Answer**.
+4. **Load** the listed files in batches of 5–8 → 5. **Answer**.
 
 ### Dependency resolution
 
@@ -55,8 +68,8 @@ If >10 deps: load **kernel patterns first** + target. Others on demand.
 ### Example
 
 User: *"How does FPF model creative thinking?"*
-→ `agent_index_queries.md` → B.5.2 → builds on B.5
-→ Load B.5.md, B.5.2.md → Answer.
+→ `query-index.md` → B.5.2 → builds on B.5
+→ Load `reference/fpf-patterns/B.5.md`, `reference/fpf-patterns/B.5.2.md` → Answer.
 
 ## Canonical Reasoning Cycle (B.5)
 
@@ -103,9 +116,26 @@ Answer term-only questions from these tables without loading files.
 | **Canonical Evolution Loop** | B.4 | OBSERVE → REFINE → DEPLOY → AUDIT. |
 | **Canonical Reasoning Cycle** | B.5 | Abduction → Deduction → Induction. |
 
+## Library documents
+
+Read these before treating a pattern as a prescription. They are the Library's
+own account of how its publications fit together.
+
+{{DOC_BLOCK}}
+
+## Frameworks in this skill
+
+{{FRAMEWORK_BLOCK}}
+
 ## Domains ({{PATTERN_COUNT}} patterns)
 
 {{DOMAIN_BLOCK}}
+
+## Reference units ({{REFERENCE_COUNT}})
+
+The embedded Architectural Reference is addressable but is not a pattern body.
+
+{{REFERENCE_BLOCK}}
 
 ## Intro sections
 
@@ -113,11 +143,11 @@ Answer term-only questions from these tables without loading files.
 
 ## Self-update
 
-To update the skill from the latest FPF spec:
+To update the skill from the latest FPF sources:
 
 ```bash
 # From repo root:
-python skill-maker/fpf_update.py          # download + split + audit + test
+python skill-maker/fpf_update.py              # download + split + audit + test
 python skill-maker/fpf_update.py --no-download  # re-split from local files only
 ```
 
@@ -142,7 +172,10 @@ python skill-maker/fpf_update.py --no-download  # re-split from local files only
 
 ## Checklist (before answering)
 
+- [ ] Read `reference/docs/using-fpf.md` when the method's conditions matter
 - [ ] Input type determined (question / keyword / pattern ID)
 - [ ] One starting index chosen
 - [ ] Dependencies resolved; if >10, kernel + target loaded first
 - [ ] All file paths relative to skill root
+
+{{GENRE_BLOCK}}

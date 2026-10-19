@@ -1,4 +1,4 @@
-# build.ps1 — Build FPF skill from spec (Windows PowerShell)
+# build.ps1 — Rebuild every FPF + DPF skill from the local publications
 # Usage: .\skill-maker\build.ps1
 # Or: powershell -File skill-maker\build.ps1
 
@@ -11,10 +11,14 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 # Ensure UTF-8 output for cp1251 consoles (fix Unicode print crashes)
 $env:PYTHONIOENCODING = "utf-8"
 
+# Step 10 runs under bash, which picks its interpreter from PYTHON; export the
+# one this script uses so the HTTP walkthrough starts the same server.
+$env:PYTHON = $Python
+
 Set-Location $RepoRoot
 
 Write-Host "============================================"
-Write-Host "FPF Skill Builder"
+Write-Host "FPF + DPF Skill Builder"
 Write-Host "============================================"
 
 # Check Python
@@ -25,36 +29,83 @@ try {
     exit 1
 }
 
-# Remove hash cache to force fresh writes and avoid cross-platform cache poisoning
-$CacheFile = Join-Path -Path $RepoRoot -ChildPath "skills\fpf\.fpf_hashes.json"
-if (Test-Path $CacheFile) {
-    Remove-Item -Path $CacheFile -Force
-    Write-Host "(cleared hash cache for cross-platform safety)"
-}
+# Skills: FPF Core, the four DPF Suites, the ten standalone DPFs.
+$skills = @(
+    "fpf",
+    "engineering-suite", "management-suite", "foundational-thinking-suite",
+    "human-capability-engineering-suite",
+    "decision-design", "research-methods", "explanation-design", "narrativization",
+    "implementation-facilitation", "economic-reasoning", "financial-modeling",
+    "defense-transmission", "embodied-rhythmics", "music-dance-practice"
+)
+
+# Nothing is cleared here on purpose: each skill carries a build stamp and the
+# split is skipped when nothing changed.  Delete skills/ for a clean rebuild.
 
 Write-Host ""
-Write-Host "[1/4] Splitting spec..."
+Write-Host "[1/10] Splitting FPF Core + Library documents..."
 & $Python skill-maker/split_fpf_spec.py split `
     --source FPF-Spec.md `
-    --output skills/fpf
-if ($LASTEXITCODE -ne 0) { Write-Host "Split failed"; exit 2 }
+    --output skills/fpf `
+    --views
+if ($LASTEXITCODE -ne 0) { Write-Host "FPF split failed"; exit 2 }
 
 Write-Host ""
-Write-Host "[2/4] Running audit..."
+Write-Host "[2/10] Splitting DPF Suites and standalone DPFs..."
+& $Python skill-maker/split_dpf_spec.py split --all --views
+if ($LASTEXITCODE -ne 0) { Write-Host "DPF split failed"; exit 2 }
+
+Write-Host ""
+Write-Host "[3/10] Writing the skills index..."
+& $Python skill-maker/skill_index.py
+if ($LASTEXITCODE -ne 0) { Write-Host "  X Skill index failed"; exit 1 }
+
+Write-Host ""
+Write-Host "[4/10] Running FPF audit..."
 & $Python skill-maker/audit_fpf_patterns.py `
     --source FPF-Spec.md `
     --skill-dir skills/fpf
 if ($LASTEXITCODE -ne 0) { Write-Host "  Warning: Audit reported issues" }
 
 Write-Host ""
-Write-Host "[3/4] Running tests..."
+Write-Host "[5/10] Running tests (FPF + DPF)..."
 & $Python skill-maker/test_fpf_pipeline.py
-if ($LASTEXITCODE -ne 0) { Write-Host "Tests failed"; exit 4 }
+if ($LASTEXITCODE -ne 0) { Write-Host "FPF tests failed"; exit 4 }
+& $Python skill-maker/test_dpf_pipeline.py
+if ($LASTEXITCODE -ne 0) { Write-Host "  X DPF tests failed"; exit 1 }
 
 Write-Host ""
-Write-Host "[4/4] Done!"
-$patternCount = (Get-ChildItem skills/fpf/reference/fpf-patterns/*.md |
-    Where-Object { $_.Name -ne "index.md" }).Count
-Write-Host "  Skill directory: skills/fpf/"
-Write-Host "  Pattern count: $patternCount"
+Write-Host "[6/10] Checking framework decomposition against the publisher catalogue..."
+& $Python skill-maker/test_frameworks.py
+if ($LASTEXITCODE -ne 0) { Write-Host "  X Framework tests failed"; exit 1 }
+
+Write-Host ""
+Write-Host "[7/10] Checking the generic skill builder..."
+& $Python skill-maker/test_build_generic.py
+if ($LASTEXITCODE -ne 0) { Write-Host "  X Generic builder tests failed"; exit 1 }
+
+Write-Host ""
+Write-Host "[8/10] Checking the MCP server..."
+& $Python skill-maker/test_mcp_server.py
+if ($LASTEXITCODE -ne 0) { Write-Host "  X MCP server tests failed"; exit 1 }
+
+Write-Host ""
+Write-Host "[9/10] Checking the derived retrieval layer..."
+& $Python skill-maker/test_derived.py
+if ($LASTEXITCODE -ne 0) { Write-Host "  X Derived-layer tests failed"; exit 1 }
+
+Write-Host ""
+Write-Host "[10/10] Checking the HTTP transport..."
+if ($null -eq (Get-Command bash -ErrorAction SilentlyContinue)) {
+    Write-Host "  - skipped: bash not found (Git Bash or WSL runs the curl walkthrough)"
+} else {
+    & bash skill-maker/test-mcp-http.sh
+    if ($LASTEXITCODE -ne 0) { Write-Host "  X HTTP transport tests failed"; exit 1 }
+}
+
+Write-Host ""
+Write-Host "Build summary"
+Write-Host "--------------------------------------------"
+& $Python skill-maker/split_fpf_spec.py stats
+& $Python skill-maker/split_dpf_spec.py stats
 Write-Host "============================================"
