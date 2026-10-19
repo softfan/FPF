@@ -1,0 +1,43 @@
+# Python caches and local environments (this directory and descendants).
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.tox/
+.nox/
+
+# Build, test and analysis output; keep source fixtures and tests tracked.
+/build/
+/dist/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.codegraph/
+.gitnexus/
+graphify-out/
+
+# Local configuration and transient files, not release inputs.
+.env
+.env.*
+!.env.example
+!.env.template
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+/tmp/
+/.tmp/
+/evals/results/
+
+# Generated skills and obsolete executable lookup caches.
+/skills/
+.fpf_index.pickle

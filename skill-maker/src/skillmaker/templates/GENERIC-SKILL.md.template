@@ -37,8 +37,10 @@ its ID.
 ## Reading discipline
 
 1. Pick a unit from an index; read its row's `File` column.
-2. Load that file. Read the whole unit, not the index line.
-3. Follow `Builds on` when the unit depends on another.
+2. Read the unit's working sections first, not just the index line. For a whole
+   document, read the passage that answers the question.
+3. Follow `Builds on` only to supply a missing input or condition. Track visited
+   IDs; do not recursively load the entire dependency graph.
 4. Cite the unit ID and this source path when you report a result.
 
 The indexes are navigation, not evidence. The unit file is the source.

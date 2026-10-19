@@ -130,7 +130,11 @@ def main() -> int:
             return 1
         cfg = ALL_DPF_CONFIGS[name]
         cfg.output = args.skill_dir
-        rebuild_spec(cfg, args.output)
+        try:
+            rebuild_spec(cfg, args.output)
+        except (OSError, ValueError) as exc:
+            print(f"Error: {exc}", file=sys.stderr)
+            return 1
         return 0
 
     ap.print_help()

@@ -11,8 +11,8 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 # Ensure UTF-8 output for cp1251 consoles (fix Unicode print crashes)
 $env:PYTHONIOENCODING = "utf-8"
 
-# Step 10 runs under bash, which picks its interpreter from PYTHON; export the
-# one this script uses so the HTTP walkthrough starts the same server.
+# Keep the interpreter available to child tools. HTTP testing uses this same
+# native Python directly; never route a Windows build through WSL's bash.exe.
 $env:PYTHON = $Python
 
 Set-Location $RepoRoot
@@ -93,15 +93,13 @@ Write-Host ""
 Write-Host "[9/10] Checking the derived retrieval layer..."
 & $Python skill-maker/tests/test_derived.py
 if ($LASTEXITCODE -ne 0) { Write-Host "  X Derived-layer tests failed"; exit 1 }
+& $Python skill-maker/tests/test_hardening.py
+if ($LASTEXITCODE -ne 0) { Write-Host "  X Hardening tests failed"; exit 1 }
 
 Write-Host ""
 Write-Host "[10/10] Checking the HTTP transport..."
-if ($null -eq (Get-Command bash -ErrorAction SilentlyContinue)) {
-    Write-Host "  - skipped: bash not found (Git Bash or WSL runs the curl walkthrough)"
-} else {
-    & bash skill-maker/tests/test-mcp-http.sh
-    if ($LASTEXITCODE -ne 0) { Write-Host "  X HTTP transport tests failed"; exit 1 }
-}
+& $Python skill-maker/tests/test_mcp_http.py
+if ($LASTEXITCODE -ne 0) { Write-Host "  X HTTP transport tests failed"; exit 1 }
 
 Write-Host ""
 Write-Host "Build summary"

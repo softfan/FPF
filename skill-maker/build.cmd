@@ -7,7 +7,7 @@ setlocal EnableDelayedExpansion
 set SCRIPT_DIR=%~dp0
 set REPO_ROOT=%SCRIPT_DIR%..
 REM Respect a PYTHON the caller already set, like build.sh and build.ps1 do.
-REM It is exported, so step 10's bash script starts the server with the same one.
+REM Step 10 uses the same native Python; no Bash/WSL interpreter switch.
 if not defined PYTHON set PYTHON=python
 
 REM Ensure UTF-8 output for cp1251 consoles
@@ -103,19 +103,16 @@ if errorlevel 1 (
 
 echo.
 echo [10/10] Checking the HTTP transport...
-where bash >nul 2>&1
-if errorlevel 1 goto nobash
-REM A forward slash: bash reads a backslash as an escape and would look for
-REM "skill-makertest-mcp-http.sh".
-bash skill-maker/tests/test-mcp-http.sh
+%PYTHON% skill-maker\tests\test_hardening.py
+if errorlevel 1 (
+    echo   X Hardening tests failed
+    exit /b 1
+)
+%PYTHON% skill-maker\tests\test_mcp_http.py
 if errorlevel 1 (
     echo   X HTTP transport tests failed
     exit /b 1
 )
-goto afterhttp
-:nobash
-echo   - skipped: bash not found ^(Git Bash or WSL runs the curl walkthrough^)
-:afterhttp
 
 echo.
 echo Build summary

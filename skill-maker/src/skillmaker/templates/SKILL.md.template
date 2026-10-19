@@ -46,20 +46,20 @@ Every index row ends with the exact `File` to load, so no path guessing is neede
 
 ### Quick flow
 
-1. **Identify** task → 2. **Choose one index** → 3. **Resolve deps** →
-4. **Load** the listed files in batches of 5–8 → 5. **Answer**.
+1. **Identify** task → 2. **Choose one index** → 3. **Read one matching
+pattern's working sections** → 4. **Resolve only missing inputs** → 5. **Answer**.
 
 ### Dependency resolution
 
 ```
-1. Collect target ID(s) + all from "Builds on"
-2. Expand en-dash ranges (C.17–C.19 → C.17, C.18, C.19)
-3. Recursively add "Builds on" for each new ID
-4. Topological sort (deps before dependents)
-5. Load in batches of 5-8
+1. Start with the target's Problem frame, Solution and checklist
+2. Identify any missing input or condition
+3. Read only the dependency that supplies it, using working sections first
+4. Track visited IDs so dependency cycles terminate
+5. Stop when the requested result is supported
 ```
 
-If >10 deps: load **kernel patterns first** + target. Others on demand.
+Dependencies describe result relations, not a mandatory work order.
 
 ### Kernel patterns (no dependencies)
 
@@ -175,7 +175,7 @@ python skill-maker/src/skillmaker/fpf_update.py --no-download  # re-split from l
 - [ ] Read `reference/docs/using-fpf.md` when the method's conditions matter
 - [ ] Input type determined (question / keyword / pattern ID)
 - [ ] One starting index chosen
-- [ ] Dependencies resolved; if >10, kernel + target loaded first
+- [ ] Only dependencies needed for missing inputs or conditions were read
 - [ ] All file paths relative to skill root
 
 {{GENRE_BLOCK}}

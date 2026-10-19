@@ -426,7 +426,8 @@ def test_built_artefacts(t: TestRunner) -> None:
         return
 
     skills = skill_root.discover(SKILLS)
-    t.check("fifteen skills", len(skills) == 15, str(len(skills)))
+    manifests = {path.parent for path in SKILLS.glob("*/.*_manifest.json")}
+    t.check("every built skill discovered", set(skills) == manifests, str(len(skills)))
 
     for skill in skills:
         name = skill.name

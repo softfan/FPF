@@ -1,11 +1,10 @@
 ---
 name: {{SKILL_NAME}}
 description: >
-  {{TITLE}} — a Domain Principle Framework publication of reusable patterns,
-  each with a Problem frame, Solution, worked cases and a conformance checklist.
-  Use when the task needs a decision, comparison, recommendation or working
-  method from this field. Skip for quick code-only fixes or work already
-  settled by a narrower method.
+  Use {{TITLE}} when the task needs these subject-specific methods:
+  {{SUBJECT_DESCRIPTION}}
+  Read a matching pattern's conditions, working moves and checklist.
+  Skip quick code-only fixes and work settled by a narrower method.
 ---
 
 # {{TITLE}}
@@ -33,28 +32,29 @@ description: >
 | "How do these frameworks connect?" | `reference/reference-index.md` |
 
 Each index row ends with the exact `File` to load. Framework directories follow
-the publication DocID, for example `reference/syse/SYSE.24.md`.
+the publication DocID. Use the exact path from the index rather than guessing.
 
 ### Quick flow
 
 1. **Identify** the difficulty and the result needed.
 2. **Choose one index** and locate candidate patterns.
-3. **Resolve dependencies** from the pattern's `Dependencies` / `Builds on`.
-4. **Load** the listed files in batches of 5–8.
-5. **Apply** the Problem frame, Solution, worked cases and checklist to the
-   actual situation, then answer in the working language.
+3. **Read working sections** of one matching pattern, using `tier="contract"`
+   or the section offsets. Check the Problem frame before applying it.
+4. **Fill gaps only**: follow `Dependencies` / `Builds on` when a required input
+   or condition is missing; open worked cases when the working sections are insufficient.
+5. **Apply and stop** when the result and checklist are adequate. Answer in the
+   working language and distinguish source claims, assumptions and evidence.
 
 ### Dependency resolution
 
 ```
-1. Collect target ID(s) + all IDs named in "Builds on"/"Dependencies"
-2. Expand ranges (SYSE.25–SYSE.29 → SYSE.25, SYSE.26, ...)
-3. Recursively add dependencies for each new ID
-4. Topological sort (deps before dependents)
-5. Load in batches of 5-8
+1. Start with one target pattern and its working sections
+2. Identify a missing input or condition, if any
+3. Read only the supplying dependency needed to resolve that gap
+4. Track visited IDs so dependency cycles terminate
+5. Stop when the target result is supported; do not expand the entire graph
 ```
 
-If >10 deps: load **kernel patterns first** + target. Others on demand.
 Dependencies name result relations, not a mandatory work order.
 
 ### Kernel patterns (no dependencies)
@@ -117,7 +117,7 @@ Rebuild this skill from the local publications:
 - [ ] Input type determined (question / keyword / pattern ID)
 - [ ] One starting index chosen
 - [ ] The pattern's Problem frame matches the actual situation
-- [ ] Dependencies resolved; if >10, kernel + target loaded first
+- [ ] Only dependencies needed for missing inputs or conditions were read
 - [ ] Result separated from assumptions and missing evidence
 - [ ] All file paths relative to skill root
 

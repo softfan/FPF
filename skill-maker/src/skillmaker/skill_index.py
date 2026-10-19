@@ -39,7 +39,7 @@ _REPO_ROOT = _MAKER_DIR.parent            # repository root
 if str(_PKG_PARENT) not in sys.path:
     sys.path.insert(0, str(_PKG_PARENT))
 
-from skillmaker._fpf_common import ensure_utf8_stdio, write_text_lf  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio, manifest_entry_path, write_text_lf  # noqa: E402
 
 ensure_utf8_stdio()
 
@@ -62,7 +62,12 @@ def _manifest(cfg: SkillConfig) -> List[Dict]:
     path = cfg.output / f".{cfg.name}_manifest.json"
     if not path.exists():
         return []
-    return json.loads(path.read_text("utf-8"))
+    entries = json.loads(path.read_text("utf-8"))
+    if not isinstance(entries, list):
+        raise ValueError(f"manifest must contain a list of entries: {path}")
+    for entry in entries:
+        manifest_entry_path(cfg.output, entry)
+    return entries
 
 
 def _docids(cfg: SkillConfig) -> List[str]:
@@ -119,6 +124,9 @@ def _all_units(rows: List[Dict]) -> Dict[str, Dict]:
             continue
         for entry in _manifest_by_name(row["name"]):
             if entry.get("kind") == "unit" and entry.get("id"):
+                if entry["id"] in out:
+                    raise ValueError(f"duplicate unit {entry['id']!r} in "
+                                     f"{out[entry['id']]['skill']!r} and {row['name']!r}")
                 out.setdefault(entry["id"], {
                     "skill": row["name"],
                     "framework": entry.get("framework", ""),
@@ -131,8 +139,22 @@ def _all_units(rows: List[Dict]) -> Dict[str, Dict]:
 def _manifest_by_name(name: str) -> List[Dict]:
     path = SKILLS_ROOT / name / f".{name}_manifest.json"
     if not path.exists():
-        return []
-    return json.loads(path.read_text("utf-8"))
+        marker = SKILLS_ROOT / name / ".skill.json"
+        if not marker.is_file():
+            return []
+        metadata = json.loads(marker.read_text("utf-8"))
+        declared = metadata.get("name", "") if isinstance(metadata, dict) else ""
+        if not isinstance(declared, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", declared):
+            raise ValueError(f"invalid skill marker: {marker}")
+        path = marker.parent / f".{declared}_manifest.json"
+        if not path.is_file():
+            return []
+    entries = json.loads(path.read_text("utf-8"))
+    if not isinstance(entries, list) or any(not isinstance(entry, dict) for entry in entries):
+        raise ValueError(f"manifest must contain a list of entries: {path}")
+    for entry in entries:
+        manifest_entry_path(path.parent, entry)
+    return entries
 
 
 def cross_references(rows: List[Dict]) -> Dict[str, List[Dict]]:
@@ -182,6 +204,34 @@ def collect() -> List[Dict]:
         rows.append(row)
     for cfg in sorted(DPF_SKILL_CONFIGS.values(), key=lambda c: c.name):
         rows.append(_entry(cfg, "Framework"))
+    known = {row["name"] for row in rows}
+    for marker in sorted(SKILLS_ROOT.glob("*/.skill.json")):
+        name = marker.parent.name
+        if name in known:
+            continue
+        metadata = json.loads(marker.read_text("utf-8"))
+        if not isinstance(metadata, dict):
+            raise ValueError(f"skill marker must be an object: {marker}")
+        entries = _manifest_by_name(name)
+        if not entries:
+            continue
+        docids = sorted({entry["id"].split(".")[0] for entry in entries
+                         if entry.get("kind") == "unit" and entry.get("id")
+                         and re.match(r"^[A-Za-z][A-Za-z0-9]*\.", entry["id"])})
+        kind = metadata.get("kind", "Framework")
+        if kind == "Domain Principle Framework":
+            kind = "Framework"
+        rows.append({
+            "name": name, "title": metadata.get("title", name),
+            "kind": kind, "docids": docids,
+            "frameworks": sorted({e["framework"] for e in entries if e.get("framework")}),
+            "patterns": sum(e.get("role") == "pattern" for e in entries),
+            "reference_units": sum(e.get("kind") == "unit" and e.get("role") != "pattern" for e in entries),
+            "intro_sections": sum(e.get("kind") == "intro" for e in entries),
+            "documents": sum(e.get("kind") == "doc" for e in entries),
+            "path": f"skills/{name}", "sources": [metadata.get("source", "")],
+            "description": metadata.get("title", name), "built": bool(entries),
+        })
     return rows
 
 
@@ -286,7 +336,7 @@ def _table(rows: List[Dict]) -> str:
     ]
     for row in rows:
         docids = ", ".join(f"`{d}`" for d in row["docids"])
-        when = WHEN.get(row["name"], "")
+        when = WHEN.get(row["name"], row.get("description", ""))
         lines.append(
             f"| [{row['name']}]({row['name']}/) | {row['kind']} | {docids} | "
             f"{row['patterns']} | {row['reference_units']} | {when} |")
@@ -332,7 +382,7 @@ def render_cross(rows: List[Dict], cross: Dict[str, List[Dict]]) -> str:
     for source in sorted(cross):
         for ref in cross[source]:
             lines.append(f"| {source} | `{ref['id']}` | "
-                         f"[{ref['skill']}](../{ref['skill']}/) | "
+                         f"[{ref['skill']}]({ref['skill']}/) | "
                          f"{ref['title']} |")
     if not total:
         lines.append("| _(none)_ | | | |")
@@ -377,8 +427,13 @@ def _entry_example(rows: List[Dict]) -> str:
 
 def payload(rows: List[Dict]) -> Dict:
     routing: Dict[str, str] = {}
+    owners: Dict[str, str] = {}
     for row in rows:
         for docid in row["docids"]:
+            key = docid.casefold()
+            if key in owners and owners[key] != row["name"]:
+                raise ValueError(f"DocID {docid!r} belongs to both {owners[key]!r} and {row['name']!r}")
+            owners[key] = row["name"]
             routing[docid] = row["name"]
     return {
         "schema": 1,

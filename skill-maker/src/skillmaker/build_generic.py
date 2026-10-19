@@ -34,6 +34,8 @@ Exit codes: 0 = built, 1 = nothing to do or an error.
 from __future__ import annotations
 
 import argparse
+import json
+import re
 import sys
 from pathlib import Path
 from typing import Optional
@@ -145,9 +147,33 @@ def config_for(path: Path, profile, skill_name: str,
 def build(path: Path, skill_name: str, profile_key: str = "",
           output: Optional[Path] = None, dry_run: bool = False,
           genre: str = "lookup") -> int:
-    if not path.exists():
+    if (not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", skill_name)
+            or len(skill_name) > 64):
+        print("Error: skill name must be 1-64 lowercase letters, digits and single hyphens",
+              file=sys.stderr)
+        return 1
+    if genre not in {item.value for item in genre_mod.Genre}:
+        print(f"Error: unknown genre {genre!r}", file=sys.stderr)
+        return 1
+    if not path.is_file():
         print(f"Error: {path} not found", file=sys.stderr)
         return 1
+    target = (output or (_REPO_ROOT / "skills" / skill_name)).resolve()
+    if path.resolve().is_relative_to(target) or _SCRIPT_DIR.is_relative_to(target):
+        print("Error: output must not contain the source or the engine", file=sys.stderr)
+        return 1
+    if target.is_dir() and any(target.iterdir()) and not (target / ".skill.json").is_file():
+        print("Error: refusing to build into a nonempty directory without a skill marker", file=sys.stderr)
+        return 1
+    marker = target / ".skill.json"
+    if marker.exists():
+        try:
+            metadata = json.loads(marker.read_text("utf-8"))
+            if not isinstance(metadata, dict) or metadata.get("name") != skill_name:
+                raise ValueError("skill name does not match existing output")
+        except (OSError, ValueError) as exc:
+            print(f"Error: refusing to overwrite existing skill: {exc}", file=sys.stderr)
+            return 1
 
     text = path.read_text("utf-8", errors="replace")
     rel = _rel(path)
@@ -178,7 +204,7 @@ def build(path: Path, skill_name: str, profile_key: str = "",
     rc = build_skill(cfg, output=cfg.output)
     if rc == 0:
         print(f"Built {cfg.output}")
-        if profile.shape.unit_files:
+        if cfg.output.resolve().parent == (_REPO_ROOT / "skills").resolve():
             print("  Add it to skills/index.json by running: "
                   "python skill-maker/src/skillmaker/skill_index.py")
     return rc

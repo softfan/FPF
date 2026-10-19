@@ -102,7 +102,11 @@ def main() -> int:
         return 0
     if args.cmd == "rebuild":
         FPF_CONFIG.output = args.skill_dir
-        rebuild_spec(FPF_CONFIG, args.output, include_docs=args.include_docs)
+        try:
+            rebuild_spec(FPF_CONFIG, args.output, include_docs=args.include_docs)
+        except (OSError, ValueError) as exc:
+            print(f"Error: {exc}", file=sys.stderr)
+            return 1
         return 0
     if args.cmd == "stats":
         return print_stats([("fpf", FPF_CONFIG)])

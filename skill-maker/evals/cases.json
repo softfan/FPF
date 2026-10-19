@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "decision-acquire-or-learn",
+      "skill": "decision-design",
+      "prompt": "Our team can deliver the existing product, but a proposed variant needs expertise we do not have. We can buy a specialist result, train the team, or narrow the offer. Help frame the decision before recommending one. We have not estimated costs, deadlines or demand yet.",
+      "assertions": [
+        "Distinguishes the immediate delivery result from acquiring a reusable capability.",
+        "States missing decision-relevant evidence instead of inventing costs or demand.",
+        "Compares feasible alternatives against explicit criteria and conditions.",
+        "With the skill, cites an existing relevant pattern and verifies its conditions."
+      ],
+      "trigger_queries": [
+        {"query": "Help frame a buy-versus-build decision with uncertain demand.", "should_trigger": true},
+        {"query": "Two recommendations optimize different goals; how should we compare them?", "should_trigger": true},
+        {"query": "Fix a typo in the comparison operator in this Python function.", "should_trigger": false},
+        {"query": "Explain an already-selected design clearly to a new audience; do not reopen the decision.", "should_trigger": false}
+      ]
+    },
+    {
+      "id": "research-evidence-gap",
+      "skill": "research-methods",
+      "prompt": "Three customers say onboarding is confusing. We suspect a tutorial will improve retention, but have no retention measurements or comparison group. Design an investigation that could change our mind before we build the tutorial.",
+      "assertions": [
+        "Separates observations from the causal hypothesis about the tutorial.",
+        "Defines an investigable question and evidence that could disconfirm the hypothesis.",
+        "Identifies selection effects and limits of the three interviews.",
+        "Does not claim an observed improvement or invent statistical results."
+      ],
+      "trigger_queries": [
+        {"query": "What evidence would distinguish our causal explanation from alternatives?", "should_trigger": true},
+        {"query": "Plan a small investigation before we commit to this intervention.", "should_trigger": true},
+        {"query": "Choose between these two already-validated suppliers using our agreed criteria.", "should_trigger": false},
+        {"query": "Find the literal string research in a local log file.", "should_trigger": false}
+      ]
+    },
+    {
+      "id": "finance-prepaid-obligation",
+      "skill": "financial-modeling",
+      "prompt": "A customer prepaid for a year of service. Cash is in the account, service has not started, and part of the payment may be refundable. Help model the financial positions, obligations and later events. Do not assume an accounting jurisdiction or give tax advice.",
+      "assertions": [
+        "Distinguishes cash receipt from earned revenue and service performance.",
+        "Identifies the obligation and the conditional refund exposure.",
+        "Names missing contract and jurisdiction facts rather than choosing accounting rules silently.",
+        "Connects later events to changes in positions without inventing amounts."
+      ],
+      "trigger_queries": [
+        {"query": "Model the rights and obligations created by this prepayment.", "should_trigger": true},
+        {"query": "How do refunds and service delivery change our financial position over time?", "should_trigger": true},
+        {"query": "Compare market coordination mechanisms at an economy-wide level.", "should_trigger": false},
+        {"query": "Change a currency display from USD to EUR without recalculating values.", "should_trigger": false}
+      ]
+    }
+  ]
+}

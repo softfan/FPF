@@ -236,13 +236,16 @@ def test_reading(t: TestRunner) -> None:
                               "clientInfo": {"name": "test", "version": "1"}})
 
         status = c.payload("get_corpus_status")
-        t.equal("15 skills served", status["skills"], 15)
-        t.equal("885 patterns served", status["patterns"], 885)
+        manifests = [json.loads(path.read_text("utf-8"))
+                     for path in SKILLS.glob("*/.*_manifest.json")]
+        t.equal("every built skill served", status["skills"], len(manifests))
+        t.equal("every built pattern served", status["patterns"], sum(
+            entry.get("role") == "pattern" for entries in manifests for entry in entries))
         t.check("snapshot reported", status["snapshot"].startswith("local-"),
                 status["snapshot"])
 
         pubs = c.payload("list_publications", {"limit": 100})
-        t.equal("lists 15 publications", pubs["total"], 15)
+        t.equal("lists every publication", pubs["total"], len(manifests))
         ids = {p["id"] for p in pubs["publications"]}
         t.check("lists readable skill names", "decision-design" in ids, str(sorted(ids)))
         t.check("lists the suites", "engineering-suite" in ids)
@@ -371,8 +374,9 @@ def test_errors(t: TestRunner) -> None:
         bad_pub = c.call("get_table_of_contents", {"publication": "nope"})
         t.check("unknown publication is an error", bad_pub["isError"] is True)
 
-        unknown_tool = c.call("no_such_tool", {})
-        t.check("unknown tool is an error", unknown_tool["isError"] is True)
+        unknown_tool = c.send("tools/call", {"name": "no_such_tool", "arguments": {}})
+        t.check("unknown tool is a protocol error",
+                unknown_tool.get("error", {}).get("code") == -32602)
 
         # A malformed line must not kill the server.
         c.proc.stdin.write("this is not json\n")
@@ -383,7 +387,8 @@ def test_errors(t: TestRunner) -> None:
                 parsed.get("error", {}).get("code") == -32700, str(parsed)[:160])
 
         after = c.payload("get_corpus_status")
-        t.check("server survives a bad message", after["skills"] == 15)
+        t.check("server survives a bad message", after["skills"] == len(
+            list(SKILLS.glob("*/.*_manifest.json"))))
 
         missing = c.call("probe_document", {"path": "does/not/exist.md"})
         t.check("missing file is an error", missing["isError"] is True)

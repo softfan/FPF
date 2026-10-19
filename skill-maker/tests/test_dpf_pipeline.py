@@ -312,7 +312,7 @@ def test_rebuild(t: TestRunner):
 def test_standalone_selection(t: TestRunner):
     print("\n[CLI selection]")
     r = run_cmd([sys.executable, str(_SCRIPT_DIR / "split_dpf_spec.py"),
-                 "split", "--framework", "fdm"])
+                 "split", "--framework", "fdm", "--views"])
     t.check("single --framework build exit 0", r.returncode == 0, _err(r))
     r = run_cmd([sys.executable, str(_SCRIPT_DIR / "split_dpf_spec.py"),
                  "split", "--suite", "engineering", "--views"])
@@ -335,7 +335,10 @@ def test_skill_index(t: TestRunner) -> None:
     import json as _json
     data = _json.loads(index.read_text("utf-8"))
     names = {row["name"] for row in data["skills"]}
-    t.check("index lists 15 skills", len(names) == 15, str(sorted(names)))
+    manifests = {path.parent.name for path in root.glob("*/.*_manifest.json")}
+    configured = {"fpf"} | {cfg.name for cfg in ALL_DPF_CONFIGS.values()}
+    t.check("index lists every built and configured skill",
+            names == manifests | configured, str(sorted(names)))
     t.check("index lists fpf", "fpf" in names)
     t.check("index lists the suites",
             {"engineering-suite", "management-suite",
@@ -361,8 +364,10 @@ def test_skill_index(t: TestRunner) -> None:
     t.check("skills/CROSS-REFERENCES.md exists", cross.exists())
     if cross.exists():
         body_cross = cross.read_text("utf-8")
+        targets = re.findall(r"\]\(([^)]+)\)", body_cross)
         t.check("cross-references resolve to skills",
-                "](../fpf/)" in body_cross, body_cross[:300])
+                bool(targets) and all((cross.parent / target).is_dir() for target in targets),
+                body_cross[:300])
         t.check("cross-references are non-trivial",
                 body_cross.count("\n| ") > 100, str(body_cross.count("\n| ")))
 

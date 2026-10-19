@@ -14,7 +14,7 @@ Three ways to read less:
 
 `reference/pattern-index.md` gives the byte cost of each unit before you open
 it. `reference/sections.json` gives the line range and anchor of every section.
-`reference/contract/<ID>.md` holds the working sections as a file, when the
+`reference/<framework>/contract/<ID>.md` holds the working sections as a file, when the
 build emitted views.
 
 ## Stop rule

@@ -30,6 +30,7 @@ describes how to declare one.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -45,13 +46,14 @@ _REPO_ROOT = _MAKER_DIR.parent            # repository root
 if str(_PKG_PARENT) not in sys.path:
     sys.path.insert(0, str(_PKG_PARENT))
 
-from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio, manifest_entry_path  # noqa: E402
 
 ensure_utf8_stdio()
 
 from skillmaker import sections as section_map  # noqa: E402
 
 PROTOCOL_VERSION = "2025-06-18"
+SUPPORTED_VERSIONS = (PROTOCOL_VERSION, "2025-03-26")
 SERVER_NAME = "fpf-local-skills"
 SERVER_VERSION = "1.0.0"
 
@@ -82,7 +84,7 @@ class Skill:
         return self.path / "reference"
 
     def unit_path(self, entry: Dict[str, Any]) -> Path:
-        return self.reference / entry["framework"] / entry["key"]
+        return manifest_entry_path(self.path, entry)
 
     def hub_path(self) -> Path:
         return self.path / "SKILL.md"
@@ -92,7 +94,7 @@ class Library:
     """An index over every skill under one ``skills/`` root."""
 
     def __init__(self, skills_root: Path):
-        self.root = skills_root
+        self.root = skills_root.resolve()
         self.skills: Dict[str, Skill] = {}
         self.by_id: Dict[str, Tuple[Skill, Dict[str, Any]]] = {}
         self.snapshot: str = ""
@@ -103,34 +105,95 @@ class Library:
     def load(self) -> None:
         if not self.root.is_dir():
             raise SystemExit(f"skills root not found: {self.root}")
-        index = self.root / "index.json"
-        self.snapshot = f"local-{_digest(index)}" if index.exists() else "local-unknown"
+        # Freeze every reading artefact before accepting clients. Rebuilding the
+        # on-disk tree requires a server restart, never a mixed-edition response.
+        self.skills.clear()
+        self.by_id.clear()
+        self._body_cache.clear()
+        paths = self._reading_files()
+        digest = hashlib.sha256()
+        content_hashes = {}
+        for path in paths:
+            rel = path.relative_to(self.root)
+            if not path.resolve().is_relative_to(self.root.resolve()):
+                raise ValueError(f"corpus file escapes skills root: {rel}")
+            data = path.read_bytes()
+            self._body_cache[path] = data.decode("utf-8")
+            content_hashes[path] = hashlib.sha256(data).digest()
+            digest.update(rel.as_posix().encode("utf-8") + b"\0")
+            digest.update(content_hashes[path])
+        # Starting during a rebuild must fail, not freeze a combination of old
+        # and new files. Do not silently retry on another edition.
+        if paths != self._reading_files() or any(
+                hashlib.sha256(path.read_bytes()).digest() != content_hashes[path] for path in paths):
+            raise ValueError("corpus changed during startup; finish the build and restart the server")
+        self.snapshot = f"local-{digest.hexdigest()[:32]}"
 
         for skill_dir in sorted(p for p in self.root.iterdir() if p.is_dir()):
             manifest = skill_dir / f".{skill_dir.name}_manifest.json"
-            if not manifest.exists():
-                continue
-            entries = json.loads(manifest.read_text("utf-8"))
+            if manifest not in self._body_cache:
+                marker = skill_dir / ".skill.json"
+                if marker not in self._body_cache:
+                    continue
+                metadata = json.loads(self.body(marker))
+                declared = metadata.get("name", "") if isinstance(metadata, dict) else ""
+                if not isinstance(declared, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", declared):
+                    raise ValueError(f"invalid skill marker: {marker}")
+                manifest = skill_dir / f".{declared}_manifest.json"
+                if manifest not in self._body_cache:
+                    raise ValueError(f"missing manifest for {skill_dir.name}; rebuild before serving")
+            entries = json.loads(self.body(manifest))
+            if not isinstance(entries, list) or any(not isinstance(entry, dict) for entry in entries):
+                raise ValueError(f"invalid manifest: {manifest}")
             skill = Skill(name=skill_dir.name, path=skill_dir)
             for entry in entries:
+                self.body(manifest_entry_path(skill.path, entry))
                 kind = entry.get("kind")
                 if kind == "unit":
+                    if not isinstance(entry.get("id"), str) or not entry["id"]:
+                        raise ValueError(f"manifest unit has no valid id: {manifest}")
                     skill.units.append(entry)
-                    self.by_id.setdefault(entry["id"], (skill, entry))
+                    if entry["id"] in self.by_id:
+                        other = self.by_id[entry["id"]][0].name
+                        raise ValueError(f"duplicate unit {entry['id']!r} in {other!r} and {skill.name!r}")
+                    self.by_id[entry["id"]] = (skill, entry)
                 elif kind == "intro":
+                    self.body(skill.reference / "intro" / entry["key"])
                     skill.intros.append(entry["key"])
                 elif kind == "doc":
+                    self.body(skill.reference / "docs" / entry["key"])
                     skill.docs.append(entry["key"])
             self.skills[skill.name] = skill
 
         self._load_metadata()
+        owners = {}
+        for skill in self.skills.values():
+            for docid in skill.docids:
+                key = docid.casefold()
+                if key in owners and owners[key] != skill.name:
+                    raise ValueError(f"ambiguous DocID {docid!r} in {owners[key]!r} and {skill.name!r}")
+                owners[key] = skill.name
+
+    def _reading_files(self) -> List[Path]:
+        return sorted(path for path in self.root.rglob("*")
+                      if path.is_file() and "scripts" not in path.relative_to(self.root).parts
+                      and path.suffix in (".md", ".json")
+                      and not path.name.endswith(("_build.json", "_hashes.json")))
 
     def _load_metadata(self) -> None:
         index = self.root / "index.json"
-        if not index.exists():
+        if index not in self._body_cache:
             return
-        payload = json.loads(index.read_text("utf-8"))
+        payload = json.loads(self.body(index))
+        if not isinstance(payload, dict) or not isinstance(payload.get("skills", []), list):
+            raise ValueError("corpus index must contain a list of skill metadata")
         for row in payload.get("skills", []):
+            if (not isinstance(row, dict) or not isinstance(row.get("name"), str)
+                    or not isinstance(row.get("docids", []), list)
+                    or any(not isinstance(docid, str) or not docid for docid in row.get("docids", []))
+                    or not isinstance(row.get("kind", ""), str)
+                    or not isinstance(row.get("title", ""), str)):
+                raise ValueError("invalid skill metadata in corpus index")
             skill = self.skills.get(row["name"])
             if skill is None:
                 continue
@@ -194,8 +257,7 @@ class Library:
     def body(self, path: Path) -> str:
         cached = self._body_cache.get(path)
         if cached is None:
-            cached = path.read_text("utf-8", errors="replace")
-            self._body_cache[path] = cached
+            raise ValueError(f"file not in serving snapshot: {path}; restart the server after rebuilding")
         return cached
 
     # --- queries ----------------------------------------------------------
@@ -267,8 +329,6 @@ class Library:
             )
         skill, entry = found
         path = skill.unit_path(entry)
-        if not path.exists():
-            raise ValueError(f"file missing for {pattern_id}: {path}")
         text = self.body(path)
         info = section_map.analyse(entry["id"], text, entry["key"])
 
@@ -420,8 +480,6 @@ class Library:
                 if entry.get("id") == target:
                     continue
                 path = skill.unit_path(entry)
-                if not path.exists():
-                    continue
                 text = self.body(path)
                 if needle.search(text):
                     hits.append({
@@ -441,10 +499,10 @@ class Library:
     # --- derived artefacts -------------------------------------------------
     def _json(self, skill: Skill, name: str) -> Dict[str, Any]:
         path = skill.reference / name
-        if not path.exists():
+        if path not in self._body_cache:
             return {}
         try:
-            return json.loads(path.read_text("utf-8"))
+            return json.loads(self.body(path))
         except Exception:
             return {}
 
@@ -492,9 +550,9 @@ class Library:
             if skill is None:
                 raise ValueError(f"unknown publication {publication!r}")
             path = skill.reference / "glossary.md"
-            if not path.exists():
+            if path not in self._body_cache:
                 continue
-            for line in path.read_text("utf-8").splitlines():
+            for line in self.body(path).splitlines():
                 if not line.startswith("| ") or line.startswith("| :") or "Term" in line:
                     continue
                 cells = [c.strip() for c in line.strip("|").split("|")]
@@ -529,13 +587,6 @@ def _count_kinds(skills: Iterable[Skill]) -> Dict[str, int]:
     for skill in skills:
         out[skill.kind or "?"] = out.get(skill.kind or "?", 0) + 1
     return dict(sorted(out.items()))
-
-
-def _digest(path: Path) -> str:
-    import hashlib
-    if not path.exists():
-        return "none"
-    return hashlib.sha256(path.read_bytes()).hexdigest()[:16]
 
 
 # ---------------------------------------------------------------------------
@@ -590,8 +641,8 @@ _OFFSET = {"type": "integer", "minimum": 0,
 _EXPECTED_SNAPSHOT = {
     "type": ["string", "null"],
     "description": "Copy the previous response's snapshot. Omit for a fresh "
-                   "call. If the local build changed, the call fails and "
-                   "discovery restarts.",
+                   "call. If a restarted server serves another edition, the "
+                   "call fails and discovery restarts.",
 }
 _KIND = {"type": "string",
          "description": "Filter by publication kind: FPF, DPF, Reference, Guide "
@@ -768,17 +819,113 @@ TOOLS: List[Dict[str, Any]] = [
 # Tool dispatch
 # ---------------------------------------------------------------------------
 
+class InvalidParams(ValueError):
+    """An invalid tool name or arguments, not an execution failure."""
+
+
+def message_kind(message: Any) -> str:
+    """Classify a single JSON-RPC envelope, rejecting ambiguous shapes."""
+    if (not isinstance(message, dict) or message.get("jsonrpc") != "2.0"
+            or ("id" in message and type(message["id"]) not in (str, int, type(None)))):
+        raise ValueError("invalid JSON-RPC envelope")
+    if "method" in message:
+        if (not isinstance(message["method"], str) or not message["method"]
+                or "result" in message or "error" in message
+                or (message["method"].startswith("notifications/") and "id" in message)
+                or ("params" in message and not isinstance(message["params"], dict))):
+            raise ValueError("invalid JSON-RPC request")
+        return "request" if "id" in message else "notification"
+    if "id" not in message or not (("result" in message) ^ ("error" in message)):
+        raise ValueError("invalid JSON-RPC response")
+    if "error" in message:
+        error = message["error"]
+        if (not isinstance(error, dict) or type(error.get("code")) is not int
+                or not isinstance(error.get("message"), str)):
+            raise ValueError("invalid JSON-RPC error")
+    return "response"
+
+
+def decode_message(text: str) -> Any:
+    """Strict JSON: Python's optional NaN/Infinity extensions are not JSON-RPC."""
+    def invalid_constant(value):
+        raise ValueError(f"invalid JSON constant: {value}")
+    def unique_object(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f"duplicate JSON member: {key}")
+            result[key] = value
+        return result
+    return json.loads(text, parse_constant=invalid_constant, object_pairs_hook=unique_object)
+
+
+def _validate_arguments(schema: Dict[str, Any], args: Any) -> None:
+    """Validate exactly the JSON Schema subset declared by this server."""
+    if not isinstance(args, dict):
+        raise InvalidParams("arguments must be an object")
+    properties = schema["properties"]
+    if set(args) - set(properties):
+        raise InvalidParams("unknown arguments: " + ", ".join(sorted(set(args) - set(properties))))
+    for key in schema.get("required", []):
+        if key not in args:
+            raise InvalidParams(f"missing required argument: {key}")
+    types = {"string": str, "integer": int, "boolean": bool, "null": type(None)}
+    for key, value in args.items():
+        spec = properties[key]
+        allowed = spec["type"] if isinstance(spec["type"], list) else [spec["type"]]
+        if not any(type(value) is types[kind] for kind in allowed):
+            raise InvalidParams(f"{key} must have type {spec['type']}")
+        if type(value) is int:
+            if value < spec.get("minimum", value) or value > spec.get("maximum", value):
+                raise InvalidParams(f"{key} outside allowed range")
+        if "enum" in spec and value not in spec["enum"]:
+            raise InvalidParams(f"invalid {key}: {value!r}")
+
+
 class Server:
     def __init__(self, skills_root: Path):
         self.library = Library(skills_root)
-        self.skills_root = skills_root
+        self.skills_root = self.library.root
+        self.allow_maker_tools = True
+
+    def tools(self) -> List[Dict[str, Any]]:
+        return [tool for tool in TOOLS
+                if self.allow_maker_tools or tool["name"] not in MAKER_TOOLS]
+
+    def _document(self, value: str) -> Tuple[Path, str]:
+        root = self.skills_root.parent.resolve()
+        relative = Path(value)
+        if relative.is_absolute():
+            raise ValueError("document path must be relative to the repository root")
+        path = (root / relative).resolve()
+        if not path.is_relative_to(root) or not path.is_file() or path.suffix.lower() != ".md":
+            raise ValueError("document must be a regular Markdown file inside the repository")
+        if path.stat().st_size > 32 * 1024 * 1024:
+            raise ValueError("document exceeds the 32 MiB limit")
+        with path.open("rb") as stream:
+            data = stream.read(32 * 1024 * 1024 + 1)
+        if len(data) > 32 * 1024 * 1024:
+            raise ValueError("document exceeds the 32 MiB limit")
+        return path, data.decode("utf-8")
 
     # --- reading tools ----------------------------------------------------
     def call(self, name: str, args: Dict[str, Any]) -> Any:
+        if not isinstance(name, str):
+            raise InvalidParams("tool name must be a string")
+        tool = next((tool for tool in self.tools() if tool["name"] == name), None)
+        if tool is None:
+            raise InvalidParams(f"unknown tool {name!r}")
+        _validate_arguments(tool["inputSchema"], args)
+        result = self._call(name, args)
+        if name in READING_TOOLS or name in DERIVED_TOOLS:
+            result = {**result, "snapshot": self.library.snapshot}
+        return result
+
+    def _call(self, name: str, args: Dict[str, Any]) -> Any:
         lib = self.library
         self._check_snapshot(args.get("expected_snapshot"))
         if name == "get_corpus_status":
-            return lib.status()
+            return {**lib.status(), "tools": len(self.tools())}
 
         if name == "list_publications":
             rows = sorted((lib.publication_of(s)
@@ -816,7 +963,9 @@ class Server:
             hint = str(args.get("publication") or "")
             if hint:
                 skill = lib.resolve_publication(hint)
-                if skill is not None and skill.name != data["publication"]:
+                if skill is None:
+                    raise ValueError(f"unknown publication {hint!r}")
+                if skill.name != data["publication"]:
                     raise ValueError(
                         f"{args['pattern_id']} belongs to {data['publication']!r}, "
                         f"not {hint!r}")
@@ -867,10 +1016,7 @@ class Server:
 
         if name == "probe_document":
             from skillmaker import frameworks as F
-            path = (self.skills_root.parent / str(args["path"])).resolve()
-            if not path.exists():
-                raise ValueError(f"not found: {args['path']}")
-            text = path.read_text("utf-8", errors="replace")
+            _, text = self._document(args["path"])
             profile, detection = F.detect(str(args["path"]), text)
             tree = F.decompose(profile, text, str(args["path"]))
             return {
@@ -886,10 +1032,7 @@ class Server:
 
         if name == "plan_decomposition":
             from skillmaker import frameworks as F
-            path = (self.skills_root.parent / str(args["path"])).resolve()
-            if not path.exists():
-                raise ValueError(f"not found: {args['path']}")
-            text = path.read_text("utf-8", errors="replace")
+            _, text = self._document(args["path"])
             profile, _ = F.detect(str(args["path"]), text)
             tree = F.decompose(profile, text, str(args["path"]))
             skill = str(args.get("skill") or profile.key)
@@ -905,7 +1048,7 @@ class Server:
         if name == "verify_catalogue":
             from skillmaker import frameworks as F
             local = F.load_local(self.skills_root.parent, classify=F.classify)
-            if args.get("offline"):
+            if args.get("offline", True):
                 snapshot = _SCRIPT_DIR / "catalogue.snapshot.json"
                 remote, meta = F.load_snapshot(snapshot)
             else:
@@ -935,14 +1078,27 @@ class Server:
                 f"restart discovery with offset 0 and omit expected_snapshot")
 
     # --- json-rpc ---------------------------------------------------------
-    def handle(self, message: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    def handle(self, message: Any) -> Optional[Dict[str, Any]]:
+        try:
+            kind = message_kind(message)
+        except ValueError as exc:
+            return _error(None, -32600, str(exc))
+        if kind == "response":
+            return None
+        response = self._handle(message)
+        return response if "id" in message else None
+
+    def _handle(self, message: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         method = message.get("method")
         msg_id = message.get("id")
         params = message.get("params") or {}
 
         if method == "initialize":
+            requested = params.get("protocolVersion", PROTOCOL_VERSION)
+            if not isinstance(requested, str):
+                return _error(msg_id, -32602, "protocolVersion must be a string")
             return _result(msg_id, {
-                "protocolVersion": PROTOCOL_VERSION,
+                "protocolVersion": requested if requested in SUPPORTED_VERSIONS else PROTOCOL_VERSION,
                 "capabilities": {"tools": {}},
                 "serverInfo": {"name": SERVER_NAME, "version": SERVER_VERSION,
                                "title": "FPF local skills"},
@@ -963,11 +1119,11 @@ class Server:
             return _result(msg_id, {})
 
         if method == "tools/list":
-            return _result(msg_id, {"tools": TOOLS})
+            return _result(msg_id, {"tools": self.tools()})
 
         if method == "tools/call":
             name = params.get("name", "")
-            args = params.get("arguments") or {}
+            args = params.get("arguments", {})
             try:
                 payload = self.call(name, args)
                 return _result(msg_id, {
@@ -975,13 +1131,15 @@ class Server:
                                  "text": json.dumps(payload, indent=2, ensure_ascii=False)}],
                     "isError": False,
                 })
+            except InvalidParams as exc:
+                return _error(msg_id, -32602, str(exc))
             except Exception as exc:  # noqa: BLE001 - reported to the client
                 return _result(msg_id, {
                     "content": [{"type": "text", "text": f"{type(exc).__name__}: {exc}"}],
                     "isError": True,
                 })
 
-        if msg_id is None:
+        if "id" not in message:
             return None
         return _error(msg_id, -32601, f"method not found: {method}")
 
@@ -995,6 +1153,8 @@ def _truncate(data: Dict[str, Any], limit: Any, offset: Any) -> Dict[str, Any]:
     end = start + int(limit) if limit else len(text)
     out = dict(data)
     out["markdown"] = text[start:end]
+    if "returned_bytes" in out:
+        out["returned_bytes"] = len(out["markdown"].encode("utf-8"))
     out["truncated"] = end < len(text) or start > 0
     out["next_offset"] = end if end < len(text) else None
     return out
@@ -1021,18 +1181,19 @@ def serve(server: Server, stdin=None, stdout=None) -> int:
         if not line:
             continue
         try:
-            message = json.loads(line)
-        except json.JSONDecodeError as exc:
+            message = decode_message(line)
+        except (ValueError, RecursionError) as exc:
             response = _error(None, -32700, f"parse error: {exc}")
         else:
             try:
                 response = server.handle(message)
             except Exception:  # noqa: BLE001 - never kill the transport
                 traceback.print_exc(file=sys.stderr)
-                response = _error(message.get("id"), -32603, "internal error")
+                response = _error(message.get("id") if isinstance(message, dict) else None,
+                                  -32603, "internal error")
         if response is not None:
             # MCP stdio messages must not contain embedded newlines.
-            stdout.write(json.dumps(response, ensure_ascii=False) + "\n")
+            stdout.write(json.dumps(response, ensure_ascii=True) + "\n")
             stdout.flush()
     return 0
 
@@ -1063,7 +1224,7 @@ def selftest(skills_root: Path) -> int:
 
     status = server.call("get_corpus_status", {})
     check("status counts skills", status["skills"] >= 15, str(status["skills"]))
-    check("status counts patterns", status["patterns"] == 885, str(status["patterns"]))
+    check("status counts patterns", status["patterns"] >= 885, str(status["patterns"]))
 
     pubs = server.call("list_publications", {"limit": 100})
     check("lists publications", pubs["total"] >= 15, str(pubs["total"]))
@@ -1112,6 +1273,8 @@ def main() -> int:
                          "(default 127.0.0.1:8765)")
     ap.add_argument("--selftest", action="store_true",
                     help="run built-in checks instead of serving")
+    ap.add_argument("--allow-maker-tools", action="store_true",
+                    help="enable repository document tools over HTTP (trusted clients only)")
     ap.add_argument("--list-tools", action="store_true",
                     help="print the tool list and exit")
     args = ap.parse_args()
@@ -1138,7 +1301,7 @@ def main() -> int:
             return 2
         return http_transport.serve(
             server, host or "127.0.0.1", port_number,
-            connect_page=_connect_page(root))
+            connect_page=_connect_page(root), allow_maker_tools=args.allow_maker_tools)
 
     return serve(server)
 

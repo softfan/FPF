@@ -1,0 +1,14 @@
+# Scope: skill-maker/ and every descendant, independent of parent Git settings.
+* text=auto eol=lf
+
+.gitignore text eol=lf
+.gitattributes text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.template text eol=lf
+*.sh text eol=lf
+*.json text eol=lf
+
+# Native Windows entry points retain CRLF in the working tree.
+*.cmd text eol=crlf
+*.ps1 text eol=crlf

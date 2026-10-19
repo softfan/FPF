@@ -24,7 +24,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import pickle
 import re
 import sys
 from dataclasses import dataclass
@@ -90,9 +89,8 @@ class PatternIndex:
     """Lazy index over a built skill directory."""
 
     def __init__(self, skill_root: Optional[Path] = None):
-        self._skill_root = skill_root or self._detect_skill_root()
+        self._skill_root = (skill_root or self._detect_skill_root()).resolve()
         self._entries: Optional[Dict[str, PatternEntry]] = None
-        self._cache_path = self._skill_root / ".fpf_index.pickle"
 
     # --- location ---------------------------------------------------------
     @staticmethod
@@ -134,14 +132,17 @@ class PatternIndex:
     def reference_dir(self) -> Path:
         return self._skill_root / "reference"
 
+    def _is_local_file(self, path: Path) -> bool:
+        return path.is_file() and path.resolve().is_relative_to(self._skill_root)
+
     def _patterns_dir(self) -> Optional[Path]:
         ref = self.reference_dir
         preferred = ref / "fpf-patterns"
-        if (preferred / "index.md").exists():
+        if self._is_local_file(preferred / "index.md"):
             return preferred
         if ref.exists():
             for d in sorted(ref.iterdir()):
-                if d.is_dir() and (d / "index.md").exists():
+                if d.is_dir() and self._is_local_file(d / "index.md"):
                     return d
         return None
 
@@ -151,16 +152,8 @@ class PatternIndex:
         if pdir is None:
             return {}
         index_path = pdir / "index.md"
-        if self._cache_path.exists():
-            try:
-                if self._cache_path.stat().st_mtime >= index_path.stat().st_mtime:
-                    with open(self._cache_path, "rb") as f:
-                        data = pickle.load(f)
-                        if isinstance(data, dict):
-                            return data
-            except (pickle.UnpicklingError, EOFError, OSError):
-                pass
-
+        # The small Markdown indexes are cheap to parse and cached in memory.
+        # Never deserialize an executable pickle shipped alongside a skill.
         entries: Dict[str, PatternEntry] = {}
         kw_map = self._load_keyword_map()
         for line in index_path.read_text("utf-8").splitlines():
@@ -191,17 +184,12 @@ class PatternIndex:
                 file_path=str(pdir.relative_to(self._skill_root) / fname),
                 role=role,
             )
-        try:
-            with open(self._cache_path, "wb") as f:
-                pickle.dump(entries, f)
-        except OSError:
-            pass
         return entries
 
     def _load_keyword_map(self) -> Dict[str, str]:
         kw_path = self.reference_dir / "keyword-index.md"
         result: Dict[str, List[str]] = {}
-        if not kw_path.exists():
+        if not self._is_local_file(kw_path):
             return {}
         for line in kw_path.read_text("utf-8").splitlines():
             if not line.startswith("|") or line.startswith("| :"):
@@ -263,6 +251,9 @@ class PatternIndex:
         )
 
     def read_pattern(self, pattern_id: str) -> Optional[str]:
+        if not isinstance(pattern_id, str) or not re.fullmatch(
+                r"[A-Za-z][A-Za-z0-9]*(?:[.:][A-Za-z0-9_]+(?:-[A-Za-z0-9_]+)*)+", pattern_id):
+            return None
         if pattern_id and pattern_id[0].islower():
             pattern_id = pattern_id[0].upper() + pattern_id[1:]
         pdir = self._patterns_dir()
@@ -270,10 +261,11 @@ class PatternIndex:
             return None
         for stem in (id_to_filename(pattern_id), pattern_id):
             path = pdir / f"{stem}.md"
-            if path.exists():
+            if self._is_local_file(path):
                 return path.read_text("utf-8")
         for f in pdir.glob(f"{pattern_id}_*.md"):
-            return f.read_text("utf-8")
+            if self._is_local_file(f):
+                return f.read_text("utf-8")
         return None
 
     def available_in_domain(self, domain: str) -> List[str]:
@@ -287,6 +279,8 @@ class PatternIndex:
         out: List[Tuple[str, Path]] = []
         for pattern in ("intro/*.md", "*/intro/*.md"):
             for f in sorted(ref.glob(pattern)):
+                if not self._is_local_file(f):
+                    continue
                 slug = f.stem
                 out.append((slug, f))
         return out
@@ -312,7 +306,7 @@ class PatternIndex:
         ref = self.reference_dir
         if not ref.exists():
             return []
-        return [(f.stem, f) for f in sorted(ref.glob("docs/*.md"))]
+        return [(f.stem, f) for f in sorted(ref.glob("docs/*.md")) if self._is_local_file(f)]
 
     def read_doc(self, query: str) -> Optional[Tuple[str, str]]:
         q = query.lower().strip().replace(" ", "-")

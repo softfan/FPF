@@ -18,8 +18,9 @@ FPF-Spec.md, DPFs/**  ──►  skill_config.py  ──►  split_spec.py  ─�
 ```
 
 Layout: `src/skillmaker/` is the package (engine, catalogue, CLIs, `frameworks/`,
-`templates/`), `tests/` holds the seven suites, and only the three build entry
-points and the three documents stay at `skill-maker/` root. Modules are run as
+`templates/`), `tests/` holds the regression suites, and `evals/` holds optional
+quality scenarios. The build entry points and permanent documentation stay
+at `skill-maker/` root. Modules are run as
 files, not installed — each one puts `src/` on `sys.path` for itself.
 
 `skills/` is gitignored and disposable. **Never hand-edit it** — a manual fix
@@ -61,24 +62,37 @@ copy inside a skill relies on `_PKG_PARENT` pointing at `scripts/`.
 
 ## Verification
 
-- **No pytest, no dependencies, no CI.** Each suite is a standalone script with
-  its own `TestRunner`; `-v` prints each assertion. There is no per-test
-  selector — run the whole suite (0.3–5 s each).
+- **No pytest, no dependencies, no CI.** Suites are standalone scripts; most
+  accept `-v` to print each assertion. There is no per-test selector — run the
+  whole suite. HTTP startup checks can take longer while loading the corpus.
 - `test_fpf_pipeline.py` and `test_dpf_pipeline.py` build what they need, so
   they run standalone; the latter still needs the index (`skills/README.md`,
   `index.json`, `CROSS-REFERENCES.md`) from `skill_index.py`.
 - The rest read the built tree: `test_mcp_server.py` refuses to start without
   `skills/`, and `test_derived.py` / `test_frameworks.py` fail their built-tree
   checks. Build first — "skills/ missing" is an unbuilt tree, not a bug.
-- Green today is **1099 assertions**: FPF 91, DPF 539, frameworks 116, generic
-  48, MCP 118, derived 158, HTTP 29.
+- The original suites carry **1099 assertions**: FPF 91, DPF 539, frameworks 116,
+  generic 48, MCP 118, derived 158, HTTP 29. `test_hardening.py` adds 193 offline
+  regression assertions on Linux (symlink and special-file assertions depend
+  on OS support); the complete Linux build has 1292 assertions. Native Windows
+  also runs eight real Hidden/System/ReadOnly assertions, not executed on Linux.
+- A user-provided native Win10 PowerShell run with Python 3.13.7 passed 1299
+  assertions (hardening 200, HTTP 29) and the audit. Do not label that combination
+  unverified; native cmd and other Windows/Python combinations remain untested.
 - The suites are offline. They verify against the committed
   `catalogue.snapshot.json`. Only `fpf_frameworks.py catalogue --verify`
   (without `--offline`) and `fpf_update.py` reach the network — do not wire
   either into a default path.
 - **Step 4, the audit, is non-fatal in all three build scripts.** A green build
   does not mean the audit was clean; read its output.
-- Step 10 is *skipped*, not passed, when `bash` is missing (PowerShell/cmd).
+- Step 10 runs natively in PowerShell/cmd via `test_mcp_http.py` (29 checks),
+  using the build's own Python and no Bash/curl/WSL. `build.sh` uses the shell
+  equivalent. Do not count both alternatives twice in default test totals.
+- The shell walkthrough waits 60 seconds by default (`MCP_STARTUP_TIMEOUT`, 1–3600);
+  the native alternative accepts `--startup-timeout`, also defaulting to 60.
+  Failure retains server/probe logs in the printed temporary directory. Optional
+  `test_http_startup.py` exercises delayed/crashed startup and timeout diagnostics
+  with Bash/curl and the native runner; its 14 checks are separate from default totals.
 
 ## Where a change belongs
 
@@ -111,8 +125,9 @@ leaves the rest skipped.
   `bash skill-maker\tests\test-mcp-http.sh`; bash reads `\` as an escape and reports
   `skill-makertestest-mcp-http.sh: No such file or directory`. Backslashes are
   fine for `%PYTHON%` and PowerShell (Windows programs parse them), wrong for
-  any POSIX tool. Step 10 also needs `$env:PYTHON` exported, or the script
-  default to `python3`, which most Windows installs do not have.
+  any POSIX tool. PowerShell/cmd step 10 avoids this boundary completely:
+  PATH's `bash.exe` can be WSL and switch to an older Linux Python even while
+  the Windows Python suites pass. The native HTTP test uses `sys.executable`.
 - **Console encoding.** Every entry point calls `ensure_utf8_stdio()`; a new
   script that prints a pattern title must do the same, and a subprocess must be
   decoded with `encoding="utf-8"`, or a cp1251/cp437 console raises
@@ -120,28 +135,43 @@ leaves the rest skipped.
 - **LF everywhere.** Generated files use `\n` via `write_text_lf`, so trees are
   byte-identical across platforms and `rebuild` compares exactly. `.gitattributes`
   forces LF on `*.py|*.md|*.template|*.sh|*.json` and CRLF on `*.cmd|*.ps1`.
+- **Hidden/system metadata on Windows.** Existing `.fpf_manifest.json` and
+  other files may carry those attributes after cross-OS use/copying (not proven
+  merely by their dot prefix). `write_text_lf` removes `O_TRUNC` in its opener,
+  then truncates the handle; this avoids CREATE_ALWAYS's attribute restriction.
+  Do not add chmod/attrib resets, ACL changes, or elevated retries. ReadOnly and
+  sharing/ACL errors must still fail; inspect actual attributes before diagnosis.
 - **`Path.write_text` is newline-translating**: on Windows it rewrites LF as
   `os.linesep`. Never use it on a file the engine digests or git tracks — use
   `write_text_lf` for output, `read_bytes`/`write_bytes` for a round-trip. The
   portability scan in `test_frameworks.py` exempts `test_*.py`, which is how the
   digest probe used to corrupt three templates on every Windows run. Its
-  companion check now fails and names any tracked file that picked up a CRLF;
-  recover with `git checkout -- <path>`, or strip the CRs when the file is not
-  committed yet.
+  companion check fails and names any tracked source file that picked up CRLF.
+  Restore LF without discarding unrelated edits; never reset a user's changes
+  as part of a line-ending repair.
 - **No `:` in generated file names** (`SYSE.Application:1` →
   `SYSE.Application-1.md`) — the tree has to work on Windows.
 - `skills/index.json`, `CROSS-REFERENCES.md`, `CONNECT.md` and the per-skill
   `SKILL.md`/`README.md` are generated. A wording complaint about them is a
   complaint about a template.
 
-## Operating rules carried over from the machine draft
+## Repository hygiene
+
+- Local `.gitignore` and `.gitattributes` apply to this directory and descendants.
+  Keep caches, logs, virtual environments and eval results out of release inputs.
+- Keep permanent design/usage documentation and regression fixtures. Do not ship
+  temporary implementation plans, review transcripts or machine-specific reports.
+- Verify the audit output as well as the test exit codes before release; see
+  README's release checklist. Do not publish, tag or commit without authorization.
+
+## Working with code intelligence
 
 - Answer from the file when the question names a file. Escalate to an index or
   graph only for relationship questions (callers, blast radius, flow).
 - **Consent before heavy pipelines**: `codegraph init`, `gitnexus analyze` (and
   `--pdg`), `/understand`, `/graphify`. They write index directories and take
-  minutes. This repo has neither a `.codegraph/` nor a GitNexus index — verify
-  before relying on one, and never create one unasked.
+  time. Check for an existing index and verify its freshness before relying on
+  it. Indexes are local, ignored artefacts; never create or replace one unasked.
 - An empty result from a graph or index means *not indexed*, not *does not
   exist*. Say which.
 - Do not answer live facts (publisher catalogue, upstream FPF repository) from

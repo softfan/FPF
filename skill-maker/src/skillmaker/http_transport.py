@@ -32,13 +32,12 @@ import json
 import secrets
 import sys
 import threading
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from typing import Dict, Optional, Set, Tuple
+from typing import Dict, Optional, Tuple
 from urllib.parse import urlparse
 
-#: Versions this server will answer.  A client that asks for something else gets
-#: 400, as the specification requires, rather than a silent downgrade.
-SUPPORTED_VERSIONS = ("2025-06-18", "2025-03-26")
+from skillmaker.mcp_server import SUPPORTED_VERSIONS, decode_message, message_kind
 
 #: Loopback names an ``Origin`` header may carry.  Anything else is refused:
 #: without this check a web page could drive a local server through the browser.
@@ -51,25 +50,35 @@ class SessionStore:
     """Session ids and nothing else."""
 
     def __init__(self) -> None:
-        self._ids: Set[str] = set()
+        self._ids: Dict[str, float] = {}
         self._lock = threading.Lock()
+
+    def _expire(self) -> None:
+        now = time.monotonic()
+        self._ids = {key: expires for key, expires in self._ids.items() if expires > now}
 
     def create(self) -> str:
         token = secrets.token_urlsafe(24)
         with self._lock:
-            self._ids.add(token)
+            self._expire()
+            if len(self._ids) >= 1024:
+                raise ValueError("session limit reached; close a session or wait for expiry")
+            self._ids[token] = time.monotonic() + 3600
         return token
 
     def valid(self, token: Optional[str]) -> bool:
         with self._lock:
+            self._expire()
             return bool(token) and token in self._ids
 
     def drop(self, token: Optional[str]) -> bool:
         with self._lock:
-            return bool(token) and self._ids.discard(token) is None
+            self._expire()
+            return self._ids.pop(token, None) is not None
 
     def __len__(self) -> int:
         with self._lock:
+            self._expire()
             return len(self._ids)
 
 
@@ -82,8 +91,15 @@ def _origin_allowed(origin: str) -> bool:
     """
     if not origin:
         return True
-    host = urlparse(origin).hostname or ""
-    return host in LOOPBACK_HOSTS
+    try:
+        parsed = urlparse(origin)
+        # Origin is an origin, not an arbitrary URL with a trusted hostname.
+        parsed.port  # force validation of malformed/non-numeric ports
+        return (parsed.scheme in ("http", "https") and parsed.hostname in LOOPBACK_HOSTS
+                and parsed.username is None and parsed.password is None
+                and not parsed.path and not parsed.query and not parsed.fragment)
+    except ValueError:
+        return False
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -93,6 +109,10 @@ class Handler(BaseHTTPRequestHandler):
     server_version = "fpf-skills-mcp/1.0"
 
     # --- plumbing ---------------------------------------------------------
+    def setup(self) -> None:
+        super().setup()
+        self.connection.settimeout(10)
+
     def log_message(self, fmt: str, *args) -> None:  # noqa: D102
         if self.server.verbose:                       # type: ignore[attr-defined]
             sys.stderr.write("%s - %s\n" % (self.address_string(), fmt % args))
@@ -101,6 +121,10 @@ class Handler(BaseHTTPRequestHandler):
               content_type: str = "application/json",
               headers: Optional[Dict[str, str]] = None) -> None:
         self.send_response(code)
+        if self.close_connection:
+            self.send_header("Connection", "close")
+        if code == 405:
+            self.send_header("Allow", "POST, DELETE")
         if body is not None:
             self.send_header("Content-Type", content_type)
             self.send_header("Content-Length", str(len(body)))
@@ -114,11 +138,14 @@ class Handler(BaseHTTPRequestHandler):
 
     def _json(self, code: int, payload: object,
               headers: Optional[Dict[str, str]] = None) -> None:
-        body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        body = json.dumps(payload, ensure_ascii=True).encode("utf-8")
         self._send(code, body, "application/json", headers)
 
     def _error(self, code: int, message: str,
                rpc_code: Optional[int] = None) -> None:
+        # Rejected POST bodies may remain unread; never interpret them as the
+        # next request on this connection.
+        self.close_connection = True
         if rpc_code is None:
             self._json(code, {"error": message})
             return
@@ -127,13 +154,17 @@ class Handler(BaseHTTPRequestHandler):
 
     # --- guards -----------------------------------------------------------
     def _guard_origin(self) -> bool:
-        if _origin_allowed(self.headers.get("Origin", "")):
+        if len(self.headers.get_all("Origin", [])) <= 1 and _origin_allowed(self.headers.get("Origin", "")):
             return True
         self._error(403, "origin not allowed: this server accepts loopback "
                          "origins only")
         return False
 
     def _guard_version(self) -> bool:
+        if (len(self.headers.get_all("MCP-Protocol-Version", [])) > 1
+                or len(self.headers.get_all("Mcp-Session-Id", [])) > 1):
+            self._error(400, "duplicate protocol/session headers are not supported")
+            return False
         version = self.headers.get("MCP-Protocol-Version", "")
         if not version or version in SUPPORTED_VERSIONS:
             return True
@@ -144,9 +175,18 @@ class Handler(BaseHTTPRequestHandler):
     def _session(self) -> Optional[str]:
         return self.headers.get("Mcp-Session-Id") or None
 
+    def _guard_empty_body(self) -> bool:
+        """GET/DELETE bodies are unsupported; do not leave bytes on keepalive."""
+        lengths = self.headers.get_all("Content-Length", [])
+        if (self.headers.get("Transfer-Encoding") or len(lengths) > 1
+                or (lengths and lengths[0] != "0")):
+            self._error(400, "this method does not accept a request body")
+            return False
+        return True
+
     # --- verbs ------------------------------------------------------------
     def do_GET(self) -> None:  # noqa: N802 - required by BaseHTTPRequestHandler
-        if not self._guard_origin():
+        if not self._guard_origin() or not self._guard_version() or not self._guard_empty_body():
             return
         path = urlparse(self.path).path
         if path in ("/", "/connect", "/connect.md"):
@@ -158,7 +198,7 @@ class Handler(BaseHTTPRequestHandler):
                 "status": "ok",
                 "protocol": SUPPORTED_VERSIONS[0],
                 "sessions": len(self.server.sessions),  # type: ignore[attr-defined]
-                "corpus": self.server.mcp.library.status(),  # type: ignore[attr-defined]
+                "corpus": self.server.mcp.call("get_corpus_status", {}),  # type: ignore[attr-defined]
             })
             return
         if path == MCP_PATH:
@@ -180,31 +220,52 @@ class Handler(BaseHTTPRequestHandler):
         # A malformed Content-Length is a client error, not a server crash:
         # reading with a bad length would raise out of the handler and drop the
         # connection without a status line.
+        if self.headers.get("Transfer-Encoding"):
+            self._error(400, "Transfer-Encoding is not supported")
+            return
+        if len(self.headers.get_all("Content-Length", [])) > 1:
+            self._error(400, "duplicate Content-Length is not supported")
+            return
         try:
-            length = int(self.headers.get("Content-Length") or 0)
+            value = self.headers.get("Content-Length", "0")
+            if not value.isascii() or not value.isdecimal():
+                raise ValueError("invalid length")
+            length = int(value)
         except ValueError:
             self._error(400, "Content-Length must be an integer", rpc_code=-32700)
             return
-        if length < 0:
-            self._error(400, "Content-Length must not be negative", rpc_code=-32700)
+        if length > 1024 * 1024:
+            self._error(413, "request body exceeds the 1 MiB limit")
             return
-        raw = self.rfile.read(length) if length else b""
         try:
-            message = json.loads(raw.decode("utf-8"))
-        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raw = self.rfile.read(length) if length else b""
+        except TimeoutError:
+            self._error(408, "request body read timed out")
+            return
+        try:
+            message = decode_message(raw.decode("utf-8"))
+        except (ValueError, RecursionError) as exc:
             self._error(400, f"parse error: {exc}", rpc_code=-32700)
             return
-        if not isinstance(message, dict):
-            self._error(400, "a JSON-RPC message must be an object", rpc_code=-32600)
+        try:
+            kind = message_kind(message)
+        except ValueError as exc:
+            self._error(400, str(exc), rpc_code=-32600)
             return
 
         method = message.get("method")
-        is_request = "id" in message and method is not None
 
         # Initialization is the only request that may arrive without a session.
         if method == "initialize":
-            session = self.server.sessions.create()     # type: ignore[attr-defined]
             response = self.server.mcp.handle(message)  # type: ignore[attr-defined]
+            if not response or "error" in response:
+                self._json(400, response or {"error": "initialize requires an id"})
+                return
+            try:
+                session = self.server.sessions.create()  # type: ignore[attr-defined]
+            except ValueError as exc:
+                self._error(503, str(exc))
+                return
             self._json(200, response, {"Mcp-Session-Id": session})
             return
 
@@ -213,7 +274,7 @@ class Handler(BaseHTTPRequestHandler):
             self._error(404, "unknown or expired session; send initialize again")
             return
 
-        if not is_request:
+        if kind != "request":
             # A notification is accepted, not answered.
             self.server.mcp.handle(message)             # type: ignore[attr-defined]
             self._send(202)
@@ -223,7 +284,7 @@ class Handler(BaseHTTPRequestHandler):
         self._json(200, response, {"Mcp-Session-Id": session})
 
     def do_DELETE(self) -> None:  # noqa: N802
-        if not self._guard_origin():
+        if not self._guard_origin() or not self._guard_version() or not self._guard_empty_body():
             return
         if urlparse(self.path).path != MCP_PATH:
             self._error(404, "the MCP endpoint is " + MCP_PATH)
@@ -243,20 +304,39 @@ class HttpServer(ThreadingHTTPServer):
     allow_reuse_address = True
 
     def __init__(self, address: Tuple[str, int], mcp, connect_page,
-                 verbose: bool = False):
+                 verbose: bool = False, allow_maker_tools: bool = False):
         self.mcp = mcp
+        self.mcp.allow_maker_tools = allow_maker_tools
+        self._connections = threading.BoundedSemaphore(32)
         self.sessions = SessionStore()
         self.connect_page = connect_page
         self.verbose = verbose
         super().__init__(address, Handler)
 
+    def process_request(self, request, client_address):
+        if not self._connections.acquire(blocking=False):
+            self.shutdown_request(request)
+            return
+        try:
+            super().process_request(request, client_address)
+        except Exception:
+            self._connections.release()
+            raise
+
+    def process_request_thread(self, request, client_address):
+        try:
+            super().process_request_thread(request, client_address)
+        finally:
+            self._connections.release()
+
 
 def serve(mcp, host: str = "127.0.0.1", port: int = 8765,
-          connect_page=None, verbose: bool = False) -> int:
+          connect_page=None, verbose: bool = False,
+          allow_maker_tools: bool = False) -> int:
     """Run until interrupted.  Binds to loopback unless told otherwise."""
     page = connect_page or (lambda: "# MCP endpoint\n\nPOST /mcp\n")
-    httpd = HttpServer((host, port), mcp, page, verbose)
-    scheme_host = f"http://{host}:{port}"
+    httpd = HttpServer((host, port), mcp, page, verbose, allow_maker_tools)
+    scheme_host = f"http://{host}:{httpd.server_port}"
     print(f"listening on {scheme_host}{MCP_PATH}", file=sys.stderr)
     print(f"  connect page: {scheme_host}/", file=sys.stderr)
     print(f"  health:       {scheme_host}/health", file=sys.stderr)

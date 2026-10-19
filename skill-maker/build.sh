@@ -8,6 +8,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
 PYTHON="${PYTHON:-python3}"
+export PYTHON
 
 cd "$REPO_ROOT"
 
@@ -93,6 +94,10 @@ echo ""
 echo "[9/10] Checking the derived retrieval layer..."
 "$PYTHON" skill-maker/tests/test_derived.py || {
     echo "  ✗ Derived-layer tests failed"
+    exit 1
+}
+"$PYTHON" skill-maker/tests/test_hardening.py || {
+    echo "  ✗ Hardening regression tests failed"
     exit 1
 }
 

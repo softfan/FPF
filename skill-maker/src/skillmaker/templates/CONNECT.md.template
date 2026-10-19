@@ -3,7 +3,7 @@
 A read-only MCP server over the skills in this directory. Any MCP client can
 use it; nothing here is specific to one product.
 
-{{SKILL_COUNT}} skills · {{PATTERN_COUNT}} patterns · {{UNIT_COUNT}} addressable units · {{TOOL_COUNT}} tools
+{{SKILL_COUNT}} skills · {{PATTERN_COUNT}} patterns · {{UNIT_COUNT}} addressable units · {{TOOL_COUNT}} stdio tools (10 over HTTP by default)
 
 ---
 
@@ -17,7 +17,7 @@ use it; nothing here is specific to one product.
 ### stdio
 
 ```
-python {{MAKER_DIR}}/mcp_server.py --skills-root {{SKILLS_DIR}}
+python {{MAKER_DIR}}/src/skillmaker/mcp_server.py --skills-root {{SKILLS_DIR}}
 ```
 
 Register it with your client as a stdio server whose command is that line.
@@ -27,7 +27,7 @@ nothing else to stdout.
 ### Streamable HTTP
 
 ```bash
-python {{MAKER_DIR}}/mcp_server.py --http 127.0.0.1:8765
+python {{MAKER_DIR}}/src/skillmaker/mcp_server.py --http 127.0.0.1:8765
 ```
 
 | | |
@@ -40,7 +40,19 @@ python {{MAKER_DIR}}/mcp_server.py --http 127.0.0.1:8765
 
 The server is read-only: it cannot edit your files or the publications. It
 serves the skills in this directory and answers questions about how they were
-built.
+built. HTTP exposes only reading and derived tools unless started with
+`--allow-maker-tools`. Enable this only for trusted clients. Document tools
+accept regular Markdown files inside the repository, at most 32 MiB.
+
+The reading corpus is frozen in memory at startup. Every reading response
+carries a content-derived snapshot. Restart the server after a rebuild; a
+running process continues serving its original edition.
+
+HTTP limits: 1 MiB request bodies, 10-second socket read timeout, 32 concurrent
+connections, 1024 sessions and a one-hour session lifetime. These are safeguards,
+not a production hosting stack. External access requires a maintained reverse
+proxy providing TLS, authentication and request/rate limits. Do not expose the
+unauthenticated stdlib server directly to the internet.
 
 A browser `GET` to the endpoint returns `405 Method Not Allowed`. That is
 correct: it is a JSON-RPC endpoint, not a web page. Use `POST`.
@@ -52,7 +64,7 @@ correct: it is a JSON-RPC endpoint, not a web page. Use `POST`.
 Every MCP client has its own configuration syntax; follow its documentation.
 The two facts a client needs are always the same:
 
-- **stdio**: the command `python {{MAKER_DIR}}/mcp_server.py`
+- **stdio**: the command `python {{MAKER_DIR}}/src/skillmaker/mcp_server.py`
 - **HTTP**: the URL `http://127.0.0.1:8765/mcp`
 
 No credentials are involved. If a client offers only a local command, use
@@ -105,6 +117,9 @@ Keep four kinds of evidence apart when you report the result:
 
 ### Skill-maker
 
+Available over stdio; opt-in over HTTP with `--allow-maker-tools`.
+`verify_catalogue` uses the offline snapshot unless `offline: false` is explicit.
+
 | Tool | Arguments | Returns |
 | :--- | :--- | :--- |
 | `list_profiles` | — | the decomposition profiles this toolchain knows |
@@ -129,7 +144,7 @@ so a client without section-aware tooling can read exactly what it needs.
 ## 5. Test it from a shell
 
 ```bash
-bash {{MAKER_DIR}}/test-mcp-http.sh
+bash {{MAKER_DIR}}/tests/test-mcp-http.sh
 ```
 
 The script starts the server, walks the protocol by hand, and asserts each step:
@@ -139,7 +154,7 @@ initialize, `Mcp-Session-Id`, the initialized notification, `tools/list`,
 To test a server that is already running elsewhere:
 
 ```bash
-MCP_ENDPOINT=http://host:port/mcp START_SERVER=0 bash {{MAKER_DIR}}/test-mcp-http.sh
+MCP_ENDPOINT=http://host:port/mcp START_SERVER=0 bash {{MAKER_DIR}}/tests/test-mcp-http.sh
 ```
 
 ### By hand
@@ -195,7 +210,7 @@ Every file here is plain Markdown. Without a server:
 2. Pick an index in `reference/` — by ID, by question, or by keyword.
 3. Load the `File` column of the matching row.
 4. For a large unit, read only its working sections: the line ranges are in
-   `reference/sections.json`, and `reference/contract/<ID>.md` holds them as a
+   `reference/sections.json`, and `reference/<framework>/contract/<ID>.md` holds them as a
    file when the build emitted views.
 
 Nothing in this directory requires a server to be useful.

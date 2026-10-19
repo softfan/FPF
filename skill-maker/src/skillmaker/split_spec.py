@@ -27,6 +27,7 @@ Exit codes: 0 = success, 1 = parse error.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -46,7 +47,7 @@ if str(_PKG_PARENT) not in sys.path:
 
 from skillmaker._fpf_common import (
     FenceTracker, clean, id_to_filename, intro_slug, is_end_marker,
-    sha256, sort_key, unit_role, write_text_lf, ID_SEGMENT_RE,
+    sha256, sort_key, unit_role, write_text_lf, ID_SEGMENT_RE, manifest_entry_path,
 )
 
 from skillmaker.frameworks.grammar import split_heading
@@ -641,7 +642,7 @@ class FileWriter:
         h = sha256(content)
         rel = str(path.relative_to(self.output))
         self._new[rel] = h
-        if self._old.get(rel) == h and path.exists():
+        if self._old.get(rel) == h and path.is_file() and path.read_bytes() == content.encode("utf-8"):
             self._skipped += 1
             return False
         write_text_lf(path, content)
@@ -652,7 +653,7 @@ class FileWriter:
         h = sha256(data.decode("utf-8", errors="replace"))
         rel = str(path.relative_to(self.output))
         self._new[rel] = h
-        if self._old.get(rel) == h and path.exists():
+        if self._old.get(rel) == h and path.is_file() and path.read_bytes() == data:
             self._skipped += 1
             return False
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -664,6 +665,8 @@ class FileWriter:
         if self._hpath.exists():
             try:
                 self._old = json.loads(self._hpath.read_text("utf-8"))
+                if not isinstance(self._old, dict):
+                    self._old = {}
             except Exception:
                 self._old = {}
 
@@ -969,6 +972,9 @@ class FileWriter:
         if curated_path.exists():
             try:
                 curated = json.loads(curated_path.read_text("utf-8"))
+                if (not isinstance(curated, dict) or not isinstance(curated.get("routes", []), list)
+                        or any(not isinstance(route, dict) for route in curated.get("routes", []))):
+                    raise ValueError("expected an object with a list of route objects")
             except (OSError, ValueError) as exc:
                 # Silence here would drop hand-written routes without a word;
                 # the file is the one place a user edits by hand, so a typo in
@@ -1110,9 +1116,18 @@ class FileWriter:
         patterns = [u for u in units if u.role == "pattern"]
         refs = [u for u in units if u.role != "pattern"]
         fw_count = len(cfg.frameworks)
+        subject = " ".join(fw.description for fw in cfg.frameworks
+                           if fw.role == "framework") or cfg.source_note or cfg.title or cfg.name
+        if len(subject) > 700:
+            # Suites carry many long descriptions. Names retain all constituent
+            # subjects without breaking the 1024-character metadata budget.
+            subject = "; ".join(fw.name for fw in cfg.frameworks if fw.role == "framework")
+        if len(subject) > 700:
+            subject = subject[:697].rsplit(" ", 1)[0] + "..."
         return {
             "{{SKILL_NAME}}": cfg.name,
             "{{TITLE}}": cfg.title or cfg.name,
+            "{{SUBJECT_DESCRIPTION}}": subject,
             "{{KIND}}": cfg.kind_label or "Framework",
             "{{PROFILE}}": cfg.profile_key or cfg.name,
             "{{GENRE}}": cfg.genre,
@@ -1452,27 +1467,27 @@ def rebuild_spec(config: SkillConfig, output: Path,
         print(f"Error: manifest not found at {mpath}", file=sys.stderr)
         sys.exit(1)
     manifest = json.loads(mpath.read_text("utf-8"))
+    if (not isinstance(manifest, list)
+            or any(not isinstance(entry, dict) or type(entry.get("order")) is not int
+                   for entry in manifest)):
+        raise ValueError(f"invalid reconstruction manifest: {mpath}")
     manifest.sort(key=lambda x: x["order"])
     parts: List[str] = []
     for entry in manifest:
         kind = entry["kind"]
-        if kind == "doc":
-            if not include_docs:
-                continue
-            path = config.output / "reference" / "docs" / entry["key"]
-        elif kind == "intro":
-            path = config.output / "reference" / "intro" / entry["key"]
-        else:
-            path = config.output / "reference" / entry["framework"] / entry["key"]
-        if not path.exists():
-            print(f"Warning: {path} missing", file=sys.stderr)
+        path = manifest_entry_path(config.output, entry)
+        if kind == "doc" and not include_docs:
             continue
+        if not path.is_file():
+            raise ValueError(f"cannot reconstruct publication: missing {path}")
+        if path.resolve() == output.resolve():
+            raise ValueError("rebuild output must not overwrite a manifest input")
         parts.append(path.read_text("utf-8"))
     rebuilt = "\n".join(parts)
     if rebuilt and not rebuilt.endswith("\n"):
         rebuilt += "\n"
     write_text_lf(output, rebuilt)
-    print(f"Rebuilt: {output} ({len(rebuilt)} bytes)")
+    print(f"Rebuilt: {output} ({len(rebuilt.encode('utf-8'))} bytes)")
 
 
 def print_stats(configs) -> int:
@@ -1560,7 +1575,6 @@ def _engine_digest(config: SkillConfig) -> str:
     every module the engine imports and every template it reads, not just the
     two entry-point templates.
     """
-    import hashlib
     h = hashlib.sha256()
     for rel in _ENGINE_FILES:
         path = _SCRIPT_DIR / rel
@@ -1576,7 +1590,7 @@ def _engine_digest(config: SkillConfig) -> str:
                 continue
             if path.suffix == ".pyc":
                 continue
-            h.update(str(path.relative_to(_SCRIPT_DIR)).encode())
+            h.update(path.relative_to(_SCRIPT_DIR).as_posix().encode())
             h.update(path.read_bytes())
     for template in (config.skill_template, config.readme_template):
         if template and template.exists():
@@ -1585,24 +1599,38 @@ def _engine_digest(config: SkillConfig) -> str:
     # Resolved paths: ``--source FPF-Spec.md`` and the config's absolute path
     # name the same file, and must produce the same digest, or the incremental
     # check silently never fires.
-    h.update(repr(sorted(
-        (fw.key, str(Path(fw.source).resolve()), fw.prefix_re, fw.name, fw.docid)
-        for fw in config.frameworks)).encode())
-    h.update(repr([(d.slug, str(Path(d.source).resolve()))
-                   for d in config.docs]).encode())
-    h.update(f"{config.name}|{config.layout}|{config.intro_split}".encode())
+    from dataclasses import asdict
+
+    def normalise(value):
+        if isinstance(value, Path):
+            return value.resolve().as_posix()
+        if isinstance(value, dict):
+            return {key: normalise(item) for key, item in value.items()}
+        if isinstance(value, (tuple, list)):
+            return [normalise(item) for item in value]
+        return value
+
+    settings = asdict(config)
+    # The output location does not change generated content. Everything else,
+    # including genre, grammar, views and framework order, does.
+    settings.pop("output")
+    h.update(json.dumps(normalise(settings), sort_keys=True,
+                        ensure_ascii=False).encode("utf-8"))
+    curated = config.output / "curated-routes.json"
+    if curated.is_file():
+        h.update(b"curated-routes\0" + curated.read_bytes())
     return h.hexdigest()[:32]
 
 
 def _source_digest(config: SkillConfig) -> str:
-    import hashlib
     h = hashlib.sha256()
-    for fw in config.frameworks:
-        if fw.source.exists():
-            h.update(fw.source.read_bytes())
-    for doc in config.docs:
-        if doc.source.exists():
-            h.update(doc.source.read_bytes())
+    for path in ([fw.source for fw in config.frameworks]
+                 + [doc.source for doc in config.docs]):
+        h.update(path.resolve().as_posix().encode("utf-8") + b"\0")
+        if path.is_file():
+            h.update(b"file\0" + hashlib.sha256(path.read_bytes()).digest())
+        else:
+            h.update(b"missing\0")
     return h.hexdigest()[:32]
 
 
@@ -1627,38 +1655,49 @@ def _is_up_to_date(config: SkillConfig) -> bool:
         return False
     try:
         stamp = json.loads(stamp_path.read_text("utf-8"))
-    except Exception:
+        if not isinstance(stamp, dict):
+            return False
+    except (OSError, ValueError):
         return False
     if stamp.get("engine") != _engine_digest(config):
         return False
     if stamp.get("sources") != _source_digest(config):
         return False
     try:
-        entries = json.loads(manifest_path.read_text("utf-8"))
-    except Exception:
-        return False
-    for entry in entries:
-        kind = entry.get("kind")
-        if kind == "doc":
-            path = config.output / "reference" / "docs" / entry["key"]
-        elif kind == "intro":
-            path = config.output / "reference" / "intro" / entry["key"]
-        else:
-            path = config.output / "reference" / entry["framework"] / entry["key"]
-        if not path.exists():
+        if stamp.get("registry") != hashlib.sha256(hash_path.read_bytes()).hexdigest():
             return False
-
-    # Views are an output property, not an engine property: a build asked for
-    # them and produced none is not up to date, whatever the stamp says.
-    if config.emit_views:
-        for entry in entries:
-            if entry.get("kind") != "unit":
-                continue
-            view = (config.output / "reference" / entry["framework"]
-                    / "contract" / entry["key"])
-            if view.exists():
-                return True
+        outputs = json.loads(hash_path.read_text("utf-8"))
+        if not isinstance(outputs, dict) or not outputs:
+            return False
+        for rel, expected in outputs.items():
+            path = config.output / rel
+            if (not path.resolve().is_relative_to(config.output.resolve())
+                    or not path.is_file() or not isinstance(expected, str)
+                    or hashlib.sha256(path.read_bytes()).hexdigest() != expected):
+                return False
+    except (OSError, ValueError, TypeError, RuntimeError):
         return False
+    try:
+        entries = json.loads(manifest_path.read_text("utf-8"))
+        if stamp.get("manifest") != sha256(manifest_path.read_text("utf-8")):
+            return False
+        if not isinstance(entries, list):
+            return False
+        for entry in entries:
+            kind = entry.get("kind")
+            if kind == "doc":
+                path = config.output / "reference" / "docs" / entry["key"]
+            elif kind == "intro":
+                path = config.output / "reference" / "intro" / entry["key"]
+            elif kind == "unit":
+                path = config.output / "reference" / entry["framework"] / entry["key"]
+            else:
+                return False
+            if not path.is_file() or not path.resolve().is_relative_to(config.output.resolve()):
+                return False
+    except (OSError, ValueError, TypeError, KeyError, AttributeError, RuntimeError):
+        return False
+
     return True
 
 
@@ -1677,6 +1716,17 @@ def build_skill(config: SkillConfig, output: Optional[Path] = None,
             fw.source = source_override
     if emit_views is not None:
         config.emit_views = emit_views
+
+    target = config.output.resolve()
+    protected = [fw.source for fw in config.frameworks] + [doc.source for doc in config.docs]
+    protected += [path for path in (config.skill_template, config.readme_template) if path]
+    if (any(path.resolve().is_relative_to(target) for path in protected)
+            or _SCRIPT_DIR.resolve().is_relative_to(target)):
+        print("Error: output must not contain source publications, templates or the engine", file=sys.stderr)
+        return 1
+    if config.output.is_dir() and any(path.is_symlink() for path in config.output.rglob("*")):
+        print("Error: output contains symbolic links; use a dedicated generated directory", file=sys.stderr)
+        return 1
 
     if not force and _is_up_to_date(config):
         # Report the same counts a full build would, from the manifest, so a
@@ -1719,6 +1769,8 @@ def build_skill(config: SkillConfig, output: Optional[Path] = None,
     write_text_lf(_stamp_path(config), json.dumps({
         "engine": _engine_digest(config),
         "sources": _source_digest(config),
+        "manifest": sha256((config.output / f".{config.name}_manifest.json").read_text("utf-8")),
+        "registry": hashlib.sha256((config.output / f".{config.name}_hashes.json").read_bytes()).hexdigest(),
     }, indent=2))
     print(f"  Written: {stats['written']}, Skipped: {stats['skipped']}")
     return 0

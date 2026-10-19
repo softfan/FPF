@@ -23,10 +23,11 @@ pattern index while still making them individually addressable.
 from __future__ import annotations
 
 import hashlib
+import os
 import re
 import sys
 from pathlib import Path
-from typing import List, Tuple
+from typing import Any, Dict, List, Tuple
 
 # ---------------------------------------------------------------------------
 # Console encoding
@@ -66,9 +67,18 @@ def write_text_lf(path: Path, content: str) -> None:
     so the newline is pinned here rather than left to the platform.
 
     Creates the parent directory, which every caller would otherwise repeat.
+
+    Open/create without O_TRUNC, then truncate the opened handle. On Windows,
+    O_CREAT|O_TRUNC maps to CREATE_ALWAYS, which rejects existing hidden/system
+    files unless their attributes are specified. Opening without truncation
+    preserves those attributes (and ACLs); readonly/locked files still fail.
+    This is an in-place write, not an atomic replacement or a lock bypass.
     """
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8", newline="\n") as fh:
+    def opener(name, flags):
+        return os.open(name, flags & ~os.O_TRUNC, 0o666)
+    with open(path, "w", encoding="utf-8", newline="\n", opener=opener) as fh:
+        fh.truncate(0)
         fh.write(content)
 
 # ---------------------------------------------------------------------------
@@ -204,6 +214,33 @@ class FenceTracker:
 def sha256(content: str) -> str:
     """Return hex SHA-256 of a UTF-8 string."""
     return hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+
+def manifest_entry_path(skill_root: Path, entry: Dict[str, Any]) -> Path:
+    """Resolve the engine's flat manifest format within exactly one skill.
+
+    Keys and framework names are individual portable filename components, not
+    paths. Validate both POSIX and Windows separators on every platform.
+    """
+    if not isinstance(entry, dict):
+        raise ValueError("manifest entry must be an object")
+    kind = entry.get("kind")
+    key = entry.get("key")
+    if kind not in ("unit", "intro", "doc"):
+        raise ValueError(f"unknown manifest entry kind: {kind!r}")
+    framework = entry.get("framework") if kind == "unit" else None
+    for value in ([key, framework] if kind == "unit" else [key]):
+        if (not isinstance(value, str) or not value or value in (".", "..")
+                or any(char in value for char in '/\\:\x00')
+                or Path(value).is_absolute()):
+            raise ValueError(f"invalid manifest filename component: {value!r}")
+    if not key.endswith(".md"):
+        raise ValueError(f"manifest key must name Markdown: {key!r}")
+    directory = framework if kind == "unit" else ("intro" if kind == "intro" else "docs")
+    path = skill_root / "reference" / directory / key
+    if not path.resolve().is_relative_to(skill_root.resolve()):
+        raise ValueError(f"manifest file escapes its skill: {key!r}")
+    return path
 
 
 def sort_key(pattern_id: str) -> Tuple:
