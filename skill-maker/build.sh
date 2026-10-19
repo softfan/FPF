@@ -38,67 +38,67 @@ SKILLS=(
 
 echo ""
 echo "[1/10] Splitting FPF Core + Library documents..."
-"$PYTHON" skill-maker/split_fpf_spec.py split \
+"$PYTHON" skill-maker/src/skillmaker/split_fpf_spec.py split \
     --source FPF-Spec.md \
     --output skills/fpf \
     --views
 
 echo ""
 echo "[2/10] Splitting DPF Suites and standalone DPFs..."
-"$PYTHON" skill-maker/split_dpf_spec.py split --all --views
+"$PYTHON" skill-maker/src/skillmaker/split_dpf_spec.py split --all --views
 
 echo ""
 echo "[3/10] Writing the skills index (skills/README.md, skills/index.json)..."
-"$PYTHON" skill-maker/skill_index.py
+"$PYTHON" skill-maker/src/skillmaker/skill_index.py
 
 echo ""
 echo "[4/10] Running FPF audit..."
-"$PYTHON" skill-maker/audit_fpf_patterns.py \
+"$PYTHON" skill-maker/src/skillmaker/audit_fpf_patterns.py \
     --source FPF-Spec.md \
     --skill-dir skills/fpf || echo "  ⚠ Audit reported issues"
 
 echo ""
 echo "[5/10] Running tests (FPF + DPF)..."
-"$PYTHON" skill-maker/test_fpf_pipeline.py || {
+"$PYTHON" skill-maker/tests/test_fpf_pipeline.py || {
     echo "  ✗ FPF tests failed"
     exit 1
 }
-"$PYTHON" skill-maker/test_dpf_pipeline.py || {
+"$PYTHON" skill-maker/tests/test_dpf_pipeline.py || {
     echo "  ✗ DPF tests failed"
     exit 1
 }
 
 echo ""
 echo "[6/10] Checking framework decomposition against the publisher catalogue..."
-"$PYTHON" skill-maker/test_frameworks.py || {
+"$PYTHON" skill-maker/tests/test_frameworks.py || {
     echo "  ✗ Framework tests failed"
     exit 1
 }
 
 echo ""
 echo "[7/10] Checking the generic skill builder..."
-"$PYTHON" skill-maker/test_build_generic.py || {
+"$PYTHON" skill-maker/tests/test_build_generic.py || {
     echo "  ✗ Generic builder tests failed"
     exit 1
 }
 
 echo ""
 echo "[8/10] Checking the MCP server..."
-"$PYTHON" skill-maker/test_mcp_server.py || {
+"$PYTHON" skill-maker/tests/test_mcp_server.py || {
     echo "  ✗ MCP server tests failed"
     exit 1
 }
 
 echo ""
 echo "[9/10] Checking the derived retrieval layer..."
-"$PYTHON" skill-maker/test_derived.py || {
+"$PYTHON" skill-maker/tests/test_derived.py || {
     echo "  ✗ Derived-layer tests failed"
     exit 1
 }
 
 echo ""
 echo "[10/10] Checking the HTTP transport..."
-bash skill-maker/test-mcp-http.sh || {
+bash skill-maker/tests/test-mcp-http.sh || {
     echo "  ✗ HTTP transport tests failed"
     exit 1
 }
@@ -106,6 +106,6 @@ bash skill-maker/test-mcp-http.sh || {
 echo ""
 echo "Build summary"
 echo "--------------------------------------------"
-"$PYTHON" skill-maker/split_fpf_spec.py stats
-"$PYTHON" skill-maker/split_dpf_spec.py stats
+"$PYTHON" skill-maker/src/skillmaker/split_fpf_spec.py stats
+"$PYTHON" skill-maker/src/skillmaker/split_dpf_spec.py stats
 echo "============================================"

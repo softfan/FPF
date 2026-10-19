@@ -21,12 +21,13 @@ import sys
 from pathlib import Path
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_PKG_PARENT = _SCRIPT_DIR.parent          # the directory to import `skillmaker` from
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
 
-from _fpf_common import ensure_utf8_stdio, id_to_filename, sha256, sort_key  # noqa: E402
-from skill_config import FPF_CONFIG  # noqa: E402
-from split_spec import (  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio, id_to_filename, sha256, sort_key  # noqa: E402
+from skillmaker.skill_config import FPF_CONFIG  # noqa: E402
+from skillmaker.split_spec import (  # noqa: E402
     SpecParser, analyze, build_skill, print_stats, rebuild_spec,
 )
 

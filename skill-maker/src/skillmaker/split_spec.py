@@ -35,21 +35,27 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Set
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
 
-from _fpf_common import (
+#: Import name of this package.  A built skill carries a copy of it under
+#: ``scripts/skillmaker/``, so the copied tree presents the same names.
+_PKG_NAME = "skillmaker"
+
+_PKG_PARENT = _SCRIPT_DIR.parent          # the directory to import `skillmaker` from
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
+
+from skillmaker._fpf_common import (
     FenceTracker, clean, id_to_filename, intro_slug, is_end_marker,
     sha256, sort_key, unit_role, write_text_lf, ID_SEGMENT_RE,
 )
 
-from frameworks.grammar import split_heading
-import sections as section_map
-import derive
-import skill_root
-from frameworks import genre as genre_mod
+from skillmaker.frameworks.grammar import split_heading
+from skillmaker import sections as section_map
+from skillmaker import derive
+from skillmaker import skill_root
+from skillmaker.frameworks import genre as genre_mod
 
-from skill_config import SkillConfig, FrameworkSpec
+from skillmaker.skill_config import SkillConfig, FrameworkSpec
 
 
 # ---------------------------------------------------------------------------
@@ -665,13 +671,18 @@ class FileWriter:
         write_text_lf(self._hpath, json.dumps(self._new, indent=2))
 
     def _copy_scripts(self):
-        """Copy the runtime tools, and the engine's own dependencies, in.
+        """Copy the engine package into the skill, under ``scripts/skillmaker``.
+
+        The copy has to be the *package*, not a pile of loose modules: every
+        module imports ``skillmaker.*``, so the copied tree must present the
+        same import names the repository does.  Copying it one directory down
+        also makes the bootstrap in each module work unchanged -- the script's
+        own directory is ``scripts/skillmaker/``, whose parent is ``scripts/``,
+        which is where ``import skillmaker`` resolves from.
 
         A skill that ships the engine but not what the engine imports is not
-        self-contained: ``import split_spec`` fails on the missing
-        ``frameworks`` package, so ``rebuild`` cannot run from inside the
-        skill.  A name may therefore be a file or a directory (the
-        ``frameworks`` package, the ``templates`` the generator reads).
+        self-contained: the ``frameworks`` package and the ``templates`` the
+        generator reads have to travel with it.
         """
         for name in self.config.scripts:
             src = self._maker_dir / name
@@ -683,10 +694,11 @@ class FileWriter:
                     if path.is_dir() or "__pycache__" in path.parts:
                         continue
                     rel = path.relative_to(src)
-                    self._put_bytes(self.scripts_dir / name / rel,
+                    self._put_bytes(self.scripts_dir / _PKG_NAME / name / rel,
                                     path.read_bytes())
                 continue
-            self._put_bytes(self.scripts_dir / name, src.read_bytes())
+            self._put_bytes(self.scripts_dir / _PKG_NAME / name,
+                            src.read_bytes())
 
     # --- index helpers -----------------------------------------------------
     def _units(self, chunks: Iterable[Chunk], role: Optional[str] = None) -> List[Chunk]:
@@ -1302,10 +1314,10 @@ class FileWriter:
 
     def _rebuild_cmd(self) -> str:
         if self.config.name == "fpf":
-            return "python skill-maker/split_fpf_spec.py split"
+            return "python skill-maker/src/skillmaker/split_fpf_spec.py split"
         if self.config.name in SUITE_NAMES:
-            return "python skill-maker/split_dpf_spec.py split --all"
-        return f"python skill-maker/split_dpf_spec.py split --framework {self.config.prefix_token}"
+            return "python skill-maker/src/skillmaker/split_dpf_spec.py split --all"
+        return f"python skill-maker/src/skillmaker/split_dpf_spec.py split --framework {self.config.prefix_token}"
 
     def _structure_block(self) -> str:
         """The README's directory tree, generated from what this skill holds.
@@ -1408,9 +1420,17 @@ class FileWriter:
         return f"# {name}\n\nTemplate not found.\n"
 
     def _gen_init(self) -> None:
+        """Re-export the runtime tools from ``scripts/`` itself.
+
+        The engine now lives one level down in ``scripts/skillmaker/``, so
+        this stays a convenience façade rather than the package's own
+        ``__init__``: ``from scripts import fpf_read_pattern`` keeps
+        working for anyone who imported it that way.
+        """
         self._put(self.scripts_dir / "__init__.py",
-                  "from .fpf_lookup import (fpf_search_index, fpf_read_pattern, "
-                  "fpf_list_domain, fpf_read_intro, fpf_read_doc)\n"
+                  "from .skillmaker.fpf_lookup import (fpf_search_index, "
+                  "fpf_read_pattern, fpf_list_domain, fpf_read_intro, "
+                  "fpf_read_doc)\n"
                   "__all__ = ['fpf_search_index', 'fpf_read_pattern', "
                   "'fpf_list_domain', 'fpf_read_intro', 'fpf_read_doc']\n")
 
@@ -1513,9 +1533,17 @@ ROLE_QUESTIONS: Dict[str, str] = {
 
 #: Files whose contents decide what a build produces.  A change to any of them
 #: invalidates every cached build, because the output would differ.
+#:
+#: This is every module the engine imports *and* every file it copies into the
+#: skill: a bundled tool is an output like any other, so editing ``fpf_lookup``
+#: has to refresh the copy under ``scripts/``.  ``test_derived`` asserts that
+#: this list, plus ``_ENGINE_DIRS``, covers all of ``FPF_CONFIG.scripts``.
 _ENGINE_FILES = (
+    "__init__.py",
     "split_spec.py", "skill_config.py", "_fpf_common.py",
     "sections.py", "derive.py", "skill_root.py",
+    "fpf_lookup.py", "split_fpf_spec.py", "fpf_update.py",
+    "audit_fpf_patterns.py",
 )
 
 #: Directories whose every file is part of the engine.  Listed whole rather

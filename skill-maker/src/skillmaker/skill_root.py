@@ -22,7 +22,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from _fpf_common import write_text_lf
+from skillmaker._fpf_common import write_text_lf
 
 #: The marker file's name.
 MARKER = ".skill.json"

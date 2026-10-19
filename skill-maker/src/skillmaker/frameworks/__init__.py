@@ -35,7 +35,7 @@ On top of those sit three services:
 The public surface is re-exported here so callers do not depend on module
 layout::
 
-    from frameworks import detect, decompose, catalogue
+    from skillmaker.frameworks import detect, decompose, catalogue
 
     profile, why = detect("DPFs/README.md", text)
     tree = decompose(profile, text, "DPFs/README.md")

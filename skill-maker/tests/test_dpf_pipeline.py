@@ -15,7 +15,7 @@ Verifies the whole DPF side of the toolchain:
 * **Rebuild** -- a skill can be reassembled from its own files.
 
 Usage from repo root:
-    python skill-maker/test_dpf_pipeline.py [-v]
+    python skill-maker/tests/test_dpf_pipeline.py [-v]
 
 Exit codes: 0 = all passed, 1 = failures found.
 """
@@ -31,16 +31,19 @@ import urllib.parse
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-_SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_TESTS_DIR = Path(__file__).resolve().parent
+_MAKER_DIR = _TESTS_DIR.parent                 # skill-maker/
+_PKG_PARENT = _MAKER_DIR / "src"
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
+_SCRIPT_DIR = _PKG_PARENT / "skillmaker"        # the package: entry points, templates
+_REPO_ROOT = _MAKER_DIR.parent                  # repository root
 
-from _fpf_common import ensure_utf8_stdio  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 
-from skill_config import (  # noqa: E402
+from skillmaker.skill_config import (  # noqa: E402
     ALL_DPF_CONFIGS, ALL_DPFS, EXPECTED_PATTERNS, STANDALONE_DPFS, SUITES,
 )
 

@@ -27,17 +27,11 @@ cannot drift apart silently.
 from __future__ import annotations
 
 import re
-import sys
 from dataclasses import dataclass, replace
 from functools import lru_cache
-from pathlib import Path
 from typing import Optional, Pattern
 
-_MAKER_DIR = Path(__file__).resolve().parent.parent
-if str(_MAKER_DIR) not in sys.path:
-    sys.path.insert(0, str(_MAKER_DIR))
-
-from _fpf_common import (  # noqa: E402  (path set up above)
+from .._fpf_common import (
     GENERIC_ID_RE,
     ID_SEGMENT_RE,
     is_end_marker,

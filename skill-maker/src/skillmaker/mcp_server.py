@@ -18,12 +18,12 @@ third-party packages: the whole toolchain is stdlib-only and stays that way.
 
 Usage::
 
-    python skill-maker/mcp_server.py                     # serve ./skills
-    python skill-maker/mcp_server.py --skills-root DIR   # serve another tree
-    python skill-maker/mcp_server.py --selftest          # no client needed
+    python skill-maker/src/skillmaker/mcp_server.py                     # serve ./skills
+    python skill-maker/src/skillmaker/mcp_server.py --skills-root DIR   # serve another tree
+    python skill-maker/src/skillmaker/mcp_server.py --selftest          # no client needed
 
 Register it with any MCP client as a stdio server whose command is
-``python /path/to/skill-maker/mcp_server.py``; the client's own documentation
+``python /path/to/skill-maker/src/skillmaker/mcp_server.py``; the client's own documentation
 describes how to declare one.
 """
 
@@ -39,15 +39,17 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_PKG_PARENT = _SCRIPT_DIR.parent          # the directory to import `skillmaker` from
+_MAKER_DIR = _PKG_PARENT.parent           # skill-maker/
+_REPO_ROOT = _MAKER_DIR.parent            # repository root
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
 
-from _fpf_common import ensure_utf8_stdio  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 
-import sections as section_map  # noqa: E402
+from skillmaker import sections as section_map  # noqa: E402
 
 PROTOCOL_VERSION = "2025-06-18"
 SERVER_NAME = "fpf-local-skills"
@@ -854,7 +856,7 @@ class Server:
                                 int(args.get("offset") or 0))
 
         if name == "list_profiles":
-            import frameworks as F
+            from skillmaker import frameworks as F
             return {
                 "profiles": [
                     {"key": p.key, "kind": p.kind.value, "name": p.name,
@@ -864,7 +866,7 @@ class Server:
             }
 
         if name == "probe_document":
-            import frameworks as F
+            from skillmaker import frameworks as F
             path = (self.skills_root.parent / str(args["path"])).resolve()
             if not path.exists():
                 raise ValueError(f"not found: {args['path']}")
@@ -883,7 +885,7 @@ class Server:
             }
 
         if name == "plan_decomposition":
-            import frameworks as F
+            from skillmaker import frameworks as F
             path = (self.skills_root.parent / str(args["path"])).resolve()
             if not path.exists():
                 raise ValueError(f"not found: {args['path']}")
@@ -901,7 +903,7 @@ class Server:
             }
 
         if name == "verify_catalogue":
-            import frameworks as F
+            from skillmaker import frameworks as F
             local = F.load_local(self.skills_root.parent, classify=F.classify)
             if args.get("offline"):
                 snapshot = _SCRIPT_DIR / "catalogue.snapshot.json"
@@ -1126,7 +1128,7 @@ def main() -> int:
           f"skills from {root}", file=sys.stderr)
 
     if args.http:
-        import http_transport
+        from skillmaker import http_transport
         host, _, port = args.http.partition(":")
         try:
             port_number = int(port or 8765)

@@ -6,9 +6,9 @@
 # from a shell, which is the hardest case to fake.
 #
 # Usage:
-#   bash skill-maker/test-mcp-http.sh              # start, test, stop
-#   MCP_ENDPOINT=http://127.0.0.1:8765/mcp bash skill-maker/test-mcp-http.sh
-#   MCP_TOKEN=... bash skill-maker/test-mcp-http.sh   # when auth is required
+#   bash skill-maker/tests/test-mcp-http.sh        # start, test, stop
+#   MCP_ENDPOINT=http://127.0.0.1:8765/mcp bash skill-maker/tests/test-mcp-http.sh
+#   MCP_TOKEN=... bash skill-maker/tests/test-mcp-http.sh   # when auth is required
 #
 # Exit code: 0 when every assertion passes.
 
@@ -20,8 +20,10 @@ MCP_ENDPOINT="${MCP_ENDPOINT:-http://$HOST:$PORT/mcp}"
 MCP_TOKEN="${MCP_TOKEN:-}"
 START_SERVER="${START_SERVER:-1}"
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(dirname "$SCRIPT_DIR")"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"   # skill-maker/tests
+MAKER_DIR="$(dirname "$SCRIPT_DIR")"                          # skill-maker
+REPO_ROOT="$(dirname "$MAKER_DIR")"                           # repository root
+PKG_DIR="$MAKER_DIR/src/skillmaker"                           # the package
 PYTHON="${PYTHON:-python3}"
 
 # Windows Python installs "python", not "python3".  The build scripts export
@@ -80,7 +82,7 @@ print('' if d is None else d)
 # ---------------------------------------------------------------------------
 if [ "$START_SERVER" = "1" ]; then
     step "Starting server on $HOST:$PORT"
-    "$PYTHON" "$SCRIPT_DIR/mcp_server.py" --http "$HOST:$PORT" \
+    "$PYTHON" "$PKG_DIR/mcp_server.py" --http "$HOST:$PORT" \
         > /tmp/mcp_http_$$.log 2>&1 &
     SERVER_PID=$!
     for _ in $(seq 1 50); do

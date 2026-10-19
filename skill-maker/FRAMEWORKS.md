@@ -216,7 +216,7 @@ PROFILES = (..., adr.PROFILE, generic.PROFILE)
 
 ```bash
 # 3. check it
-python skill-maker/fpf_frameworks.py probe docs/adr/adr-0001.md
+python skill-maker/src/skillmaker/fpf_frameworks.py probe docs/adr/adr-0001.md
 ```
 
 That is the whole extension story. `adr`, `standards` and `pattern-language`
@@ -229,7 +229,7 @@ in `profiles/` are the worked examples.
 `probe` prints the evidence, so a surprising classification can be explained:
 
 ```
-$ python skill-maker/fpf_frameworks.py probe DPFs/README.md
+$ python skill-maker/src/skillmaker/fpf_frameworks.py probe DPFs/README.md
   kind       Guide -- Guide
   profile    guide (Guide)
   evidence   path~DPFs/README.md (score 114)
@@ -264,7 +264,7 @@ outranked the guide profile on structure alone — the exact failure that
 tests compare the decomposition to **the publisher**, not to the previous build:
 
 ```
-$ python skill-maker/fpf_frameworks.py catalogue --verify
+$ python skill-maker/src/skillmaker/fpf_frameworks.py catalogue --verify
 Publisher catalogue: 20261018T215642Z-2f2973dc00742cd6 (46 publications, live)
 
 ✅ 46 publications agree with the publisher (kind and pattern count).
@@ -293,12 +293,12 @@ identifier (`## 12. THE GATE`) may relax it, via `id_abuts_separator=True`.
 ## 12. CLI
 
 ```
-python skill-maker/fpf_frameworks.py kinds
-python skill-maker/fpf_frameworks.py profiles
-python skill-maker/fpf_frameworks.py catalogue [--verify] [--offline] [--counts] [--json]
-python skill-maker/fpf_frameworks.py probe PATH... [--all]
-python skill-maker/fpf_frameworks.py tree PATH [--limit N] [--role pattern|all]
-python skill-maker/fpf_frameworks.py plan PATH [--skill NAME] [--json]
+python skill-maker/src/skillmaker/fpf_frameworks.py kinds
+python skill-maker/src/skillmaker/fpf_frameworks.py profiles
+python skill-maker/src/skillmaker/fpf_frameworks.py catalogue [--verify] [--offline] [--counts] [--json]
+python skill-maker/src/skillmaker/fpf_frameworks.py probe PATH... [--all]
+python skill-maker/src/skillmaker/fpf_frameworks.py tree PATH [--limit N] [--role pattern|all]
+python skill-maker/src/skillmaker/fpf_frameworks.py plan PATH [--skill NAME] [--json]
 ```
 
 `tree` and `plan` are the review tools: they show what would be generated
@@ -309,7 +309,7 @@ before anything is written.
 ## 13. File map
 
 ```
-skill-maker/
+skill-maker/src/skillmaker/
   frameworks/
     __init__.py            public API (re-exports)
     kinds.py               PublicationKind + KindInfo

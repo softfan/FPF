@@ -16,8 +16,8 @@ resolves.
 
 Usage from repo root::
 
-    python skill-maker/test_derived.py
-    python skill-maker/test_derived.py -v
+    python skill-maker/tests/test_derived.py
+    python skill-maker/tests/test_derived.py -v
 """
 
 from __future__ import annotations
@@ -29,19 +29,22 @@ import tempfile
 from pathlib import Path
 from typing import List, Tuple
 
-_SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_TESTS_DIR = Path(__file__).resolve().parent
+_MAKER_DIR = _TESTS_DIR.parent                 # skill-maker/
+_PKG_PARENT = _MAKER_DIR / "src"
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
+_SCRIPT_DIR = _PKG_PARENT / "skillmaker"        # the package: entry points, templates
+_REPO_ROOT = _MAKER_DIR.parent                  # repository root
 
-from _fpf_common import ensure_utf8_stdio  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 
-import derive  # noqa: E402
-import sections  # noqa: E402
-import skill_root  # noqa: E402
-from frameworks import genre as genre_mod  # noqa: E402
+from skillmaker import derive  # noqa: E402
+from skillmaker import sections  # noqa: E402
+from skillmaker import skill_root  # noqa: E402
+from skillmaker.frameworks import genre as genre_mod  # noqa: E402
 
 SKILLS = _REPO_ROOT / "skills"
 
@@ -367,7 +370,7 @@ def test_genres(t: TestRunner) -> None:
                     (_SCRIPT_DIR / "templates" / "roles" / f"{role}.md").exists())
 
     # Every role a genre names must have a question for the roles README.
-    import split_spec
+    from skillmaker import split_spec
     for spec in genre_mod.GENRES.values():
         for role in spec.roles:
             t.check(f"role {role} has a one-line question",
@@ -498,8 +501,8 @@ def test_engine_digest(t: TestRunner) -> None:
     assertion in the suite inherited a corrupted file.  Bytes in, bytes out.
     """
     print("\n[8] The build stamp covers every input")
-    from skill_config import FPF_CONFIG
-    from split_spec import _engine_digest
+    from skillmaker.skill_config import FPF_CONFIG
+    from skillmaker.split_spec import _engine_digest
 
     before = _engine_digest(FPF_CONFIG)
     t.check("digest is stable", _engine_digest(FPF_CONFIG) == before)
@@ -523,6 +526,15 @@ def test_engine_digest(t: TestRunner) -> None:
                 _engine_digest(FPF_CONFIG) == before)
         t.check(f"the probe left {rel} byte-identical",
                 path.read_bytes() == original)
+
+    # Everything copied into the skill must also be digested, or a run that
+    # changes only that file leaves the bundled copy stale while the stamp
+    # still says the build is current.  Directories are digested whole.
+    from skillmaker.split_spec import _ENGINE_DIRS, _ENGINE_FILES
+    undigested = [name for name in FPF_CONFIG.scripts
+                  if name not in _ENGINE_DIRS and name not in _ENGINE_FILES]
+    t.check("every bundled script is in the engine digest",
+            not undigested, str(undigested))
 
 # ---------------------------------------------------------------------------
 

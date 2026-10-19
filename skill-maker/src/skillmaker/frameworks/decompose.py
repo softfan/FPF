@@ -15,16 +15,11 @@ arbitrary frameworks, and the two meet at :class:`UnitTree`.
 
 from __future__ import annotations
 
-import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-_MAKER_DIR = Path(__file__).resolve().parent.parent
-if str(_MAKER_DIR) not in sys.path:
-    sys.path.insert(0, str(_MAKER_DIR))
-
-from _fpf_common import FenceTracker, clean  # noqa: E402
+from .._fpf_common import FenceTracker, clean
 
 from .grammar import UnitGrammar, heading_level, split_heading
 from .profile import DecompositionProfile

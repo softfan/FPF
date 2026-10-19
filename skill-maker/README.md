@@ -92,6 +92,12 @@ skills/<skill>/
 │       ├── <ID>.md               # one unit per file (":" becomes "-")
 │       └── contract/<ID>.md      # working sections only (--views)
 └── scripts/                      # FPF skill only: search/read/update tools
+    ├── __init__.py               #   re-exports the runtime tools
+    └── skillmaker/               #   a copy of the engine package
+        ├── fpf_lookup.py
+        ├── split_spec.py
+        ├── frameworks/
+        └── templates/
 ```
 
 Every index row ends with the exact `File` to load, so an agent never has to
@@ -138,7 +144,7 @@ Everything is declared in `skill_config.py`:
    number of pattern bodies published in the catalogue.
 2. If it belongs to a Suite, add it to that `SuiteSpec.members`; a new Suite is
    a new `SuiteSpec` in `SUITES`.
-3. Run `python3 skill-maker/split_dpf_spec.py analyze` and compare the reported
+3. Run `python3 skill-maker/src/skillmaker/split_dpf_spec.py analyze` and compare the reported
    counts with the "Patterns" column in `DPFs/README.md`.
 4. Run the tests — they fail if a file in `DPFs/` is unused, if a configured
    source is missing, or if a DocID/carrier disagrees with
@@ -160,11 +166,11 @@ classification (`FPF`, `DPF`, `Reference`, `Guide`); `ADR`, `Standards`,
 `PatternLanguage` and `Generic` extend it.
 
 ```bash
-python3 skill-maker/fpf_frameworks.py kinds      # the vocabulary
-python3 skill-maker/fpf_frameworks.py profiles   # registered profiles
-python3 skill-maker/fpf_frameworks.py probe DPFs/README.md   # classify + evidence
-python3 skill-maker/fpf_frameworks.py tree FPF-Spec.md --limit 10
-python3 skill-maker/fpf_frameworks.py plan DPFs/README.md --skill guide
+python3 skill-maker/src/skillmaker/fpf_frameworks.py kinds      # the vocabulary
+python3 skill-maker/src/skillmaker/fpf_frameworks.py profiles   # registered profiles
+python3 skill-maker/src/skillmaker/fpf_frameworks.py probe DPFs/README.md   # classify + evidence
+python3 skill-maker/src/skillmaker/fpf_frameworks.py tree FPF-Spec.md --limit 10
+python3 skill-maker/src/skillmaker/fpf_frameworks.py plan DPFs/README.md --skill guide
 ```
 
 To add a kind, drop a module in `frameworks/profiles/` exporting `PROFILE` and
@@ -181,43 +187,43 @@ powershell -File skill-maker/build.ps1             # PowerShell
 skill-maker\build.cmd                              # cmd.exe
 
 # Build selectively
-python3 skill-maker/split_fpf_spec.py split --output skills/fpf
-python3 skill-maker/split_dpf_spec.py split --all
-python3 skill-maker/split_dpf_spec.py split --suite engineering-suite
-python3 skill-maker/split_dpf_spec.py split --framework PSDA
-python3 skill-maker/split_dpf_spec.py split --framework decision-design   # same skill
+python3 skill-maker/src/skillmaker/split_fpf_spec.py split --output skills/fpf
+python3 skill-maker/src/skillmaker/split_dpf_spec.py split --all
+python3 skill-maker/src/skillmaker/split_dpf_spec.py split --suite engineering-suite
+python3 skill-maker/src/skillmaker/split_dpf_spec.py split --framework PSDA
+python3 skill-maker/src/skillmaker/split_dpf_spec.py split --framework decision-design   # same skill
 
 # Inspect
-python3 skill-maker/split_fpf_spec.py analyze      # parse only, no writes
-python3 skill-maker/split_dpf_spec.py analyze
-python3 skill-maker/split_dpf_spec.py stats        # counts from manifests
-python3 skill-maker/split_fpf_spec.py diff --skill-dir skills/fpf
+python3 skill-maker/src/skillmaker/split_fpf_spec.py analyze      # parse only, no writes
+python3 skill-maker/src/skillmaker/split_dpf_spec.py analyze
+python3 skill-maker/src/skillmaker/split_dpf_spec.py stats        # counts from manifests
+python3 skill-maker/src/skillmaker/split_fpf_spec.py diff --skill-dir skills/fpf
 
 # Reassemble a publication from a built skill
-python3 skill-maker/split_fpf_spec.py rebuild --skill-dir skills/fpf --output /tmp/FPF.md
-python3 skill-maker/split_dpf_spec.py rebuild --skill-dir skills/decision-design --output /tmp/psda.md
+python3 skill-maker/src/skillmaker/split_fpf_spec.py rebuild --skill-dir skills/fpf --output /tmp/FPF.md
+python3 skill-maker/src/skillmaker/split_dpf_spec.py rebuild --skill-dir skills/decision-design --output /tmp/psda.md
 
 # Integrity and tests
-python3 skill-maker/audit_fpf_patterns.py --source FPF-Spec.md --skill-dir skills/fpf
-python3 skill-maker/test_fpf_pipeline.py -v
-python3 skill-maker/test_dpf_pipeline.py -v
-python3 skill-maker/test_frameworks.py -v
+python3 skill-maker/src/skillmaker/audit_fpf_patterns.py --source FPF-Spec.md --skill-dir skills/fpf
+python3 skill-maker/tests/test_fpf_pipeline.py -v
+python3 skill-maker/tests/test_dpf_pipeline.py -v
+python3 skill-maker/tests/test_frameworks.py -v
 
 # Framework decomposition and publisher verification
-python3 skill-maker/fpf_frameworks.py catalogue --verify --counts
-python3 skill-maker/fpf_frameworks.py catalogue --verify --offline --counts
+python3 skill-maker/src/skillmaker/fpf_frameworks.py catalogue --verify --counts
+python3 skill-maker/src/skillmaker/fpf_frameworks.py catalogue --verify --offline --counts
 
 # Build a skill from any framework kind (ADR, standards, plain Markdown)
-python3 skill-maker/build_generic.py docs/adr/adr-0001.md --skill payments-adr --dry-run
-python3 skill-maker/build_generic.py docs/adr/adr-0001.md --skill payments-adr
+python3 skill-maker/src/skillmaker/build_generic.py docs/adr/adr-0001.md --skill payments-adr --dry-run
+python3 skill-maker/src/skillmaker/build_generic.py docs/adr/adr-0001.md --skill payments-adr
 
 # Serve the built skills over MCP
-python3 skill-maker/mcp_server.py --selftest
-python3 skill-maker/mcp_server.py --skills-root skills
+python3 skill-maker/src/skillmaker/mcp_server.py --selftest
+python3 skill-maker/src/skillmaker/mcp_server.py --skills-root skills
 
 # Refresh from GitHub
-python3 skill-maker/fpf_update.py                  # Core + Library documents
-python3 skill-maker/fpf_update.py --dpfs           # also every DPF source
+python3 skill-maker/src/skillmaker/fpf_update.py                  # Core + Library documents
+python3 skill-maker/src/skillmaker/fpf_update.py --dpfs           # also every DPF source
 ```
 
 ### Using the generated tools
@@ -307,9 +313,9 @@ tools answer the retrieval questions the indexes answer on disk -- `route`
 `list_profiles`, `probe_document`, `plan_decomposition`, `verify_catalogue`.
 
 ```bash
-python3 skill-maker/mcp_server.py --selftest          # no client needed
-python3 skill-maker/mcp_server.py --skills-root skills
-python3 skill-maker/mcp_server.py --http 127.0.0.1:8765
+python3 skill-maker/src/skillmaker/mcp_server.py --selftest          # no client needed
+python3 skill-maker/src/skillmaker/mcp_server.py --skills-root skills
+python3 skill-maker/src/skillmaker/mcp_server.py --http 127.0.0.1:8765
 ```
 
 Two transports. **stdio**: newline-delimited JSON-RPC, no third-party packages,
@@ -320,8 +326,8 @@ terminates with `204`. Unknown session `404`, bad `MCP-Protocol-Version` `400`,
 foreign `Origin` `403` -- the DNS-rebinding guard the specification requires.
 
 ```bash
-bash skill-maker/test-mcp-http.sh                      # 29 assertions, curl only
-MCP_ENDPOINT=http://host:port/mcp START_SERVER=0 bash skill-maker/test-mcp-http.sh
+bash skill-maker/tests/test-mcp-http.sh                      # 29 assertions, curl only
+MCP_ENDPOINT=http://host:port/mcp START_SERVER=0 bash skill-maker/tests/test-mcp-http.sh
 ```
 
 `skills/CONNECT.md` is the generated connection guide: transports, endpoint,
@@ -339,9 +345,9 @@ It is the other half of `fpf_frameworks.py plan`: the plan says what would be
 produced, this produces it.
 
 ```bash
-python3 skill-maker/build_generic.py docs/adr/adr-0001.md --skill payments-adr --dry-run
-python3 skill-maker/build_generic.py docs/adr/adr-0001.md --skill payments-adr
-python3 skill-maker/build_generic.py notes.md --skill notes --profile generic
+python3 skill-maker/src/skillmaker/build_generic.py docs/adr/adr-0001.md --skill payments-adr --dry-run
+python3 skill-maker/src/skillmaker/build_generic.py docs/adr/adr-0001.md --skill payments-adr
+python3 skill-maker/src/skillmaker/build_generic.py notes.md --skill notes --profile generic
 ```
 
 Two emission paths, chosen by the profile's shape. Unit-bearing kinds (ADR,
@@ -394,17 +400,17 @@ than failing the build.
 
 ## Test suites
 
-`build.sh` runs all seven and stops at the first failure. 1 095 assertions in
+`build.sh` runs all seven and stops at the first failure. 1 099 assertions in
 total; the invariant list below is what they check.
 
 | Suite | Assertions | What it covers |
 | :--- | ---: | :--- |
-| `test_fpf_pipeline.py` | 88 | FPF split, structure, SKILL.md, manifest, audit, byte-identical rebuild, runtime tools |
+| `test_fpf_pipeline.py` | 91 | FPF split, structure, SKILL.md, manifest, audit, byte-identical rebuild, bundled engine |
 | `test_dpf_pipeline.py` | 539 | every DPF and Suite: catalogue, DocIDs, indexes, per-skill structure, front matter |
 | `test_frameworks.py` | 116 | kind coverage, publisher agreement, parser agreement, generality, vendor/placeholder/portability sweeps |
 | `test_build_generic.py` | 48 | ADR, standards, pattern language, whole documents, genre shapes |
 | `test_mcp_server.py` | 118 | MCP protocol, reading-tool contract, derived tools, stdio client |
-| `test_derived.py` | 157 | section map, routes, entries, glossary, genres, markers, build stamp |
+| `test_derived.py` | 158 | section map, routes, entries, glossary, genres, markers, build stamp |
 | `test-mcp-http.sh` | 29 | Streamable HTTP: sessions, guards, `GET`/`DELETE`, curl only |
 
 ## Invariants the tests protect
@@ -423,8 +429,10 @@ total; the invariant list below is what they check.
 - Every framework in a Suite contributes its own front matter: intro file
   names are unique and carry the framework key.
 - A rebuilt publication matches its source (FPF: byte-identical).
-- The engine copied into `skills/fpf/scripts/` imports its own dependencies and
-  rebuilds the publication without the repository.
+- The engine copied into `skills/fpf/scripts/skillmaker/` imports its own
+  dependencies and rebuilds the publication without the repository.
+- Every file copied into a skill is in the engine digest, so editing a bundled
+  tool refreshes the copy instead of leaving it stale behind a current stamp.
 - A second build writes zero files (idempotent).
 - No `{{placeholder}}` survives into any generated file; only the templates
   under `scripts/` may contain one.
@@ -440,32 +448,59 @@ total; the invariant list below is what they check.
 
 ## Files
 
+The toolchain is a package, not a folder of scripts: `src/skillmaker/` holds
+everything the engine imports, `tests/` holds the suites that run it, and only
+the three build entry points and the two design documents sit at the top.
+
+```
+skill-maker/
+├── build.sh, build.cmd, build.ps1     # the ten-step build
+├── README.md, FRAMEWORKS.md, AGENTS.md
+├── src/skillmaker/
+│   ├── split_spec.py                  # the engine
+│   ├── skill_config.py                # the catalogue
+│   ├── split_fpf_spec.py, split_dpf_spec.py, build_generic.py
+│   ├── skill_index.py, mcp_server.py, http_transport.py
+│   ├── audit_fpf_patterns.py, fpf_lookup.py, fpf_update.py, fpf_frameworks.py
+│   ├── sections.py, derive.py, skill_root.py, _fpf_common.py
+│   ├── frameworks/                    # kinds, grammars, shapes, profiles
+│   ├── templates/                     # entry points + genres/ and roles/
+│   └── catalogue.snapshot.json
+└── tests/
+    ├── test_*.py                      # six Python suites
+    └── test-mcp-http.sh               # the curl walkthrough
+```
+
+Modules are run as files, never installed: every entry point puts `src/` on
+`sys.path` for itself, so `python skill-maker/src/skillmaker/<module>.py`
+works from any cwd and from inside a built skill.
+
 | File | Role |
 | --- | --- |
-| `skill_config.py` | the catalogue: sources, DocIDs, suites, templates, outputs |
-| `split_spec.py` | parser + writer + indexes + rebuild (the engine) |
-| `_fpf_common.py` | identifier grammar, unit roles, slugs, fence tracking |
-| `split_fpf_spec.py` | FPF CLI (`split`/`analyze`/`stats`/`rebuild`/`diff`) |
-| `split_dpf_spec.py` | DPF CLI (`split`/`analyze`/`stats`/`rebuild`) |
-| `skill_index.py` | writes `skills/README.md`, `index.json`, `CROSS-REFERENCES.md` |
-| `build_generic.py` | builds a skill from any framework kind |
-| `mcp_server.py` | serves the built skills over MCP (stdio, no dependencies) |
-| `audit_fpf_patterns.py` | compares the FPF skill with its source |
-| `fpf_lookup.py` | runtime search/read tools copied into `skills/fpf/scripts/` |
-| `fpf_update.py` | download → split → audit → test pipeline |
-| `frameworks/` | kinds, grammars, shapes, profiles, catalogue, decomposer |
-| `fpf_frameworks.py` | CLI for `kinds`/`profiles`/`catalogue`/`probe`/`tree`/`plan` |
-| `sections.py` | per-unit section map: anchors, tiers, line ranges, byte sizes |
-| `derive.py` | routes, entries, glossary and boot, derived from the source |
-| `frameworks/genre.py` | what a skill is for: `lookup`, `apply`, `setup`, `maintain` |
-| `skill_root.py` | `.skill.json` marker, so a copied skill finds itself |
-| `http_transport.py` | Streamable HTTP transport: sessions, guards, `/health` |
-| `catalogue.snapshot.json` | saved publisher catalogue (`/api/publications`) |
+| `src/skillmaker/skill_config.py` | the catalogue: sources, DocIDs, suites, templates, outputs |
+| `src/skillmaker/split_spec.py` | parser + writer + indexes + rebuild (the engine) |
+| `src/skillmaker/_fpf_common.py` | identifier grammar, unit roles, slugs, fence tracking |
+| `src/skillmaker/split_fpf_spec.py` | FPF CLI (`split`/`analyze`/`stats`/`rebuild`/`diff`) |
+| `src/skillmaker/split_dpf_spec.py` | DPF CLI (`split`/`analyze`/`stats`/`rebuild`) |
+| `src/skillmaker/skill_index.py` | writes `skills/README.md`, `index.json`, `CROSS-REFERENCES.md` |
+| `src/skillmaker/build_generic.py` | builds a skill from any framework kind |
+| `src/skillmaker/mcp_server.py` | serves the built skills over MCP (stdio, no dependencies) |
+| `src/skillmaker/audit_fpf_patterns.py` | compares the FPF skill with its source |
+| `src/skillmaker/fpf_lookup.py` | runtime search/read tools, bundled into `skills/fpf/scripts/` |
+| `src/skillmaker/fpf_update.py` | download → split → audit → test pipeline |
+| `src/skillmaker/frameworks/` | kinds, grammars, shapes, profiles, catalogue, decomposer |
+| `src/skillmaker/fpf_frameworks.py` | CLI for `kinds`/`profiles`/`catalogue`/`probe`/`tree`/`plan` |
+| `src/skillmaker/sections.py` | per-unit section map: anchors, tiers, line ranges, byte sizes |
+| `src/skillmaker/derive.py` | routes, entries, glossary and boot, derived from the source |
+| `src/skillmaker/frameworks/genre.py` | what a skill is for: `lookup`, `apply`, `setup`, `maintain` |
+| `src/skillmaker/skill_root.py` | `.skill.json` marker, so a copied skill finds itself |
+| `src/skillmaker/http_transport.py` | Streamable HTTP transport: sessions, guards, `/health` |
+| `src/skillmaker/catalogue.snapshot.json` | saved publisher catalogue (`/api/publications`) |
+| `src/skillmaker/templates/` | entry-point templates, plus the `genres/` and `roles/` partials |
+| `tests/test_fpf_pipeline.py`, `tests/test_dpf_pipeline.py` | end-to-end tests |
+| `tests/test_frameworks.py` | kind coverage, publisher agreement, generality, vendor and placeholder sweeps |
+| `tests/test_build_generic.py` | ADR / standards / pattern-language / generic builds, genre shapes |
+| `tests/test_mcp_server.py` | MCP protocol, reading-tool contract, tool behaviour |
+| `tests/test_derived.py` | section map, routes, entries, glossary, genres, markers, build stamp |
+| `tests/test-mcp-http.sh` | the HTTP transport, walked by curl with assertions |
 | `FRAMEWORKS.md` | design of the general decomposition structure |
-| `test_fpf_pipeline.py`, `test_dpf_pipeline.py` | end-to-end tests |
-| `test_frameworks.py` | kind coverage, publisher agreement, generality, vendor and placeholder sweeps |
-| `test_build_generic.py` | ADR / standards / pattern-language / generic builds, genre shapes |
-| `test_mcp_server.py` | MCP protocol, reading-tool contract, tool behaviour |
-| `test_derived.py` | section map, routes, entries, glossary, genres, markers, build stamp |
-| `test-mcp-http.sh` | the HTTP transport, walked by curl with assertions |
-| `templates/` | entry-point templates, plus the `genres/` and `roles/` partials |

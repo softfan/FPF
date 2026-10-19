@@ -30,9 +30,9 @@ See `SKILL.md` for complete agent instructions. The short version:
 
 ```bash
 # From repo root:
-python skill-maker/fpf_update.py            # full update from GitHub
+python skill-maker/src/skillmaker/fpf_update.py            # full update from GitHub
 python skill-maker/build.sh                 # build from local FPF-Spec.md
-python skill-maker/test_fpf_pipeline.py     # run tests
+python skill-maker/tests/test_fpf_pipeline.py     # run tests
 ```
 
 ## Source

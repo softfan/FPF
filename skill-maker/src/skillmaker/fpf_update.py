@@ -13,11 +13,11 @@ The FPF skill carries four source documents:
     Readme.md                  Library landing page
 
 Usage from repo root:
-    python skill-maker/fpf_update.py                  # download + split + audit + test
-    python skill-maker/fpf_update.py --no-download     # re-split from local files
-    python skill-maker/fpf_update.py --download-only   # just download, don't build
-    python skill-maker/fpf_update.py --test-only       # just run tests
-    python skill-maker/fpf_update.py --dpfs            # also refresh every DPF file
+    python skill-maker/src/skillmaker/fpf_update.py                  # download + split + audit + test
+    python skill-maker/src/skillmaker/fpf_update.py --no-download     # re-split from local files
+    python skill-maker/src/skillmaker/fpf_update.py --download-only   # just download, don't build
+    python skill-maker/src/skillmaker/fpf_update.py --test-only       # just run tests
+    python skill-maker/src/skillmaker/fpf_update.py --dpfs            # also refresh every DPF file
 
 Exit codes: 0 = all OK, 1 = download error, 2 = split error, 3 = audit error,
 4 = test error.
@@ -33,7 +33,11 @@ import urllib.request
 from pathlib import Path
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
+_PKG_PARENT = _SCRIPT_DIR.parent          # the directory to import `skillmaker` from
+_MAKER_DIR = _PKG_PARENT.parent           # skill-maker/
+_REPO_ROOT = _MAKER_DIR.parent            # repository root
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
 
 _BASE = "https://github.com/ailev/FPF/raw/refs/heads/main/"
 
@@ -70,9 +74,7 @@ def download_file(url: str, dest: Path) -> bool:
 
 def _dpf_sources() -> list:
     """Every DPF source file known to the skill configs."""
-    if str(_SCRIPT_DIR) not in sys.path:
-        sys.path.insert(0, str(_SCRIPT_DIR))
-    from skill_config import ALL_DPFS
+    from skillmaker.skill_config import ALL_DPFS
     return [d.source for d in ALL_DPFS]
 
 
@@ -132,7 +134,7 @@ def step_audit() -> bool:
 def step_test() -> bool:
     """Run test_fpf_pipeline.py."""
     print("\n[4/4] Running the tests...")
-    test_script = _SCRIPT_DIR / "test_fpf_pipeline.py"
+    test_script = _MAKER_DIR / "tests" / "test_fpf_pipeline.py"
     if not test_script.exists():
         _print(f"{test_script} not found — skipping tests", "⚠")
         return True

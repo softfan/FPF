@@ -16,8 +16,8 @@ tree is never touched.
 
 Usage from repo root::
 
-    python skill-maker/test_build_generic.py
-    python skill-maker/test_build_generic.py -v
+    python skill-maker/tests/test_build_generic.py
+    python skill-maker/tests/test_build_generic.py -v
 """
 
 from __future__ import annotations
@@ -29,11 +29,16 @@ import tempfile
 from pathlib import Path
 from typing import List, Tuple
 
-_SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
+_TESTS_DIR = Path(__file__).resolve().parent
+_MAKER_DIR = _TESTS_DIR.parent                 # skill-maker/
+_PKG_PARENT = _MAKER_DIR / "src"
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
+_SCRIPT_DIR = _PKG_PARENT / "skillmaker"        # the package: entry points, templates
+_REPO_ROOT = _MAKER_DIR.parent                  # repository root
 BUILDER = _SCRIPT_DIR / "build_generic.py"
 
-from _fpf_common import ensure_utf8_stdio  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 

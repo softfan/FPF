@@ -1,15 +1,23 @@
 #!/usr/bin/env python3
 """
-fpf_tools.py -- Search, read, and navigate FPF patterns and intro sections.
+fpf_lookup.py -- Search, read, and navigate an FPF skill.
 
-Four tool functions (sync, no framework dependency):
-  fpf_search_index, fpf_read_pattern, fpf_list_domain, fpf_read_intro
+Tool functions (sync, no framework dependency):
+
+    fpf_search_index(keyword, limit)   -- search patterns by ID / title / keyword
+    fpf_read_pattern(pattern_id)       -- load one pattern body
+    fpf_list_domain(domain)            -- list the patterns of one Core Part
+    fpf_read_intro(query)              -- read a readme / contents / practical entry
+    fpf_read_doc(query)                -- read a Library document (USING-FPF, ...)
+    fpf_list_docs()                    -- list the shipped Library documents
 
 Usage:
-    python skill-maker/fpf_tools.py --skill-root skills/fpf search "holon"
-    python skill-maker/fpf_tools.py --skill-root skills/fpf read A.1
-    python skill-maker/fpf_tools.py --skill-root skills/fpf list A
-    python skill-maker/fpf_tools.py --skill-root skills/fpf intro "preface"
+    python skill-maker/src/skillmaker/fpf_lookup.py --skill-root skills/fpf search "holon"
+    python skill-maker/src/skillmaker/fpf_lookup.py --skill-root skills/fpf read A.1
+    python skill-maker/src/skillmaker/fpf_lookup.py --skill-root skills/fpf list A
+    python skill-maker/src/skillmaker/fpf_lookup.py --skill-root skills/fpf intro "practical"
+    python skill-maker/src/skillmaker/fpf_lookup.py --skill-root skills/fpf doc using-fpf
+    python skill-maker/src/skillmaker/fpf_lookup.py --skill-root skills/fpf docs
 """
 
 from __future__ import annotations
@@ -23,22 +31,23 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-# Ensure UTF-8 stdout for cp1251 consoles
-try:
-    sys.stdout.reconfigure(encoding="utf-8")
-except AttributeError:
-    pass
-
 # Ensure sibling modules are importable regardless of cwd
 _SCRIPT_DIR = Path(__file__).resolve().parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_PKG_PARENT = _SCRIPT_DIR.parent          # the directory to import `skillmaker` from
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
+
+from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
+
+ensure_utf8_stdio()
 
 try:
-    from _fpf_common import sort_key
-except ImportError:
+    from skillmaker import skill_root
+    from skillmaker._fpf_common import id_to_filename, sort_key
+except ImportError:  # pragma: no cover - standalone fallback
+    skill_root = None
     def sort_key(pattern_id: str) -> tuple:
-        parts = pattern_id.split(".")
+        parts = re.split(r"[.:]", pattern_id)
         result = []
         for p in parts:
             try:
@@ -46,6 +55,20 @@ except ImportError:
             except ValueError:
                 result.append((1, 0, p))
         return tuple(result)
+
+    def id_to_filename(pid: str) -> str:
+        return pid.replace(":", "-")
+
+
+DOMAIN_NAMES = {
+    "A": "Kernel Architecture", "B": "Trans-disciplinary Reasoning",
+    "C": "Kernel Extensions", "D": "Multi-scale Ethics",
+    "E": "Constitution & Authoring", "F": "Unification Suite",
+    "G": "Discipline SoTA Patterns", "H": "Glossary & Index",
+    "I": "Annexes & Tutorials", "J": "Indexes & Navigation",
+    "K": "Lexical Debt",
+}
+VALID_DOMAINS = set("ABCDEFGHIJK")
 
 
 @dataclass
@@ -56,6 +79,7 @@ class PatternEntry:
     status: str
     keywords: str = ""
     file_path: str = ""
+    role: str = "pattern"
 
     @property
     def search_text(self) -> str:
@@ -63,34 +87,70 @@ class PatternEntry:
 
 
 class PatternIndex:
+    """Lazy index over a built skill directory."""
+
     def __init__(self, skill_root: Optional[Path] = None):
         self._skill_root = skill_root or self._detect_skill_root()
         self._entries: Optional[Dict[str, PatternEntry]] = None
         self._cache_path = self._skill_root / ".fpf_index.pickle"
 
+    # --- location ---------------------------------------------------------
     @staticmethod
     def _detect_skill_root() -> Path:
+        """Find the skill this script belongs to.
+
+        In order: an explicit environment variable, the marker file above this
+        script, the marker in the working directory, and finally the legacy
+        ``SKILL.md`` check.  The marker comes first because it is what makes a
+        copied skill work: the directory can move anywhere and still resolve.
+        """
         env = os.environ.get("FPF_SKILL_ROOT")
         if env:
             return Path(env)
+
         here = Path(__file__).resolve().parent
+        if skill_root is not None:
+            found = skill_root.find_root(here)
+            if found is not None:
+                return found
+            found = skill_root.find_root(Path.cwd())
+            if found is not None:
+                return found
+
         if here.name == "scripts" and (here.parent / "SKILL.md").exists():
             return here.parent
         if (here.parent / "SKILL.md").exists():
             return here.parent
-        cwd_skill = Path.cwd() / "skills" / "fpf"
-        if (cwd_skill / "SKILL.md").exists():
-            return cwd_skill
+        for candidate in (Path.cwd() / "skills" / "fpf", Path.cwd()):
+            if (candidate / "SKILL.md").exists():
+                return candidate
         return here.parent
 
     @property
     def skill_root(self) -> Path:
         return self._skill_root
 
+    @property
+    def reference_dir(self) -> Path:
+        return self._skill_root / "reference"
+
+    def _patterns_dir(self) -> Optional[Path]:
+        ref = self.reference_dir
+        preferred = ref / "fpf-patterns"
+        if (preferred / "index.md").exists():
+            return preferred
+        if ref.exists():
+            for d in sorted(ref.iterdir()):
+                if d.is_dir() and (d / "index.md").exists():
+                    return d
+        return None
+
+    # --- index ------------------------------------------------------------
     def _load_index(self) -> Dict[str, PatternEntry]:
-        index_path = self._skill_root / "reference" / "fpf-patterns" / "index.md"
-        if not index_path.exists():
+        pdir = self._patterns_dir()
+        if pdir is None:
             return {}
+        index_path = pdir / "index.md"
         if self._cache_path.exists():
             try:
                 if self._cache_path.stat().st_mtime >= index_path.stat().st_mtime:
@@ -100,6 +160,7 @@ class PatternIndex:
                             return data
             except (pickle.UnpicklingError, EOFError, OSError):
                 pass
+
         entries: Dict[str, PatternEntry] = {}
         kw_map = self._load_keyword_map()
         for line in index_path.read_text("utf-8").splitlines():
@@ -110,14 +171,25 @@ class PatternIndex:
             if len(cells) < 2 or cells[0] in ("ID", "id"):
                 continue
             pid = cells[0]
-            if not re.match(r"[A-K]", pid):
+            if not re.match(r"^[A-Za-z][A-Za-z0-9]*[.:]", pid):
                 continue
+            # Current layout: ID | Title | Role | Status | File
+            if len(cells) >= 5 and cells[2] in ("pattern", "reference", "application",
+                                                "sources", "advising", "edition",
+                                                "profiles", "reminder", "use", "source"):
+                role, status, fname = cells[2], cells[3], cells[4]
+            else:  # legacy: ID | Title | Domain | Status
+                role = "pattern"
+                status = cells[3] if len(cells) > 3 else ""
+                fname = id_to_filename(pid) + ".md"
             entries[pid] = PatternEntry(
-                pattern_id=pid, title=cells[1] if len(cells) > 1 else "",
-                domain=cells[2] if len(cells) > 2 else pid[0],
-                status=cells[3] if len(cells) > 3 else "",
+                pattern_id=pid,
+                title=cells[1] if len(cells) > 1 else "",
+                domain=pid[0].upper(),
+                status=status,
                 keywords=kw_map.get(pid, ""),
-                file_path=f"reference/fpf-patterns/{pid}.md",
+                file_path=str(pdir.relative_to(self._skill_root) / fname),
+                role=role,
             )
         try:
             with open(self._cache_path, "wb") as f:
@@ -127,7 +199,7 @@ class PatternIndex:
         return entries
 
     def _load_keyword_map(self) -> Dict[str, str]:
-        kw_path = self._skill_root / "reference" / "agent_index_keywords.md"
+        kw_path = self.reference_dir / "keyword-index.md"
         result: Dict[str, List[str]] = {}
         if not kw_path.exists():
             return {}
@@ -151,6 +223,7 @@ class PatternIndex:
             self._entries = self._load_index()
         return self._entries
 
+    # --- queries ----------------------------------------------------------
     def search(self, query: str, limit: int = 10) -> List[Tuple[PatternEntry, float]]:
         q = query.lower().strip()
         results: List[Tuple[PatternEntry, float]] = []
@@ -184,32 +257,39 @@ class PatternIndex:
     def list_domain(self, domain: str) -> List[PatternEntry]:
         domain = domain.upper().strip()
         return sorted(
-            [e for e in self.entries.values() if e.domain.upper() == domain],
+            [e for e in self.entries.values()
+             if e.domain.upper() == domain and e.role == "pattern"],
             key=lambda e: sort_key(e.pattern_id),
         )
 
     def read_pattern(self, pattern_id: str) -> Optional[str]:
         if pattern_id and pattern_id[0].islower():
             pattern_id = pattern_id[0].upper() + pattern_id[1:]
-        path = self._skill_root / "reference" / "fpf-patterns" / f"{pattern_id}.md"
-        if path.exists():
-            return path.read_text("utf-8")
-        for f in (self._skill_root / "reference" / "fpf-patterns").glob(f"{pattern_id}_*.md"):
+        pdir = self._patterns_dir()
+        if pdir is None:
+            return None
+        for stem in (id_to_filename(pattern_id), pattern_id):
+            path = pdir / f"{stem}.md"
+            if path.exists():
+                return path.read_text("utf-8")
+        for f in pdir.glob(f"{pattern_id}_*.md"):
             return f.read_text("utf-8")
         return None
 
     def available_in_domain(self, domain: str) -> List[str]:
-        domain = domain.upper()
-        return sorted(
-            [e.pattern_id for e in self.entries.values() if e.domain.upper() == domain],
-            key=sort_key,
-        )
+        return [e.pattern_id for e in self.list_domain(domain)]
 
+    # --- intros and documents --------------------------------------------
     def list_intros(self) -> List[Tuple[str, Path]]:
-        ref = self._skill_root / "reference"
+        ref = self.reference_dir
         if not ref.exists():
             return []
-        return [(f.stem.replace("intro_", "", 1), f) for f in sorted(ref.glob("intro_*.md"))]
+        out: List[Tuple[str, Path]] = []
+        for pattern in ("intro/*.md", "*/intro/*.md"):
+            for f in sorted(ref.glob(pattern)):
+                slug = f.stem
+                out.append((slug, f))
+        return out
 
     def read_intro(self, query: str) -> Optional[Tuple[str, str]]:
         q = query.lower().strip()
@@ -228,8 +308,32 @@ class PatternIndex:
                 return (path.name, content)
         return None
 
+    def list_docs(self) -> List[Tuple[str, Path]]:
+        ref = self.reference_dir
+        if not ref.exists():
+            return []
+        return [(f.stem, f) for f in sorted(ref.glob("docs/*.md"))]
+
+    def read_doc(self, query: str) -> Optional[Tuple[str, str]]:
+        q = query.lower().strip().replace(" ", "-")
+        docs = self.list_docs()
+        if not docs:
+            return None
+        for slug, path in docs:
+            if slug == q or slug.replace("-", "") == q.replace("-", ""):
+                return (path.name, path.read_text("utf-8"))
+        for slug, path in docs:
+            if q in slug:
+                return (path.name, path.read_text("utf-8"))
+        for slug, path in docs:
+            content = path.read_text("utf-8")
+            if q in content.lower():
+                return (path.name, content)
+        return None
+
 
 _INDEX: Optional[PatternIndex] = None
+
 
 def _get_index(skill_root: Optional[Path] = None) -> PatternIndex:
     global _INDEX
@@ -238,16 +342,9 @@ def _get_index(skill_root: Optional[Path] = None) -> PatternIndex:
     return _INDEX
 
 
-DOMAIN_NAMES = {
-    "A": "Kernel Architecture", "B": "Trans-disciplinary Reasoning",
-    "C": "Kernel Extensions", "D": "Multi-scale Ethics",
-    "E": "Constitution & Authoring", "F": "Unification Suite",
-    "G": "Discipline SoTA Patterns", "H": "Glossary & Index",
-    "I": "Annexes & Tutorials", "J": "Indexes & Navigation",
-    "K": "Lexical Debt",
-}
-VALID_DOMAINS = set("ABCDEFGHIJK")
-
+# ---------------------------------------------------------------------------
+# Tool functions
+# ---------------------------------------------------------------------------
 
 def fpf_search_index(keyword: str, limit: int = 10) -> str:
     index = _get_index()
@@ -256,8 +353,9 @@ def fpf_search_index(keyword: str, limit: int = 10) -> str:
         return f"No patterns found matching '{keyword}'."
     lines = [f"Search results for '{keyword}':\n"]
     for entry, score in results:
-        lines.append(f"  {entry.pattern_id} -- {entry.title} (score: {score:.0f})")
-    lines.append(f"\nLoad: reference/fpf-patterns/<ID>.md")
+        lines.append(f"  {entry.pattern_id} -- {entry.title} "
+                     f"[{entry.role}] (score: {score:.0f})")
+    lines.append("\nLoad the file from reference/pattern-index.md.")
     return "\n".join(lines)
 
 
@@ -273,7 +371,7 @@ def fpf_read_pattern(pattern_id: str) -> str:
     if available:
         avail_str = ", ".join(available[:15])
         if len(available) > 15:
-            avail_str += f", ... ({len(available)} total)"
+            avail_str += f", ... ({len(available)} available)"
         return f"Pattern '{pattern_id}' not found. Available in {domain}: {avail_str}"
     return f"Pattern '{pattern_id}' not found."
 
@@ -305,10 +403,34 @@ def fpf_read_intro(query: str) -> str:
     return "No intro sections found."
 
 
+def fpf_list_docs() -> str:
+    index = _get_index()
+    docs = index.list_docs()
+    if not docs:
+        return "No Library documents shipped in this skill."
+    lines = ["Library documents:\n"]
+    for slug, path in docs:
+        lines.append(f"  {slug}  ({path.name})")
+    return "\n".join(lines)
+
+
+def fpf_read_doc(query: str) -> str:
+    index = _get_index()
+    result = index.read_doc(query)
+    if result:
+        fname, content = result
+        return f"# Source: {fname}\n\n{content}"
+    docs = index.list_docs()
+    if docs:
+        slugs = ", ".join(slug for slug, _ in docs)
+        return f"Document '{query}' not found. Available: {slugs}"
+    return "No Library documents shipped in this skill."
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="FPF Pattern Tools")
     parser.add_argument("--skill-root", type=Path, default=None,
-                        help="Path to skills/fpf/ directory")
+                        help="Path to the skill directory (skills/fpf)")
     sub = parser.add_subparsers(dest="command")
 
     p_s = sub.add_parser("search")
@@ -324,6 +446,11 @@ def main() -> int:
     p_i = sub.add_parser("intro")
     p_i.add_argument("query")
 
+    p_d = sub.add_parser("doc")
+    p_d.add_argument("query")
+
+    sub.add_parser("docs")
+
     args = parser.parse_args()
 
     if args.skill_root:
@@ -337,6 +464,10 @@ def main() -> int:
         print(fpf_list_domain(args.domain))
     elif args.command == "intro":
         print(fpf_read_intro(args.query))
+    elif args.command == "doc":
+        print(fpf_read_doc(args.query))
+    elif args.command == "docs":
+        print(fpf_list_docs())
     else:
         parser.print_help()
         return 1

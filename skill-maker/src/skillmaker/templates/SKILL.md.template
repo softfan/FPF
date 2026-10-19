@@ -147,8 +147,8 @@ To update the skill from the latest FPF sources:
 
 ```bash
 # From repo root:
-python skill-maker/fpf_update.py              # download + split + audit + test
-python skill-maker/fpf_update.py --no-download  # re-split from local files only
+python skill-maker/src/skillmaker/fpf_update.py              # download + split + audit + test
+python skill-maker/src/skillmaker/fpf_update.py --no-download  # re-split from local files only
 ```
 
 ## Quick-start recipes

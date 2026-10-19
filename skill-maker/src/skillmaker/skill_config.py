@@ -32,10 +32,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Pattern
 
-from _fpf_common import ID_SEGMENT_RE
+from skillmaker._fpf_common import ID_SEGMENT_RE
 
-_SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
+_SCRIPT_DIR = Path(__file__).resolve().parent       # package: templates, snapshot
+_REPO_ROOT = _SCRIPT_DIR.parents[2]                 # repository root
 
 #: Root of the DPF catalogue (``DPFs/`` with its Suite sub-folders).
 _DPF_ROOT = _REPO_ROOT / "DPFs"
@@ -292,10 +292,12 @@ FPF_CONFIG = SkillConfig(
     skill_template=_SCRIPT_DIR / "templates" / "SKILL.md.template",
     readme_template=_SCRIPT_DIR / "templates" / "README.md.template",
     scripts=[
-        # Runtime tools plus the engine and everything the engine imports, so
-        # the copy inside the skill can rebuild or analyse itself without the
-        # repository.  A missing dependency here is a broken copy: split_spec
-        # imports frameworks, sections, derive and skill_root at module level.
+        # Every member of the package that a skill needs to rebuild or analyse
+        # itself without the repository.  These are package-relative names;
+        # the copier mirrors them into ``<skill>/scripts/skillmaker/``.
+        # A missing dependency here is a broken copy: split_spec imports
+        # frameworks, sections, derive and skill_root at module level.
+        "__init__.py",
         "_fpf_common.py",
         "fpf_lookup.py",
         "split_spec.py",

@@ -22,7 +22,7 @@ from __future__ import annotations
 import re
 from typing import Dict, Iterable, List, Optional, Sequence
 
-from _fpf_common import clean, sort_key
+from skillmaker._fpf_common import clean, sort_key
 
 
 # ---------------------------------------------------------------------------

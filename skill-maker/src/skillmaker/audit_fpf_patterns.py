@@ -16,10 +16,11 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_PKG_PARENT = _SCRIPT_DIR.parent          # the directory to import `skillmaker` from
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
 
-from _fpf_common import (  # noqa: E402
+from skillmaker._fpf_common import (  # noqa: E402
     PATTERN_ID_RE, PATTERN_HEADING_RE, PATTERN_HEADING_BARE_RE,
     TOC_START_RE, FenceTracker, ID_SEGMENT_RE, ensure_utf8_stdio,
 )

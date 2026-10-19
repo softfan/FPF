@@ -21,8 +21,8 @@ Three questions are being answered here:
 
 Usage from repo root::
 
-    python skill-maker/test_frameworks.py
-    python skill-maker/test_frameworks.py -v
+    python skill-maker/tests/test_frameworks.py
+    python skill-maker/tests/test_frameworks.py -v
 
 Exit codes: 0 = all passed, 1 = failures found.
 """
@@ -36,19 +36,34 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-_SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_TESTS_DIR = Path(__file__).resolve().parent
+_MAKER_DIR = _TESTS_DIR.parent                 # skill-maker/
+_PKG_PARENT = _MAKER_DIR / "src"
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
+_SCRIPT_DIR = _PKG_PARENT / "skillmaker"        # the package: entry points, templates
+_REPO_ROOT = _MAKER_DIR.parent                  # repository root
 
-from _fpf_common import ensure_utf8_stdio  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 
-import frameworks as F  # noqa: E402
-from _fpf_common import FenceTracker  # noqa: E402
+from skillmaker import frameworks as F  # noqa: E402
+from skillmaker._fpf_common import FenceTracker  # noqa: E402
 
 SNAPSHOT = _SCRIPT_DIR / "catalogue.snapshot.json"
+
+
+def _toolchain_py() -> List[Path]:
+    """Every Python file that is part of the toolchain.
+
+    The package holds the engine; ``tests/`` holds the suites that run it.
+    Both are scanned for the platform traps below, because a suite that
+    decodes a subprocess with the locale codec breaks the build just as
+    surely as the engine does.
+    """
+    return [p for p in sorted(_MAKER_DIR.rglob("*.py"))
+            if "__pycache__" not in p.parts]
 
 
 class TestRunner:
@@ -333,8 +348,8 @@ def _split(rel: str):
 
 def test_engine_agreement(t: TestRunner) -> None:
     print("\n[6] Agreement with split_spec's heading grammar")
-    from skill_config import ALL_DPF_CONFIGS, FrameworkSpec
-    from split_spec import build_heading_re
+    from skillmaker.skill_config import ALL_DPF_CONFIGS, FrameworkSpec
+    from skillmaker.split_spec import build_heading_re
 
     targets: List[Tuple[Path, str, str]] = [(_REPO_ROOT / "FPF-Spec.md", "FPF", r"(?:[A-K]|FPF)")]
     for config in ALL_DPF_CONFIGS.values():
@@ -523,7 +538,7 @@ def test_no_vendor_mentions(t: TestRunner) -> None:
     # The same rule for the toolchain's own documentation.
     doc_offenders: List[str] = []
     for name in ("README.md", "FRAMEWORKS.md"):
-        path = _SCRIPT_DIR / name
+        path = _MAKER_DIR / name
         if not path.exists():
             continue
         text = path.read_text("utf-8").lower()
@@ -550,7 +565,7 @@ def test_portability(t: TestRunner) -> None:
     call_re = re.compile(r"subprocess\.(run|Popen)\(")
     offenders: List[str] = []
     scanned = 0
-    for path in sorted(_SCRIPT_DIR.glob("*.py")):
+    for path in sorted(_toolchain_py()):
         text = path.read_text("utf-8")
         for match in call_re.finditer(text):
             window = text[match.end():match.end() + 400]
@@ -569,7 +584,7 @@ def test_portability(t: TestRunner) -> None:
     # File writes: generated output must go through write_text_lf, never
     # through Path.write_text, which is newline-translating.
     write_offenders: List[str] = []
-    for path in sorted(_SCRIPT_DIR.glob("*.py")):
+    for path in sorted(_toolchain_py()):
         if path.name.startswith("test_"):
             continue
         for number, line in enumerate(path.read_text("utf-8").splitlines(), 1):
@@ -585,12 +600,12 @@ def test_portability(t: TestRunner) -> None:
     # ``*.cmd`` and ``*.ps1`` are excluded: .gitattributes asks for CRLF there.
     lf_offenders: List[str] = []
     lf_suffixes = (".py", ".template", ".md", ".json", ".sh")
-    for path in sorted(_SCRIPT_DIR.rglob("*")):
+    for path in sorted(_MAKER_DIR.rglob("*")):
         if (not path.is_file() or path.suffix not in lf_suffixes
                 or "__pycache__" in path.parts):
             continue
         if b"\r\n" in path.read_bytes():
-            lf_offenders.append(path.relative_to(_SCRIPT_DIR).as_posix())
+            lf_offenders.append(path.relative_to(_MAKER_DIR).as_posix())
     t.check("no tracked toolchain file carries CRLF", not lf_offenders,
             str(lf_offenders[:6]))
 

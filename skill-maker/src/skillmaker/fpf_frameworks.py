@@ -18,10 +18,10 @@ Subcommands::
 
 Examples::
 
-    python skill-maker/fpf_frameworks.py catalogue --verify
-    python skill-maker/fpf_frameworks.py probe DPFs/README.md
-    python skill-maker/fpf_frameworks.py tree FPF-Spec.md --limit 10
-    python skill-maker/fpf_frameworks.py plan DPFs/README.md --skill guide
+    python skill-maker/src/skillmaker/fpf_frameworks.py catalogue --verify
+    python skill-maker/src/skillmaker/fpf_frameworks.py probe DPFs/README.md
+    python skill-maker/src/skillmaker/fpf_frameworks.py tree FPF-Spec.md --limit 10
+    python skill-maker/src/skillmaker/fpf_frameworks.py plan DPFs/README.md --skill guide
 
 Exit codes: 0 = success, 1 = verification failed or a document did not decompose.
 """
@@ -37,15 +37,17 @@ from pathlib import Path
 from typing import List, Optional
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_PKG_PARENT = _SCRIPT_DIR.parent          # the directory to import `skillmaker` from
+_MAKER_DIR = _PKG_PARENT.parent           # skill-maker/
+_REPO_ROOT = _MAKER_DIR.parent            # repository root
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
 
-from _fpf_common import ensure_utf8_stdio  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 
-import frameworks as F  # noqa: E402
+from skillmaker import frameworks as F  # noqa: E402
 
 #: Saved copy of the publisher catalogue, used for offline verification.
 SNAPSHOT = _SCRIPT_DIR / "catalogue.snapshot.json"

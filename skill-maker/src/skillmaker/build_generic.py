@@ -6,9 +6,9 @@ build_generic.py -- build a skill from any framework kind.
 repository publishes, from hand-written configs.  This command builds a skill
 from *any* document, using a decomposition profile to decide how it splits:
 
-    python skill-maker/build_generic.py docs/adr/adr-0001.md --skill payments-adr
-    python skill-maker/build_generic.py standard.md --skill arch-standard
-    python skill-maker/build_generic.py notes.md --skill notes --profile generic
+    python skill-maker/src/skillmaker/build_generic.py docs/adr/adr-0001.md --skill payments-adr
+    python skill-maker/src/skillmaker/build_generic.py standard.md --skill arch-standard
+    python skill-maker/src/skillmaker/build_generic.py notes.md --skill notes --profile generic
 
 It is the other half of ``fpf_frameworks.py plan``: the plan says what would be
 produced, this produces it.  Both go through the same profile, grammar and
@@ -39,18 +39,20 @@ from pathlib import Path
 from typing import Optional
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_PKG_PARENT = _SCRIPT_DIR.parent          # the directory to import `skillmaker` from
+_MAKER_DIR = _PKG_PARENT.parent           # skill-maker/
+_REPO_ROOT = _MAKER_DIR.parent            # repository root
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
 
-from _fpf_common import ensure_utf8_stdio  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 
-import frameworks as F  # noqa: E402
-from frameworks import genre as genre_mod  # noqa: E402
-from skill_config import DocSpec, FrameworkSpec, SkillConfig  # noqa: E402
-from split_spec import build_skill  # noqa: E402
+from skillmaker import frameworks as F  # noqa: E402
+from skillmaker.frameworks import genre as genre_mod  # noqa: E402
+from skillmaker.skill_config import DocSpec, FrameworkSpec, SkillConfig  # noqa: E402
+from skillmaker.split_spec import build_skill  # noqa: E402
 
 TEMPLATES = _SCRIPT_DIR / "templates"
 
@@ -178,7 +180,7 @@ def build(path: Path, skill_name: str, profile_key: str = "",
         print(f"Built {cfg.output}")
         if profile.shape.unit_files:
             print("  Add it to skills/index.json by running: "
-                  "python skill-maker/skill_index.py")
+                  "python skill-maker/src/skillmaker/skill_index.py")
     return rc
 
 

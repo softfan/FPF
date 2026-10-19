@@ -44,7 +44,7 @@ $skills = @(
 
 Write-Host ""
 Write-Host "[1/10] Splitting FPF Core + Library documents..."
-& $Python skill-maker/split_fpf_spec.py split `
+& $Python skill-maker/src/skillmaker/split_fpf_spec.py split `
     --source FPF-Spec.md `
     --output skills/fpf `
     --views
@@ -52,46 +52,46 @@ if ($LASTEXITCODE -ne 0) { Write-Host "FPF split failed"; exit 2 }
 
 Write-Host ""
 Write-Host "[2/10] Splitting DPF Suites and standalone DPFs..."
-& $Python skill-maker/split_dpf_spec.py split --all --views
+& $Python skill-maker/src/skillmaker/split_dpf_spec.py split --all --views
 if ($LASTEXITCODE -ne 0) { Write-Host "DPF split failed"; exit 2 }
 
 Write-Host ""
 Write-Host "[3/10] Writing the skills index..."
-& $Python skill-maker/skill_index.py
+& $Python skill-maker/src/skillmaker/skill_index.py
 if ($LASTEXITCODE -ne 0) { Write-Host "  X Skill index failed"; exit 1 }
 
 Write-Host ""
 Write-Host "[4/10] Running FPF audit..."
-& $Python skill-maker/audit_fpf_patterns.py `
+& $Python skill-maker/src/skillmaker/audit_fpf_patterns.py `
     --source FPF-Spec.md `
     --skill-dir skills/fpf
 if ($LASTEXITCODE -ne 0) { Write-Host "  Warning: Audit reported issues" }
 
 Write-Host ""
 Write-Host "[5/10] Running tests (FPF + DPF)..."
-& $Python skill-maker/test_fpf_pipeline.py
+& $Python skill-maker/tests/test_fpf_pipeline.py
 if ($LASTEXITCODE -ne 0) { Write-Host "FPF tests failed"; exit 4 }
-& $Python skill-maker/test_dpf_pipeline.py
+& $Python skill-maker/tests/test_dpf_pipeline.py
 if ($LASTEXITCODE -ne 0) { Write-Host "  X DPF tests failed"; exit 1 }
 
 Write-Host ""
 Write-Host "[6/10] Checking framework decomposition against the publisher catalogue..."
-& $Python skill-maker/test_frameworks.py
+& $Python skill-maker/tests/test_frameworks.py
 if ($LASTEXITCODE -ne 0) { Write-Host "  X Framework tests failed"; exit 1 }
 
 Write-Host ""
 Write-Host "[7/10] Checking the generic skill builder..."
-& $Python skill-maker/test_build_generic.py
+& $Python skill-maker/tests/test_build_generic.py
 if ($LASTEXITCODE -ne 0) { Write-Host "  X Generic builder tests failed"; exit 1 }
 
 Write-Host ""
 Write-Host "[8/10] Checking the MCP server..."
-& $Python skill-maker/test_mcp_server.py
+& $Python skill-maker/tests/test_mcp_server.py
 if ($LASTEXITCODE -ne 0) { Write-Host "  X MCP server tests failed"; exit 1 }
 
 Write-Host ""
 Write-Host "[9/10] Checking the derived retrieval layer..."
-& $Python skill-maker/test_derived.py
+& $Python skill-maker/tests/test_derived.py
 if ($LASTEXITCODE -ne 0) { Write-Host "  X Derived-layer tests failed"; exit 1 }
 
 Write-Host ""
@@ -99,13 +99,13 @@ Write-Host "[10/10] Checking the HTTP transport..."
 if ($null -eq (Get-Command bash -ErrorAction SilentlyContinue)) {
     Write-Host "  - skipped: bash not found (Git Bash or WSL runs the curl walkthrough)"
 } else {
-    & bash skill-maker/test-mcp-http.sh
+    & bash skill-maker/tests/test-mcp-http.sh
     if ($LASTEXITCODE -ne 0) { Write-Host "  X HTTP transport tests failed"; exit 1 }
 }
 
 Write-Host ""
 Write-Host "Build summary"
 Write-Host "--------------------------------------------"
-& $Python skill-maker/split_fpf_spec.py stats
-& $Python skill-maker/split_dpf_spec.py stats
+& $Python skill-maker/src/skillmaker/split_fpf_spec.py stats
+& $Python skill-maker/src/skillmaker/split_dpf_spec.py stats
 Write-Host "============================================"

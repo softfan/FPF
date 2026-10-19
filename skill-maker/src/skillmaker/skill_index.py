@@ -19,8 +19,8 @@ writes, so they cannot drift from what was actually built.
 
 Usage::
 
-    python skill-maker/skill_index.py            # write both
-    python skill-maker/skill_index.py --check    # exit 1 if they are stale
+    python skill-maker/src/skillmaker/skill_index.py            # write both
+    python skill-maker/src/skillmaker/skill_index.py --check    # exit 1 if they are stale
 """
 
 from __future__ import annotations
@@ -33,15 +33,17 @@ from pathlib import Path
 from typing import Dict, List
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_PKG_PARENT = _SCRIPT_DIR.parent          # the directory to import `skillmaker` from
+_MAKER_DIR = _PKG_PARENT.parent           # skill-maker/
+_REPO_ROOT = _MAKER_DIR.parent            # repository root
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
 
-from _fpf_common import ensure_utf8_stdio, write_text_lf  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio, write_text_lf  # noqa: E402
 
 ensure_utf8_stdio()
 
-from skill_config import (  # noqa: E402
+from skillmaker.skill_config import (  # noqa: E402
     DPF_SKILL_CONFIGS,
     FPF_CONFIG,
     SUITE_SKILL_CONFIGS,
@@ -227,7 +229,7 @@ HEADER = """\
 
 Generated from the publications in this repository. **Do not edit by hand** --
 run the build (`skill-maker/build.sh`, `build.cmd` or `build.ps1`), or
-`python skill-maker/skill_index.py` on its own.
+`python skill-maker/src/skillmaker/skill_index.py` on its own.
 
 Each directory is a self-contained skill: `SKILL.md` is the entry point an
 agent loads first, `README.md` explains the directory, and `reference/` holds
@@ -360,7 +362,7 @@ def render_connect(rows: List[Dict]) -> str:
 
 def _tool_count() -> int:
     try:
-        import mcp_server
+        from skillmaker import mcp_server
         return len(mcp_server.TOOLS)
     except Exception:
         return 0
@@ -423,7 +425,7 @@ def main() -> int:
                 stale.append(path.name)
         if stale:
             print(f"Stale skill index: {', '.join(stale)}. "
-                  f"Run: python skill-maker/skill_index.py", file=sys.stderr)
+                  f"Run: python skill-maker/src/skillmaker/skill_index.py", file=sys.stderr)
             return 1
         print("Skill index is up to date.")
         return 0

@@ -12,8 +12,8 @@ The FPF skill ships four publications:
     Readme.md                  Library landing page
 
 Usage from repo root:
-    python skill-maker/test_fpf_pipeline.py
-    python skill-maker/test_fpf_pipeline.py -v
+    python skill-maker/tests/test_fpf_pipeline.py
+    python skill-maker/tests/test_fpf_pipeline.py -v
 
 Exit codes: 0 = all passed, 1 = failures found.
 """
@@ -28,10 +28,15 @@ import tempfile
 from pathlib import Path
 from typing import List, Tuple
 
-_SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parent
+_TESTS_DIR = Path(__file__).resolve().parent
+_MAKER_DIR = _TESTS_DIR.parent                 # skill-maker/
+_PKG_PARENT = _MAKER_DIR / "src"
+if str(_PKG_PARENT) not in sys.path:
+    sys.path.insert(0, str(_PKG_PARENT))
+_SCRIPT_DIR = _PKG_PARENT / "skillmaker"        # the package: entry points, templates
+_REPO_ROOT = _MAKER_DIR.parent                  # repository root
 
-from _fpf_common import ensure_utf8_stdio  # noqa: E402
+from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 
@@ -183,11 +188,19 @@ def test_structure(t: TestRunner):
 
     scripts_dir = SKILL_DIR / "scripts"
     t.check("scripts/ exists", scripts_dir.exists())
-    if scripts_dir.exists():
+    # The engine travels as a package, so the skill can import `skillmaker.*`
+    # exactly as the repository does.
+    pkg_dir = scripts_dir / "skillmaker"
+    t.check("scripts/skillmaker/ exists", pkg_dir.is_dir())
+    if pkg_dir.is_dir():
         for name in ("__init__.py", "fpf_lookup.py", "_fpf_common.py",
                      "split_spec.py", "skill_config.py", "fpf_update.py",
                      "split_fpf_spec.py", "audit_fpf_patterns.py"):
-            t.check(f"scripts/{name}", (scripts_dir / name).exists())
+            t.check(f"scripts/skillmaker/{name}", (pkg_dir / name).exists())
+        t.check("scripts/skillmaker/frameworks/",
+                (pkg_dir / "frameworks" / "__init__.py").exists())
+        t.check("scripts/skillmaker/templates/",
+                (pkg_dir / "templates").is_dir())
 
 
 def test_skill_md_quality(t: TestRunner):
