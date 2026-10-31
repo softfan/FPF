@@ -294,21 +294,21 @@ def _split(rel: str):
 def test_engine_agreement(t: TestRunner) -> None:
     print("\n[6] Agreement with split_spec's heading grammar")
     from skillmaker.discover_skills import discover
-    from skillmaker.split_spec import build_heading_re
+    from skillmaker.split_spec import SpecParser
 
     mismatches: List[str] = []
-    for fw in [fw for cfg in discover().configs.values() for fw in cfg.frameworks]:
+    for cfg, fw in [(cfg, fw) for cfg in discover().configs.values() for fw in cfg.frameworks]:
         source = fw.source
         text = source.read_text("utf-8", errors="replace")
-        engine_with, engine_bare = build_heading_re(fw)
+        parser = SpecParser(cfg, fw)
         grammar = fw.grammar or F.DOTTED.for_prefix(fw.prefix_re)
 
         fence = FenceTracker()
         for line in text.splitlines():
             if not fence.in_fence:
-                a = engine_with.match(line) or engine_bare.match(line)
+                a = parser._match_unit_heading(line)
                 b = F.split_heading(line, grammar)
-                a_id = a.group("id") if a else None
+                a_id = a[0] if a else None
                 b_id = b[0] if b else None
                 if a_id != b_id:
                     mismatches.append(f"{source.name}: {line[:60]!r} "
@@ -320,6 +320,35 @@ def test_engine_agreement(t: TestRunner) -> None:
             break
 
     t.check("both parsers agree on every heading", not mismatches, str(mismatches[:6]))
+
+
+def test_heading_grammars(t: TestRunner) -> None:
+    """Explicit grammars must not fall back to a placeholder dotted prefix."""
+    from skillmaker.skill_config import FrameworkSpec, SkillConfig
+    from skillmaker.split_spec import SpecParser, build_heading_re
+
+    cases = (
+        (F.DOTTED.for_prefix("FUTURE"), "## FUTURE.Reference:123 - Scope", "FUTURE.Reference:123"),
+        (F.DOTTED.for_prefix("FUTURE"), "## FUTURE.2048", "FUTURE.2048"),
+        (F.by_key("adr").grammar, "## ADR-0123 - Choice", "ADR-0123"),
+        (F.by_key("standards").grammar, "## 12.34.56 Scope", "12.34.56"),
+        (F.by_key("pattern-language").grammar, "## 123. THE GATE", "123"),
+    )
+    for grammar, line, expected in cases:
+        fw = FrameworkSpec("demo", "unit", Path("unused.md"), "Demo", "Demo", grammar=grammar)
+        cfg = SkillConfig("demo", Path("unused"), frameworks=[fw])
+        with_title, bare = build_heading_re(fw)
+        match = with_title.match(line) or (bare.match(line) if bare else None)
+        t.equal(f"resolved heading regex: {expected}", match.group("id") if match else None, expected)
+        parser = SpecParser(cfg, fw)
+        found = parser._match_unit_heading(line)
+        t.equal(f"resolved parser grammar: {expected}", found[0] if found else None, expected)
+        t.equal(f"foreign prefix rejected: {expected}", parser._match_unit_heading("## OTHER.1 - Wrong"), None)
+
+    fw = FrameworkSpec("legacy", "LEGACY", Path("unused.md"), "Legacy", "Legacy")
+    parser = SpecParser(SkillConfig("legacy", Path("unused"), frameworks=[fw]), fw)
+    t.equal("prefix-only configs retain dotted grammar", parser._match_unit_heading("## LEGACY.987 - Method"),
+            ("LEGACY.987", "Method"))
 
 
 # ---------------------------------------------------------------------------
@@ -631,6 +660,7 @@ def main() -> int:
     test_source_coverage(t)
     test_decomposition(t)
     test_engine_agreement(t)
+    test_heading_grammars(t)
     test_extension_kinds(t)
     test_edge_cases(t)
     test_shapes(t)

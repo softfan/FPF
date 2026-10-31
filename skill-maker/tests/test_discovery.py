@@ -19,7 +19,7 @@ sys.path.insert(0, str(_REPO_ROOT / "skill-maker" / "src"))
 
 from skillmaker._fpf_common import ensure_utf8_stdio
 from skillmaker import discover_skills as D, frameworks as F, skill_index, split_dpf_spec, fpf_frameworks
-from skillmaker.split_spec import build_skill
+from skillmaker.split_spec import build_skill, rebuild_spec
 
 ensure_utf8_stdio()
 
@@ -195,6 +195,9 @@ def test_malformed(t, root):
     path.write_bytes(dpf().replace("**DocID:** `DEMO` within **FPF Library**.\n", "").encode())
     inferred = discover(root)
     t.check("single heading prefix inferred", set(inferred.configs) == {"demo"})
+    fw = inferred.configs["demo"].frameworks[0]
+    t.check("inferred prefix retained for ID lookups", fw.id_re.fullmatch("DEMO.1") is not None
+            and fw.id_re.fullmatch("OTHER.1") is None)
     t.check("inferred-prefix skill builds", quiet_build(inferred.configs["demo"]) == 0)
     path.write_bytes((dpf() + "\n```markdown\n## OTHER.1 - Example only\n```\n").encode())
     t.check("foreign heading inside fence ignored", set(discover(root).configs) == {"demo"})
@@ -334,6 +337,11 @@ def test_variable_inventory(t, root):
         t.check("manifest follows source additions and removals", {e["id"] for e in units} == expected_ids)
         files = {p.name for p in (cfg.output / "reference/var").glob("*.md") if p.name != "index.md"}
         t.check("obsolete unit files are pruned", files == {uid.replace(":", "-") + ".md" for uid in expected_ids})
+        example = next((e["id"] for e in units if e["role"] == "pattern"), units[0]["id"])
+        t.check("skill example names an existing unit even without patterns",
+                f"`{example}`" in (cfg.output / "SKILL.md").read_text("utf-8"))
+        t.check("boot example names an existing unit even without patterns",
+                example in (cfg.output / "boot.md").read_text("utf-8"))
         parser = SpecParser(cfg, cfg.frameworks[0])
         parser.parse()
         t.check("builder and independent decomposition agree", {c.id for c in parser.chunks if c.kind == "unit"}
@@ -359,6 +367,56 @@ def test_variable_inventory(t, root):
     with patch.object(D, "discover", return_value=plan):
         result = mcp_server.Server(root / "prose-skills").call("verify_catalogue", {})
     t.check("MCP catalogue check is local by default", result["ok"] and result["mode"] == "local")
+
+
+def test_suite_growth(t, root):
+    """New siblings and changing unit counts survive builds and reconstruction."""
+    folder = "DPFs/Growing DPF Suite/"
+    put(root, folder + "BASE-DPF.md", dpf("BASE"))
+    put(root, folder + "GROWING-SUITE-REFERENCE.md",
+        "# Growing Suite Architectural Reference\n\n**DocID:** `Growing`\n\n"
+        "## Growing.Reference:1 - Composition\n\nSuite body.\n")
+    original = discover(root).configs["growing-suite"]
+    t.check("baseline suite builds", quiet_build(original) == 0)
+    source = put(root, folder + "LATER-DPF.md", "")
+    for ids in (("LATER.1",), ("LATER.1", "LATER.7", "LATER.2048", "LATER.Reference:3.2"),
+                ("LATER.Reference:9",)):
+        # No declared DocID: the new publication must supply its prefix itself.
+        text = "# Later framework\n\n" + "".join(
+            f"## {uid} - Current method\n\nBody for {uid}.\n\n" for uid in ids)
+        source.write_bytes(text.encode("utf-8"))
+        put(root, "DPFs/EXTRA-DPF.md", dpf("EXTRA"))
+        plan = D.discover(root, configured=[original])
+        cfg = plan.configs[original.name]
+        t.check("new standalone and suite member discovered together",
+                set(plan.configs) == {original.name, "extra"}
+                and source in {fw.source for fw in cfg.frameworks})
+        t.check("curated source inventory remains unchanged",
+                source not in {fw.source for fw in original.frameworks})
+        D.validate_outputs(plan)
+        for current in plan.configs.values():
+            t.check("growing corpus builds", quiet_build(current) == 0)
+        entries = json.loads((cfg.output / f".{cfg.name}_manifest.json").read_text("utf-8"))
+        fw = next(fw for fw in cfg.frameworks if fw.source == source)
+        units = [e for e in entries if e["kind"] == "unit" and e["framework"] == fw.key]
+        t.check("suite inventory follows current member units", {e["id"] for e in units} == set(ids))
+        rebuilt = root / "rebuilt.md"
+        with contextlib.redirect_stdout(io.StringIO()):
+            rebuild_spec(cfg, rebuilt)
+        normalize = lambda data: data.replace(b"\r\n", b"\n").replace(b"\n", b"")
+        expected = b"".join(fw.source.read_bytes() for fw in cfg.frameworks)
+        t.check("suite rebuild retains all discovered sources",
+                normalize(rebuilt.read_bytes()) == normalize(expected))
+        with patch.object(skill_index, "SKILLS_ROOT", root / "skills"), \
+                patch.object(skill_index, "_REPO_ROOT", root), \
+                patch.object(D, "discover", return_value=plan):
+            rows = skill_index.collect()
+            payload = skill_index.payload(rows)
+        expected_patterns = sum(e.get("role") == "pattern" for current in plan.configs.values()
+                                for e in json.loads((current.output / f".{current.name}_manifest.json")
+                                                    .read_text("utf-8")))
+        t.check("index counts adapt to changed corpus", payload["totals"]["patterns"] == expected_patterns)
+        t.check("inferred suite member routed", payload["docid_to_skill"].get("LATER") == cfg.name)
 
 
 def test_optional_curated_inventory(t, root):
@@ -427,7 +485,7 @@ def main():
         for test in (test_standalone, test_suite, test_profiles, test_conflicts,
                      test_malformed, test_safety, test_preflight_and_selection,
                      test_global_units, test_whole_document, test_baseline_verification,
-                     test_variable_inventory, test_optional_curated_inventory,
+                     test_variable_inventory, test_suite_growth, test_optional_curated_inventory,
                      test_index, test_cli):
             root = base / test.__name__
             root.mkdir()

@@ -74,9 +74,13 @@ def _title_of(text: str, fallback: str) -> str:
 
 
 def _prefix_of(profile, text: str) -> str:
-    """A harmless prefix for the engine when the grammar does the real work."""
+    """Keep legacy ID lookups consistent with the resolved profile grammar."""
+    if profile.fixed_prefix:
+        return profile.fixed_prefix
     docid = F.docid_of(text)
-    return docid or "unit"
+    if not docid and profile.docid_prefix:
+        docid = profile._infer_prefix(text)
+    return re.escape(docid) if docid else "unit"
 
 
 def config_for(path: Path, profile, skill_name: str,

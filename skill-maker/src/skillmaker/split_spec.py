@@ -50,7 +50,7 @@ from skillmaker._fpf_common import (
     sha256, sort_key, unit_role, write_text_lf, ID_SEGMENT_RE, manifest_entry_path,
 )
 
-from skillmaker.frameworks.grammar import split_heading
+from skillmaker.frameworks.grammar import DOTTED, split_heading
 from skillmaker import sections as section_map
 from skillmaker import derive
 from skillmaker import skill_root
@@ -68,15 +68,9 @@ def _build_id_fragment(prefix_re: str) -> str:
 
 
 def build_heading_re(framework: FrameworkSpec):
-    frag = _build_id_fragment(framework.prefix_re)
-    with_title = re.compile(
-        r"^##\s+(?:\*\*)?(?P<id>" + frag + r")(?=\s|$)"
-        r"(?:\*\*)?\s*[-–—:]\s*(?P<title>.+)$"
-    )
-    bare = re.compile(
-        r"^##\s+(?:\*\*)?(?P<id>" + frag + r")(?:\*\*)?\s*$"
-    )
-    return with_title, bare
+    """Use the same heading grammar as the parser, including inferred IDs."""
+    grammar = framework.grammar or DOTTED.for_prefix(framework.prefix_re)
+    return grammar.heading_re, grammar.bare_heading_re
 
 
 def build_skill_id_re(config: SkillConfig):
@@ -161,7 +155,7 @@ class SpecParser:
         m = self.heading_re.match(line)
         if m:
             return m.group("id"), clean(m.group("title"))
-        m = self.bare_heading_re.match(line)
+        m = self.bare_heading_re.match(line) if self.bare_heading_re else None
         if m:
             return m.group("id"), ""
         return None
@@ -1001,7 +995,7 @@ class FileWriter:
         self._put(self.output / "boot.md", derive.render_boot(
             cfg.name, cfg.title or cfg.name, cfg.kind_label or "Framework",
             cfg.genre, len(patterns), len(units),
-            patterns[0].id if patterns else (cfg.prefix_token or "1.1"),
+            (patterns or units)[0].id if units else (cfg.prefix_token or "1.1"),
             self._rebuild_cmd(), bool(cfg.docs), bool(self._role_names())))
 
     def _render_entries(self, rows: List[Dict[str, object]]) -> str:
@@ -1142,8 +1136,8 @@ class FileWriter:
                                    else "framework documents"),
             "{{CONTRACT_NOTE}}": self._contract_note(),
             "{{REBUILD_CMD}}": self._rebuild_cmd(),
-            "{{PREFIX_EXAMPLE}}": (patterns[0].id if patterns
-                                   else (cfg.prefix_token or "1.1")),
+            "{{PREFIX_EXAMPLE}}": ((patterns or units)[0].id if units
+                                    else (cfg.prefix_token or "1.1")),
             "{{ENTRY_PATTERN_PATH}}": (
                 "reference/docs" if not cfg.frameworks
                 else f"reference/{cfg.frameworks[0].key}"

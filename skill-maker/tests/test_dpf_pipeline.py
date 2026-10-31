@@ -42,9 +42,14 @@ from skillmaker._fpf_common import ensure_utf8_stdio  # noqa: E402
 
 ensure_utf8_stdio()
 
-from skillmaker.skill_config import ALL_DPF_CONFIGS  # noqa: E402
-
 DPF_ROOT = _REPO_ROOT / "DPFs"
+
+
+def _dpf_configs():
+    """Test the current build inputs, not just the curated overrides."""
+    from skillmaker.split_dpf_spec import _configs
+
+    return _configs()
 
 
 class TestRunner:
@@ -109,7 +114,7 @@ def test_catalogue_completeness(t: TestRunner):
             f"missing={sorted(set(configured) - set(published))[:4]}")
     t.check("no file used twice", len(configured) == len(set(configured)),
             f"{len(configured)} uses, {len(set(configured))} distinct files")
-    for fw in [fw for cfg in ALL_DPF_CONFIGS.values() for fw in cfg.frameworks]:
+    for fw in [fw for cfg in _dpf_configs().values() for fw in cfg.frameworks]:
         t.check(f"source exists: {fw.source.name}", fw.source.exists(), str(fw.source))
 
 
@@ -130,7 +135,7 @@ def test_library_catalogue_agreement(t: TestRunner):
 def test_expected_counts(t: TestRunner):
     """Configs describe ownership, not expected corpus sizes."""
     print("\n[Catalogue ownership]")
-    paths = [fw.source for cfg in ALL_DPF_CONFIGS.values() for fw in cfg.frameworks]
+    paths = [fw.source for cfg in _dpf_configs().values() for fw in cfg.frameworks]
     t.check("configured sources have unique ownership", len(paths) == len(set(paths)))
 
 
@@ -146,7 +151,7 @@ def _skill_dir(cfg) -> Path:
 
 def test_structure(t: TestRunner):
     print("\n[Structure]")
-    for name, cfg in sorted(ALL_DPF_CONFIGS.items()):
+    for name, cfg in sorted(_dpf_configs().items()):
         d = _skill_dir(cfg)
         t.check(f"{name}: SKILL.md exists", (d / "SKILL.md").exists())
         t.check(f"{name}: README.md exists", (d / "README.md").exists())
@@ -190,7 +195,7 @@ def test_counts(t: TestRunner):
 
 def test_unit_files(t: TestRunner):
     print("\n[Unit files]")
-    for name, cfg in sorted(ALL_DPF_CONFIGS.items()):
+    for name, cfg in sorted(_dpf_configs().items()):
         mpath = _skill_dir(cfg) / f".{name}_manifest.json"
         if not mpath.exists():
             continue
@@ -221,11 +226,7 @@ def test_intro_files(t: TestRunner):
     are unique, and every framework contributes its own.
     """
     print("\n[Intro files]")
-    from skillmaker.discover_skills import discover
-
-    configs = discover().configs
-    for name in sorted(ALL_DPF_CONFIGS):
-        cfg = configs[name]
+    for name, cfg in sorted(_dpf_configs().items()):
         mpath = _skill_dir(cfg) / f".{name}_manifest.json"
         if not mpath.exists():
             continue
@@ -252,7 +253,7 @@ def test_intro_files(t: TestRunner):
 
 def test_indexes(t: TestRunner):
     print("\n[Indexes]")
-    for name, cfg in sorted(ALL_DPF_CONFIGS.items()):
+    for name, cfg in sorted(_dpf_configs().items()):
         ref = _skill_dir(cfg) / "reference"
         apath = ref / "pattern-index.md"
         if not apath.exists():
@@ -280,7 +281,7 @@ def test_indexes(t: TestRunner):
 
 def test_skill_md_quality(t: TestRunner):
     print("\n[SKILL.md quality]")
-    for name, cfg in sorted(ALL_DPF_CONFIGS.items()):
+    for name, cfg in sorted(_dpf_configs().items()):
         sp = _skill_dir(cfg) / "SKILL.md"
         if not sp.exists():
             t.check(f"{name}: SKILL.md", False); continue
@@ -288,15 +289,18 @@ def test_skill_md_quality(t: TestRunner):
         t.check(f"{name}: name: {name}", f"name: {name}" in content)
         t.check(f"{name}: title '{cfg.title}'", f"# {cfg.title}" in content)
         t.check(f"{name}: no {{placeholders}}", "{{" not in content)
-        t.check(f"{name}: example ID rendered",
-                bool(re.search(r"Pattern ID \(e\.g\. `[A-Za-z][A-Za-z0-9]*(?:[.:][A-Za-z0-9_]+)+`\)",
-                               content)),
-                "no concrete pattern ID in the entry table")
+        entries = json.loads((cfg.output / f".{name}_manifest.json").read_text("utf-8"))
+        units = [e for e in entries if e.get("kind") == "unit"]
+        patterns = [e for e in units if e.get("role") == "pattern"]
+        example = (patterns or units)[0]["id"] if units else None
+        t.check(f"{name}: current unit ID rendered",
+                example is None or f"`{example}`" in content,
+                f"missing example from current units: {example}")
 
 
 def test_rebuild(t: TestRunner):
     print("\n[Rebuild]")
-    for name, cfg in sorted(ALL_DPF_CONFIGS.items()):
+    for name, cfg in sorted(_dpf_configs().items()):
         d = _skill_dir(cfg)
         if not (d / f".{name}_manifest.json").exists():
             t.check(f"{name}: rebuild prereq", False); continue
@@ -311,21 +315,30 @@ def test_rebuild(t: TestRunner):
                 expected = b"".join(fw.source.read_bytes().replace(b"\r\n", b"\n")
                                     for fw in cfg.frameworks)
                 t.check(f"{name}: rebuild retains source content",
-                        rebuilt.replace(b"\n", b"") == expected.replace(b"\n", b""))
+                         rebuilt.replace(b"\n", b"") == expected.replace(b"\n", b""),
+                         f"rebuilt={len(rebuilt)} bytes, expected={len(expected)} bytes; "
+                         f"sources={[fw.source.name for fw in cfg.frameworks]}")
         finally:
             tmp_path.unlink(missing_ok=True)
 
 
 def test_standalone_selection(t: TestRunner):
     print("\n[CLI selection]")
+    configs = _dpf_configs()
+    for option, candidates in (
+            ("--framework", [cfg for cfg in configs.values() if cfg.kind_label != "DPF Suite"]),
+            ("--suite", [cfg for cfg in configs.values() if cfg.kind_label == "DPF Suite"])):
+        if not candidates:
+            continue
+        cfg = candidates[0]
+        r = run_cmd([sys.executable, str(_SCRIPT_DIR / "split_dpf_spec.py"),
+                     "split", option, cfg.name, "--views"])
+        t.check(f"single {option} build exit 0", r.returncode == 0, _err(r))
+    unknown = "unknown-framework"
+    while any(unknown in (cfg.name.lower(), cfg.prefix_token.lower()) for cfg in configs.values()):
+        unknown += "-unknown"
     r = run_cmd([sys.executable, str(_SCRIPT_DIR / "split_dpf_spec.py"),
-                 "split", "--framework", "fdm", "--views"])
-    t.check("single --framework build exit 0", r.returncode == 0, _err(r))
-    r = run_cmd([sys.executable, str(_SCRIPT_DIR / "split_dpf_spec.py"),
-                 "split", "--suite", "engineering", "--views"])
-    t.check("single --suite build exit 0", r.returncode == 0, _err(r))
-    r = run_cmd([sys.executable, str(_SCRIPT_DIR / "split_dpf_spec.py"),
-                 "split", "--framework", "NOPE"])
+                 "split", "--framework", unknown])
     t.check("unknown framework rejected", r.returncode != 0)
 
 
