@@ -5,7 +5,7 @@
 > A pattern language for recognizing, representing, shaping, performing, learning and observing rhythmic relations.
 
 - **Author:** Anatoly Levenchuk, with AI-assisted development and review
-- **Version:** 7 October 2026 · [Edition and reuse](#edition-and-reuse)
+- **Version:** 24 October 2026 · [Edition and reuse](#edition-and-reuse)
 - **License:** © 2026 Anatoly Levenchuk. Original framework text: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Third-party material retains its own terms.
 
 Begin with the passage and the result you need. The Table of Contents supports direct use; the Readme shows selected combinations; the Architectural Reference explains their conditions, sources and architectural reasons. **RHY** is this framework's reference code. Its pattern numbers are addresses; the Parts group reading rather than prescribe work order.
@@ -75,7 +75,7 @@ Find this framework in the [FPF Library DPF catalogue](https://github.com/ailev/
 
 ## Practical entries
 
-These are selected examples of using the language, not a catalogue or a coverage boundary. Bring the question from your work. If none fits, use the Table of Contents to find the relevant action, difficulty or result and open the pattern directly.
+These are selected examples of using the language. Bring the question from your work. If none fits, use the Table of Contents to find the relevant action, difficulty or result and open the pattern directly.
 
 You can ask an assisting agent: “Explain this and give me your comments in ordinary language, without framework jargon.” Describe the passage, what you need to do and what happens now. A short demonstration may communicate a rhythmic relation better than another label.
 
@@ -1518,7 +1518,7 @@ Toussaint's *The Geometry of Musical Rhythm* (2020), chapters 21 and 31, supplie
 
 Cha's Takadimi critique, discussed in RHY.5–RHY.6, makes a transformation's input completeness consequential: omitted sustain or silent reference positions can change the result. A timed demonstration, a score or an accompanying beat gesture can supply information absent from a bare syllable string.
 
-The three cases above are transparent constructions from stipulated inputs. The combined method—retained relations, rhythmic construction, fit with the whole and a qualified return to performance—is a synthesis; empirical claims remain limited to their own sources and observations.
+The three cases above are constructions from stipulated inputs. The combined method—retained relations, rhythmic construction, fit with the whole and a qualified return to performance—is a synthesis; empirical claims remain limited to their own sources and observations.
 
 ### RHY.8:12 - Relations
 
@@ -2563,7 +2563,7 @@ For a concrete comparison, consider choosing between two passages when the sessi
 
 A single holistic judgement remains adequate when that is the actual choice criterion; ask only the one specific question when the other response cannot change the decision. If the claim concerns coordinated movement, use an appropriate movement observation instead. This accepts its greater preparation and performance burden only for that different claim. Reconsider the chosen response task when the aim, participants or meaningful distinctions change.
 
-The event-matching and continuous-course instructions form a methodological synthesis. Their calculations and observation limits are explicit; no universal detector, response scale or rhythm-quality measure is selected. Revisit a source or procedure when a new material, observation task, population or detector behaviour changes the relevant comparison.
+The event-matching and continuous-course instructions form a methodological synthesis. No universal detector, response scale or rhythm-quality measure is selected. Revisit a source or procedure when a new material, observation task, population or detector behaviour changes the relevant comparison.
 
 ### RHY.14:12 - Relations
 
