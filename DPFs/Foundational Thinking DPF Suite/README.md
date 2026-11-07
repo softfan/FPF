@@ -15,7 +15,7 @@ Framework and method links open readable text on fpf.tools; **Markdown** links o
 ## Choose an entry
 
 
-The following entries contain worked connections, not just pointers to smaller operations. Start from the contribution whose inputs are available; an example's presentation order is not a prescribed project sequence.
+The following entries contain worked connections. Start from the contribution whose inputs are available; an example's presentation order is not a prescribed project sequence.
 
 | What you need to do | Follow the worked connection |
 | --- | --- |
@@ -35,11 +35,11 @@ The [Foundational Thinking Architectural Reference](FOUNDATIONAL-THINKING-DPF-SU
 
 | Framework | What you can work on | Patterns | Text, M characters |
 | --- | --- | ---: | ---: |
-| [Mathematical Thinking (MATH)](https://fpf.tools/MATH) · [Markdown](MATHEMATICAL-PRACTICE-DPF.md) | Construct mathematical objects, operations and alternatives; derive consequences and meet proof obligations. | 20 | 0.480 |
+| [Mathematical Thinking (MATH)](https://fpf.tools/MATH) · [Markdown](MATHEMATICAL-PRACTICE-DPF.md) | Construct mathematical objects, operations and alternatives; derive consequences and meet proof obligations. | 20 | 0.479 |
 | [Mathematical Modeling (MMP)](https://fpf.tools/MMP) · [Markdown](MATHEMATICAL-MODELING-PRACTICE-DPF.md) | Relate a subject question to mathematics; infer, predict, compare interventions, design observations and revise or combine models. | 17 | 0.574 |
 | [Physical Thinking (PHY)](https://fpf.tools/PHY) · [Markdown](PHYSICAL-THINKING-DPF.md) | Construct and test physical accounts; select interactions and idealizations, derive consequences and distinguish them by observation. | 10 | 0.304 |
-| [Computational Thinking (CMP)](https://fpf.tools/CMP) · [Markdown](COMPUTATIONAL-THINKING-DPF.md) | Construct algorithms that obtain the required answer within correctness, resource and interaction conditions. | 16 | 0.438 |
-| [Notational Engineering (NOT)](https://fpf.tools/NOT) · [Markdown](NOTATIONAL-ENGINEERING-DPF.md) | Design expressions, interpretations and transformations that make operations usable and changes recoverable. | 8 | 0.221 |
+| [Computational Thinking (CMP)](https://fpf.tools/CMP) · [Markdown](COMPUTATIONAL-THINKING-DPF.md) | Construct algorithms that obtain the required answer within correctness, resource and interaction conditions. | 16 | 0.435 |
+| [Notational Engineering (NOT)](https://fpf.tools/NOT) · [Markdown](NOTATIONAL-ENGINEERING-DPF.md) | Design expressions, interpretations and transformations that make operations usable and changes recoverable. | 8 | 0.217 |
 
 **Patterns** counts full pattern bodies. **Text, M characters** measures each complete Markdown framework, including its embedded Architectural Reference, in millions of Unicode characters with spaces and original line breaks, rounded to three decimals. These are scope indicators, not a required reading load.
 
@@ -53,13 +53,13 @@ The Reference explains [how the contributions constrain one another (Foundationa
 
 ## Develop and use new ways of thinking
 
-A useful construction can make a new question approachable; an unexplained observation, counterexample or successful new tool can reveal the next question. This Suite supplies the subject-specific constructions. [FPF Core](https://fpf.tools/FPF) supplies general methods for inquiry, methodological development and continuing development. Merely finishing a calculation does not establish that wider continuation.
+A useful construction can make a new question approachable; an unexplained observation, counterexample or successful new tool can reveal the next question. This Suite supplies the subject-specific constructions. [FPF Core](https://fpf.tools/FPF) supplies general methods for inquiry, methodological development and continuing development.
 
 Research Method Practice, Decision Design, Explanation Design and Narrativization retain their own subjects in the [DPF catalogue](../). They are not absorbed into this Suite because they involve thinking. [Engineering](../Engineering%20DPF%20Suite/) supplies realization of instruments and other systems; [Human Capability Engineering](../Human%20Capability%20Engineering%20DPF%20Suite/) supplies changes in people's capabilities. Obtaining an intellectual result, constructing its means and learning to obtain it are different contributions.
 
 ## Reading, use and reuse
 
-Read [Using FPF Library](../../USING-FPF.md) before applying the methods, with or without an AI assistant. Start from the contribution your work needs; the order of files is not a project sequence. Read a selected pattern's conditions, explanation and worked cases. A checklist helps inspect a result; it does not replace the method.
+Read [Using FPF Library](../../USING-FPF.md) before applying the methods, with or without an AI assistant. Start from the contribution your work needs; the order of files is not a project sequence. Read a selected pattern's conditions, explanation and worked cases.
 
 Anatoly Levenchuk, with AI-assisted development and review. These publications continue to evolve; check the edition when relying on a particular result. Original content is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), subject to the [licensing terms](../../LICENSING.md). For a method, cite its framework, edition and complete PatternID.
 
