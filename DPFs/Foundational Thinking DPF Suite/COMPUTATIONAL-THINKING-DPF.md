@@ -1680,6 +1680,30 @@ If the target changes over time, choose a forgetting, reweighting, windowing or 
 
 Return the learned rule, its application method, the conditions material to its use and the narrow reason for reopening it.
 
+#### CMP.7:4.7 - Train a primer for a fixed responder
+
+Use this when a capable responder can produce worthwhile alternatives, yet direct requests repeatedly elicit similar answers. Keep a direct request and an adequate hand-written prompt as baselines. The adjustable component is a policy that writes an additional prompt, the *primer*. The original task and primer go to the fixed responder. Its response is what the recipient uses.
+
+During training, sample several primers per task and several responses to each primer. Evaluate their quality, their difference from a declared reference collection and diversity among responses. Use the responses to give credit to the policy that produced each primer. Keep the responder fixed during that update. On held-out tasks, apply the trained primer policy and the same responder. For comparison with direct generation and the adequate hand-written prompt, give each task the same reference collection and acceptance criteria. Keep responses that meet both the quality criterion and the required difference from that collection, then count the semantically distinct responses among those retained. Report quality losses that matter to the recipient. Use comparable sampling budgets. Count policy training, responder samples, scoring and both calls at use. If an adequate supplied primer still fails, examine the responder's capability. A search over prompt text through an API is another implementation with its own update and cost.
+
+[Albalak et al.](https://arxiv.org/html/2611.11740v1) used a reference set fixed before training. A distance from that set can reward repeated discoveries made after it was frozen. For a claim about continuing novelty, retain a common comparable set of tasks and update each practice’s own history under a stated rule. At each observation, establish how many different responses meet both its quality and novelty criteria. Compare those results and their costs under the same task conditions. Distances from different histories express different comparisons. Use a shared reference as well when the judgement requires novelty relative to the same prior collection. The extra cost of two-stage generation can make direct generation preferable for the intended use.
+
+#### CMP.7:4.8 - Generate with restricted topic knowledge and refine with a knowledgeable model
+
+Use this when familiar answers dominate and there is a way to assess proposals that depart from them. Specify which knowledge is restricted in the generator and how to check the restriction. Retain its ability to express a coherent proposal. In [D’Ambrosio et al.](https://arxiv.org/html/2611.11725v1), filtering topic material during training and continued training that induces partial forgetting were distinct interventions. Delaying access to documents or asking a knowledgeable model to simulate unfamiliarity makes a different intervention. Keep a knowledgeable generator as a comparator.
+
+Give the original task and the initial proposal to a knowledgeable reviser. Ask it to preserve the proposal's distinctive idea while correcting errors or supplying missing conditions. Retain both versions. Examine what survived, then assess originality, fitness for use and feasibility separately. A replacement idea can enter a new branch. An incoherent initial proposal, an idea lost during revision and a preserved but infeasible idea call for changes to different components. Compare the complete arrangement with direct expert generation and with knowledgeable generation given the same revision and assessment budget. Count model preparation, generation, revision, judging and the cost of testing a proposal.
+
+The experiments used model judgements of proposals. A feasibility judgement can select a trial. Feasibility in the intended practice needs its own demonstration. The study found no scoring advantage in neuroevolution at 1B or backpropagation at 7B under the reported conditions. Check the intended domain and the generator's capacity before paying for training.
+
+#### CMP.7:4.9 - Train a function while changing its internal representation
+
+Use this when current predictions fit but later changes or generalization matter, and the learner's internal computation can be examined and changed. Define the next task and any earlier responses that must survive. Compare ordinary training and an adequate familiar regularizer under stated budgets. Decide whether you need generalization to new inputs, adaptation within the present family, retention through an update or learning a new family. These require different observations.
+
+A Unified Factored Organizer (UFO) is a low-capacity nonlinear autoencoder used during training. Choose the primary network's internal quantities, such as node activations or attention weights, and normalize them across the training batch by component. For intracomponent regularization, each vector records one component's responses at fixed input positions. Preserve those positions across batches. In the reported finite-domain experiment, absent inputs occupy zero-filled positions and contribute no reconstruction loss. Reordering a minibatch must preserve which input each position denotes. An intercomponent vector records one input's responses across a layer's fixed components. For attention, identify heads and query/key positions consistently. The reported fixed-length sequences preserve these roles; variable lengths require a further construction. Choose coordinates and storage that are feasible for the domain. Train the primary network on task loss plus a weighted reconstruction loss. Hold the organizer's parameters fixed in that update while passing the gradient through it. In a separate update, keep the primary network fixed. Within each intracomponent vector, select the lowest-error entries. For intercomponent regularization, select the lowest-error complete vectors within each layer. The organizer receives the complete vectors; selection determines which reconstruction errors contribute to its update. Specify the selection rule and how the reconstruction weight increases from its initial value. The primary network can then perform the task without running the organizer.
+
+Compare the ability to solve the declared next task, retention of protected responses, successful runs and total training cost, including the organizer, its activations and both updates. A reduction in steps to a threshold can still be costly per step. Reconstruction loss alone cannot establish the ability to learn a different family. [Sheppard et al.](https://arxiv.org/html/2611.11862v1) give the training construction and its experimental conditions. [Lehman and Stanley](https://arxiv.org/html/2611.11020v1) separately compare how compatible and incompatible changes and the size of an update affect retention. Use a change whose required effect you can identify to decide whether the next intervention belongs in the representation, the update or the new training task.
+
 ### CMP.7:5 - Archetypal Grounding
 
 #### CMP.7:5.1 - Construct a batch selector and expose an unresolved continuation
@@ -1936,7 +1960,7 @@ For the numerical branch, **adopt** Higham's separation of [conditioning](https:
 - **CMP.3:** constructs shared computation and storage for finite stages; **CMP.5** supplies relaxation and recovery; **CMP.6** supplies iterative updates.
 - **C.29.2:** fixes the computational answer, representation and resource conditions.
 - **C.29 and MMP.9:** preserve the separate subject correspondence and model-reduction question when this algorithm computes a model's consequence.
-- **C.11.DUA:** compares the value of further refinement with its cost and remaining uncertainty.
+- **C.11.DUA:** compare the cost of another computation with what a tighter error bound could let the recipient decide or guarantee. If the present bound already settles that use, stop unless another obligation applies.
 
 ### CMP.8:End
 
@@ -2067,7 +2091,9 @@ For this uniform target, accept an end-to-middle move with probability 1/2 and a
 
 Its rows and columns each sum to one, so the uniform law is stationary. The finite chain is connected and has self-transitions, hence converges from any start. Its other eigenvalues are 1/2 and -1/2; for this small matrix, powers give an explicit decreasing transient. For instance, starting at 0 gives `(1/2,1/2,0)` after one step and `(1/2,1/4,1/4)` after two, which is not uniform.
 
-If the three target weights change to `(1,2,1)`, the original uncorrected neighbor walk has that stationary law. Reusing the former uniform-target acceptance probabilities would now be wrong. In either case, adjacent states are dependent observations; an independent-draw variance formula cannot be justified by the stationary law alone.
+Now change the target weights to `(1,2,1)`. Their normalized law is `(1/4,1/2,1/4)`, which the uncorrected neighbor walk preserves. Starting at 0, however, that walk is at the middle state after every odd step and at an endpoint after every even step. No fixed number of steps from 0 gives the requested single draw. A walk initialized with the target law preserves it at every step.
+
+For this three-state problem there is also an exact readout from the stated start. Independently choose step one or step two with equal probability. Step one gives the middle state. At step two the walk chooses either end with equal probability. The readout therefore gives the three states with probabilities `(1/4,1/2,1/4)`. Reusing observations from one trajectory for an estimate still requires accounting for their dependence.
 
 ### CMP.9:6 - Bias-Annotation
 

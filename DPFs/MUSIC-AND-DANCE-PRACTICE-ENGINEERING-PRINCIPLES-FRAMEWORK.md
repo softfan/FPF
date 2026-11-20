@@ -5457,7 +5457,7 @@ The arranger compares:
 - change the dynamics and one voice allocation before use; or
 - keep an unrepaired branch.
 
-The answering phrase must be audible. The present arrangement fails that requirement, and keeping the unaltered version as a separate branch would retain the problem. Changing the dynamics and one voice allocation offers a low-burden repair within the instruments’ ranges. Knowing more about articulation could refine the edit, but would not remove the need to address the balance. A claim that the edit restored the audible exchange needs evidence from the changed arrangement.
+The answering phrase must be audible at the concert. The rehearsal gives the arranger a reason to address balance before that performance. Keeping the score as a separate branch preserves the version. That leaves open how the phrase would sound with a different balance in performance. Changing the dynamics and one voice allocation offers a low-burden repair within the instruments’ ranges. More evidence about articulation could guide the edit. To judge whether the answering phrase is audible in the revised arrangement, use a performance under conditions relevant to the concert.
 
 The arranger chooses **revise before use** for this concert. The decision identifies the version, the balance problem, the proposed edit and the conditions that could change the choice. To report the actual revision, later rehearsal or permission to release it, use evidence of that work or authorization. An adviser with a narrower remit could instead recommend the same treatment.
 
@@ -6769,7 +6769,7 @@ Consider the same failed result with no teacher and partner time left for a tria
 
 #### MDPE.22:4.2 - Algorave needs more than live-coding software
 
-A local group installs live-coding tools and publishes an open invitation. Few musicians perform because the venue lacks a suitable sound check, new performers cannot recover the event Method, curation favours polished prerecorded sets, and the audience cannot see the relation between code changes and sound.
+A local group installs live-coding tools and publishes an open invitation. Few musicians perform. The organizers identify four possible barriers to staging live-coded sets. The venue offers no suitable sound check, newcomers have trouble finding out how to perform, curators favour polished prerecorded sets, and audiences have difficulty seeing how a code change affects the sound. If the choice of remedy depends on which barrier affected participation, compare the experience of musicians who performed with that of prospective performers who declined. The guidance gives the group changes it can try.
 
 The group uses the maintained Algorave guidance and local event-production Methods to compare changes in onboarding, technical rehearsal, projection, curation, and recurring scheduling. It selects a bounded arrangement: a technical rehearsal, visible code, short first sets, a curator able to return performance-relevant feedback, and a second event date announced before the first.
 
@@ -7011,7 +7011,7 @@ a reversible choice. To attribute that difference to a particular change, use
 A dancer, musician, teacher, judge, robot, AI system or collective can be the
 agent for a particular performance or choice. Identify bodies, instruments,
 floors, software, venues and platforms by the relation that matters. Use
-*System* for a physical or operational whole meeting those conditions. A recording
+*System* for a physically embodied acting whole meeting A.1's conditions. A recording
 carrier or playback platform can participate in the arrangement, while
 represented observations and claims are informational content. Use `C.2.1` when
 the particular claim-bearing identity affects what the account can support.
@@ -8446,7 +8446,7 @@ Costs and limits:
 
 | Source or maintained result | Use here | Limit |
 | --- | --- | --- |
-| FPF `C.17`, `C.18`, `C.19`, `G.5`, `C.11`, `A.10`, `C.28`, `C.29` and `C.36` | Characterize and generate options, steward an archive or front, set pool policy, declare a selection and make a local choice. Establish evidence relations, causal claims, their representations and cultural relations as needed. | Identify the actual music or dance branches, availability, upkeep, performers and selection conditions from the practice. |
+| FPF `C.17`, `C.18`, `C.19`, `G.5`, `C.11`, `A.10`, `C.28`, `C.29` and `C.36` | Characterize existing options, record generated variants, steward an archive or front, set pool policy, declare a selection and make a local choice. Establish evidence relations, causal claims, their representations and cultural relations as needed. | Use the relevant music or dance method to make or alter a branch. Identify its availability, upkeep, performers and selection conditions. |
 | `MDPE.9` and its sources | Identify or develop performance candidates, compare them and use a performer-involving trial when it is needed. Return supported alternatives, rejection or a limit. | Continued availability for later development is a separate question. |
 | Chédin et al., [co-designing movement-generation models with Voguing and Dancehall dancers](https://doi.org/10.1145/3772318.3791515) and [repository copy](https://ualresearchonline.arts.ac.uk/id/eprint/26884/) | Dancers and researchers curated movement material and developed model and interface variants through improvisation and revision. Dancer-Y used outputs of differing fidelity for different purposes in the final comparison. | Use this finding within that case. A wider fidelity ranking, style authority or prevalence claim needs other evidence. |
 | Ableton Live 12, [Comping](https://www.ableton.com/en/live-manual/12/comping/) | Retaining and auditioning takes while keeping the source material. | A take lane can preserve takes for comparison. Establish their continued availability for the intended use and any subsequent selection from the relevant evidence. |
@@ -8525,7 +8525,7 @@ For related tasks, start with the direct method.
 | project choice | A decision by a holder with the applicable authority. Wider recognition, selection, transmission, retention or loss depends on what happens in the population. |
 | publication of a forecast | Making it available can affect attention and later observations. To claim an effect, examine who encountered the forecast, what changed and the grounds for the connection. |
 
-Identify who or what supplies each contribution to the forecast. Dancers, teachers, organizers, curators, human teams, robots and AI participants can act where their agency for the work is established. An instrument, floor, venue or platform can constrain or support that action. Use `System` for a physical or operational whole meeting its conditions and `C.2.1` when the identity of recorded content affects the forecast. Distinguish the recording and playback equipment from the observations, instructions or claims they make available.
+Identify who or what supplies each contribution to the forecast. Dancers, teachers, organizers, curators, human teams, robots and AI participants can act where their agency for the work is established. An instrument, floor, venue or platform can constrain or support that action. Use `System` for a physically embodied acting whole meeting its conditions and `C.2.1` when the identity of recorded content affects the forecast. Distinguish the recording and playback equipment from the observations, instructions or claims they make available.
 
 ### MDPE.20:1 - Problem
 
@@ -8927,7 +8927,7 @@ For a present choice, identify the finite options addressing one music or dance 
 
 Identify what the claim about the choice requires.
 
-- The `DecisionSubject` and scope of its decision, including `DecisionSubjectGranularity` for a formal comparison.
+- Identify the `DecisionSubject`. In a formal comparison, `DecisionSubjectGranularity` identifies the unit making the choice, such as a solo performer or an ensemble deciding together. State separately which decisions its mandate covers.
 - Who performed or would perform the development work, and any assignment needed for its attribution.
 - The music or dance practice and its configuration at the time in question.
 - The intended consequence and affected participants or systems.

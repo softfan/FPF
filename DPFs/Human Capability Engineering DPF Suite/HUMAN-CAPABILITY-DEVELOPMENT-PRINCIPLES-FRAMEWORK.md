@@ -1070,7 +1070,7 @@ When a bounded choice is requested, establish or use the inputs and conditions r
 
 | `C.11` input or condition | HCD.4 use |
 | --- | --- |
-| `DecisionSubject` and `DecisionSubjectGranularity` | The person, team or other system making this choice and the level at which it makes it. Use `A.13` when it is unclear which person, team or other agent made or can make the choice. |
+| `DecisionSubject` and `DecisionSubjectGranularity` | Identify the system to which this choice is attributed. A person can choose within a delegated budget, or a team can choose under its collective rule. State separately what each participant contributed and who holds the relevant authority. Use A.13 when attribution is unclear. |
 | `OptionSet` | Concrete options already on the table. HCD.4 does not generate a missing programme alternative. |
 | `PreferenceOrder` or `EvaluativeMeasure` | The explicit comparison basis, including protected claims and unacceptable critical errors. |
 | `BeliefState` | Current uncertainty, evidence limits, and live rivals shared across the options. |
@@ -1113,12 +1113,12 @@ The human holder is Engineer-P14. The later-Work demand is independent review of
 
 For Engineer-P14, preserve the three supported contributions. In unfamiliar cases, investigate whether the engineer generates and tests an alternative before accepting the AI’s claim. Prompt design remains a plausible alternative explanation for the missed errors. The comparison leaves the programme choice open.
 
-Engineer-P14 faces one person-level self-development-focus choice within a separately pre-authorized twelve-hour allocation. The constructed decision record captures the chooser's inputs and application of `C.11`:
+Engineer-P14 can choose a self-development focus within a separately authorized twelve-hour allocation. The constructed record shows how Engineer-P14 compares the options using C.11.
 
 | Decision value | Constructed case value |
 | --- | --- |
 | `DecisionSubject` | Engineer-P14. |
-| `DecisionSubjectGranularity` | Person-level; Engineer-P14 participates directly in the comparison. |
+| `DecisionSubjectGranularity` | Individual. The allocation delegates this choice of focus to Engineer-P14. Other participants may advise. |
 | `OptionSet` | `O1` preserve the profile without selecting a change; `O2` make independent AI-output challenge the priority for later programme comparison while preserving the three supported claims; `O3` defer a human profile-change priority and return the live prompt-design question to the Method/tool owner. |
 | `EvaluativeMeasure` | Prefer fewer accepted seeded safety-critical omissions while preserving source/configuration trace, specialist authority, auditable evidence, the forty-five-minute case limit, and reversibility. |
 | `BeliefState` | Two unfamiliar misses, a small sample, and a live prompt-design rival remain. |
@@ -2560,6 +2560,8 @@ For a class design, state the audience assumptions and capacity range. Before an
 
 Make the allocation detailed enough to connect each needed contribution to its recipient and time of use.
 
+Separate choosing the development aim from obtaining or developing the subject Method, designing learning activities, explaining or demonstrating, giving feedback, supporting participation and providing the necessary conditions. Identify whose development is concerned and who holds the relevant choices. A difficulty in the subject Method needs subject work; additional encouragement or practice cannot settle it. HCE.Reference:4 connects these professional contributions, and Library.Reference:9.2 explains their place in the common arrangement of help.
+
 | Allocation field | Required content |
 | --- | --- |
 | contribution and recipient | The explanation, demonstration, case, access, feedback, check, assessment, specialist result, coordination, or fallback needed; who or what uses it; and which task or result it enables. |
@@ -2602,6 +2604,10 @@ AI access can improve performance under the equipped conditions. Establishing th
 Peers can expose alternative reasoning, rehearse feedback, notice a question, and help a learner prepare a revision. Those contributions can reduce avoidable teacher burden. A peer can supply a required teacher or assessor contribution only when they meet the competence, calibration, independence, authority and protected-error requirements for that work.
 
 A teacher may coach while another assessor judges the independent result. A specialist may establish a domain fact, and an organization may grant access to the project. Connect those contributions where they depend on each other. Evidence about the learner’s capability must concern the learner’s own performance.
+
+Teacher, tutor, coach and mentor can overlap in ordinary professional use. Establish the contribution needed: subject teaching, individual learning support, feedback on performance, help choosing further development or a continuing developmental relationship. The name alone does not allocate those operations. A tutor can teach a subject or help choose further learning; these are different contributions even when one provider supplies both.
+
+A colleague can provide mentoring without managerial authority, and several peers can supply complementary contributions. Such help can be reciprocal. An appointment can allocate time and duties, while competence, availability and any required authority still need their own grounds. Learning through observing another participant's ordinary work does not by itself mean that participant undertook teaching.
 
 #### HCD.7:4.6 - Return the Arrangement or Exact Missing Contribution
 
@@ -2739,6 +2745,8 @@ Distinguishing intended, permitted, available and received help supports design 
 **Which evidence shows that a developmental activity can obtain the support it needs within its time, capacity and authority limits?**
 
 Brooks and colleagues’ 2024 qualitative study of learning-health-system communities ([`SOC-05`](https://doi.org/10.1002/lrh2.10412)) identifies distinct contributions from participants, platforms, facilitation, leadership and resources. Its qualitative findings help identify arrangement conditions. A claim that the arrangement caused capability development needs separate evidence. Matsuo and Tsukube’s 2020 cognitive-apprenticeship review ([`SOC-02`](https://doi.org/10.1016/j.ijme.2020.100417)) distinguishes modelling, coaching, scaffolding, articulation, reflection and exploration. Their sequence and transfer to a workplace depend on the particular use. Sections 4.2–4.5 apply those distinctions when allocating contributions and checking proposed service.
+
+The [CIPD's 2025 workplace account of coaching and mentoring](https://www.cipd.org/uk/knowledge/factsheets/coaching-mentoring-factsheet/) discusses overlapping developmental roles, provider competence and the effects of managerial authority. The [National Academies' 2019 STEMM mentorship synthesis](https://www.nationalacademies.org/read/25568/chapter/6) describes formal, informal, peer and network arrangements. These human workplace and educational accounts support identifying actual contributions and relationships. They do not establish one universal meaning for every role title or the effectiveness of a technical provider.
 
 A provider title and total hours are cheap to obtain and can contribute to planning. They leave distinct questions about competence, individual work, peak load, access, privacy, assessment independence and fallback. Examine the conditions that the receiving use needs and the initial information leaves open.
 
@@ -4543,6 +4551,12 @@ Distinguish the next observation from the original episode. If a colleague suppl
 
 **Recognition and assurance.** A person may want to repeat a success while their own contribution and its enabling conditions remain unclear. For consequential reliance, use compatible subject criteria and evidence that addresses the intended finding or action. A successful total, recollection or agreement among participants may leave the contribution unresolved.
 
+**When the person is developing a way to learn, examine three results.** The present work can yield an accepted product. The person can develop a repeatable way to locate an unfamiliar difficulty, obtain a missing principle and test it. The person can also become able to perform the target work under the intended conditions. A product record can help reconstruct all three inquiries. It supports each only to the extent that the person's own choices, assistance and later use are identifiable.
+
+To examine the learning method, establish which principles and operations the person can already use. Choose a further problem for which that repertoire leaves a consequential gap. Observe how the person locates it, obtains or constructs the missing relation, derives a consequence and checks it. Identify what the source supplied and what the person worked out. HCD.12 supplies the conditions for judging this application. When the intended work includes a reference, colleague or AI assistant, retain that provision. When independent selection of a principle matters, use material that leaves that choice to the learner, or recover an earlier choice made before a hint. Vary a condition that changes the answer and ask what must be reconsidered. If a prompt supplied the crucial choice, independent selection remains unestablished. When an attempted transfer fails, examine missing domain knowledge, the chosen method and workplace access. Reopen the contribution for which there is evidence.
+
+[Bastani et al.](https://doi.org/10.1073/pnas.2422633122) observed that better performance with AI during school mathematics practice could coexist with worse later performance without the tool. [Gick and Holyoak](https://reasoninglab.psych.ucla.edu/wp-content/uploads/sites/273/2021/04/Gick_Holyoak1983_SchemaInduction.pdf) found that comparing analogous problems could help learners extract a relation and transfer it in their experimental tasks. These results motivate examining what the learner can select and explain on another task. Evidence for an engineer's continuing workplace capability comes from that person's work under the stated conditions.
+
 #### HCD.15:4.3 - Make triggers decision-bearing
 
 Name the changes or observations that can reopen the affected question. Useful triggers include:
@@ -4705,6 +4719,14 @@ The unused two learner minutes cannot replace colleague attention. This budget d
 Now change the receiving conditions before that application: the next import uses V2, no compatible automated check is available, and the colleague has not confirmed further time. Eighteen learner minutes and sixteen colleague minutes have already been spent on preparation, reconstruction, comparison and the lesson. Repeating the V1 exercise cannot answer whether manual checking is sufficient for V2. The specialist can use four of the remaining fourteen learner minutes to state the changed conditions and send the domain owner the missing validation and mapping question. Stop the dependent application; cumulative added use is twenty-two learner minutes and sixteen colleague minutes. The V2 validation service is still missing. There is no observation of a further feedback session.
 
 If a V2-compatible procedure and support are later supplied, compare the cases through HCD.25 and select only the remaining learning contribution. If the specialist can already explain and perform it under the required conditions, return to Work without another exercise. If the original V1 conditions remain and the bounded question was already answered by the recorded episode and explanation, the application could likewise be omitted. Neither stopping decision turns the historical success into proof of a new configuration or of the review's effect.
+
+#### HCD.15:5.5 - Develop an engineer's way to learn a new diagnostic method
+
+A laboratory engineer and a reference-search assistant produce an acceptable plan for checking sensor drift. The assistant supplied the decisive suggestion to compare elapsed time at matched temperature. Acceptance establishes the plan's fitness for the scheduled check. The engineer's record also shows a contribution of her own: she recognized that two explanations fit the same run and sought a comparison that would separate them.
+
+At the next occasion, a different instrument's apparent error varies with load and operating mode. The engineer has the normal manuals and reference assistant. Before receiving a proposed comparison, she identifies the confounding, requests the missing measurement limits, constructs a matched comparison and explains what outcome would challenge each account. The record supports her own adaptation of the matched-comparison method. Applying the resulting instrument procedure to real readings and interpreting its result supplies evidence about her diagnostic work. If the assistant had supplied the critical comparison again, independent selection would remain open.
+
+To examine her way of learning a further method, choose a difficulty whose explanation requires a relation she has yet to use. Earlier work establishes that she can control current load and operating mode, while dependence on the instrument’s prior states is unfamiliar. The instrument manual supplies a relation between retained state and later response. She works out that the same present load can produce different readings after different histories. Before receiving a proposed test, she specifies the histories, predicts the difference and obtains the readings needed to check it. Her record identifies the relation learned from the manual, the comparison she constructed and the consequence she checked. This supports that application of her way of learning. Use HCD.12 for further variation and HCD.13 for an observation after a relevant retention interval when a broader capability claim requires them.
 
 ### HCD.15:6 - Bias-Annotation
 
@@ -7421,6 +7443,8 @@ For each connection the route needs, identify what the first activity supplies a
 The [4C/ID account](https://www.4cid.org/about/) distinguishes whole learning tasks, support for non-routine reasoning, information used during routine action and additional practice on a component. Choose the contributions that make the whole learning task possible for the intended entrants.
 
 Identify which contributions can overlap and which depend on an earlier result. Unit support can remain available during diagnosis. To assess independent model choice, preserve the choice before any cue that names the model reaches the learner. An appropriate existing task or provider result can already satisfy a dependency.
+
+A learning route can retain alternatives whose use depends on entry preparation, an observed attempt or available support. State the condition that changes the continuation; use A.22.CGUS:4.1 when present availability is unresolved. The product need not fix every learner's future sequence. A personal programme selects a feasible continuation for known conditions; an actual trajectory records what the learner did. Reconsider dependent choices when those conditions change, retaining work whose result still applies.
 
 Use HCD.20 to compare or assess arrangements involving other learners and HCD.22 to construct or assess a shared task. A supported individual route can meet the complete promise. For shared work, identify the contribution others would need to provide and how learners could use it. For a delivered activity, establish which contributions participants supplied and, when the claim concerns uptake, what learners did with them.
 

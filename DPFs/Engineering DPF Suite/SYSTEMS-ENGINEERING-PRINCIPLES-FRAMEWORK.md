@@ -311,7 +311,7 @@ A provisional project focus can support individual concept work. Before joint wo
 concrete use. The result may be sufficient common understanding for the current decision, an unresolved
 coordination condition, or distinct projects with a defined receiving contribution.
 
-The product SoI and the immediate engineering subject can differ. A factory, planning organization or shared laboratory can be designed in full as a creator while its products and their uses ground the work. Use `SYSE.1` when this relation is unclear; carry the local subject, required capability and bounded acceptance into the relevant engineering Methods. Several products can share the creator without becoming one product or one project. Local acceptance can finish before their later use, with the remaining assumptions and commitments identified.
+The product SoI belongs to an extended enterprise organized through agreements to create, change, sustain in use or retire that System. Agents acting for its participating organizations establish or accept the objectives and commitments. That product and the immediate engineering subject can differ. A factory, planning organization or shared laboratory can be designed in full as a creator while its products and their uses ground the work. Use `SYSE.1` when this relation is unclear; carry the local subject, required capability and bounded acceptance into the relevant engineering Methods. Several products can share the creator without becoming one product or one project. Local acceptance can finish before their later use, with the remaining assumptions and commitments identified.
 
 The choice of Methods must accommodate useful effects, cost and time, available evidence, and consequences for
 other Systems. Preserving an option can be worth more than completing a design early; a faster local operation
@@ -326,7 +326,7 @@ action that depends on it.
 
 ### SYSE.Reference:1.1 - The system-thinking long mantra in engineering
 
-The **system-thinking long mantra** first looks toward intended receiving use at the operating time. Recover the product systems-of-interest and their intended uses. From each proposed system boundary, examine the larger whole and how its parts function together. Derive the contribution required from the product system before looking inward to construction and backward to obtaining Methods, capable creators and their cooperation. An unknown whole or composition calls for inquiry; leave the dependent function or construction judgement open until it has sufficient grounds. When engineering an organization as a creator, keep those product grounds and examine the creator's own use, functions, construction and obtaining needs. A separate organizational project has its own contribution and acceptance; its name or contract does not create another SoI. Make the answers fit and follow results into use. A proposed future use gives a reason for inquiry; its mechanism and conditions need engineering grounds. The general construction and its reasons are developed in FPF A.1.STM:4.1–4.3.1. Use that pattern when the shared project account is unresolved. The engineering Methods connect through the results that one supplies to another.
+The **system-thinking long mantra** first looks toward intended receiving use at the operating time. Recover the product systems-of-interest, their extended enterprises and agreements, and the intended uses or withdrawal from use that give those commitments their reason. From each proposed system boundary, examine the larger whole and how its parts function together. Derive the contribution required from the product system before looking inward to construction and backward to obtaining Methods, capable creators and their cooperation. An unknown whole or composition calls for inquiry; leave the dependent function or construction judgement open until it has sufficient grounds. When engineering an organization as a creator, keep those product grounds and examine the creator's own use, functions, construction and obtaining needs. A separate organizational project has its own contribution and acceptance; its name or contract does not create another SoI. Make the answers fit and follow results into use. A proposed future use gives a reason for inquiry; its mechanism and conditions need engineering grounds. The general construction and its reasons are developed in FPF A.1.STM:4.1–4.3.1. Use that pattern when the shared project account is unresolved. The engineering Methods connect through the results that one supplies to another.
 
 The needed effect gives a reason to investigate particular functioning, but it does not determine a unique construction. A proposed construction permits some behaviour and requires particular ways of realization. SYSE.2 and SYSE.5 therefore develop related alternatives; SYSE.6 compares whole candidates under the conditions that matter. A proposal cannot borrow performance from one configuration and realization cost from another. SYSE.7 keeps the related engineering descriptions usable together. SYSE.8 develops the offering and provider concept alongside the technical concept, so the promise to a user and the ways of fulfilling it constrain the same proposed result.
 
@@ -872,7 +872,7 @@ For source qualifications, citation and edition information, see the [Sources an
 
 Use this pattern when participants use a familiar project name but cannot say which system's intended use gives their joint work its purpose. A product, tool, provider, organization, component or desired effect can occupy the discussion while referring to different subjects. The choice matters to use, architecture, realization, evidence and resource decisions.
 
-The first useful result is a **project-system choice account**: the actual System or intended referent selected as the system-of-interest (SoI), its intended use, the grounds for the choice and what would reopen it. When the immediate engineering subject differs, identify that subject and its bounded result alongside the product it serves.
+The first useful result is a **project-system choice account**: the actual System or intended referent selected as the system-of-interest (SoI), its extended enterprise, agreed undertaking, intended use or withdrawal from use, the grounds for the choice and what would reopen it. When the immediate engineering subject differs, identify that subject and its bounded result alongside the product it serves.
 
 Recover the intended use and any assumption that could change the choice. A.1.STM explains why receiving use and encompassing functioning ground construction and provision decisions. A contributor can use a provisional answer for the next concept question. Before joint work relies on it, compare the participants' referents and contribution connections through §4.4.1. Reuse an adequate existing account.
 
@@ -880,7 +880,7 @@ A manufacturer may need to improve its planning organization while a vendor supp
 
 Use this pattern when a System designation is needed for the current coordination. Keep another recognized subject—such as Work, a Method, capability, state, material portion, description or research question—under its direct pattern when that answers the decision. Use `A.1.SCR` for unresolved System recognition. A System already identified for engineering can proceed to `SYSE.2` without first being renamed the SoI.
 
-At a consequential use of *system of interest*, *our system*, *product*, *solution* or the source phrase *target system*, ask which system's useful functioning grounds the cooperation and which subject the local work changes. **SoI is a relative project role; system-in-hand names the immediate System being worked on.** Explain what “our” refers to and who is responsible for the local result. Several named products or classes of future use may jointly ground a shared creator's development. Their differences and competing demands remain visible.
+At a consequential use of *system of interest*, *our system*, *product*, *solution* or the source phrase *target system*, ask which system's useful functioning grounds the cooperation and which subject the local work changes. **SoI is the product System's role in an extended enterprise organized to create, change, sustain in use or retire it; system-in-hand names the immediate System being worked on.** Explain what “our” refers to and who is responsible for the local result. Several named products or classes of future use may jointly ground a shared creator's development. Their differences and competing demands remain visible.
 
 ### SYSE.1:2 - Problem
 
@@ -906,10 +906,10 @@ choice revisable as understanding of the problem and solution changes together.
 
 #### SYSE.1:4.1 - State the current project decision
 
-Begin with the cooperation and decision that need a shared reference. Recover:
+Begin with the extended enterprise and decision that need a shared reference. Recover the participating organizations, the agreements organizing their joint work, and the agents who may establish or accept the objectives and commitments. An unknown or proposed enterprise remains unresolved or proposed; independently supported engineering can continue. Recover:
 
-1. the product or products and the intended use that justify the work;
-2. the System or other subject the local work must create, change or investigate;
+1. the product or products, the agreed creation, change, sustaining in use or retirement, and the intended use or withdrawal from use that justify the work;
+2. the System or other subject the local work must create, change, sustain, retire or investigate;
 3. the contribution needed from that work and the conditions for accepting or stopping it; and
 4. the plan or decision that needs the SoI designation now.
 
@@ -919,7 +919,7 @@ The local project can finish when its agreed contribution has been established. 
 
 For a shared creator, retain the products or classes of future use that govern its capability, including differences that compete for the same resources. Do not select one convenient product to hide that competition. An unsettled future use can require research into concrete possibilities; do not invent a finished product to complete the account. Research retains its own epistemic result and stopping conditions.
 
-A supplier can have a different product. A machine can be its maker's SoI and a creator at the customer's factory; an engine can be its maker's SoI and an aircraft component. Recover the usable supply, recipient or class of applications, substantive decision boundaries and acceptance obligations. The customer may specify the design and use. The supplier need not control the whole product strategy or accept responsibility for every larger system. These facts inform the judgement; the existence of a separate contract alone does not make the same servicing or organizational work a different product.
+A supplier can have a different product. A machine can be its maker's SoI and a creator at the customer's factory; an engine can be its maker's SoI and an aircraft component. Recover the extended enterprise organized for that supply, the recipient or class of applications, substantive decision boundaries and acceptance obligations. The customer may specify the design and use. The supplier need not control the whole product strategy or accept responsibility for every larger system. These facts inform the judgement; the existence of a separate contract alone does not make the same servicing or organizational work a different product.
 
 Keep each local project, commitment and result identifiable. A programme or portfolio can coordinate priority, resources, investment, risk or evidence without becoming one acting System. Use A.1.STM when the product purpose or its relation to the creator remains unresolved.
 
@@ -937,7 +937,7 @@ When the decision does need a System, distinguish two cases:
 - For a System that does not yet exist, keep the intended referent in the current plan, decision, or description.
   Do not describe it as an already acting System.
 
-Recognition, choice of an engineering subject and SoI designation remain different claims. Recognizing an actual System does not determine its project role; selecting an intended referent does not make it physically present. An organization can be the immediate engineering subject while remaining a creator of the product SoI.
+Recognition, choice of an engineering subject and SoI designation remain different claims. Recognizing an actual System does not determine its product role in an extended enterprise; selecting an intended referent does not make it physically present. An organization can be the immediate engineering subject while remaining a creator of the product SoI.
 
 #### SYSE.1:4.3 - Generate and criticize materially different referents
 
@@ -964,8 +964,9 @@ Start with the following content in any readable form:
 
 ```text
 Project-system choice account:
-  cooperation and current decision:
-  product SoI or intended referent, and intended use:
+  extended enterprise, participating organizations and current decision:
+  agreements, agents' objectives and limits of their commitments:
+  product SoI or intended referent, agreed undertaking and intended use or withdrawal:
   immediate engineering subject and bounded result, when different:
   current grounds and any main unresolved assumption:
   local acceptance and receiving obligations that matter now:
@@ -980,7 +981,7 @@ Stop when the project can ask the next concrete engineering question about the i
 
 When a decision depends on several contributors, compare their understanding through one concrete use or change. Include the participants whose contribution, receiving use or limits can change that decision. Existing compatible exchanges may supply the answer.
 
-Establish from each contributor which products the joint work serves, what their work concerns, what they supply, to whom and under what conditions and limits. For each consequential connection, establish from the receiver what they expect and how they will use the contribution. A conversation, annotated case, asynchronous exchange or existing work that shows what the participants supply and expect can provide these answers.
+Establish which organizations participate in the extended enterprise and who can commit each relevant contribution. Establish from each contributor which products the joint work serves, what their work concerns, what they supply, to whom and under what conditions and limits. For each consequential connection, establish from the receiver what they expect and how they will use the contribution. A conversation, annotated case, asynchronous exchange or existing work that shows what the participants supply and expect can provide these answers.
 
 For example, “install the planning software” and “produce a feasible production plan” can share a project name. Follow one order moved to an earlier date. Determine whether installation, current stock information, capacity decisions and the planner's use connect to feasible commitments for the manufacturer's products. A missing contribution can leave the planning capability unavailable even when installation is complete.
 
@@ -1001,15 +1002,15 @@ Reopen the account when one of these changes the comparison:
 - operating or assurance evidence defeats the reason for the choice; or
 - a changed product or intended use materially changes the grounds of the cooperation.
 
-A project split, new contract or changed performer can reopen local scope, provision or authority without changing the product SoI. Reconsider that designation only when its product and use grounds change.
+A project split, new contract or changed performer can reopen local scope, provision or authority without changing the product SoI. Reconsider that designation when its product, use or extended-enterprise agreement grounds change.
 
 An observed mismatch between contributors reopens the common-focus claim in §4.4.1 even when the individual
 choice remains defensible. Repeat only the exchange affected by that mismatch; reconsider the SoI designation if
-its product or intended-use grounds have changed.
+its product, intended-use or extended-enterprise agreement grounds have changed.
 
 Return to the failed claim or linked claims that affect the next move. A changed use assumption may require `SYSE.2` before the project focus
 changes. A failed bearer or architecture candidate may return through `C.30` or `C.32`. Reopen the
-SoI designation only when the evidence changes which product or intended use should orient the cooperation. Reopen the local engineering subject or acceptance separately when those are the affected claims.
+SoI designation when the evidence changes its product, intended use or extended-enterprise agreement grounds. Reopen the local engineering subject or acceptance separately when those are the affected claims.
 
 ### SYSE.1:5 - Archetypal Grounding
 
@@ -1020,10 +1021,11 @@ SoI designation only when the evidence changes which product or intended use sho
 A flood-reduction project starts with the phrase “new pump”. The engineer compares the pump unit, the pumping
 station, the drainage-control System, and a provider arrangement. Flood-control use crosses the pump-unit
 boundary: positioning, power, control, discharge conditions, and downstream exposure belong to the station's
-current use question. The engineer selects the pumping station and records:
+current use question. The operator, design organization and construction provider have agreed their work and decision responsibilities for obtaining the station. The engineer uses that extended-enterprise basis to propose the intended pumping station as SoI and records:
 
 ```text
 selected referent: intended pumping station
+extended enterprise: operator, design organization and construction provider under the agreed responsibilities
 current reason: move water under the selected flood load as part of flood-control use
 main unresolved assumption: downstream exposure remains acceptable
 reopen: use, architecture, realization, or operating evidence changes that assumption or boundary
@@ -1036,7 +1038,7 @@ the project-system choice only when that changed claim defeats the reason or bou
 
 #### SYSE.1:5.2 - Manufacturer and ERP vendor
 
-A manufacturer supplies pump installations for water supply and seasonal irrigation. Its “new ERP” project begins because production plans repeatedly fail. The engineering lead compares software installation, a changed planning organization and an integrated planning arrangement. These are alternatives for improving the creator. The product grounds remain the two lines' installations and their intended uses; their different configurations, delivery commitments and resource demands must fit the plans.
+A manufacturer, component suppliers and receiving operators have agreed the supply and acceptance obligations that organize the extended enterprises for water-supply and seasonal-irrigation installations. Its “new ERP” project begins because production plans repeatedly fail. The engineering lead compares software installation, a changed planning organization and an integrated planning arrangement. These are alternatives for improving the creator. The product grounds remain the two lines' installations and their intended uses; their different configurations, delivery commitments and resource demands must fit the plans.
 
 The lead selects the deployed planning arrangement as the immediate engineering subject. Its proposed local result is the ability to produce feasible production commitments from current orders, stock and capacity under specified changes. Current-information availability is the main unresolved assumption. This is enough to begin concept work without naming the planning organization a new SoI.
 
@@ -1048,14 +1050,14 @@ If that information cannot be obtained, the joint planning-capability claim rema
 
 Now transfer the same planning-change work to an external consultant with a separate budget and completion date. The consultant may design the organization, its functions, responsibilities, tools and supporting work. Acceptance can establish its agreed capability under representative order changes and operating conditions before the resulting pumps enter service. The consultant's responsibility remains limited to the accepted scope. The external contract creates neither another product purpose for this work nor a requirement to wait for every downstream product outcome before closing it.
 
-The ERP vendor's own product undertaking has different grounds: a usable software product supplied to customers under identified decision and acceptance boundaries. That software can be its SoI while it is a means in the manufacturer's planning arrangement. The parties coordinate their contributions and commitments without merging their projects or interests. A vendor label or a deployment contract by itself would not establish this independent product case.
+The ERP vendor's own product undertaking has different grounds: a usable software product supplied to customers under identified decision and acceptance boundaries. Recover the vendor's agreements with contributing and receiving organizations that organize the software-product undertaking. In that extended enterprise the software can be the SoI while it is a means in the manufacturer's planning arrangement. The parties coordinate their contributions and commitments without merging their projects or interests. A vendor label or a deployment contract by itself would not establish this independent product case.
 
 #### SYSE.1:5.3 - Continuing building through several projects
 
 
 For example, design, construction, operating retrofit, and heritage-restoration Work can concern one continuing building
 while using different plans, transformer Systems, access arrangements, and evidence. In an occupied retrofit,
-the engineer selects the continuing building because its occupied performance is being changed and records
+the owner, design organization and contractors agree the alteration and access responsibilities. The engineer identifies their extended enterprise and the continuing building as its SoI, with
 access during use as the main unresolved assumption.
 
 Different descriptions of the same building can serve one project or several. One programme overseeing several projects does
@@ -1075,7 +1077,7 @@ plausible referent into permanent project scope; retain material alternatives an
 | `CC-SYSE1-1` | A conforming use SHALL name the current project and the decision that needs a project-system choice. |
 | `CC-SYSE1-2` | It SHALL retain a direct non-System subject when System designation is not needed, and SHALL use `A.1.SCR` when actual System recognition remains load-bearing. |
 | `CC-SYSE1-3` | It SHALL distinguish an actual System from an intended referent in plan, decision, or description content. |
-| `CC-SYSE1-4` | The first useful account SHALL name the product SoI or intended referent, intended use, any main unresolved assumption and reopen condition; when the local engineering subject differs, it SHALL preserve that subject and the bounded result needed from it. |
+| `CC-SYSE1-4` | The first useful account SHALL name the product SoI or intended referent, its actual or proposed extended enterprise, agreements, agents' objectives and intended use or withdrawal from use, any main unresolved assumption and reopen condition; when the local engineering subject differs, it SHALL preserve that subject and the bounded result needed from it. |
 | `CC-SYSE1-5` | When materially different actual Systems or intended System referents remain plausible, the account SHALL compare their decision-relevant claims and SHALL keep every non-System subject under its direct pattern rather than admit it as a candidate referent for the project system-of-interest. |
 | `CC-SYSE1-6` | Additional account content SHALL be added only when it changes the current choice or a downstream use. |
 | `CC-SYSE1-7` | A stop SHALL make the next use-and-system concept question askable; a reopen SHALL name evidence or a changed project condition that can alter the choice. |
@@ -1103,7 +1105,7 @@ The cost is visible uncertainty and, for a shared claim, comparison of participa
 
 Engineering decisions need an identified subject. The system being engineered and the product whose use justifies the cooperation can be different Systems. Keeping both makes it possible to develop a creator's full functioning and construction while using product requirements to judge its capability, priorities and shared resources.
 
-SoI designation remains a choice under uncertainty. System recognition, a project name and a local contract do not settle it. Actual identity, intended reference, the project role and the account describing the choice have different grounds. Local acceptance establishes only the contribution it tests and can precede the product's later use.
+SoI designation remains a choice under uncertainty. System recognition, a project name and a local contract do not settle it. Actual identity, intended reference, the product role in an extended enterprise and the account describing the choice have different grounds. Local acceptance establishes only the contribution it tests and can precede the product's later use.
 
 Outside use supplies the grounds of the comparison rather than a fixed calendar order. Problem framing, concepts, architecture, realization and evidence can develop together. Reopen the product choice, local subject or provision arrangement according to which premise changed.
 
@@ -2105,7 +2107,7 @@ specific function, possible bearers, failure path and uncertainty; it does not s
 
 If confirmation cannot arrive in time, return to the timing claim or proposed allocation. If the required
 stock-control contribution or authority cannot be obtained, hold the commitment relying on it and revisit the
-affected concept claims or choice of the immediate engineering subject. Reopen the product SoI designation only when its product or use grounds change; a failed local arrangement or new contract alone does not make the planning creator the SoI.
+affected concept claims or choice of the immediate engineering subject. Reopen the product SoI designation when its product, use or extended-enterprise agreement grounds change; a failed local arrangement or new contract alone does not make the planning creator the SoI.
 
 The independent ERP supplier can select its software product as its own SoI on the usable supply, decision and acceptance grounds in `SYSE.1:5.2`. The manufacturer's planning project can close its agreed capability result through representative order changes and operating conditions. Software installation or an organization chart alone does not establish that capability or the existence of the composite `PlanningSystem-P1`. Its System identity, qualified capability and later product consequences require their respective evidence; local acceptance need not wait for every later product outcome.
 
@@ -2735,9 +2737,7 @@ research, realization, integration, operation, and decision Work can overlap.
 5. **Problem–option correspondences.** Every relied-on pair states the changed admission, comparison coordinate,
    protected characteristic, affected-System consequence, evidence need, or next action. A pair with no supported
    decision-bearing difference remains an unresolved mismatch.
-6. **Plural comparison.** Archives, Fronts, and the decision `OptionSet` retain their own membership rules. The
-   Agent compares several result and resource coordinates while retaining protected losses, uncertainty, and
-   non-dominated alternatives. Do not force those coordinates into one scalar objective.
+6. **Compare eligible options.** Apply the guards for the same use and operating conditions. Compare the eligible options on the declared result and resource characteristics, including protected losses and consequences for affected Systems. An eligible rival that is at least as good on every chosen characteristic and better on one excludes the option from a Pareto Front. To place an option on that Front, rule out domination by each eligible rival. A known advantage or a bound can settle a comparison even with another measurement missing. First check that at least one combination of the performance values fits the evidence for the stated System or family and use. Conflicting inputs require a return to their basis before they can support this comparison. If every admissible combination gives a proposal a dominating eligible rival, exclude the proposal. The identity of that rival may still be open. Establish which option to pursue when the receiving decision requires it. Identify any comparison that could change front membership. If the decision uses the order of a particular pair, report any uncertainty in that order even when membership is settled. An archive, a Front and the decision `OptionSet` each retain their own membership rule.
 7. **Choice or probe.** The current `OptionSet` is fixed. The deciding Agent performs comparison-and-choice
    Work, applies `C.11.CRC` when a finite configuration-relative contribution comparison is needed, and applies
    `C.11` to produce a decision result: a choice, tie-set, rejection, named probe, or reroute. The Agent selects a
@@ -2945,9 +2945,7 @@ The current problem portfolio and System-family options produce four corresponde
 The final row explains archive retention and current non-selection; it supplies no `OptionSet` member. The first
 three rows are the complete correspondence set used by the current decision.
 
-The earlier Front compared energy use and peak demand. The current comparison uses a new candidate set and the
-following complete coordinate set: continuity, recovery time, occupied-zone temperature, peak power, compressor
-cycling, processor load, calibration effort, and service burden. It is therefore a new Front with its own basis.
+The earlier Front compared energy use and peak demand. The current comparison uses a new candidate set and eight characteristics: continuity, recovery time, occupied-zone temperature, peak power, compressor cycling, processor load, calibration effort and service burden. Establish eligibility and compare the surviving options on this basis before declaring the new Front.
 
 The fixed current `OptionSet` has three members:
 
@@ -2955,10 +2953,7 @@ The fixed current `OptionSet` has three members:
 2. develop the local-fallback specification; or
 3. develop the variable-speed-control specification.
 
-Safety and occupied-zone comfort are hard guards. The remaining coordinates form a partial order. The cloud-
-schedule specification without a qualified local fallback fails the network-loss guard. The variable-speed option
-retains the incumbent local control during network loss and remains admitted, but evidence about processor load
-and cold recovery is missing for the local-fallback option. That option cannot yet be admitted or rejected.
+Safety and occupied-zone comfort are hard guards. The remaining characteristics are compared by a partial order. The cloud-schedule specification without a qualified fallback fails the network-loss guard. Variable-speed control retains the incumbent local control and is admitted in configurations with the matching output board. Local fallback still lacks evidence about processor load and cold recovery in the two configurations proposed for it.
 
 The **controller-family council** is the deciding Agent. Its current assignment authorizes it to choose the next
 engineering probe, or decline new probing on the present basis, and allocate no more than 160 engineering hours.
@@ -2972,20 +2967,15 @@ The council uses one shared comparison basis:
 - The current `BeliefState` contains the three field observations, the hard safety and comfort guards, the cloud
   option's network-loss failure, the variable-speed option's admitted local control, and the missing local-fallback
   processor-load and recovery evidence.
-- The `OutcomeModel` states how each possible probe observation changes admission and the survivor relation. A
-  local-fallback pass admits that option and leaves it non-dominated with variable-speed control; a guard failure
-  or processor overload rejects it. The current calibration uncertainty changes burden estimates for variable-
-  speed control but does not change its admission or resolve the local-fallback question.
+- The `OutcomeModel` specifies which observation changes admission. To qualify local fallback for both proposed configurations, it must pass in each. A demonstrated failure in either excludes that two-configuration proposal. Keep the observation for each configuration, including any narrower use it supports. Compare local fallback and variable-speed control for the same buildings and conditions where both are applicable. The calibration trial changes estimates of variable-speed burden while leaving the local-fallback admission question open.
 
 | Candidate next probe | Bounded burden | Distinguishing observations | Effect on the current decision |
 | --- | --- | --- | --- |
-| Scripted network-loss and cold-recovery trial | 96 engineering hours, two hardware-in-the-loop bench days, one three-day reversible building-pilot window, and about one week of decision delay. | In each of two representative building configurations: no safety violation; occupied-zone recovery inside 20 minutes; and controller processor load below 70%. The outcome is contrary if either configuration has an established safety or comfort guard failure or a processor load at or above 70%. Incomplete, uncertain or otherwise non-decisive observations remain unresolved only when no such failure has been established. | A pass admits local fallback and leaves it with variable-speed control in the survivor set while cloud-only is rejected. A contrary outcome rejects local fallback and leaves variable-speed control as the admitted next-development option. An unresolved outcome preserves the unresolved local-fallback status and requires a new bounded decision. |
-| Variable-speed calibration trial | 128 engineering hours, four calibration-rig days, the same single building-pilot allocation, and about two weeks of decision delay. | Calibration effort and service burden may fall or rise within the currently supported range; the trial does not observe network-loss recovery or local-fallback processor load. | Either bounded outcome refines the burden comparison for an already admitted option but leaves the local-fallback admission defect and survivor question unchanged. |
-| No probe | No immediate trial resource use or delay; preserves the scarce pilot allocation and engineering capacity. | No new observation. | Retain the qualified current comparison: cloud-only fails the guard, variable-speed control remains admitted, and local fallback is retained only as an unresolved candidate, not admitted for use. Later development or adoption still belongs to its competent owner. |
+| Scripted network-loss and cold-recovery trial | 96 engineering hours, two hardware-in-the-loop bench days, one three-day reversible building-pilot window, and about one week of decision delay. | In each of two representative building configurations: no safety violation; occupied-zone recovery inside 20 minutes; and controller processor load below 70%. The outcome is contrary if either configuration has an established safety or comfort guard failure or a processor load at or above 70%. Incomplete, uncertain or otherwise non-decisive observations remain unresolved only when no such failure has been established. | A pass in both admits local fallback for the two tested configurations. Where variable-speed control is also applicable, both options can now be compared and their ordering is open. A demonstrated failure rules out the joint proposal. Record which configuration failed and which claims still hold for the other. If the evidence is inconclusive, report which admission question remains open. The council can finish with that result or consider further work when the investment decision warrants it. |
+| Variable-speed calibration trial | 128 engineering hours, four calibration-rig days, the same single building-pilot allocation, and about two weeks of decision delay. | Calibration effort and service burden may fall or rise within the currently supported range; the trial does not observe network-loss recovery or local-fallback processor load. | Either bounded outcome refines the burden comparison for variable-speed control within its supported configurations. The local-fallback admission question remains open. |
+| No probe | No immediate trial resource use or delay; preserves the scarce pilot allocation and engineering capacity. | No new observation. | Retain the qualified current comparison: cloud-only fails the guard, variable-speed control remains admitted in its supported configurations, and admission of local fallback for both proposed configurations remains open. Later development or adoption still belongs to its competent owner. |
 
-The `ChoiceRule` compares obtainable probes with retaining the qualified current result. Changing admission or
-the survivor relation is a possible contribution, not an obligation to buy it. In the first resource situation of
-this case, the council's qualified judgement is that resolving the local-fallback option before the next family
+The `ChoiceRule` compares obtainable probes with using the evidence already available. The network-loss trial can settle whether the council may include local fallback in the next development comparison. In the first resource situation of this case, the council judges that resolving this question before the next family
 investment is worth the 96 hours, scarce pilot allocation and one-week delay. Assume that capable performers and
 the windows can be obtained, and that this allocation does not displace more valuable protective or development
 Work. Those benefits, costs and conditions support selection within the 160-hour ceiling. The calibration trial
@@ -3035,12 +3025,7 @@ The local-fallback option's conditional status is precise: a plausible configura
 decision lacks the load and recovery evidence that would permit its admission. The rig and occupied-building
 window in §5 explain how that uncertainty could be resolved.
 
-Now take the selected-probe branch and stipulate that the authorized trial is subsequently performed and
-passes its stated limits in both configurations. The interpretation admits local fallback on that bounded
-basis and preserves variable-speed control as a non-dominated alternative. It does not choose a release or
-extend the observation to other boards. The family owner can now compare different members for their applicable
-buildings rather than insisting on one universal controller. The problem portfolio remains the three selected
-problems; the voice-control request is unchanged.
+Now suppose the authorized trial passes in both configurations with the larger processor. Local fallback qualifies there. Variable-speed control qualifies where its matching output board is available. For a building where both options qualify, a comparison showing that each has an advantage on a different declared characteristic would keep both on the Front for this two-option comparison. The trial alone leaves that ordering open. These results support the family owner’s comparison for the applicable buildings. Release and use on other boards require their own grounds. The problem portfolio still has three selected problems, and the voice-control request remains in the archive.
 
 The next supplier-change inquiry reveals that producing and assuring more combinations with rig `R4` requires
 repeated interface work. The returned `SYSE.23` question is specific: for the named controller family and next
@@ -3084,8 +3069,7 @@ Watch for these six recurring biases:
 - [ ] Every option identifies its family architecture, membership or variant rule, and effectivity basis.
 - [ ] Exploration archive, Fronts, and current `OptionSet` retain their own candidate and admission rules.
 - [ ] Every relied-on correspondence changes a decision-bearing claim or remains visibly unresolved.
-- [ ] The comparison preserves relevant result and resource coordinates, protected losses, affected-System
-      consequences, uncertainty, and non-dominated alternatives.
+- [ ] The comparison identifies eligible options, the evidence for each claimed Front membership and any open comparison that could change it. It preserves protected losses and consequences for affected Systems.
 - [ ] The choice or probe result states its basis, rule, full burden and value when relevant, actual obtaining
       conditions, authority, and reopen condition. Retaining a supported result is not conditional on a new probe.
 - [ ] Proposal, planning, authorization, performed Work, observation, and later adoption retain separate results.
@@ -3314,7 +3298,7 @@ assurance, and continuing change.
    distribution, placement, redundancy, containment, control boundary, or interface grammar. State separately
    whether an actual System exists, whether it is procurable, what realization or provider Work is needed, and
    any candidate claim that lacks support.
-5. **Write many-to-many proposed allocations.** Associate functional contribution claims and candidate bearers.
+5. **Write many-to-many proposed allocations.** Associate functional contribution claims and candidate bearers. If a proposed allocation fixes a choice in a parent model, compare the designs it permits under the same operating conditions. Check that at least one feasible design remains. For every design the allocation permits, test all the parent commitments relevant to the inquiry, including the required contribution under its operating conditions. If a newly permitted design violates one such commitment, narrow the comparison to the service it does preserve or revise the allocation. To claim strict refinement, identify a feasible design the parent allowed and this allocation excludes. State what the inquiry distinguishes. An allocation can exclude a design while leaving every previously admissible service behavior possible. Where two competing allocations each allow a design the other excludes, keep them as alternatives under the parent (B.5.MR).
    Permit several bearers for one contribution, several contributions for one bearer, and different
    allocations by mode, use, configuration, place, or effectivity. Treat weak cues—for example, co-location,
    matching names, diagram overlap, product kind, ownership, or system-role assignment—only as possible evidence
@@ -3444,11 +3428,7 @@ silently collapsing the candidate set or restarting the whole project.
 
 ### SYSE.5:5 - Worked Case: Heat-Pump Plant Control and Protection
 
-An occupied building has a heat-pump plant whose controller must respond to electricity-price and grid-flexibility
-signals while maintaining room comfort and protecting compressors. The engineering team must choose a control
-architecture for plant configuration `HP-2` that remains useful for the next three heating seasons. Earlier
-concept-development Work produced two viable use/System concepts and one unresolved mismatch: centralized
-optimization improves plant coordination, but communication loss must not remove local protection.
+An occupied building has a heat-pump plant whose controller must respond to electricity-price and grid-flexibility signals while maintaining room comfort and protecting compressors. The engineering team must choose a control architecture for plant configuration `HP-2` for the next three heating seasons. Earlier concept work identified two viable use/System concepts. A supervisor could use shared plant and tariff information to coordinate unit set-points. Any proposal using that connection must retain the required local protection during communication loss. The team still needs a comparison to establish whether central coordination improves the building result under the specified conditions.
 
 During allocation Work, the engineers restore four contribution families as claims whose bearer arrangements
 remain to be chosen:
@@ -4488,6 +4468,10 @@ unaffected claims. This work can remain within the existing data-management arra
 Description production, realization, checking, operation, and decision Work can overlap. Comparing claims
 requires recoverable claim content and subjects.
 
+**When the commission specifies whole-system coverage.** Recover the agreed scope of the account. One systems-modeling brief calls for function, construction, spatial placement and life-cycle cost at relevant system scales, together with the creator systems and the methods of creation and evolution. Check that coverage when the brief calls for it. Identify the subject of each claim. A proposed placement can support a design decision. Claiming the component is actually installed requires an obtaining part relation. The builder's schedule concerns planned work, and its cost estimate depends on priced resources and assumptions. Only an admitted system can hold a system-role assignment under A.2.1. For a narrower engineering decision, stop once its decision-changing claims have adequate descriptions and grounds.
+
+**When a successor must check or reproduce the result.** To repeat, adapt or examine the original derivation, make its production method, inputs and assumptions recoverable. For an independent comparison, establish the target, configuration, conditions, units and meaning needed to compare the results. A conflicting measurement can challenge a prediction even when the original calculation is unavailable. An estimate based on field failures and one based on scheduled replacements can agree for the current design yet require different updates. A usable reference to the method and the applicable local inputs can suffice. C.37.MM gives the general coordination and handover method.
+
 #### SYSE.7:4.2 - Record the Result
 
 Keep a compact `EngineeringDescriptionEnsembleAccount@Project` for the receiving decision. Reuse applicable
@@ -4551,12 +4535,13 @@ is specified only for a half-hertz update and plus or minus 0.3 kelvin under the
 filtering arrangement. Matching the token `SupplyTemperatureSensor` across three tools had hidden the
 difference.
 
-The engineers recover the sensor variant and interface configuration instead of merely synchronizing names.
-They update the model-use assumptions, evaluate another component and estimator option, and perform a
-controller-in-the-loop trial. The resulting evidence revises the architecture comparison: direct modulation
-remains acceptable for one building profile, while the storage branch remains unselected until it has either the
-faster sensing configuration or a different estimator and the corresponding assurance result. This evidence
-informs the current decision; it does not approve a later storage increment.
+The engineers identify the procured sensor and its installed signal path, update the model assumptions
+and run a controller-in-the-loop trial. Direct modulation remains acceptable for the tested building
+profile. The storage calculation still needs both a two-hertz update and an error within ±0.1 K.
+A faster update with the old ±0.3 K bound leaves that calculation unsupported. Evaluate the complete
+sensing or estimation path, including cable and filtering effects, against both assumptions. Alternatively,
+repeat the analysis with justified bounds for the available path. Use the resulting assurance evidence for
+the storage decision. Admission of a later storage increment still needs its own configuration and decision.
 
 The account records the usable description editions, the unresolved estimator claim, the tested
 configuration, and a reconsideration condition tied to component substitution or a changed grid-response
@@ -4736,8 +4721,7 @@ applicable to the same architecture decision, configuration and horizon can info
   its explicit correspondence, preserved structure, loss, and stop condition are current.
 - `E.17.0` supplies the dependent `U.View` membership and viewpoint-conformance relation; `E.17` and
   `E.24.PUB` keep selected episteme, publication occurrence, form, carrier, reader, and use distinct.
-- `A.6.3.RT` governs a representation-scheme transition when the same `EntityOfConcern` is deliberately
-  redescribed; it does not establish world-side identity or the correctness of the receiving claims.
+- `A.6.3.RT` helps an engineer change the representation of the same `EntityOfConcern` when the new language or reasoning medium supports a needed inspection, comparison or calculation. Establish the identity of the actual subject and the grounds for the resulting claim separately.
 - `A.10`, `B.3`, and `G.11` govern evidence reliance, assurance, and source-edition currentness. `SYSE.10`
   specializes the return from research, models, and trials to engineering decisions.
 - `E.15`, `C.27`, `SYSE.13`, `SYSE.14`, and `SYSE.19` govern configuration continuity, temporal claims, change,
@@ -6125,7 +6109,7 @@ yet the other ways of obtaining the same result have not been described on a com
 Start by naming the result and its kind. It may be, for example, an engineered System, one usable System
 configuration, a reusable Method or `MethodDescription`, access to a capability, performed provider Work, or an
 engineering episteme. State who will use or rely on the result, what acceptance means for that use, and when the
-result must exist or the Work must occur.
+result must exist or the Work must occur. If the receiver can use a result already held or obtain it on existing terms within the required period, use that provision and complete any remaining acceptance or receiving work. Compare sourcing arrangements when a choice is still due.
 
 The first useful comparative result is a written comparison of at least two complete arrangements that would produce,
 perform, transfer, or make the same result available. One `C.11` `ChoiceResult` then says: choose one arrangement
@@ -6234,10 +6218,7 @@ These tensions recur when projects compare ways to obtain the same result.
 
 State the result being sought and its kind; the receiving use and affected
 Systems; the configuration, operating conditions, horizon, and acceptance claims; the deciding Agent and the
-commitment it may authorize; and the latest useful decision date. If the proposed result alternates among owning a
-product, accessing it, performing Work, developing capability, and possessing an account, select the result
-that changes this commitment. The other objects may be needed inside an arrangement, but they are not
-interchangeable success conditions.
+commitment it may authorize; and the latest useful decision date. Determine whether the project needs ownership, access, performed work, a reusable account, or continuing capability. If the commission includes delivery of a working configuration now and the maintenance team’s ability to adapt it after a change, compare ways that provide both. The commissioning test can establish that the configuration works. For the second commitment, use a representative changed configuration to establish which adaptation work the maintenance team can decide, carry out and verify with the support it will have. Identify any part the supplier must still perform.
 
 Make acceptance operational enough to work backwards from it. Identify what the receiver must be able to do
 with the result, which important conditions it must cover, and what would show that the received subject is the
@@ -9175,15 +9156,16 @@ The table gives the complete set of baseline claims about the controller and its
 
 The team then fills three different architecture views:
 
-| View and `EntityOfConcern` | Obtaining relations | Decision use |
+| View and `EntityOfConcern` | Relations used and their status | Decision use |
 | --- | --- | --- |
 | holonic and membership view of controller `C17`, rig `R4`, and family `F7` | `C17` has processor board, I/O assembly, and network module as constructive parts. `R4` has a host, I/O rack, compressor emulator, and network-fault injector as constructive parts. Six actual controllers are members of `F7` under the current effectivity basis. | A versioned compressor boundary can localize component replacement while adding processor load at controller level and configuration/evidence burden at family-member level. Rig parameterization can reduce rewiring Work while adding maintenance and qualification burden at rig-whole level. These are simultaneous cross-level conflicts, not stages. |
 | non-holonic system-of-interest–builder relation view of the `C17`–`R4` test arrangement | the controller compressor interface corresponds to a rig adapter; the rig provides a test service to release Work; the evidence pipeline depends on configuration identity | The controller does not contain the rig, team, or Method as parts. Changing either side can move the supplier-change and assurance burden. |
-| Work view of the next supplier-change trial | adapter parameterization precedes closed-loop test; evidence review overlaps later testing; rollback preparation and service planning overlap the release decision | Earlier and overlapping Work constrain the investment, but their order creates no holonic level. |
+| Work view of the next supplier-change trial | The trial plan requires adapter parameterization before closed-loop testing. It schedules evidence review alongside later tests, and rollback preparation and service planning alongside the release decision. | The investment comparison assumes that the people and equipment needed for the planned overlap will be available. If the reviewer is committed elsewhere, secure that time or compare a schedule with serial review. Actual work times can establish which activities overlapped after the trial. |
 
 The holonic and membership view exposes processor and evidence burdens at levels different from the interface
-change. The system-of-interest–builder relation view matters because the rig is not a part of the controller. The Work view matters because test readiness and review overlap determine calendar and assurance
-resources. None of the three can be inferred from another.
+change. The rig provides a test service from outside the controller. The Work view supplies the precedence
+and resource assumptions for estimating completion time. An order of work establishes precedence for that
+trial. Levels of system composition require a part–whole relation.
 
 Three alternatives survive admission beside the incumbent:
 
@@ -9537,8 +9519,7 @@ Use the questions that bear on the receiving decision.
 1. Which actual or intended subject does the decision concern—for example, a System, part, serial unit, lot,
    or site?
 2. Which boundaries need independent identity for this decision, and why?
-3. For each identifier, which reference scheme gives it meaning, which Agent issues or maintains it, over what
-   interval, and in which record?
+3. For each identifier, what does it designate in this record, who issues or maintains it, and which rule or assignment holds over the interval at issue?
 4. Which variant and software-package claims are candidates, and which actual units have evidence of realizing
    them?
 5. Which constituents and relations obtain for each unit and interval, and which characteristic values are
@@ -9600,9 +9581,7 @@ Use [the record-and-time explanation](#syse1344---use-a-record-for-one-configura
 3. **Choose item boundaries for this use.** Designate only the entities that must be distinguished independently,
    such as Systems, parts, software-package epistemes, or descriptions. Different kinds of receiving Work may
    choose different boundaries; relate them instead of forcing one granularity.
-4. **State identifier schemes and mappings.** For each item, name the identifier, scheme, issuing or maintaining
-   Agent, interval, and any mapping to another scheme needed for this use. Establish its support. Shared spelling is not identity; a mapping need not
-   be symmetric or lossless.
+4. **Resolve identifiers and check the direction of each mapping.** Identify the bearer of each entry under its issuing or maintaining Agent, effective interval and applicable assignment or rule. When the decision uses a correspondence between entries, state its direction and evidence. A serial number can lead to a part definition used by many units. To identify one unit from that definition, recover the additional binding that selects it. Record any information the correspondence loses.
 5. **Separate variants, units, packages, installations and editions when they matter.** Identify relevant variant descriptions and any units claimed to realize them. For
    software, identify the package and relevant description edition. When a claim concerns an installation, distinguish the installed realization from
    the package and state its evidence or the gap.
@@ -9627,7 +9606,7 @@ rely only on claims whose bearer and effectivity are known for that use.
 | --- | --- |
 | receiving use | Decision, deciding Agent, actual System or intended System referent selected as the project system-of-interest, or another subject, interval, affected Work, and differences that can change the result. |
 | subjects and item boundaries | The actual or intended subjects the decision concerns, the items that need separate identities, the reasons for those boundaries and any required part–whole or structure claims. |
-| identifiers and mappings | Identifier schemes, issuing or maintaining Agents and applicable intervals. For any mapping needed by the decision, give its direction, what it preserves or loses, its evidence and its use limits. |
+| identifiers and mappings | Entries and their bearers, assigning or maintaining Agents, applicable rules or assignments and effective intervals. For a mapping used in the decision, give its direction, evidence, what it preserves or loses and its use limits. |
 | variants, units, software, and descriptions | Identify the variant descriptions, actual-unit realization claims, software packages, installed realizations and description editions relevant to the decision. State any unresolved claim about their correspondence. |
 | configuration and effectivity | For a claim about an actual configuration, give the relevant constituents, relations, characteristic values, evidence and interval. Identify the subjects and conditions to which each description or proposed change applies. |
 | reference and collisions | Any comparison baseline and its purpose. For any collision, distinguish incompatible elements, contradictory claims, unsupported or lossy mappings, missing evidence and harmless naming differences, as applicable. |
@@ -9650,7 +9629,7 @@ retain the reference baseline for its stated comparison.
 
 Use this explanation when you can work with the records of your practice but are unsure which state, event or period a record supports. Start with the claim your present decision needs. An adequate established correspondence can be used directly.
 
-Name the actual or intended subject of the record and the subject of the decision. Recover the description edition, identifier scheme and conditions when they can change this use. A common name or a later date does not establish the correspondence. Keep an installed state distinct from a design, plan or status entry. Different identifiers can be harmless when their supported mapping preserves the subject needed by the decision.
+Name the actual or intended subject of the record and the subject of the decision. Recover the description edition and the conditions, including any identifier assignment, on which the correspondence depends. A common name or a later date does not establish the correspondence. Keep an installed state distinct from a design, plan or status entry. Different identifiers can be harmless when their supported mapping preserves the subject needed by the decision.
 
 **Distinguish three questions about time.** When was the record made or the account entered? When did the reported state or event obtain? At what time, or over what interval, must the claim needed by the decision apply? The answers can coincide, but one answer does not establish the others. Recover only the distinctions needed by your claim.
 
@@ -9750,7 +9729,7 @@ These recurring failures can change the engineering decision:
 
 | Failure | Repair |
 | --- | --- |
-| Treat one identifier as one bearer everywhere | Name the bearer and reference scheme for each use; state supported mappings among schemes. |
+| Treat one identifier as one bearer everywhere | Resolve the entry under the rule or assignment governing each use. State which correspondence the available evidence supports and in which direction. |
 | Treat configuration item as a universal kind | Use it as a local designation of an already identified System, part, software package, or description chosen for this decision. |
 | Treat a variant as an installed unit | Keep the variant description and unit separate and require realization evidence. |
 | Treat latest as applicable | Name the edition and effectivity; current publication does not establish compatibility with the unit. |
@@ -9762,7 +9741,7 @@ These recurring failures can change the engineering decision:
 
 Release, integration, service, and modernization decisions can identify the units and descriptions they concern.
 Product-family reuse keeps serial-unit differences visible, and cross-tool automation can support comparisons
-through declared identifier schemes and supported mappings.
+through identified entries and supported correspondences between their referents.
 
 The cost is maintaining selected identifiers, mappings, evidence, and effectivity claims. Some questions remain
 unresolved until actual-unit observation or authority is available. Application profiles may need specialized Methods for domain relations—for example, interchangeability,
@@ -11472,7 +11451,7 @@ the evidence and the condition that reopens the choice.
    platform constraints, and protected characteristics.
 8. **Make the repertoire decision.** The authorized Agent records which Methods are retained now, retained as
    alternatives, replaced, excluded for this use, proposed for development, or unresolved. Explain the selected
-   disposition from the criterion and grounds, including the accepted burden or loss. If a retained Method
+   disposition from the criterion and grounds, including the accepted burden or loss. For a partial repertoire, name the configurations it covers and those still awaiting a suitable Method. To claim coverage for a whole set, establish a suitable Method for each configuration. If Method choice depends on the configuration, show how the team can recognize it in time to choose. If the team can use any retained Method interchangeably, show the evidence or engineering rationale for each allowed substitution. If a retained Method
    lacks a capable Agent, provider, platform, or assignment, record that separate gap and send it to the appropriate
    capability, provider, platform, or obtaining-arrangement decision.
 9. **State evidence, currentness, and return conditions.** Give each relied-on claim its epistemic status—
@@ -13837,7 +13816,7 @@ The application does not use that line for business behavior, and exact executio
 
 Now change the case: a dependency named “stable” resolves to different bytes on the second worker. Removing the timestamp cannot repair this difference. Identify which dependency changed and, for reconstructing the earlier package, which bytes that build used. Use their identity to obtain or pin the corresponding input where available. If the original bytes cannot lawfully be obtained, exact reconstruction remains unavailable even though a newer package could be built and tested as a different candidate.
 
-A third case reuses the first worker's final package from cache. Matching digests prove that the same cached bytes were returned, not that the procedure reconstructed them. A fresh execution is still needed for the reconstruction claim.
+In a third case the cache log identifies a return of the first worker's final package. Matching digests support identity of the specified package bytes. The log establishes how the third worker obtained them. The two fresh executions above already support reproducibility for the tested inputs and conditions. If the third worker's history is missing, the same bytes could have come from a fresh build or the cache. Check that history only when the decision depends on which occurred. An existing qualification can still cover use of the identified artifact.
 
 The team can now identify which input changed, which artifact was tested and what the comparison establishes. For a later test failure, establish whether the behavior, the test or its execution conditions explain the observation.
 
@@ -15298,11 +15277,11 @@ For a selected intervention, use applicable observations of ordinary, exceptiona
 
 Observe comparable use after the intervention, including maintenance and newly created tasks. Compare the proposed mechanism with the changes observed in use. A shorter ticket queue can result from users abandoning the path; that is not evidence of reduced task burden.
 
-Return the bounded result and remaining uncertainty. Continue, revise or retire the intervention according to that evidence. If only a desk calculation or pilot exists, say so; it cannot establish lasting production benefit.
+Before retiring a platform procedure, distinguish work that disappears at its source from requests that callers still need served. If the change prevents the trigger, establish where the trigger can no longer recur and what users still need from the platform. For continuing requests, identify the results and permissions callers depend on. Establish where the supported interface preserves them and how it returns an exception to someone who can resolve it. One eligible request that appears to succeed with the wrong result can rule out retiring the old procedure for all requests. Retain the old procedure for exceptions that callers can identify in time. If callers would accept a wrong answer as a success, repair or restrict the interface before relying on it. A cost calculation can establish which alternative wins for a specified workload. A claim of savings in production also depends on the work and exceptions that actually occur. Use the observed result, remaining burden and uncertainty to decide whether to continue, revise or retire the intervention.
 
 #### SYSE.39:4.6 - Design the intervention around recurrence, exceptions and continued support
 
-Develop the cause of recurrence far enough to choose the change. If a user repeatedly asks whether a deployment finished, the missing contribution may be result retrieval, not deployment automation. If operators repeatedly clean a full disk, the useful change may be bounded log retention or a repaired producer, not a faster cleanup script. If each request needs a different professional decision, the repeated clerical preparation may be automatable while the decision remains human. These decompositions produce different implementations from the same count of tickets.
+Develop the cause of recurrence far enough to choose the change. If a user repeatedly asks whether a deployment finished, the missing contribution may be result retrieval, not deployment automation. If operators repeatedly clean a full disk, the useful change may be bounded log retention or a repaired producer, not a faster cleanup script. If each request needs a different professional decision, the repeated clerical preparation may be automatable while each decision still needs a qualified decision-maker. These decompositions produce different implementations from the same count of tickets.
 
 Consider a constructed 12-week case in which a platform must keep serving tasks and retain every event record in a readable 30-day archive. A defect repeatedly copies already archived, sealed log segments into scratch space. The archive supplies all supported uses of these records. The permitted cleanup removes only copies verified against the archive; unmatched content stays until the duty operator preserves and verifies it. Four ordinary cleanups take ten operator minutes each per week; one damaged scratch copy needs twenty minutes for manual comparison, preservation and cleanup. For these nonoverlapping triggers, the existing operator/archive path restores headroom within thirty minutes, including escalation, against forty minutes remaining before the disk fills.
 
@@ -15344,13 +15323,15 @@ Alternative A is a page telling each developer how to perform the operator's int
 
 For B, each ordinary retrieval takes one user minute. Each of the two exceptions takes three user minutes and six provider minutes. Thus user effort is 18 × 1 + 2 × 3 = 24 minutes, with 12 provider minutes and 20 maintenance minutes.
 
-A is not an active-effort reduction despite eliminating all twenty tickets. It may also change waiting or autonomy, but those gains have not been observed. B has a constructed recurring difference of 144 minutes while retaining exception assistance. Its initial construction costs eight hours, which must remain in any longer-horizon comparison.
+A transfers all twenty searches to the users and requires the same 200 minutes of active work. Waiting and autonomy may also change. The worked assumptions give B a recurring saving of 144 active minutes per week, including exception assistance. When deciding whether to build B, include its eight hours of construction.
 
-With recurrence, task mix and the stated costs unchanged, a one-week horizon gives 200 minutes for the old path versus 480 + 56 = 536 minutes for B, including its eight-hour construction. A four-week horizon gives 4 × 200 = 800 minutes for the old path versus 480 + 4 × 56 = 704 minutes for B. The active-effort preference therefore changes from the old path to B with the horizon. Waiting, risk and future recurrence remain separate questions.
+Before construction, with recurrence, task mix and costs held fixed, one week costs 200 minutes on the old path and 480 + 56 = 536 on B. Over four weeks the totals are 800 and 704 minutes. Once B has been built and qualified, an additional week under those conditions calls for 56 minutes on B or 200 on the old path, assuming no switching cost. Count construction in the original investment and compare the effort the present choice can still change. These are estimates of active work. Actual savings require evidence of use, effort and any work transferred to others.
 
 The team selects a bounded B probe. It uses the provider's qualified same-attempt result lookup and existing authorization. An ordinary request returns the original runtime/configuration observation and test outcome. A lost result observation returns uncertainty and support; the lookup does not create a replacement deployment.
 
 A request to see another user's restricted result fails the applicable access check. A request for new deployment permission is outside this retrieval activity and goes to the holder of the deployment decision. The lookup trial supplies evidence about retrieving a result under an existing permission.
+
+A retry can have the same job name as the original attempt. If the first attempt failed and the retry succeeded, returning the latest success would give the wrong answer to an authorized caller asking about the first attempt. The two stored outcomes and the provider’s binding of each to its attempt identifier can establish which answer the lookup returns. Where that binding has been lost, support can return a verified observation if one survives, or report that the original outcome cannot be established. How often that route is needed affects the saving.
 
 The probe exercises ordinary lookup, missing provider observation and unauthorized access. The subsequent comparison must measure real recurrence, user/provider effort, maintenance, error and support effects over the same task conditions. If exceptions dominate or a provider change makes the lookup expensive to maintain, the anticipated gain can disappear.
 
@@ -17288,7 +17269,7 @@ functioning or a downstream condition still fails, and an earlier source can cha
 
 ### SYSE.Application:1.1 - 1. Recover the subject, use, and consequences
 
-Use `SYSE.1` to designate the actual station as the project system-of-interest and keep that designation distinct from
+Use `SYSE.1` to recover the operator's, alteration provider's and maintenance organization's agreements and authorized decisions for changing the station. Designate the actual station as the SoI of that extended enterprise, keeping the designation distinct from
 the System's identity. Use `SYSE.16` to recover the containing district-heating arrangement, operating neighbours,
 conditions, and part and interaction relations. Use `SYSE.17` to identify Systems that can bear engineering
 consequences, including the operator, connected heating network, maintainers, and affected users. Use `SYSE.2`
@@ -17396,8 +17377,7 @@ remain separate decisions and claims.
 
 ## SYSE.Application:3 - APP-SYSE-03 — Worked application: choose and bound an authentication-service migration
 
-This constructed case applies the Systems Engineering patterns to a project system-of-interest that
-is a software service. The project relies on the named software-security result. Specialist Methods and authorities govern
+This constructed case applies the Systems Engineering patterns to an authentication System. Its operating organization, software provider and integration provider have agreed their migration work and acceptance responsibilities; those agreements organize the extended enterprise in which the System is the SoI. The project relies on the named software-security result. Specialist Methods and authorities govern
 cryptographic design, threat modelling, privacy and legal questions. The release Agent decides whether to deploy.
 
 
@@ -17487,8 +17467,8 @@ inputs; their Methods remain with those practices.
 
 ### SYSE.Application:4.1 - 1. Fix the System, use, and result to obtain
 
-Using `SYSE.1`, the engineering team selects the intended greenhouse climate-control System, designated `GreenhouseClimateControl-GH2`,
-as the project system-of-interest and distinguishes it from greenhouse `GH-2` and company `GreenHeat-4`.
+Using `SYSE.1`, the engineering team recovers the greenhouse owner's, `GreenHeat-4`'s and equipment providers' agreements for supplying the climate-control System. In that extended enterprise it selects intended `GreenhouseClimateControl-GH2` as the SoI,
+distinguishing it from greenhouse `GH-2` and the provider company.
 The designation can precede the existence of the intended control System. `SYSE.16` identifies the greenhouse,
 electrical supply, heating, ventilation, misting, shading, sensors, operator station, weather, and manual fallback
 that form the relevant operating surroundings. `SYSE.17` identifies operators, crops, maintainers, the equipment
@@ -17827,7 +17807,7 @@ For example, a returned number of 20.010 mm without the applicable procedure, un
 
 For the measurement construction, [PHY.9](https://github.com/ailev/FPF/blob/main/DPFs/Foundational%20Thinking%20DPF%20Suite/PHYSICAL-THINKING-DPF.md#phy9---construct-a-measuring-interaction-for-a-physical-distinction) helps construct the measuring interaction; C.16.MR/IR relate its recorded result to values compatible with the stated error constraints. The instrument, material, procedure and applicable error account must still be supplied for this bore. For statistical inference under a probability model of the records, use [MMP.13](https://github.com/ailev/FPF/blob/main/DPFs/Foundational%20Thinking%20DPF%20Suite/MATHEMATICAL-MODELING-PRACTICE-DPF.md#mmp13---infer-unknowns-statistically-under-a-stated-observation-model), retaining the meaning of its uncertainty statement.
 
-In a separate stipulated calculation, the identified finished bore reads 20.014 mm and the complete error is bounded by ±0.008 mm. Its compatible diameters are [20.006, 20.022] mm. That interval includes values inside and outside [19.980, 20.020], so this observation does not settle conformity. If an applicable procedure instead supplies a complete hard bound of ±0.004 mm for the same reading, the interval becomes [20.010, 20.018] mm and lies inside the specification. These are hard bounds, not confidence intervals. Whether obtaining a different measurement is worthwhile depends on the receiving decision and the value of resolving the present uncertainty relative to the cost of the measurement; use C.11.DUA when that choice is unresolved.
+In a separate calculation the finished bore reads 20.014 mm. Suppose any additive reading error from −0.008 to +0.008 mm is possible, with no further restriction. Diameters 20.014 and 20.022 mm can each produce this reading. One meets the specification [19.980, 20.020] mm and the other exceeds it, so the reading leaves conformity undecided. An outer error bound alone would not establish that both diameters are possible. With a justified hard bound of ±0.004 mm for this same reading, every compatible diameter lies in [20.010, 20.018] mm and meets the dimensional specification. A statistical confidence interval calls for its own decision rule. Use C.11.DUA to weigh another measurement against improving the existing calculation when either could change the decision.
 
 This calculation concerns the stated part and error model. Acceptance of a lot also needs its applicable decision and sampling rules.
 
