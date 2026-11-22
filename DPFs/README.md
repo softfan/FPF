@@ -19,10 +19,10 @@ A Suite brings together constituent disciplines and explains how their knowledge
 
 | Suite | Working subject | DPFs | Patterns | Text, M characters |
 | --- | --- | ---: | ---: | ---: |
-| [Engineering](Engineering%20DPF%20Suite/) | Designing, realizing, changing and maintaining systems; knowledge access, semantic integration and control architecture design. | 5 | 99 | 2.854 |
-| [Management](Management%20DPF%20Suite/) | Direction, goals, commitments, operations, resources, markets, communities, workforce participation and organizational change. | 14 | 201 | 5.611 |
-| [Foundational Thinking](Foundational%20Thinking%20DPF%20Suite/) | Mathematical and physical accounts, models, algorithms and usable notation. | 5 | 71 | 2.008 |
-| [Human Capability Engineering](Human%20Capability%20Engineering%20DPF%20Suite/) | Human learning and somatic change, connected to capability in later work. | 2 | 34 | 1.251 |
+| [Engineering](Engineering%20DPF%20Suite/) | Designing, realizing, changing and maintaining systems; knowledge access, semantic integration and control architecture design. | 5 | 99 | 2.972 |
+| [Management](Management%20DPF%20Suite/) | Direction, goals, commitments, operations, resources, markets, communities, workforce participation and organizational change. | 14 | 201 | 5.747 |
+| [Foundational Thinking](Foundational%20Thinking%20DPF%20Suite/) | Mathematical and physical accounts, models, algorithms and usable notation. | 5 | 71 | 2.063 |
+| [Human Capability Engineering](Human%20Capability%20Engineering%20DPF%20Suite/) | Human learning and somatic change, connected to capability in later work. | 2 | 34 | 1.300 |
 
 For a goal or OKR question, open [GOALS](Management%20DPF%20Suite/GOAL-CONSTRUCTION-AND-REGULATION-PRINCIPLES-FRAMEWORK.md) directly within Management. Its complete language includes organizational OKR/CFR, human professional goals and AI work.
 
@@ -32,16 +32,16 @@ These ten standalone frameworks have their own files here. A shared folder group
 
 | Framework | What you can work on | Patterns | Text, M characters |
 | --- | --- | ---: | ---: |
-| [Decision Design (PSDA)](https://fpf.tools/PSDA) · [Markdown](DECISION-DESIGN-PRINCIPLES-FRAMEWORK.md) | Formulate a decision problem, construct alternatives, compare consequences and uncertainty, and connect a recommendation to its use. | 19 | 0.826 |
-| [Research Method Practice (RMP)](https://fpf.tools/RMP) · [Markdown](RESEARCH-METHOD-PRACTICE-PRINCIPLES-FRAMEWORK.md) | Frame and design research, obtain and criticize evidence, synthesize sources, and return a warranted knowledge contribution. | 11 | 0.544 |
-| [Explanation Design (EXD)](https://fpf.tools/EXD) · [Markdown](EXPLANATION-DESIGN-PRINCIPLES-FRAMEWORK.md) | Design an explanation, worked example or dialogue that helps its recipient understand and perform the needed operation. | 6 | 0.153 |
-| [Narrativization and Narrative Studies (NSTD)](https://fpf.tools/NSTD) · [Markdown](Narrativization-and-Narrative-Studies-Principles-Framework.md) | Develop and interpret followable narratives; construct working accounts and fictional or hypothetical events; preserve relations, uncertainty and useful returns to source material. | 10 | 0.390 |
-| [Implementation Facilitation (IS)](https://fpf.tools/IS) · [Markdown](IMPLEMENTATION-FACILITATION-PRINCIPLES-FRAMEWORK.md) | Help participants put an evidence-informed practice to use under local conditions, adapt the assistance and develop their capacity for further change. | 7 | 0.191 |
-| [Economic Reasoning and Coordination (ECO)](https://fpf.tools/ECO) · [Markdown](ECONOMIC-REASONING-AND-COORDINATION-PRINCIPLES-FRAMEWORK.md) | Reason about exchange, commitments, incentives, shared resources and coordination under changing information and demand. | 10 | 0.132 |
-| [Financial Domain Modeling (FDM)](https://fpf.tools/FDM) · [Markdown](FINANCIAL-DOMAIN-MODELING-PRINCIPLES-FRAMEWORK.md) | Model financial positions, rights, obligations, events and payment flows, distinguishing their effects. | 5 | 0.100 |
+| [Decision Design (PSDA)](https://fpf.tools/PSDA) · [Markdown](DECISION-DESIGN-PRINCIPLES-FRAMEWORK.md) | Frame a decision problem, construct alternatives and compare their consequences under uncertainty. Combine the evidence for a recommendation the decision holder can use. | 19 | 0.843 |
+| [Research Method Practice (RMP)](https://fpf.tools/RMP) · [Markdown](RESEARCH-METHOD-PRACTICE-PRINCIPLES-FRAMEWORK.md) | Frame and design research, obtain and criticize evidence, synthesize sources and return a warranted knowledge claim. Choose units and comparisons to suit the question. | 11 | 0.565 |
+| [Explanation Design (EXD)](https://fpf.tools/EXD) · [Markdown](EXPLANATION-DESIGN-PRINCIPLES-FRAMEWORK.md) | Build a grounded explanation for the recipient’s question. Choose a form, example or dialogue when it helps, and determine which reasoning the reader can recover and use. | 6 | 0.168 |
+| [Narrativization and Narrative Studies (NSTD)](https://fpf.tools/NSTD) · [Markdown](Narrativization-and-Narrative-Studies-Principles-Framework.md) | Develop and interpret factual, hypothetical or fictional narratives. For a commissioned explanation, connect the subject grounds to what readers can infer or decide as the narrative unfolds. | 10 | 0.415 |
+| [Implementation Facilitation (IS)](https://fpf.tools/IS) · [Markdown](IMPLEMENTATION-FACILITATION-PRINCIPLES-FRAMEWORK.md) | Help participants introduce, adapt or continue a practice under local conditions. Arrange support they can use and help them develop their capacity to lead future changes when that is their aim. | 7 | 0.212 |
+| [Economic Reasoning and Coordination (ECO)](https://fpf.tools/ECO) · [Markdown](ECONOMIC-REASONING-AND-COORDINATION-PRINCIPLES-FRAMEWORK.md) | Compare exchange, incentives and commitments. Establish whose resource use can change, which claims can be met together and when a unit saving changes total demand. | 10 | 0.154 |
+| [Financial Domain Modeling (FDM)](https://fpf.tools/FDM) · [Markdown](FINANCIAL-DOMAIN-MODELING-PRINCIPLES-FRAMEWORK.md) | Model financial positions, rights and obligations. Derive conditional contract flows, assess funds available by a due date, and establish what occurred or what incomplete records still determine. | 5 | 0.121 |
 | [Defense and Transmission Modeling (DTM)](https://fpf.tools/DTM) · [Markdown](DEFENSE-AND-TRANSMISSION-MODELING-DPF.md) | Explain how practices persist and spread, how they help or impair work, and how protective action changes those outcomes. | 9 | 0.158 |
-| [Embodied Rhythmics (RHY)](https://fpf.tools/RHY) · [Markdown](EMBODIED-RHYTHMICS-PRINCIPLES-FRAMEWORK.md) | Recognize, represent, alter and perform rhythmic relations; coordinate sound, movement, reference and simultaneous layers. | 14 | 0.280 |
-| [Music and Dance Practice Engineering (MDPE)](https://fpf.tools/MDPE) · [Markdown](MUSIC-AND-DANCE-PRACTICE-ENGINEERING-PRINCIPLES-FRAMEWORK.md) | Create, configure, perform, learn and transmit music and dance practices, including changes in tools, environments and styles. | 28 | 1.101 |
+| [Embodied Rhythmics (RHY)](https://fpf.tools/RHY) · [Markdown](EMBODIED-RHYTHMICS-PRINCIPLES-FRAMEWORK.md) | Recognize, represent, alter and perform rhythmic relations; coordinate sound, movement, reference and simultaneous layers. | 14 | 0.301 |
+| [Music and Dance Practice Engineering (MDPE)](https://fpf.tools/MDPE) · [Markdown](MUSIC-AND-DANCE-PRACTICE-ENGINEERING-PRINCIPLES-FRAMEWORK.md) | Create, configure, perform, learn and transmit music and dance practices, including changes in tools, environments and styles. | 28 | 1.123 |
 
 **Patterns** counts full pattern bodies. **Text, M characters** measures each complete Markdown framework, including its embedded Architectural Reference, in millions of Unicode characters with spaces and original line breaks, rounded to three decimals. Suite totals sum their constituent frameworks and exclude the separate Suite Reference.
 

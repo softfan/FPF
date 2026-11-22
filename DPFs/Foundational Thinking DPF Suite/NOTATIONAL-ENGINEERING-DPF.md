@@ -5,7 +5,7 @@
 > A pattern language for designing expressions that their users can interpret, manipulate, translate and use together.
 
 - **Author:** Anatoly Levenchuk, with AI-assisted development and review
-- **Version:** 24 October 2026
+- **Version:** 22 November 2026
 - **Status:** Eternal alpha: a repertoire open to correction and extension.
 - **License:** © 2026 Anatoly Levenchuk. Original framework text: [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). Cited sources retain their own terms.
 - **Publication:** [FPF Library repository](https://github.com/ailev/FPF)
@@ -64,9 +64,9 @@ To cite this edition: Anatoly Levenchuk, *Notational Engineering DPF*, [FPF Libr
 
 A notation should let its users do something with an expression: derive a consequence, follow a dependency, change an assumption or instruct another performer. The methods in this language connect that work to the expression's structure and interpretation, then help carry the result between forms and through changes. They apply to symbolic, graphical, verbal, gestural and executable expressions. The subject practice supplies what the expressed distinctions mean and which consequences matter.
 
-Bring an expression, the operation it should support and enough subject knowledge to recognize a useful result, or a collaborator who can supply that knowledge. Keep conventions that already work. Constructing an expression under adequate existing rules can start with FPF A.6.3.RT.OE; use this language when those rules, their interpretation or the supported operations need development.
+Bring the work the reader must do and what they will have in hand. An existing expression can locate a reading or editing difficulty. When you are designing a notation from scratch, start from the items the reader will work on and the result they must obtain. Vary how the items are assembled or used, and see which differences a sign or a combination of signs must let the reader recover. Obtain needed subject knowledge from a collaborator where appropriate. Keep conventions that already work. A.6.3.RT.OE supports constructing an expression under adequate existing rules.
 
-You can ask an assisting agent: “Explain this and give me your comments in the language of my work, without framework jargon.” Ask it to demonstrate the reading or change and identify any rule, input or capability it had to supply.
+You can ask an assisting agent, “Explain this and give me your comments in the language of my work, without framework jargon.” For an existing expression, ask it to demonstrate the needed reading or change and identify the convention or input it used. To practise choosing the conventions yourself, bring the recipient's task and try a representation before requesting a design. Ask the agent to find what a reader could miss with that representation under the actual conditions of use.
 
 ## Practical entries
 
@@ -132,7 +132,7 @@ Use this language when an expression's conventions need to be constructed or cha
 
 A reader can recognize all the signs and still be unable to compose them, recover a dependency or perform the next transformation. Two displays can look consistent while referring to different objects. An abbreviated instruction can rely on preparation that its new reader lacks. These difficulties become especially visible when a new reader has to use a description prepared under different conventions or assumptions.
 
-Begin with one operation and an expression on which it matters. You need enough subject knowledge to say what a correct result would be, or access to an established subject rule, result or other source that supplies that knowledge. The individual methods then expose their additional prerequisites: rules for binding names, an interpretation, an allowed transformation, a temporal reference or a performer's available operations. The use determines which subject knowledge you need.
+Begin with what the reader must obtain. For an existing notation, identify the expression and the reading, change or action in question. For a new one, choose what a mark should denote, what an arrangement of marks should express and what the user must be able to infer or do with the whole. When several people use parts of the expression, recover which decisions they take independently and where one person's reading or edit must agree with another's. Obtain the subject rule or result needed to judge those uses. Binding, interpretation, permitted transformations, time references and the performer's available actions enter where the uses require them.
 
 Keep a sufficient notation when its conventions already serve the work. A.6.3.RT.OE in FPF helps construct an expression around a needed operation under available conventions. This DPF becomes useful when the conventions themselves leave a consequential distinction, interpretation or manipulation unsupported. Repair a mistaken subject account at its source; notation design can make that mistake visible without supplying the subject's answer.
 
@@ -169,7 +169,7 @@ Enter where the difficulty occurs. A translation loss can lead you back to the o
 
 Defining an operator's binding rule can be part of constructing an expression grammar while a notation for working calculations is being designed. If users must transform an expression without changing its meaning, visually convenient grouping is insufficient: the interpretation of the transformed expression must remain recoverable. Symbol recognition and subject knowledge can both be present while the intermediate ability to follow binding and transformation rules is absent. The notation design must provide those rules and support their use; a successful reading of one expression does not establish the whole notation's suitability.
 
-Examine the constituent–whole connections that can change the present result. FPF B.1.5.EW can help identify those connections and B.1.5.RS can help examine a proposed replacement. Carrying out a Method described here can require additional capability, available support and compatible resources for its constituent operations or for the larger work it contributes to.
+When a drawing groups several operations in a box, ask what the enclosing box is meant to denote. It may name a reusable method, identify a run that actually took place or simply save space. Decide from the work whether the reader needs to open the box, recover a relation across its boundary, or use its result as a whole. A rule for expanding the box establishes what a reader sees on expansion. A claim about which operations actually ran also needs evidence linking the description to that execution. Use FPF B.1.5.EW or B.1.5.RS when the constitution of the work or replacement of an operation affects the conclusion.
 
 ## NOT.Reference:4 - Worked connection - A formula, graph and table must change together
 
@@ -217,7 +217,7 @@ When a combined use needs checking, ask whether its participants can recover the
 
 Three failures illustrated above need different repairs. More explicit syntax repairs ambiguous grouping or binding. A restored interpretation repairs an unknown operation. A translation supplement repairs a discarded distinction. Use the method that changes the difficulty observed.
 
-Prepared readers can fill gaps without noticing. A worked use by such a reader supports that use under its preparation and access conditions. Ask what the evidence shows about the reader or performer concerned: learning a reusable operation, performing a task, or executing it reliably. To assess understanding, ask the reader to derive a consequence and handle a meaningful change; do not infer general capability from recognition of labels or fluent repetition of the example. EXD supplies methods for explanation. HCD supplies learning methods when a human reader needs to develop the capability.
+Prepared readers can fill gaps from experience. To assess a reading, ask for the consequence the recipient needs using the conventions and support actually available. For a design commission, give the designer the receiving work and leave open the choices they must make about referents, grouping, reading and change. An independently issued task should carry that same commission and the context its recipient can use. A completed legend handed to the learner supplies its design choices. Their subsequent reading can show how they use it. Earlier work may already show their own design decisions. EXD supplies methods for explanation. HCD supplies learning methods when a human reader needs to develop the capability.
 
 Temporal and embodied uses require further care. Recover the reference that determines when or where a sign applies. A pause may be a specified rest or an observation gap; turning a body changes the room direction of body-right. NOT.8 carries these distinctions through decoding and keeps a correctly interpreted instruction separate from the capability to enact it. Its rhythmic and movement cases offer different ways to test that general method.
 
@@ -274,11 +274,11 @@ The [Suite Reference (Foundational)](https://github.com/ailev/FPF/blob/main/DPFs
 
 **Use this when** you are choosing or designing a notation and cannot yet say what its users must be able to express, recognize or do with an expression. A candidate may name all the right objects while hiding their order, dependence or duration. Another may express the distinction but make a frequent change require rebuilding the whole description.
 
-Start with a piece of work: composing operations, comparing two models, tracing a dependency or performing a sequence are examples. Identify an operation that the intended user needs to carry out using the notation. Then find two cases that this operation must treat differently. Trying to express and use those cases gives the first design requirement that can be acted on.
+Begin with a piece of work the user must perform with the notation, such as composing operations, tracing a dependency or performing a sequence. If the user needs a value, ask whether cases that look alike can require different values. If the user needs a workable action, look for one they can take across all cases that look alike. The proposed expressions and the knowledge available to their reader may already suffice.
 
 The reader needs enough knowledge of the practice to explain why the cases differ and what a useful result would be. The designer can supply that knowledge or obtain the needed distinctions and inferences from a collaborator or an established source.
 
-The result is a choice of distinctions and operations to support, together with a small expression or interaction that shows how a proposed notation could support them. It may instead be a reason to keep an existing notation, preserve an unresolved choice, or obtain a missing account of the work before adding symbols.
+The result is a choice of distinctions and operations to support, with grounds showing how the proposed notation makes them available. Those grounds may come from a decoding rule that covers the required expressions, a constructed expression or an observation of use. The work may also justify keeping an existing notation, preserving an unresolved choice or obtaining a missing subject account before adding symbols.
 
 If a suitable notation already exists and only one expression needs repair, construct that expression under its rules using A.6.3.RT.OE. Return here when the rules themselves lack a needed distinction or make the required operation impractical.
 
@@ -300,7 +300,7 @@ A list of concepts leaves the work underdetermined. The same concepts can enter 
 
 ### NOT.1:4 - Solution
 
-**Choose a working operation → find a consequential difference → locate what carries that difference → try a notation choice → compare the work it enables and displaces → retain or revise the requirement.**
+**Choose the operation and its conditions → identify the distinctions it needs → find what carries them → establish how the proposed convention supports the work → retain or revise the requirement.**
 
 #### NOT.1:4.1 - Choose an operation and the conditions for performing it
 
@@ -308,13 +308,13 @@ Describe what the user starts with, what they do and what they need to obtain. P
 
 Specify the preparation and access on which the operation relies. A mathematician may use established algebraic conventions; a performer may recognize a learned gesture; a program may receive only serialized text. An AI agent's access to a rendered page, a text extraction and an editor's internal structure are different conditions. Include the context the intended user can access.
 
-For a small task, one operation is enough to begin. If the notation will be used for a family of operations, choose cases that exercise materially different demands. For example, interpreting a completed expression and changing a shared component can need different support.
+One operation can settle a commission limited to that use. For a family of uses, trace each promised use to the distinctions and reading rule it needs. A composition or decoding rule can cover an entire family of expressions. Use contrasting cases when they help uncover a requirement or test a disputed distinction. For a shared expression, vary a local part while keeping the proposed summary fixed. Can another reader still recover the needed effect on their part or on the whole? When several readers can edit the expression, determine which choices they can make separately and which must identify the same item, revision or agreed change. One argument about the shared convention can cover several uses.
 
 #### NOT.1:4.2 - Find cases whose difference changes the work
 
-Construct or recover a pair of cases that require different answers, permitted changes or actions. Explain the difference in the practice before deciding how to write it. Two arrangements of the same components can have different outputs; two performances with the same starting times can have different sustained intervals.
+Start with what the reader must obtain. For an exact answer, see whether two possible situations can give different answers. If the answer is fixed by what the reader already knows, the same expression may serve the entire group. Two arrangements of the same components can have different outputs. Two performances with the same starting times can have different sustained intervals. For a choice of any acceptable action, consider the alternatives that the reader would still group together and the actions each permits.
 
-Attempt to express both cases with the candidate notation and its allowed context. If they become indistinguishable while the required answers differ, something needed by that operation has been omitted. Recover the difference through an expression rule, an accessible annotation or a query to another representation. Alternatively, narrow the declared use to questions that do not need that difference.
+Try the proposed notation with the context available at the moment of use. For an exact answer, indistinguishable situations with different answers reveal a loss. For one guaranteed action, look for an action that works across the whole group. Three possible editions might allow {A,B}, {B,C} and {A,C}. Every pair allows an action, while no action serves all three. If the work needs this choice, add a distinguishing reference, an accessible query or a reading rule backed by subject knowledge. A context that already identifies an applicable action can be sufficient. [NOT.5:4.4](#not544---expose-distinctions-the-target-collapses) gives the corresponding test when translating an expression.
 
 Conversely, two visibly different cases may be interchangeable for the present operation. Keep their shared representation if that simplification preserves the needed result. The question determines which differences matter.
 
@@ -334,13 +334,13 @@ Test the whole expression and its usable context. A symbol may be ambiguous in i
 
 #### NOT.1:4.4 - Try a design choice through use
 
-Propose a small change capable of supporting the selected operation. Examples include marking operand groups, adding a reference to a shared component, exposing event duration, or making an unresolved alternative visible. Construct the contrasting cases with that change and carry out the operation using the proposed reading rule.
+Propose a change capable of supporting the selected operation. It could mark operand groups, refer to a shared component, expose event duration or distinguish an unresolved alternative. Establish how a reader can recover the needed distinction under the proposed convention and the context available to them. A decoding rule can settle that question throughout its domain. When a difference could still be lost, construct the contrasting expressions and follow the operation through each.
 
-Where modification matters, change an input, component or relation and follow the resulting edits. A notation that displays one finished example well may make the required family of changes error-prone or laborious. Include a contrasting case that challenges the same rule, to see whether the change works beyond the first example.
+Where modification matters, change an input, component or relation and follow the resulting edits. A contrasting case can expose a failing rule. For a reusable design, explain which construction or subject condition preserves the required operation throughout the intended expressions and changes. The demonstration of one successful edit gives a reader a place to start.
 
 Separate the notation's contribution from supplied subject knowledge. In a diagram for composing functions, arrows can expose the order of application; the functions and the ability to apply them supply the numerical result. If the result cannot be obtained because an algorithm or physical law is missing, return that question to the corresponding practice.
 
-An expert walkthrough can establish an explicit loss or a useful candidate change. When it remains uncertain whether the intended reader can recover or perform the operation, use C.2.8 to choose a bounded reading probe with the intended preparation and access. Obtain further evidence only when its outcome could change the design or the permitted use.
+An expert walkthrough can establish an explicit loss or a useful candidate change. When it remains uncertain which structure the intended reader can recover, use C.2.8 to assess recovery with the intended preparation and access. If two cases with the same available signs require incompatible actions before further information arrives, the notation alone cannot guarantee correct performance in both. Where actual performance matters, examine an attempt or other evidence of what the user did under the working conditions. For a claim about what the user can do, establish that the necessary information, skills and support will be available under those conditions. Obtain further evidence only when its outcome could change the design or the permitted use.
 
 #### NOT.1:4.5 - Compare the work enabled and the work displaced
 
@@ -398,9 +398,9 @@ A successful notation for one audience can require unavailable preparation in an
 Use these questions to examine the design decision when its adequacy matters.
 
 - Can the intended user identify the working operation, its starting information and the result they need?
-- Does a consequential difference between cases explain why the selected distinction is required? If a difference is omitted, is the resulting loss acceptable for that use?
+- Which lost difference would change the exact answer or leave the reader's choices without a common acceptable action? If the cases can safely share an expression, what establishes that for the intended use?
 - Is the necessary information available in the expression, its declared conventions or an accessible interaction?
-- Has the proposed rule been used on the contrasting cases, including a change when modification is part of the work?
+- For this task, can the intended reader use the expression and, if needed, change it? For a promise of reuse, how does the reading or editing rule cover the admitted family?
 - Are the subject knowledge and reader preparation needed for that use recoverable?
 - Does the next construction follow from the decision, with remaining uncertainty and displaced work visible where they matter?
 
@@ -418,15 +418,15 @@ Use these questions to examine the design decision when its adequacy matters.
 
 The next notation decision becomes a choice about work that can be attempted. A designer can explain why a distinction, convention or editing operation is needed and can recognize when a simpler notation suffices.
 
-The method costs representative construction and use. It can reveal a gap in the subject account that notation design alone cannot settle. Its result is local to the selected operations and conditions; extending use can expose another requirement. Keeping the contrast behind a decision makes that extension easier to reason about.
+Establishing a notation requirement can take analysis of an existing rule, construction of contrasting expressions or observation of use. It can also reveal a gap in the subject account that notation design alone cannot settle. Keep the operations and conditions the grounds cover. A new use may depend on a distinction that was dispensable for the earlier one.
 
 ### NOT.1:10 - Architectural Rationale
 
 A notation provides ways to form and use expressions. What to support depends on what the user needs to obtain or change. Starting with that operation connects the subject matter, reader preparation and representation.
 
-Contrasting cases make an omitted distinction consequential. If two cases with the same available representation require different answers, a reader using only that representation cannot be guaranteed the right answer in both. The design must recover the difference, obtain additional information or accept the resulting limitation. This argument identifies a requirement; trying the supported operation is still needed to learn whether the candidate is usable at the available effort.
+Contrasting cases can make an omitted distinction consequential. If the same available representation is compatible with different required answers, a reader relying on it cannot be guaranteed the right answer in both cases. Recover the difference, obtain additional information or qualify the use. A decoding or cost argument can establish what the representation permits under its assumptions. For a claim about what intended readers actually did and what it cost them, use evidence of their work under the relevant conditions.
 
-The pattern chooses requirements through small constructive trials. NOT.2-.4 develop formation, interpretation and transformation rules. A.6.3.RT.OE addresses a different starting condition: the scheme is available and an operative expression must be built under it. C.2.8 characterizes what a prepared observer can extract; the present method uses that question to construct or choose a scheme.
+The method derives a notation requirement from the work the expression must support. A general argument, a decisive contrast or observations of use supply different grounds for choosing a scheme. NOT.2-.4 develop formation, interpretation and transformation rules. A.6.3.RT.OE addresses a different starting condition: the scheme is available and an operative expression must be built under it. C.2.8 characterizes what a prepared observer can extract; the present method uses that question to construct or choose a scheme.
 
 ### NOT.1:11 - SoTA-Echoing
 
@@ -437,7 +437,7 @@ The pattern chooses requirements through small constructive trials. NOT.2-.4 dev
 | Ross and colleagues, [Affordances of Sketched Notations for Multimodal UI Design and Development Tools](https://arxiv.org/abs/2508.09342), 2025 preprint, abstract-level contribution | Retain the distinction between isolated-symbol recognition and interpretation of a whole contextual sketch in AI-assisted work. The abstract motivates checking the receiving context. It does not establish a general advantage of a particular design or interpreter. |
 | Kruchten, McNutt and McGuffin, [Metrics-Based Evaluation and Comparison of Visualization Notations](https://ieeevis.b-cdn.net/vis_2023/pdfs/v-full-1328.pdf), IEEE VIS 2023, §§3–4 | Reuse matched examples and their metrics to locate differences for closer reading when comparing working notations. The method assumes expressions implementing the shared tasks. Its metrics do not capture the whole user experience or supply a universally best notation. |
 
-**Choosing the design move.** When the needed distinction is still unknown, construct a contrasting pair first. A gallery-based comparison already needs expressions that implement chosen tasks; preparing that gallery cannot replace discovering the missing task or distinction. Once several viable notations support a stable family of work, a shared set of examples becomes useful: compare the same readings and edits, use metrics to find costly cases, then inspect those cases. This costs more than the first pair but can expose repeated-change burdens hidden by one successful example. Reopen the small comparison when that broader burden could change the choice; NOT.7 develops the corresponding redesign. Cognitive Dimensions and PUX can also help discover or reformulate the operations to compare.
+**Choosing the design move.** When the needed distinction is still unknown, look for indistinguishable cases whose required answer or collectively available actions reveal the loss. A gallery-based comparison already needs expressions that implement chosen tasks; preparing that gallery cannot replace discovering the missing task or distinction. Once several viable notations support a stable family of work, a shared set of examples becomes useful: compare the same readings and edits, use metrics to find costly cases, then inspect those cases. Preparing that comparison takes additional work but can expose repeated-change burdens hidden by one successful example. Reopen the small comparison when that broader burden could change the choice; NOT.7 develops the corresponding redesign. Cognitive Dimensions and PUX can also help discover or reformulate the operations to compare.
 
 This method adapts those sources to construct requirements from contrasting cases, as illustrated by the function pipeline and signal durations. The method connects notation design to available FPF representation, extraction and problem-development methods.
 
@@ -467,9 +467,9 @@ This method adapts those sources to construct requirements from contrasting case
 
 **Use this when** a notation needs rules for combining expressions or referring to their parts, and the proposed marks leave those rules unclear. Readers may disagree about an operation's operands, the declaration an occurrence of a name uses, or which connections join two components.
 
-The working question is “How can another user construct and recover the intended arrangement under these rules?” Start with one expression that admits two consequentially different readings. Give its components explicit places, make their grouping and references recoverable, and use the resulting construction to perform the intended operation.
+The working question is “How can another user construct and recover the intended arrangement under these rules?” Start with the arrangement the user must produce or read. Identify its components, their roles and the connections that affect the intended operation. An expression with two plausible readings can reveal a distinction the rules must preserve.
 
-The result is a small set of formation, binding and connection rules demonstrated by an expression and a contrasting case. These rules can support mathematical formulas, diagrammatic descriptions or structured sequences. For a local expression, the rules and their demonstrated use can suffice. Repeated automated processing may warrant a fuller grammar or a parser.
+The result is a set of formation, binding and connection rules sufficient for the admitted expressions and their intended operations. A fixed form may need only named places and their meanings. For a language with reusable constructors, establish how the rules determine the reading of their permitted combinations. A worked reading can show how to use them. Repeated automated processing may warrant a fuller grammar or a parser.
 
 The reader must know what the relevant components and operations mean, or have access to an account that supplies those meanings. The examples below require elementary arithmetic and the stated conventions. Theory of formal languages and category theory are optional tools for extending or proving properties of a scheme.
 
@@ -493,7 +493,7 @@ A printed formula can conceal two groupings. The same letter can name an externa
 
 ### NOT.2:4 - Solution
 
-**Identify the constructors and their places → make grouping recoverable → define how references are resolved → define permitted connections → construct and read contrasting cases → abbreviate only what the reader can recover.**
+**Identify the constructors and their places → make grouping recoverable → resolve references and define permitted connections → establish how the reader recovers the required arrangement → abbreviate only what that reader can recover.**
 
 #### NOT.2:4.1 - Identify the expression constructors and their operands
 
@@ -507,7 +507,7 @@ State the restrictions that the intended use needs. The restrictions may concern
 
 Choose how a user can determine which parts belong to each construction. Text may use delimiters, indentation or precedence; a diagram may use enclosures, named ports or connections. A notation unfolding in time may use a learned boundary gesture or a segmentation convention. Explain the selected rule where its effect is not already established for the intended reader.
 
-Try a nested construction. Recover the outer operation and its immediate parts, then repeat that reading within each part. This is a useful structural reading for tree-like expressions. When a component is shared or a connection returns to an earlier component, expose its reference or connection so the reader can distinguish a shared component or cycle from nested copies.
+If the grammar admits nesting, recover the outer operation and its immediate parts, then repeat that reading within each part. This is a useful structural reading for tree-like expressions. When a component is shared or a connection returns to an earlier component, expose its reference or connection so the reader can distinguish a shared component or cycle from nested copies.
 
 Choose the structural distinctions needed by the operation. Some schemes identify several bracketings or drawings as the same expression. Establish the relevant equivalence before omitting their differences. If alternatives are intentionally unresolved, show that unresolved choice and postpone only the operation that needs it decided.
 
@@ -517,7 +517,7 @@ Identify the constructions that introduce local names and the parts in which tho
 
 For a notation with lexical scope, a common rule resolves a name at its nearest enclosing declaration with that name; if there is none, the value must come from the declared external context. Adopt that rule only when it fits the intended interpretation. Other schemes can make references available through earlier statements, explicit identifiers or connections. Define their resolution accordingly.
 
-Trace the references in one expression with repeated names and one expression with a free input. Here a free input is one whose value must be supplied from outside the expression. If insertion, copying or renaming changes which declaration an occurrence reaches, expose that change before treating the result as equivalent. NOT.4 develops transformations that preserve the intended use.
+Where the grammar permits names to repeat or an input to remain free, determine how each such reference resolves. A trace through an expression can expose a disputed binding. Here a free input is one whose value must be supplied from outside the expression. If insertion, copying or renaming changes which declaration an occurrence reaches, expose that change before treating the result as equivalent. NOT.4 develops transformations that preserve the intended use.
 
 For a reusable component, distinguish its locally introduced names from the inputs and results made available at its boundary. Compose components by those boundary references. A displayed label can be repeated without identifying its occurrences as the same declaration; the reference rule must settle that question.
 
@@ -535,7 +535,7 @@ Formation rules establish a permitted expression. Whether its described mathemat
 
 Build the intended expression from the declared parts. Recover its grouping, resolve the references and identify the component boundaries. Then perform the required operation with the supplied interpretation.
 
-Use a contrasting case that could reveal a mistaken rule. Depending on the chosen construction, change the grouping, reuse a name inside another scope, exchange two ports or introduce a shared component. Select the challenge because its interpretation can change the result.
+Establish that the formation and reading rules cover the expressions the user must handle. A contrast can expose a mistaken rule where an alternative reading would change the result. Depending on the chosen construction, change the grouping, reuse a name inside another scope, exchange two ports or introduce a shared component. Select the challenge because its interpretation can change the result.
 
 If two readers still recover different arrangements that matter to the work, locate the point of divergence. Add or repair the corresponding delimiter, reference rule or connection convention. If both arrangements express the intended equivalence, make that equivalence part of the scheme instead of forcing one arbitrary drawing.
 
@@ -619,7 +619,7 @@ Use the applicable questions when the construction rules need checking.
 - Are the groupings that change the operation distinguishable, or explicitly retained as unresolved alternatives?
 - Does each needed reference reach its declaration, external input or unresolved place according to the stated policy?
 - Do composition rules account for the roles of connected participants and the resulting external boundary?
-- Does a contrasting construction expose a consequential change of grouping, reference or connection?
+- Do the formation and reading rules preserve the required grouping, reference and connection over the admitted expressions? Use a contrasting construction if it can distinguish disputed readings.
 - Can an abbreviation be expanded or otherwise interpreted without losing a distinction needed by the operation?
 
 ### NOT.2:8 - Common Anti-Patterns and How to Avoid Them
@@ -715,7 +715,7 @@ Assigning names to marks can leave their combined use unexplained. Assigning a m
 
 ### NOT.3:4 - Solution
 
-**Choose the consequence → interpret the expression's parts and composition → supply the reading operations → perform a case → test a consequential change → retain the usable reading and its conditions.**
+**Choose what the reader must obtain → interpret the parts and their composition → construct the reading operations → derive the required answer or establish the procedure for the promised expressions → retain its conditions of use.**
 
 #### NOT.3:4.1 - Choose what the reading must produce
 
@@ -745,15 +745,15 @@ If a mathematical interpretation leaves the required obtaining procedure unavail
 
 #### NOT.3:4.4 - Perform the reading and locate where it depends on additional knowledge
 
-Take an expression whose relevant parts and input values are supplied. Carry the reading through to its stated result. At a step that cannot be performed, distinguish a missing input, an undefined interpretation and an unavailable operation. These lead to different repairs.
+For a requested reading, start with the expression and the inputs actually available. Derive what they settle for this question. For a reading procedure, establish how its rules produce the required interpretation throughout the permitted family. At a step that cannot be performed, distinguish a missing input, an undefined interpretation and an unavailable operation. These lead to different repairs.
 
 Compare the result with the intended consequence under the subject account. Repair an interpretation rule when it yields a different answer. Repair the reader preparation or access when the rule is usable in principle but cannot be carried out under the current conditions. If the subject account itself leaves the consequence unresolved, return that question to the corresponding mathematical, physical, computational or other practice.
 
-When more than one reading route is offered, perform the routes on a case that could expose a difference. Establish the agreement needed by the use, or explain why the routes answer different questions. A route that only returns a final value may lose the dependency structure another operation needs.
+When more than one reading route is offered, decide what agreement the recipient needs. A relation between the operations can establish agreement across the admitted cases. Where that relation is in doubt, use a case that could distinguish the routes. A route that returns only the final value may lose a dependency another operation needs.
 
 #### NOT.3:4.5 - Change one condition that matters to the interpretation
 
-Change a value, grouping, reference, context or intended question that could alter the result. Use the same rules to recover the new answer, or locate the rule that must change. The challenge should test the chosen interpretation rather than introduce an unrelated subject problem.
+When the order, context or intended question can vary within the promised use, determine which changes affect the answer and how the rules handle them. A changed expression can expose a missing rule. For a request about one fixed expression, return its reading once the available premises determine it.
 
 For a formal family, a general argument can establish that the reading operations implement the interpretation across that family. MATH.18 supplies interpretation-preservation questions; CMP.12 supplies executable translation and evaluation. For human or embodied use, C.2.8 can characterize what the prepared reader recovers and distinguish an expert walkthrough from observed use. Choose further checking when it can change the interpretation or permitted reliance.
 
@@ -813,7 +813,7 @@ When the interpretation needs checking, ask the following questions at the scope
 - Is the consequence to be obtained distinguishable from the subject claims on which it depends?
 - Do the used parts, their composition and relevant context have an interpretation?
 - Can the intended reader identify and perform the indispensable reading operations, or locate the missing input or capability?
-- Does the worked reading obtain the stated result without an unexplained inference supplied only by the author?
+- For a reading procedure, do its rules and available premises justify the promised result? For an account of what a reader actually recovered, which indispensable inferences did that reader make with the available help?
 - Does a consequential change lead to the corresponding new result or to a located interpretation question?
 - If several routes are offered, is their agreement or difference established for the observations the user needs?
 
@@ -877,7 +877,7 @@ Several useful readings may expose the same structure differently. Choosing amon
 
 **Use this when** an expression is difficult to read, derive from or change, and you need a rule for turning it into a more useful expression without losing the consequence on which the work relies. Examples include naming a repeated construction, exposing a hidden intermediate step, regrouping a diagram, or replacing a long sequence by an expandable abbreviation.
 
-Start with the reader operation that is difficult. Construct a proposed manipulation from the expression's formation and interpretation rules. State where the manipulation applies, explain what it preserves, then obtain and use a transformed expression. The result can instead be a located condition that prevents the proposed transformation.
+Start with the reader operation the transformation must support. Construct the manipulation from the expression’s formation and interpretation rules. State where it applies and establish what it preserves. Deliver the rule when this settles the commission. Where the reader needs a particular transformed expression, produce it under those conditions. The inquiry can also establish why the proposed transformation fails.
 
 The reader needs the notation's interpretation and the subject laws used in the manipulation. NOT.2 supplies grouping and reference rules; NOT.3 supplies interpretation and reading operations. Elementary arithmetic and ordered sequences suffice for the worked cases. More specialized laws can be supplied by a collaborator.
 
@@ -901,7 +901,7 @@ A visually simpler expression can hide a necessary distinction. Reusing a name c
 
 ### NOT.4:4 - Solution
 
-**Choose the use to preserve → construct the manipulation → establish its conditions → transform and read → challenge the changed condition → retain the useful rule or alternatives.**
+**Choose the use to preserve → construct the manipulation → establish its conditions and consequences → supply the justified rule or the transformed expression the reader needs.**
 
 #### NOT.4:4.1 - Choose the operation and the observations to preserve
 
@@ -933,15 +933,15 @@ For a single bounded use, a direct derivation can suffice. For every expression 
 
 #### NOT.4:4.4 - Construct and use the transformed expression
 
-Match the rule to the selected expression, instantiate its varying parts and satisfy its side conditions. Replace only the matched part, reconnect it to its surroundings and read the resulting expression using the notation's rules. Obtain the answer or perform the edit that motivated the transformation.
+For a commission to construct a transformation rule, establish what may be replaced and why the replacement preserves the required consequence in every admitted context. To deliver a transformed expression, match the rule to the selected expression, instantiate its varying parts, satisfy its side conditions and reconnect the replacement to its surroundings. Carry out the reading or edit as well when it is part of the commission.
 
-Compare the actual work before and after. A named definition can remove repeated edits while adding reference-following. An expanded derivation can be longer while making a missing inference accessible. Preserve both forms when they serve different needed operations; NOT.6 develops their maintained correspondence.
+For a claim about the work saved, compare the relevant operations before and after. A named definition can remove repeated edits while adding reference-following. An expanded derivation can be longer while making a missing inference accessible. Preserve both forms when they serve different needed operations; NOT.6 develops their maintained correspondence.
 
 If the new form loses information needed to continue, restore that information or narrow the claim to the uses it still supports. Retaining a link to a derivation or an expandable definition can be enough.
 
 #### NOT.4:4.5 - Challenge the condition most likely to fail in reuse
 
-Change a relevant binding, assumption, input class or intended observation. Repeat the affected transformation and reading, or explain why the rule no longer applies. Test a case at the boundary of the rule. Sections :5.1 and :5.3 show changed bindings and local assumptions.
+If reuse is intended, identify a binding, assumption, input class or observation whose change could affect it. Derive what the rule still preserves and where its grounds cease to apply. A boundary case can expose a lost condition, as with the changed bindings and local assumptions in :5.1 and :5.3. A derivation that already covers the promised range can settle the question directly.
 
 If a transformation is to run automatically, give CMP.12 the admitted expression structures, matching and replacement rules, and observations to preserve. An algorithm for repeatedly applying rules also needs a search strategy and a stopping condition. The availability of several valid rewrites does not imply that applying them in arbitrary order terminates or finds the most useful form.
 
@@ -949,7 +949,7 @@ If a transformation is to run automatically, give CMP.12 the admitted expression
 
 Keep the rule, the conditions that matter to its use and a recoverable reason for the preserved consequence. A short explanation beside a simple rule is enough when no larger account is needed. Reopen the affected rule when its interpretation, allowed context or required observation changes.
 
-For one known operation, stop after a suitable transformed expression is obtained. When committing to one form repeatedly blocks other useful transformations, retain alternatives and defer the choice. Equality saturation is one computational way to represent many equivalent forms and select from them. It requires a suitable expression theory, valid rules, a selection criterion and resource limits.
+For a commission to apply the rule to one expression, an adequate transformed expression can complete the work. When committing to one form repeatedly blocks other useful transformations, retain alternatives and defer the choice. Equality saturation is one computational way to represent many equivalent forms and select from them. It requires a suitable expression theory, valid rules, a selection criterion and resource limits.
 
 Compare retained forms by the work they support, using NOT.1's comparison and NOT.7's redesign where needed.
 
@@ -1014,8 +1014,8 @@ When the proposed transformation needs checking, examine the questions that bear
 - Can the matched structure, replacement and their connection to the surrounding expression be recovered?
 - Do references, local assumptions and side conditions remain valid at each place where the rule is used?
 - Does the preservation argument cover the stated family, or is the conclusion limited to the instances examined?
-- Has a transformed expression supported the intended reading or change?
-- Does the nearby failing case reveal the condition that blocks an invalid reuse?
+- For a commissioned expression or edit, does the result support its intended use? For a reusable rule, do its construction and grounds cover the expressions and contexts in which it may be applied?
+- If a condition essential to reuse is changed, what restricts the rule or still justifies the result? A boundary case or a derivation under the stated conditions can establish the answer.
 - Can the work stop with this result, or does a stated further use justify retaining or searching additional forms?
 
 ### NOT.4:8 - Common Anti-Patterns and How to Avoid Them
@@ -1082,7 +1082,7 @@ The source contributions are combined here with notation requirements and reader
 
 **Use this when** work must continue in another notation and you need to construct or repair the translation. A diagram may need a textual form, an ordered performance may need a compact score, or an expression may need a representation accepted by another reader or tool.
 
-Start with the operation the receiving notation must support. Construct its expression from the source's interpreted parts and connections, then use it to obtain the needed answer. Look for a pair of source expressions that the translation would make indistinguishable. If the work needs their difference, retain it, enrich the target or restrict the translation's use.
+Start with the operation the receiving notation must support. Construct its expression from the source's interpreted parts and connections, then use it to answer the source question. Look at the originals that could yield the same target expression. For a value, can it differ between two of them? For a choice, can the recipient find an action acceptable across the whole group? Retain the necessary distinction in the target, supply accessible context or specify the questions this translation supports.
 
 The first result is a usable translation with an answer-recovery procedure, or a demonstrated loss and a concrete way to repair it. Recovering a needed answer, reproducing the source expression and carrying a target edit back are different demands; choose the ones the work requires.
 
@@ -1132,7 +1132,7 @@ For a mathematical interpretation, MATH.18 develops preservation and reflection 
 
 #### NOT.5:4.3 - Perform the receiving operation and recover its answer
 
-Translate a small source expression, perform the intended operation in the target and interpret the result as an answer to the original question. Show how the target result answers the source question. If the target gives a list of numbered nodes, say which source nodes those numbers refer to. If it supplies only a bound or a set of possible answers, retain that limitation on return.
+Start with what the translation must deliver. For one expression, perform the target operation and interpret its result. For a reusable translation, establish how to recover the required source answer across the admitted expressions, including where expressions are combined. A worked expression can help find or explain that correspondence. Show how the target result answers the source question. If the target gives a list of numbered nodes, say which source nodes those numbers refer to. If it supplies only a bound or a set of possible answers, retain that limitation on return.
 
 Compare this result with what follows from the source under its declared interpretation. A mismatch locates a failed translation rule, a missing premise or a target operation that answers a different question. Repair the affected correspondence before relying on that answer.
 
@@ -1349,13 +1349,13 @@ For a chain of correspondences, follow the connection through the intermediate r
 
 #### NOT.6:4.4 - Perform the joined operation
 
-Take one input or object and follow it across the representations. Obtain each contribution, combine them using the stated relation and return the answer to the working question. Show where a reader switches representations and what is carried across that switch.
+Start from the result of the joined operation and follow each contribution to what it describes. For a lookup this can mean tracing one item through two forms. For an installation plan, a connector drawing may identify a numbered terminal on one unit while a cable schedule identifies a conductor and its two ends. To specify a connection, follow the declared end-to-terminal relation for the compatible unit and cable revisions. A terminal number used on different units can leave the intended end open unless another available reference identifies it. A request for the documented connection can stop at that relation. To report which connection was installed, relate suitable evidence of installation to those same ends. Carry the needed identities and relations across each switch of representation.
 
 If the connection exists only in the author's memory, add the missing reference or operation. If the correspondence is clear but the subject inference is missing, obtain that contribution from the subject method or a collaborator.
 
-Use one consequential contrast to challenge the connection. A row with the same label but a different unit, a node in another version or a modeled value beside an observation may require different treatment.
+A contrast can expose an incorrect match. Two rows may share a label while belonging to different batches, units or versions. For a reusable join, establish which identifiers refer to the same thing over the promised range. If a part number is unique only within its batch, use the batch and part number together when those fields have the same meaning on both sides and identify the required part there. If the user needs every part, also establish that the records cover them.
 
-For an immediate use, a worked joined reading may settle the question. A broader claim about how readily users can combine the representations requires evidence appropriate to their preparation and work; C.2.8 characterizes that recovery. Do not infer learning or transfer from the existence of the correspondence.
+For an immediate use, one established match can settle the question when it supplies the only link the recipient still needs. When three or more representations contribute to one result, trace their references to the same item, revision and conditions wherever the inference requires it. Separate successful matches for each pair can concern different items. A shared key with the required scope, or another justified correspondence, can establish all the matches at once. Whether readers can use the arrangement with their usual preparation is a further question for C.2.8.
 
 #### NOT.6:4.5 - Propagate the intended change and expose conflicts
 
@@ -1416,7 +1416,7 @@ When the combination needs checking, ask the questions that can change its use.
 - Does each retained representation support a named operation or needed distinction?
 - Can the reader recover the referents and the relation between their occurrences?
 - Are derived values distinguished from independent contributions and different claim kinds?
-- Can one joined answer be obtained by following the stated correspondences?
+- Can the reader obtain the requested result by following the correspondences? For a recurring use, what makes each required match identify the appropriate items, versions and relations throughout its promised range?
 - Does a change preserve the requirements of the intended edit rather than every value copied from an earlier display?
 - Are incompatible edits or interpretations exposed at the affected contribution?
 - Can the work stop with the usable combination, without unnecessary synchronized copies?
@@ -1482,7 +1482,7 @@ The synthesis retains cognitive and computational contributions at their own sco
 
 **Use this when** a notation can express the required content, yet reading or changing that content is unnecessarily difficult. A reader repeatedly loses a dependency, has to reconstruct a grouping, or must change the same assumption in several places. Another symbol or a shorter inscription may leave the difficult operation unchanged.
 
-Begin with one such operation on an actual expression. Find what the reader has to locate, infer, remember or alter. Change the notation or its editing arrangement at that point, then compare the operation and another operation that the change could burden.
+Begin with the operation whose cost or reliability matters. Find what the reader has to locate, infer, remember or alter. Change the convention or editing arrangement at that point and determine what follows for the requested use. Follow a transferred burden into another operation when that operation is needed. Use actual expressions or observations when they can decide a remaining question.
 
 The result is a repaired notation with a reason to prefer it for the intended work, or a decision to retain the existing form. A useful diagnosis may instead identify missing subject knowledge, an unavailable operation or inaccessible content that a notation change cannot supply.
 
@@ -1514,9 +1514,9 @@ The repair also has to separate expression from assistance. An author can explai
 
 #### NOT.7:4.1 - Locate the operation and its failure
 
-Select a concrete question and the expression on which the reader must work. Ask the reader to answer the question or make the change. Recover the route taken: where the reader searches, which reference is followed, what has to be held in memory and where the result goes wrong or the work becomes costly.
+Identify the operation at issue and the conditions under which a reader must perform it. For a claim about the work imposed by the notation, follow its reading and editing rules. For a claim about a reader’s difficulty, recover what the reader actually did, including what they looked for, the references they followed and where their answer or edit went wrong.
 
-Use an available response or observed difficulty when one exists. Otherwise, walk through the operation and treat the diagnosis as a design estimate. An actual trial is useful when plausible reader responses would change the repair decision.
+The available editing operations can settle a design question directly. If values can only be changed one field at a time, changing one shared parameter requires one edit and changing the same value in n independent fields requires n edits. Time taken and mistakes made by readers require evidence of their use. When plausible responses could lead to different repairs, observe the operation under the intended conditions or state the remaining uncertainty.
 
 State the relevant preparation, permitted help, display or access conditions and effort limit. A reader who knows the local grouping convention faces a different question from one learning it. A page that hides half a diagram can create a different difficulty from the diagram's structure.
 
@@ -1524,7 +1524,7 @@ Keep the intended result in view. If the reader has correctly recovered the nota
 
 #### NOT.7:4.2 - Explain which work the current form imposes
 
-Describe the burden through operations: repeated searching, uncertain grouping, reconstruction of an unstated dependency, simultaneous retention of distant values, or many edits for one intended change. Choose the description that explains the observed case.
+Describe the burden through operations: repeated searching, uncertain grouping, reconstruction of an unstated dependency, simultaneous retention of distant values, or many edits for one intended change. Establish which operations the form requires and which the reader chose in the observed case, when that case is the subject.
 
 Locate the source of the burden. The expression, the construction rule, the editing environment and the reader's preparation can make different contributions. An editor that cannot show two needed passages together may be changed without introducing a new notation. A missing dependency needs expression even when the display is large enough.
 
@@ -1550,7 +1550,7 @@ Keep the alternative small enough to inspect. If construction reveals that the o
 
 #### NOT.7:4.4 - Preserve what the work needs from the expression
 
-Identify the meaning and operations that must survive the change. Work through one consequential contrast: reversed dependency, local exception, changed grouping or unresolved input, as appropriate to this notation. The new form must make the required difference recoverable.
+Identify the meaning and operations that must survive the change. A construction or decoding rule may already show that the required differences are recoverable across all admitted expressions. To investigate a possible loss, work through a consequential contrast such as reversing a dependency, inserting a local exception or changing a group. Establish which results the new form supports.
 
 If the repair adds a claim that was absent before, treat it as a content addition. If it supplies a new procedure or teaches a missing convention, include that contribution in the comparison. A useful combined repair is allowed; attribute its effect to the combination used.
 
@@ -1558,9 +1558,9 @@ Preserve the path from a compressed form to the detail needed for its use. A sha
 
 #### NOT.7:4.5 - Compare the same operation and the burden it moves
 
-Perform the selected operation with the old and new forms under comparable conditions. Compare correct and missing results first, then the effort relevant to the use: searches, unresolved references, edits, elapsed time or another suitably defined measure. C.2.8 distinguishes structure recovered from the effort of recovering it.
+Compare what the old and new forms let the recipient recover or do under the required conditions. Their rules may directly establish a difference in recoverability or the number of required edits. For a claim about readers’ actual effort or success, compare evidence of their work under comparable conditions. Measure what matters to that use, such as searches, missed references, edits or elapsed time. C.2.8 distinguishes structure recovered from the effort of recovering it.
 
-Also perform an operation plausibly made harder by the repair. A shared parameter may make a global change easy and a local exception harder. An outgoing-dependency index may improve downstream search while an incoming-dependency list remains better for finding prerequisites. Keep that trade-off visible in the choice.
+Follow any burden the change could move into another required operation. A shared parameter may make a global change easy and a local exception harder. An outgoing-dependency index may improve downstream search while an incoming-dependency list remains better for finding prerequisites. Try the affected operation if the comparison is unresolved and matters to adoption. An established property of the representation can settle it directly. For work confined to one operation, compare that use and its necessary preparation and upkeep.
 
 In a reader trial, retain the first response before explanation or correction. If the same reader sees both forms, practice can contribute to the second result. For a local decision, that limitation may be acceptable. A general superiority or learning claim requires a comparison that supports that stronger conclusion; EXD.6 and, for instruction intended to develop human capability, HCD.19 supply the corresponding evaluation methods.
 
@@ -1644,7 +1644,7 @@ When the repair needs checking, ask the questions that can change its adoption.
 
 A repair can make a needed relation or operation available with less reconstruction, or make an intended change less error-prone. It also makes the reason for keeping a familiar convention explicit when a proposed alternative would burden important work.
 
-New conventions require learning and migration. Complementary views add maintenance. A local improvement remains local until broader use supports a wider claim. Some failures return to subject knowledge or explanation rather than notation.
+New conventions require learning and migration. Complementary views add maintenance. For a broader claim, establish which operations, expressions and readers its grounds cover. A rule can cover a family of edits. A claim about their cost in practice also depends on the working conditions and evidence of use. Some failures return to subject knowledge or explanation rather than notation.
 
 ### NOT.7:10 - Architectural Rationale
 
@@ -1719,7 +1719,7 @@ The carrier's behavior also matters. Playing a recording faster changes its audi
 
 ### NOT.8:4 - Solution
 
-**Select the temporal or embodied distinction → establish references → segment and encode → construct the reading or enactment route → vary a consequential condition → retain a usable expression.**
+**Select the temporal or embodied distinction → establish its references → segment and encode the expression → construct the reading or enactment procedure → establish what the recipient can recover or do under its conditions.**
 
 #### NOT.8:4.1 - Select what is expressed and what the reader should do
 
@@ -1765,7 +1765,7 @@ A demonstration can be part of the supplied interpretation. Identify what it tea
 
 #### NOT.8:4.5 - Challenge the relation with a meaningful change
 
-Carry out or inspect a small use and a contrast that can change its result. Shift a cue while retaining its identity, change a body's orientation, remove a timing reference or ask for simultaneity rather than order. Choose a contrast grounded in the intended operation.
+For a specified signal, derive what the reader can recover from its marks, timing rule and available reference. For a family of signals, establish which distinctions its reading procedure preserves throughout the admitted conditions. When a contrast could resolve a disputed reading, possible tests include shifting a cue while retaining its identity, changing a body's orientation or removing a timing reference. Choose one whose outcome matters to the intended operation.
 
 Distinguish reading from successful physical performance. A correctly decoded sequence can still be infeasible for a particular body or controller. Locate that missing realization contribution rather than changing the meaning until the observed performance appears correct.
 
